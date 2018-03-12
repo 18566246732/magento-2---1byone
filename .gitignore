@@ -6,7 +6,7 @@
 .idea/**
 data
 etc/**
-etc/
+app/etc/
 data/**
 htmlcov
 htmlcov/**
