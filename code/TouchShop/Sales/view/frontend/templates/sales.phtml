@@ -1,0 +1,67 @@
+<?php
+/** @var TouchShop\Sales\Block\Sales $block */
+
+$index = 0;
+?>
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $block->getViewFileUrl("TouchShop_Sales::css/sales.css") ?>">
+
+<img class="top-img" src="<?php echo $block->getimg_urlBaseUrl('top-img.png')?>" alt="">
+<div class="sales-container">
+    <?php foreach ($block->getProductData() as $name => $product_category): ?>
+        <div class="product-category">
+            <div class="product-category-name">
+                <div class="hr"></div>
+                <div class="hr"></div>
+                <h3><?php echo $name?></h3>
+            </div>
+            <div class="product-category-list-top">
+                <img src="<?php echo $block->getimg_urlBaseUrl('bg-top.png')?>" alt="">
+            </div>
+            <div class="product-category-list product-category-list-<?php if($index==0) { echo '3';}else{ echo '4';} ?>" style="background: url('<?php echo $block->getimg_urlBaseUrl('bg-center.png')?>') top no-repeat repeat;background-size: 100%;">
+                <?php foreach ($product_category as $product): ?>
+                    <div class="product-category-item">
+                        <div class="discount" style="background: url('<?php echo $block->getimg_urlBaseUrl('youhuibg.png') ?>') center no-repeat;background-size: cover">
+                            <span class="span-bold span-left"><?php echo $product['discount']?></span><!--
+                            --><span class="span-center">%</span><!--
+                            --><span class="span-bold span-right">Off</span>
+                        </div>
+                        <div class="img_url">
+                            <a style="display: block;width: 100%; height: 100%;cursor: pointer" href="<?php echo $product['link']?>">
+                                <img style="width: 100%; max-height: 100%;" src="<?php echo $product['img_url']?>" alt="">
+                            </a>
+                        </div>
+                        <div class="product_name"><?php echo $product['product_name']?></div>
+                        <div class="discription"><?php echo $product['discription']?></div>
+                        <div class="price"><?php echo $product['price']?></div>
+                        <a class="link" href="<?php echo $product['link']?>" target="_blank">BUY NOW</a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="product-category-list-bottom">
+                <img src="<?php echo $block->getimg_urlBaseUrl('bg-bottom.png')?>" alt="">
+            </div>
+        </div>
+        <?php $index = $index + 1; ?>
+    <?php endforeach; ?>
+
+    <div class="product-category">
+        <div class="other-button">
+            <a href="">Other Recommended Products</a>
+        </div>
+        <div class="product-category-name">
+            <div class="hr"></div>
+            <div class="hr"></div>
+            <h3>Rules</h3>
+        </div>
+        <ul class="rules">
+            <li>1. Sales run from December 4th through December 13st, 2017</li>
+            <li>2. First come. first served.</li>
+            <li>3. Anker reserves the right of final explanation.</li>
+            <li>4. Products shown in the Other Recommended Products section do not have a discount.</li>
+            <li>5. Discounts only apply to products of the color specified on this page.</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.field.newsletter {
+    padding-right: 20px
+}
+
+.field.newsletter #newsletter {
+    border-radius: 25px;
+}
+
+.form.subscribe .subscribe.primary {
+    border-radius: 25px;
+    padding: 6px 15px;
+}

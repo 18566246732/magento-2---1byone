@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
+<form action="<?php echo $block->getFormAction() ?>" method="post">
+    <div class="input-container">
+        <div class="input-container">
+            <label for="email">Email Address <span>*</span></label>
+            <input name="email" id="email" type="text">
+        </div>
+        <div class="input-container">
+            <label for="name">Contact Name <span>*</span></label>
+            <input name="name" id="name" type="text">
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="order">Order ID <span>*</span></label>
+        <input name="order" id="order" type="text">
+    </div>
+    <div class="input-container">
+        <label for="detail">Issue Details <span>*</span></label>
+        <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
+    </div>
+    <div class="input-container input-center-container">
+        <button type="reset">RESET</button><button type="submit">SUBMIT</button>
+    </div>
+<!--    <input name="firstname" type="text">-->
+<!--    <input name="lastname" type="text">-->
+<!--    <input name="phone" type="text">-->
+<!--    <input name="bookingTime" type="date">-->
+<!--    <input type="submit" value="Send booking informations">-->
+</form>

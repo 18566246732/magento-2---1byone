@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TouchShop_Complain::complain" title="Complaints" module="TouchShop_Complain" sortOrder="10"
+             action="touchshop_complain/complaints" resource="TouchShop_Complain::complain"
+             parent="TouchShop_Basic::basic"/>
+    </menu>
+</config>

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**@var TouchShop\ProductTool\Block\PayInAmazonLink $block */
+
+?>
+
+<button style="border-style: none; padding: 15px 40px; font-size: 18px;margin-bottom: 20px;border-radius: 0; background: rgb(238,221,95);"
+        onclick="toAmazon('<?php echo $block->getLinkUrl() ?>')"><?php echo $block->getLinkLabel() ?></button>
+
+<script>
+    function toAmazon(url) {
+        window.open(url)
+    }
+</script>

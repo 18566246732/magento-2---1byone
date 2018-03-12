@@ -1,0 +1,48 @@
+.follow {
+    float: right;
+    position: relative;
+    width: 34%;
+    right: -34%;
+    top: 45px;
+}
+
+.follow p {
+    color: #cfcfcf;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.follow a {
+    background: #cfcfcf;
+    /* padding: 5px; */
+    margin-right: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.follow a.facebook:hover {
+    background: #4267b2
+}
+
+.follow a.twitter:hover {
+    background: #50a5e6
+}
+
+.follow a.youtube:hover {
+    background: #e6231a;
+}
+
+.follow .link {
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .follow {
+        position: static;
+        float: initial;
+    }    
+}

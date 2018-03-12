@@ -1,0 +1,51 @@
+<?php
+/** @var TouchShop\Basic\Block\CarouselBasic $block */
+?>
+
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $block->getViewFileUrl('TouchShop_Basic::css/owl.carousel.min.css') ?>">
+<div class="owl-carousel-container">
+    <div class="owl-carousel owl-theme">
+        <?php foreach ($block->getImages() as $name => $image): ?>
+            <div style="cursor: pointer" class="item" onclick="toView('<?php echo $image["url"] ?>')">
+                <img style="max-height: 400px" src="<?php echo $image["src"]; ?>"/>
+            </div>
+        <?php endforeach; ?>
+
+    </div>
+</div>
+<script>
+    function toView(params) {
+        window.open(params)
+    }
+
+    (function () {
+        require(["jquery", "owlcarousel"], function ($) {
+            $(document).ready(function () {
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    autoplay: true,
+                    nav: false,
+                    items: 1
+                })
+
+                <?php if ($block->isFullScreen()): ?>
+                function resizeCarouselContainer() {
+                    var WINDOW_WIDTH = document.body.offsetWidth
+                    var TARGET_WIDTH = $('.page-main').width()
+                    $('.owl-carousel-container').width(WINDOW_WIDTH)
+                    $('.owl-carousel-container').css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
+                }
+
+                resizeCarouselContainer()
+                $('.owl-carousel').owlCarousel('refresh');
+
+                window.addEventListener('resize', function () {
+                    resizeCarouselContainer()
+                })
+                <?php endif; ?>
+            });
+        });
+    })();
+</script>

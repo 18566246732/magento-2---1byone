@@ -1,0 +1,8 @@
+<?php
+/**@var TouchShop\ProductTool\Block\AmazonASIN $block */
+
+$asin = $block->getAmazonASIN();
+?>
+<?php if ($asin) : ?>
+    <p>&nbsp;&nbsp;ASIN:&nbsp;<?= $asin ?></p>
+<?php endif ?>
