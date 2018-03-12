@@ -1,0 +1,48 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+    simple:
+        format: '[%(asctime)s-%(levelname)8s-%(threadName)10s-%(name)15s-%(filename)20s:%(lineno)s# %(message)s'
+
+# default variables
+default_configs: &default_rotating_file_configs
+  class: logging.handlers.RotatingFileHandler
+  formatter: simple
+  maxBytes: 10485760 # 10MB
+  backupCount: 20
+  encoding: utf8
+
+default_dir: &dir ../../data/logs
+
+# root handlers
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        stream: ext://sys.stdout
+
+    info_file_handler:
+        level: INFO
+        filename: !!python/object/apply:os.path.join [*dir, info.log]
+        <<: *default_rotating_file_configs
+
+    error_file_handler:
+        level: ERROR
+        filename: !!python/object/apply:os.path.join [*dir, error.log]
+        <<: *default_rotating_file_configs
+
+################################
+  # config third-party loggers
+################################
+#loggers:
+#    {logger_name}:
+#        level: ERROR
+#        handlers: [console]
+#        propagate: no
+
+
+root:
+    level: DEBUG
+    handlers: [console, info_file_handler, error_file_handler]

@@ -1,0 +1,11 @@
+redis==2.10.6
+requests==2.9.1
+elasticsearch5==5.5.2
+python-etcd==0.4.5
+Flask==0.12.2
+flask_restful==0.3.6
+happybase==1.1.0
+hdfs==2.1.0
+SQLAlchemy==1.2.1
+tornado==5.0a1
+PyYAML==3.12
