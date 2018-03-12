@@ -5,6 +5,7 @@
 .idea
 .idea/**
 data
+etc/
 data/**
 htmlcov
 htmlcov/**
