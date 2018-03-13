@@ -1,0 +1,33 @@
+.screen-container {
+    margin-bottom: 20px
+}
+
+.screen-container label {
+    margin-right: 20px
+}
+
+.screen-container .asin-container {
+    margin-bottom: 5px
+}
+
+.screen-container .time-container input{
+    margin-left: 5px;
+}
+
+.screen-container .time-container input:first-of-type {
+    margin-left: 0;
+}
+
+.main-chart {
+    position: relative;
+}
+
+.button-group {
+    text-align: right;
+}
+
+.button-group button {
+    border-style: none;
+    border: solid 1px #ccc;
+    padding: 3px 10px;
+}

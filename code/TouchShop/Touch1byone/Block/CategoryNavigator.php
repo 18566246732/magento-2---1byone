@@ -55,10 +55,15 @@ class CategoryNavigator extends Template
         return $result;
     }
 
+    public function getImgBaseUrl($img_urlName)
+    {
+        return $this->getBaseUrl() . 'pub/media/icon/' . $img_urlName;
+    }
+
     public function getCategoryTree()
     {
         $tree = $this->tree->getTree();
         $result = $this->resolve($tree[0]);
-        return $result;
+        return json_encode($result);
     }
 }

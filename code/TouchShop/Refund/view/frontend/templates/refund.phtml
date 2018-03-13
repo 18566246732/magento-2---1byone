@@ -42,7 +42,7 @@
     <div class="input-container">
         <div class="input-container">
             <label for="email">Email Address <span>*</span></label>
-            <input name="email" id="email" type="text">
+            <input name="email" id="email" placeholder="example@site.com" type="text">
         </div>
         <div class="input-container">
             <label for="name">Contact Name <span>*</span></label>
@@ -56,58 +56,48 @@
         <input name="email" id="email" type="text">
     </div>
     <div class="input-container">
-        <label for="email">Product Name <span>*</span></label>
-        <input name="email" id="email" type="text">
+        <input type="radio" name="type" value="exchange" checked="checked" onclick="change('exchange')"> Exchange
+        <input style="margin-left: 10px" type="radio" name="type" value="refund" onclick="change('refund')"> Refund
     </div>
-    <div class="input-container">
+    <div class="input-container add-address-btn active">
+        <input type="checkbox" id="isAddNewAddress" onclick="checkboxFn(this)"> New address
+    </div>
+    <div class="address">
+        <div class="input-container-title">Current Address</div>
         <div class="input-container">
-            <label for="email">Refund or exchange <span>*</span></label>
-            <input name="email" id="email" type="text">
+            <div class="input-container">
+                <label for="email">Address Line 1</label>
+                <input name="email" id="email" type="text">
+            </div>
+            <div class="input-container">
+                <label for="name">Address Line 2</label>
+                <input name="name" id="name" type="text">
+            </div>
         </div>
         <div class="input-container">
-            <label for="name">Reason for request <span>*</span></label>
+            <div class="input-container">
+                <label for="email">Country</label>
+                <input name="email" id="email" type="text">
+            </div>
+            <div class="input-container">
+                <label for="name">State/Territor</label>
+                <input name="name" id="name" type="text">
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="input-container">
+                <label for="email">City</label>
+                <input name="email" id="email" type="text">
+            </div>
+            <div class="input-container">
+                <label for="name">Zip Code</label>
+                <input name="name" id="name" type="text">
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="name">Phone Number</label>
             <input name="name" id="name" type="text">
         </div>
-    </div>
-    <div class="input-container">
-        <label for="name">Series No.: Located on the product as "SN: AXXXXXXX"</label>
-        <input name="name" id="name" type="text">
-    </div>
-
-    <div class="input-container-title">Current Address</div>
-    <div class="input-container">
-        <div class="input-container">
-            <label for="email">Address Line 1</label>
-            <input name="email" id="email" type="text">
-        </div>
-        <div class="input-container">
-            <label for="name">Address Line 2</label>
-            <input name="name" id="name" type="text">
-        </div>
-    </div>
-    <div class="input-container">
-        <div class="input-container">
-            <label for="email">Country</label>
-            <input name="email" id="email" type="text">
-        </div>
-        <div class="input-container">
-            <label for="name">State/Territor</label>
-            <input name="name" id="name" type="text">
-        </div>
-    </div>
-    <div class="input-container">
-        <div class="input-container">
-            <label for="email">City</label>
-            <input name="email" id="email" type="text">
-        </div>
-        <div class="input-container">
-            <label for="name">Zip Code</label>
-            <input name="name" id="name" type="text">
-        </div>
-    </div>
-    <div class="input-container">
-        <label for="name">Phone Number</label>
-        <input name="name" id="name" type="text">
     </div>
     <div class="input-container">
         <label class="label-b" for="name">Issue Details</label>
@@ -117,3 +107,22 @@
         <button type="reset">RESET</button><button type="submit">SUBMIT</button>
     </div>
 </form>
+
+<script>
+    function change(n) {
+        var btn = document.querySelector('.add-address-btn')
+        if(n == 'refund') {
+            btn.classList.remove('active')
+        }
+        else{
+            // address.classList.add('active')
+            btn.classList.add('active')
+        }
+    }
+
+    function checkboxFn(n) {
+        var address = document.querySelector('.address')
+        if(n.checked) address.classList.add('active')
+        else address.classList.remove('active')
+    }
+</script>

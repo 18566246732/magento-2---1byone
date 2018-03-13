@@ -29,4 +29,11 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Theme\Model\View\Design">
+        <arguments>
+            <argument name="themes" xsi:type="array">
+                <item name="adminhtml" xsi:type="string">TouchShop/Peanut-admin</item> <!-- Example: "Magento/backend" -->
+            </argument>
+        </arguments>
+    </type>
 </config>
