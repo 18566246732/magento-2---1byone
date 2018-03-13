@@ -1,5 +1,9 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
 *.pyc
+autoload.php
+bootstrap.php
+functions.php
+.htaccess
 .git
 .git/**
 .idea
