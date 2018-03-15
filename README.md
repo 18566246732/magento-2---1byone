@@ -1,33 +1,43 @@
-<<<<<<< HEAD
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
-=======
-# My project's README
->>>>>>> b19036709ef1bf9154ebff476474990e7bfa2c45
++ uplaod code
++ copy media
+    + follow
+    + poweruser
+    + refund-exchange
+    + sales
+    + wysiwyg
++ rebuild
++ disable DebugHelper Shopial_Facebook
++ change theme to Peanut: content->configuration
++ install extension
++ admin configurations:
+    + Mageplaza Extensions
+        + register
+        + general -> disable topmenu
+    + Customer
+        + disable
++ cms
+    + content->configuration->edit
+        +Html Head
+            + favicon icon: logo_1byone_small.png
+            + Default Page Tile: 1byone
+        + Header
+            + logo image: logo.png
+            + logo attribute width: 116
+            + welcome text :
+        + Footer
+            + Copyright:Copyright © 2018 1byone, Inc. All rights reserved.
+    + content->block
+        + add New block
+            + see cms blocks:name and id is filename ,and code is file content
+        + add widget
+            + type: cms static block
+            + theme: peanut
+            + title: 1BYONE-Home-Page
+            + All-store-view
+            + SepcifiedPage/CmsHomePage/MainContentArea
+            + select block 1BYONE-Home-Page
+        + add pages
+            + campaign:insert widget- block:1BYONE-campaign, layout update:1 column + see cms pages
+            + blog:insert widget- block:1BYONE-blog, layout update:1 column + see cms pages
+            + products:insert widget Product List 2 columns with left bar
+            + testimony:insert widget- block:1BYONE-testimony, layout update:1 column

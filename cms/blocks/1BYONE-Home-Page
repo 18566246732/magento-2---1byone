@@ -1,0 +1,27 @@
+<p><img src="{{media url="wysiwyg/u1.jpg"}}" alt="" /></p>
+<p style="text-align: center;"><span style="font-size: xx-large;">news</span></p>
+<table style="height: 160px; ; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 0;" rowspan="2" width="610"><img style="height: 100%;" src="{{media url="wysiwyg/news1.png"}}" alt="" /></td>
+<td style="padding: 0 10px;" rowspan="2" width="273"><img style="height: 100%;" src="{{media url="wysiwyg/news2.png"}}" alt="" /></td>
+<td style="padding: 0 0 2.5px 0;"><img style="height: 100%;" src="{{media url="wysiwyg/news3_4.png"}}" width="100%" height="80" /></td>
+</tr>
+<tr>
+<td style="padding: 2.5px 0 0 0;"><img style="height: 100%;" src="{{media url="wysiwyg/news3_4.png"}}" width="100%" height="80" /></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><span style="font-size: xx-large;">SALES &amp; Campaigns</span></p>
+<table style="height: 160px; ; width: 100%;" border="0">
+<tbody>
+<tr>
+<td style="padding: 0;" rowspan="2" width="610"><img style="height: 100%;" src="{{media url="wysiwyg/news1.png"}}" alt="" /></td>
+<td style="padding: 0 10px;" rowspan="2" width="273"><img style="height: 100%;" src="{{media url="wysiwyg/news2.png"}}" alt="" /></td>
+<td style="padding: 0 0 2.5px 0;"><img style="height: 100%;" src="{{media url="wysiwyg/news3_4.png"}}" width="100%" height="80" /></td>
+</tr>
+<tr>
+<td style="padding: 2.5px 0 0 0;"><img style="height: 100%;" src="{{media url="wysiwyg/news3_4.png"}}" width="100%" height="80" /></td>
+</tr>
+</tbody>
+</table>

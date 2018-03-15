@@ -11,4 +11,7 @@
         <plugin name="TouchShop_Touch1byone_Topmenu"
                 type="TouchShop\Touch1byone\Plugin\Block\Topmenu"/>
     </type>
+    <type name="Magento\Cms\Model\Wysiwyg\Config">
+        <plugin name="add_wysiwyg_data" type="TouchShop\Touch1byone\Plugin\Block\WysiwygConfig" sortOrder="30"/>
+    </type>
 </config>

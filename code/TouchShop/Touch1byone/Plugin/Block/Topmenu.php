@@ -71,14 +71,14 @@ class Topmenu
                 'Products:products'
             ],
 //            'Community:community',
-            'Event:sales' => [
+            'Deals:sales' => [
                 'Sales:sales',
                 'Campaign & Lucky Draw:campaign',
                 'Power User:power-user'
             ],
-            'Service:refund' => [
+            'Support:refund' => [
                 'Refund & Exchange:refund',
-                'Complain:complain'
+                'Feedback:feedback'
             ]
 
         ];

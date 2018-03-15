@@ -1,0 +1,13 @@
+<referenceContainer name="content">
+    <block class="TouchShop\Basic\Block\CarouselBasic" name="basic.carousel"
+                   template="TouchShop_Basic::carousel_basic.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument name="image" xsi:type="array">
+                        <item name="img01" xsi:type="string">pub/media/wysiwyg/facd6bbbba.jpg</item>
+                        <item name="img02" xsi:type="string">pub/media/wysiwyg/fa9d2a549c.jpg</item>
+                        <item name="img03" xsi:type="string">pub/media/wysiwyg/7cfc80591c.jpg</item>
+                    </argument>
+                </arguments>
+            </block>
+</referenceContainer >
