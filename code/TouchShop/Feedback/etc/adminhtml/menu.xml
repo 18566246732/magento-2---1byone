@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TouchShop_Feedback::feedback" title="Feedback" module="TouchShop_Feedback" sortOrder="10"
+             action="feedback/complaints" resource="TouchShop_Feedback::feedback"
+             parent="TouchShop_Basic::basic"/>
+    </menu>
+</config>

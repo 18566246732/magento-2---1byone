@@ -9,9 +9,7 @@ functions.php
 .idea
 .idea/**
 data
-etc/**
-etc/
-etc/*
+/etc
 data/**
 htmlcov
 htmlcov/**

@@ -41,3 +41,17 @@
             + blog:insert widget- block:1BYONE-blog, layout update:1 column + see cms pages
             + products:insert widget Product List 2 columns with left bar
             + testimony:insert widget- block:1BYONE-testimony, layout update:1 column
++ cron jobs
+    <pre><code>
+    * * * * * /usr/bin/php /var/www/html/bin/magento cron:run | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
+    * * * * * /usr/bin/php /var/www/html/update/cron.php >> /var/www/html/var/log/update.cron.log
+    * * * * * /usr/bin/php /var/www/html/bin/magento setup:cron:run >> /var/www/html/var/log/setup.cron.log
+    </code></pre>
++ add attribute
+    + Amazon ASIN,Text,amazon_asin,use in search
+    + Amazon url, Text,amazon_url,
+    + discount,Text,discount,Used for Sorting in Product Listing
+    + Suggested,Text,suggested,Used for Sorting in Product Listing
+    + Product FAQ, Text area, product_faq
+    + Download Files,Text area, download_files
+    
