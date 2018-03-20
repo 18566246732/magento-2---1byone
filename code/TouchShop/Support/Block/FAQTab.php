@@ -6,12 +6,12 @@
  * Time: 11:03 PM
  */
 
-namespace TouchShop\Touch1byone\Block;
+namespace TouchShop\Support\Block;
 
 
 use Magento\Framework\View\Element\Template;
 
-class Customtab extends Template
+class FAQTab extends Template
 {
     protected $_registry;
 

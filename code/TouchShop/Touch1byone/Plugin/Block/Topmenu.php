@@ -77,6 +77,7 @@ class Topmenu
                 'Power User:power-user'
             ],
             'Support:refund' => [
+                'FAQ & Downloads:support',
                 'Refund & Exchange:refund',
                 'Feedback:feedback'
             ]

@@ -6,7 +6,7 @@
  * Time: 10:05 PM
  */
 
-namespace TouchShop\Touch1byone\Block;
+namespace TouchShop\Support\Block;
 
 
 use Magento\Framework\View\Element\Template;
