@@ -1,0 +1,12 @@
+.logo {
+    display: initial;
+    /*prevent logo from shrink*/
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.logo img {
+    display: initial;
+    width: 116px;
+    height: 61px;
+}

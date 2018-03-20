@@ -1,0 +1,115 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Search::css/form.css")?>">
+
+<div class="block block-search">
+    <div class="block block-title"><strong><?= /* @escapeNotVerified */
+            __('Search') ?></strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */
+        $helper->getResultUrl() ?>" method="get">
+            <div class="field search show-mode" id="searchInput">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span><?= /* @escapeNotVerified */
+                        __('Search') ?></span>
+                </label>
+                <div class="control">
+                    <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"<?= /* @escapeNotVerified */
+                           $helper->getSuggestUrl() ?>",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="<?= /* @escapeNotVerified */
+                           $helper->getQueryParamName() ?>"
+                           value="<?= /* @escapeNotVerified */
+                           $helper->getEscapedQueryText() ?>"
+                           placeholder="<?= /* @escapeNotVerified */
+                           __('Search entire store here...') ?>"
+                           class="input-text"
+                           maxlength="<?= /* @escapeNotVerified */
+                           $helper->getMaxQueryLength() ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <?= $block->getChildHtml() ?>
+                </div>
+            </div>
+            <div class="actions" style="color: white">
+                <button type="submit"
+                        title="<?= $block->escapeHtml(__('Search')) ?>"
+                        class="action search"
+                        id="searchBtn"
+                        disabled="">
+                    <span><?= /* @escapeNotVerified */
+                        __('Search') ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script>
+    (function () {
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            var btn = $j("#searchBtn");
+                search = $j("div.block.block-search");
+                input = $j("#search");
+                searchInput =$j("#searchInput");
+
+            // console.log(search);
+            // console.log(btn.attr("disabled"));
+            // btn.attr("disabled",false);
+            // btn.prop("disabled",false);
+            // console.log(btn.attr("disabled"));
+            // console.log("on error");
+
+            // search.on("click", function (e) {
+            //     console.log(e.target.id);
+            //     if(e.target.id = "searchBtn") {
+            //         search.css("width","auto");
+            //         input.css("visibility","visible");
+            //     }
+            // });
+            search.on({
+                mouseover : function (e) {
+                    console.log(e.target);
+                    // if(e.target.id == "searchInput") {
+                        search.css({"width":"250px","padding-left":"15px"});
+                        input.css("visibility","visible");
+                    // }
+                },
+                // keyup : function () {
+                //     // if(e.target.id == "searchInput") {
+                //         search.css({"width":"28px","padding-left":"initial"});
+                //         input.css("visibility","hidden");
+                //     // }
+                // }
+            });
+
+        });
+    })()
+</script>
+
+
+

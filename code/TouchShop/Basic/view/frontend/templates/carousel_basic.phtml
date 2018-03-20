@@ -4,21 +4,20 @@
 
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl('TouchShop_Basic::css/owl.carousel.min.css') ?>">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/owl-overwrite.css")?>">
 <div class="owl-carousel-container">
     <div class="owl-carousel owl-theme">
         <?php foreach ($block->getImages() as $name => $image): ?>
             <div style="cursor: pointer" class="item" onclick="toView('<?php echo $image["url"] ?>')">
-                <img style="max-height: 400px" src="<?php echo $image["src"]; ?>"/>
+                <img style="max-height: 998px" src="<?php echo $image["src"]; ?>"/>
             </div>
         <?php endforeach; ?>
-
     </div>
 </div>
 <script>
     function toView(params) {
         window.open(params)
     }
-
     (function () {
         require(["jquery", "owlcarousel"], function ($) {
             $(document).ready(function () {
@@ -27,7 +26,9 @@
                     margin: 10,
                     autoplay: true,
                     nav: false,
-                    items: 1
+                    items: 1,
+                    dots: true,
+                    // dotsEach: true,
                 })
 
                 <?php if ($block->isFullScreen()): ?>
@@ -39,10 +40,10 @@
                 }
 
                 resizeCarouselContainer()
-                $('.owl-carousel').owlCarousel('refresh');
 
+                $('.owl-carousel').owlCarousel('refresh');
                 window.addEventListener('resize', function () {
-                    resizeCarouselContainer()
+                    // resizeCarouselContainer()
                 })
                 <?php endif; ?>
             });
