@@ -1,8 +1,6 @@
-/*nav.navigation {*/
-    /*display: flex;*/
-    /*align-items: end;*/
-    /*background-color: red;*/
-/*}*/
+nav.navigation {
+    background-color: rgba(0,0,0,0);
+}
 
 nav.navigation ul li {
 

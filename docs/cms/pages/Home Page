@@ -1,0 +1,27 @@
+<referenceContainer name="content">
+    <block class="TouchShop\Basic\Block\CarouselBasic" name="basic.carousel"
+           template="TouchShop_Basic::carousel_basic.phtml"
+           group="detailed_info">
+        <arguments>
+            <argument name="images" xsi:type="array">
+                <item name="img1" xsi:type="array">
+                    <item name="url" xsi:type="string">https://www.amazon.com/dp/B00M3Q4IFC</item>
+                    <item name="src" xsi:type="string">pub/media/wysiwyg/facd6bbbba.jpg</item>
+                </item>
+                <item name="img2" xsi:type="array">
+                    <item name="url" xsi:type="string">https://www.amazon.com/dp/B00M3Q4IFC</item>
+                    <item name="src" xsi:type="string">pub/media/wysiwyg/fa9d2a549c.jpg</item>
+                </item>
+                <item name="img3" xsi:type="array">
+                    <item name="url" xsi:type="string">https://www.amazon.com/dp/B00M3Q4IFC</item>
+                    <item name="src" xsi:type="string">pub/media/wysiwyg/7cfc80591c.jpg</item>
+                </item>
+                <item name="img4" xsi:type="array">
+                    <item name="url" xsi:type="string">https://www.amazon.com/dp/B00M3Q4IFC</item>
+                    <item name="src" xsi:type="string">pub/media/wysiwyg/banner.png</item>
+                </item>
+            </argument>
+            <argument name="full_screen" xsi:type="boolean">true</argument>
+        </arguments>
+    </block>
+</referenceContainer>
