@@ -30,11 +30,12 @@ class Index extends Action
 
     public function execute()
     {
-        $data = [
-            'key' => 'WT08',
-            'page_num' => 1,
-            'page_size' => 1
-        ];
+        $data = (array)$this->getRequest()->getPost();
+//        $data = [
+//            'key' => 'WT08',
+//            'page_num' => 1,
+//            'page_size' => 1
+//        ];
         $this->registry->register('support_post', $data);
         $this->_view->loadLayout();
         $this->_view->renderLayout();
