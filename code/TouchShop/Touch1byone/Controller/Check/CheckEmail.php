@@ -14,7 +14,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
 
-class CheckLogin extends Action
+class CheckEmail extends Action
 {
 
     private $collectionFactory;
@@ -32,9 +32,6 @@ class CheckLogin extends Action
     {
         $response = 'false';
         $post = (array)$this->getRequest()->getPost();
-        $post = [
-            'email' => 'roni_cost@example.com'
-        ];
         if ($post) {
             if (isset($post['email'])) {
                 $collection = $this->collectionFactory->create();

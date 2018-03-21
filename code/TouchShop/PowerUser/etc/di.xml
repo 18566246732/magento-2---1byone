@@ -3,18 +3,18 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="support_faq_listing_data_source" xsi:type="string">
-                    TouchShop\Support\Model\ResourceModel\FAQ\Grid\Collection
+                <item name="power_user_listing_data_source" xsi:type="string">
+                    TouchShop\PowerUser\Model\ResourceModel\PowerUser\Grid\Collection
                 </item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="TouchShop\Support\Model\ResourceModel\FAQ\Grid\Collection"
+    <virtualType name="TouchShop\PowerUser\Model\ResourceModel\PowerUser\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">touchshop_faq</argument>
+            <argument name="mainTable" xsi:type="string">touchshop_power_user</argument>
             <argument name="resourceModel" xsi:type="string">
-                TouchShop\Support\Model\ResourceModel\FAQResourceModel
+                TouchShop\PowerUser\Model\ResourceModel\PowerUserResourceModel
             </argument>
         </arguments>
     </virtualType>

@@ -2,8 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="support" frontName="support">
-            <module name="TouchShop_Support"/>
+        <route id="power_user" frontName="power_user">
+            <module name="TouchShop_PowerUser"/>
         </route>
     </router>
 </config>

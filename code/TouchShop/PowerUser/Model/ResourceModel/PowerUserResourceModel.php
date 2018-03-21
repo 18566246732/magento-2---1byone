@@ -9,7 +9,14 @@
 namespace TouchShop\PowerUser\Model\ResourceModel;
 
 
-class PowerUserResourceModel
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use TouchShop\PowerUser\Setup\InstallSchema;
+
+class PowerUserResourceModel extends AbstractDb
 {
 
+    protected function _construct()
+    {
+        $this->_init(InstallSchema::TABLE_NAME, InstallSchema::POWER_USER_ID);
+    }
 }
