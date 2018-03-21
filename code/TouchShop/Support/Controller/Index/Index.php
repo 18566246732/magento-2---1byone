@@ -11,6 +11,7 @@ namespace TouchShop\Support\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
 
 class Index extends Action
@@ -31,19 +32,18 @@ class Index extends Action
     public function execute()
     {
         $data = (array)$this->getRequest()->getPost();
-        if (!$data) {
+        if (empty($data)) {
             $data = [
                 'key' => '',
                 'page_num' => 1,
                 'page_size' => 8
 
             ];
+        } else {
+            $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+            $result->setData($data);
+            return $result;
         }
-//        $data = [
-//            'key' => 'WT08',
-//            'page_num' => 1,
-//            'page_size' => 1
-//        ];
         $this->registry->register('support_post', $data);
         $this->_view->loadLayout();
         $this->_view->renderLayout();
