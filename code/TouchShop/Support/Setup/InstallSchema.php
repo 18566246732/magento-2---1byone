@@ -57,6 +57,16 @@ class InstallSchema implements InstallSchemaInterface
                     Table::TYPE_INTEGER,
                     null,
                     ['unsigned' => true]
+                )->addColumn(
+                    'customer_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    ['unsigned' => true]
+                )->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true]
                 )->addForeignKey(
                     $installer->getFkName(
                         'catalog_product_entity',
@@ -67,6 +77,16 @@ class InstallSchema implements InstallSchemaInterface
                     'product_id',
                     $installer->getTable('catalog_product_entity'),
                     'entity_id',
+                    Table::ACTION_CASCADE
+                )->addForeignKey(
+                    $installer->getFkName(
+                        'customer_entity',
+                        'entity_id',
+                        self::TABLE_NAME,
+                        'customer_id'
+                    ),
+                    'customer_id',
+                    $installer->getTable('customer_entity'),
                     Table::ACTION_CASCADE
                 )->setComment(
                     'FQA'
