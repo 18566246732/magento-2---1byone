@@ -31,6 +31,14 @@ class Index extends Action
     public function execute()
     {
         $data = (array)$this->getRequest()->getPost();
+        if (!$data) {
+            $data = [
+                'key' => '',
+                'page_num' => 1,
+                'page_size' => 8
+
+            ];
+        }
 //        $data = [
 //            'key' => 'WT08',
 //            'page_num' => 1,
