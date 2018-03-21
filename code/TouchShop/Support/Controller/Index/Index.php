@@ -31,8 +31,8 @@ class Index extends Action
     public function execute()
     {
         $data = [
-            'key' => 'asin',
-            'page_num' => 2,
+            'key' => 'WT08',
+            'page_num' => 1,
             'page_size' => 1
         ];
         $this->registry->register('support_post', $data);

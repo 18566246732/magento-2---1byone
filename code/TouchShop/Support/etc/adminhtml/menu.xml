@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TouchShop_Support::faq" title="FAQ" module="TouchShop_Support" sortOrder="10"
+             action="support/faqs" resource="TouchShop_Support::faq"
+             parent="TouchShop_Basic::basic"/>
+    </menu>
+</config>

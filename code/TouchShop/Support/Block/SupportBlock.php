@@ -10,6 +10,7 @@ namespace TouchShop\Support\Block;
 
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\Product;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\FilterGroupBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
@@ -17,6 +18,8 @@ use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
+use TouchShop\Support\Helper\DownloadFilesHelper;
+use TouchShop\Support\Helper\FAQHelper;
 
 class SupportBlock extends Template
 {
@@ -66,17 +69,28 @@ class SupportBlock extends Template
         $data = $this->registry->registry('support_post');
         if (isset($data['key']) && isset($data['page_num']) && isset($data['page_size'])) {
             $this->searchCriteriaBuilder->setFilterGroups($this->getFilterGroups($data['key']));
-            $sortOrder = $this->sortOrderBuilder->setField('price')->setDirection(SortOrder::SORT_ASC)->create();
+            $sortOrder = $this->sortOrderBuilder->setField('sku')->setDirection(SortOrder::SORT_ASC)->create();
             $this->searchCriteriaBuilder->setSortOrders([$sortOrder]);
             $searchCriteria = $this->searchCriteriaBuilder->setCurrentPage($data['page_num'])->setPageSize($data['page_size'])->create();
             $searchResults = $this->productRepository->getList($searchCriteria);
-            $items = $searchResults->getItems();
-            return $items;
+            $result = [];
+            $result['total_count'] = $searchResults->getTotalCount();
+            $products = [];
+            foreach ($searchResults->getItems() as $item) {
+                /**@var $item Product */
+                $products[] = [
+                    'image' => 'pub/media/catalog/product' . $item->getImage(),
+                    'faq' => FAQHelper::getFAQ($item),
+                    'download_files' => DownloadFilesHelper::getDownloadFiles($item)
+                ];
+            }
+            $result['products'] = $products;
+            return $result;
         }
-        return [];
+        return null;
     }
 
-    public function getFilterGroups($key)
+    private function getFilterGroups($key)
     {
         $filter_fields = [
             'name',
