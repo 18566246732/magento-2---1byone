@@ -75,6 +75,16 @@ class InstallSchema implements InstallSchemaInterface
             '5K',
             ['nullable' => true],
             'response of the review'
+        )->addColumn(
+            'image_urls',
+            Table::TYPE_TEXT,
+            2048,
+            ['nullable' => true]
+        )->addColumn(
+            'video_urls',
+            Table::TYPE_TEXT,
+            2048,
+            ['nullable' => true]
         )->addForeignKey(
             $installer->getFkName(
                 'review_extension',

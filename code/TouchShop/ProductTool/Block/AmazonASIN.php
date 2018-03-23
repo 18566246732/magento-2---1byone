@@ -12,6 +12,7 @@ namespace TouchShop\ProductTool\Block;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
+use TouchShop\ProductTool\Helper\ProductHelper;
 
 class AmazonASIN extends Template
 {
@@ -32,13 +33,7 @@ class AmazonASIN extends Template
     public function getAmazonASIN()
     {
         $product = $this->registry->registry('current_product');
-        $customAttribute = $product->getCustomAttribute('amazon_asin');
-        if ($customAttribute) {
-            $asin = $customAttribute->getValue();
-            if ($asin) {
-                return $asin;
-            }
-        }
-        return null;
+        return ProductHelper::getAsin($product);
+
     }
 }
