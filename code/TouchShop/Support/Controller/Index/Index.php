@@ -93,7 +93,8 @@ class Index extends Action
                     'product_name' => $item->getName(),
                     'image' => '/pub/media/catalog/product' . $item->getImage(),
                     'faq' => FAQHelper::getFAQ($item),
-                    'download_files' => DownloadFilesHelper::getDownloadFiles($item)
+                    'download_files' => DownloadFilesHelper::getDownloadFiles($item),
+                    'url'=>$item->getProductUrl()
                 ];
             }
             $result['products'] = $products;

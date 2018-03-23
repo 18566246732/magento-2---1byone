@@ -12,6 +12,7 @@ namespace TouchShop\ProductTool\Block;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
+use TouchShop\ProductTool\Helper\ProductHelper;
 
 class PayInAmazonLink extends Template
 {
@@ -35,19 +36,12 @@ class PayInAmazonLink extends Template
     public function getLinkUrl()
     {
         $product = $this->registry->registry('current_product');
-        $customAttribute = $product->getCustomAttribute('amazon_url');
-        if ($customAttribute) {
-            $url = $customAttribute->getValue();
-            if ($url) {
-                return $url;
-            }
-        }
-        return 'https://www.amazon.com';
+        return ProductHelper::getAmazonUrl($product);
     }
 
     public function getLinkLabel()
     {
-        return 'Buy at Amazon';
+        return ProductHelper::BY_AT_AMAZON_LINK_LABEL;
     }
 
 }

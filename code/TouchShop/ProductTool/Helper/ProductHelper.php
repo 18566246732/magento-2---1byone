@@ -14,16 +14,31 @@ use Magento\Catalog\Model\Product;
 class ProductHelper
 {
     const AMAZON_ASIN = 'amazon_asin';
+    const AMAZON_URL = 'amazon_url';
+
+    const DEFAULT_URL = 'https://www.amazon.com';
+    const BY_AT_AMAZON_LINK_LABEL = 'Buy at Amazon';
 
     public static function getAsin(Product $product)
     {
-        $customAttribute = $product->getCustomAttribute(self::AMAZON_ASIN);
+
+        return self::getCustomAttribute($product, self::AMAZON_ASIN);
+    }
+
+    public static function getAmazonUrl(Product $product)
+    {
+        return self::getCustomAttribute($product, self::AMAZON_URL, self::DEFAULT_URL);
+    }
+
+    private static function getCustomAttribute(Product $product, $attribute, $default = null)
+    {
+        $customAttribute = $product->getCustomAttribute($attribute);
         if ($customAttribute) {
-            $asin = $customAttribute->getValue();
-            if ($asin) {
-                return $asin;
+            $value = $customAttribute->getValue();
+            if ($value) {
+                return $value;
             }
         }
-        return null;
+        return $default;
     }
 }
