@@ -50,7 +50,7 @@
     * * * * * /usr/bin/php /var/www/html/update/cron.php >> /var/www/html/var/log/update.cron.log
     * * * * * /usr/bin/php /var/www/html/bin/magento setup:cron:run >> /var/www/html/var/log/setup.cron.log
     </code></pre>
-+ add attribute
++ store -> attributes -> products -> add attributes
     + Amazon ASIN,Text,amazon_asin,use in search
     + Amazon url, Text,amazon_url,
     + discount,Text,discount,Used for Sorting in Product Listing

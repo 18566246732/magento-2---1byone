@@ -12,7 +12,6 @@ use Magento\Framework\View\Element\Template;
 
 class Complain extends Template
 {
-
     /**
      * Retrieve form action
      *

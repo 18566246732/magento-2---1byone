@@ -1,0 +1,125 @@
+
+.sections {
+    background-color: white;
+}
+
+#maincontent {
+
+}
+
+.column.main {
+    background-color: blue;
+    padding-top: 20px;
+    margin-top: 100px;
+}
+
+.column.main form[action="/refound"] {
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    margin-top: 100px;
+}
+
+.catalog-panel {
+    background-color: white;
+    height: 700px;
+    width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    color: grey;
+    /*margin-top: 100px;*/
+}
+
+.input-group {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+.input-group input[type="text"] {
+    width: 60%;
+    height: inherit;
+    border-radius: 5px;
+}
+.input-group input[type="button"] {
+    width: 30%;
+    height: inherit;
+    border-radius: 5px;
+    background-color: #38bcdc;
+    color: white;
+    border: none;
+    height: inherit;
+}
+
+.catalog-panel .main {
+    margin-top: 20px;
+    height: 70%;
+    background-color: red;
+}
+
+.catalog-panel .footer .pagination {
+    display: flex;
+    justify-content: center;
+}
+
+div.flex-container {
+    display: flex;
+    background-color: green;
+    align-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+}
+
+div.flex-item {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 23%;
+    height: 45%;
+    background-color: white;
+    position: relative;
+}
+
+div.flex-item .post {
+    display: flex;
+    color: grey;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    flex-direction: column;
+}
+
+div.flex-item .post img {
+    height: 100px;
+    width: 100px;
+}
+
+div.flex-item .post-cover {
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0, 0, 255, 0.5);
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+/*overwrite pagination style*/
+
+.first-btn {
+    display: none;
+}
+
+.last-btn {
+    display: none;
+}
+
+.pagination-overall {
+    border: none;
+}
+
+#pagination-demo a {
+    border: none;
+}

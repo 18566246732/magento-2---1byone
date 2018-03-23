@@ -1,5 +1,205 @@
-aaa
 <?php
-/**@var $block TouchShop\Support\Block\SupportBlock*/
+/**@var $block TouchShop\Support\Block\SupportBlock */
+$products = $block->getProducts();
 ?>
-<?php echo $block->getProducts()?>
+
+<!--this should be added globally inside head tag-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css")?>">
+<div class="catalog-panel">
+    <div class="catalog-header">
+<!--        support/Index/index.php == support-->
+        <form method="post">
+            <lable>Search by Product Name/SKU</lable>
+            <div class="input-group" >
+                <input type="text" placeholder="find what you what ...">
+                <input type="button" id="supportSearch" value="search"/>
+            </div>
+        </form>
+    </div>
+    <div class="main">
+        <div class="flex-container">
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3>this is a</h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="post">
+                    <img src="" alt="">
+                    <h3></h3>
+                </div>
+                <div class="post-cover">
+                    <span>X</span>
+                    <h3>Download List</h3>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="pagination">
+            <ul id="pagination-demo" class="pagination-sm"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        // var paginationClicked = false;
+        require(["jquery", "twbsPagination"], function ($) {
+            $(document).ready(function () {
+                console.log("require working....");
+
+                $("#supportSearch").on("click", function (e) {
+                    console.log("search clicked !",<?php echo json_encode($products)?>);
+                    fuck(e, 1);
+                });
+                var totalP = 1,
+                    imgArr = $(".flex-item img"),
+                    fileContainer = $(".flex-item ul");
+                $('#pagination-demo').twbsPagination({
+                    onPageClick: function (e, page) {
+                        fuck(e, page, imgArr, fileContainer);
+                    },
+                    totalPages: totalP,
+                    visiblePages: 7,
+                    prev: "<",
+                    next: ">",
+                    firstClass: "first-btn",
+                    lastClass: "last-btn",
+                    paginationClass: "pagination-overall",
+                });
+            });
+
+            function fuck(e, page, imgArr, fileContainer) {
+                console.log("fuck in");
+                console.log(page, imgArr);
+                var responseText = $.ajax({
+                    url: "<?php echo $block->getUrl('support') ?>",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        key: $(".input-group input[type='text']").val(),
+                        page_num: page,
+                        page_size: 8
+                    },
+                    success: function (res) {
+                        console.log("ajax ok");
+                        console.log(res);
+                        display(res, imgArr, fileContainer);
+                    },
+                    error: function (jqXHR,textstatus, errorThrown) {
+                        console.log(jqXHR,textstatus,errorThrown);
+                        console.log("ajax error");
+                    }
+                });
+                console.log(responseText,"outside");
+            }
+
+            function display(res, imgArr, fileContainer) {
+                // console.log(res.total, res.products);
+                let total = res.total_count;
+                let productsArr = res.products;
+                totalP = Math.ceil(total/8);
+                // console.log(totalP);
+                // console.log(imgArr);
+                imgArr.each(function (index,ele) {
+                    // console.log(ele, productArr[index].image);
+                    ele.src = "../" + productsArr[index].image;
+                    console.log(ele.src);
+                    let resHtml = "";
+                    let dFiles = productsArr[index].download_files;
+                    console.log(dFiles);
+                    dFiles.forEach(function (ele) {
+                        console.log(ele);
+                        resHtml += "<li>"+ ele.label +"</li>";
+                    });
+                    // console.log(fileContainer,$(fileContainer[index]),resHtml);
+                    $(fileContainer[index]).html(resHtml);
+                });
+            }
+        });
+    })()
+</script>

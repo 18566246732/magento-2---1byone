@@ -1,7 +1,7 @@
 /*global-setting*/
 
 body {
-    color: white;
+    color: white !important;
 }
 
 * {
@@ -44,7 +44,7 @@ div.panel.header {
     position: fixed;
     width: 100%;
     background-color: #8d131c;
-    z-index: 2;
+    z-index: 3;
 }
 
 /*main content*/
@@ -151,7 +151,7 @@ main.page-main {
 /*animation*/
 
 * {
-    transition: all 1s ease-out;
+    transition: all 0.5s ease-out;
 }
 
 
