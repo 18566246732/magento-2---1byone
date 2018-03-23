@@ -8,13 +8,17 @@
 + rebuild
 + disable DebugHelper Shopial_Facebook
 + change theme to Peanut: content->configuration
-+ install extension
++ install extension:  
+    + plumrocket/module-psloginfree
+    + mageplaza/magento-2-blog-extension
 + admin configurations:
     + Mageplaza Extensions
         + register
         + general -> disable topmenu
     + Customer
         + disable
+    + PlumRocket
+        + enable
 + cms
     + content->configuration->edit
         +Html Head

@@ -90,7 +90,8 @@ class Index extends Action
             foreach ($searchResults->getItems() as $item) {
                 /**@var $item Product */
                 $products[] = [
-                    'image' => 'pub/media/catalog/product' . $item->getImage(),
+                    'product_name' => $item->getName(),
+                    'image' => '/pub/media/catalog/product' . $item->getImage(),
                     'faq' => FAQHelper::getFAQ($item),
                     'download_files' => DownloadFilesHelper::getDownloadFiles($item)
                 ];
