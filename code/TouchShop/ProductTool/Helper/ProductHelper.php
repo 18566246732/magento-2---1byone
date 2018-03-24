@@ -18,6 +18,7 @@ class ProductHelper
     const AMAZON_URL = 'amazon_url';
     const DISCOUNT = 'discount';
     const SUGGESTED = 'suggested';
+    const MARK = 'mark';
     const SIMPLE = 'simple';
     const CONFIGURABLE = Configurable::TYPE_CODE;
 
@@ -33,6 +34,11 @@ class ProductHelper
     public static function getAmazonUrl(Product $product)
     {
         return self::getCustomAttribute($product, self::AMAZON_URL, self::DEFAULT_URL);
+    }
+
+    public static function getMark(Product $product)
+    {
+        return self::getCustomAttribute($product, self::MARK);
     }
 
     public static function getDiscount(Product $product)

@@ -18,9 +18,9 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
         return ProductHelper::getAmazonUrl($product);
     }
 
-    public function getDiscount($product)
+    public function getMark(Product $product)
     {
-        return ProductHelper::getDiscount($product);
+        return ProductHelper::getMark($product);
     }
 
     public function isHot($product)

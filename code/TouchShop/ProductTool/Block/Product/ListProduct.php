@@ -9,6 +9,7 @@
 namespace TouchShop\ProductTool\Block\Product;
 
 
+use Magento\Catalog\Model\Product;
 use TouchShop\ProductTool\Helper\ProductHelper;
 
 class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
@@ -18,17 +19,12 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
         return ProductHelper::getAmazonUrl($product);
     }
 
-    public function getDiscount($product)
+    public function getMark(Product $product)
     {
-        return ProductHelper::getDiscount($product);
+        return ProductHelper::getMark($product);
     }
 
-    public function isHot($product)
-    {
-        return ProductHelper::isHot($product);
-    }
-
-    public function getImgBaseUrl($product)
+    public function getImgBaseUrl(Product $product)
     {
         return $this->getBaseUrl() . 'pub/media/wysiwyg/products' . $product;
     }
