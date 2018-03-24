@@ -9,13 +9,22 @@
 namespace TouchShop\ProductTool\Block\Product;
 
 
+use TouchShop\ProductTool\Helper\ProductHelper;
+
 class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 {
     public function getAddToCartUrl($product, $additional = [])
     {
-        $default_amazon_1byone = 'https://www.amazon.com/';
-        $attribute = $product->getCustomAttribute('amazon_url');
-        $amazon_url = $attribute ? $attribute->getValue() : null;
-        return $amazon_url ? $amazon_url : $default_amazon_1byone;
+        return ProductHelper::getAmazonUrl($product);
+    }
+
+    public function getDiscount($product)
+    {
+        return ProductHelper::getDiscount($product);
+    }
+
+    public function isHot($product)
+    {
+        return ProductHelper::isHot($product);
     }
 }

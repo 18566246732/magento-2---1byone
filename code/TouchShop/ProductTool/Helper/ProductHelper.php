@@ -16,6 +16,8 @@ class ProductHelper
 {
     const AMAZON_ASIN = 'amazon_asin';
     const AMAZON_URL = 'amazon_url';
+    const DISCOUNT = 'discount';
+    const SUGGESTED = 'suggested';
     const SIMPLE = 'simple';
     const CONFIGURABLE = Configurable::TYPE_CODE;
 
@@ -31,6 +33,18 @@ class ProductHelper
     public static function getAmazonUrl(Product $product)
     {
         return self::getCustomAttribute($product, self::AMAZON_URL, self::DEFAULT_URL);
+    }
+
+    public static function getDiscount(Product $product)
+    {
+        $discount = self::getCustomAttribute($product, self::DISCOUNT, '00');
+        return intval($discount);
+    }
+
+    public static function isHot(Product $product)
+    {
+        $suggested = self::getCustomAttribute($product, self::SUGGESTED, '10000');
+        return $suggested >= '80000';
     }
 
     private static function getCustomAttribute(Product $product, $attribute, $default = null)
