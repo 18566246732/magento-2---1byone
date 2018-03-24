@@ -1,3 +1,7 @@
+form {
+    color: grey;
+}
+
 .power-user-banner {
     width: 100%;
     position: relative;
@@ -5,4 +9,45 @@
 
 .power-user-banner img {
     width: 100%;
+}
+
+.input-container-title {
+    margin-top: 20px;
+}
+
+div.form-action-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.form-action-btn button:first-child {
+    background-color: rgb(102, 102, 102);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    margin: 0 5px;
+    width: 120px;
+}
+
+div.form-action-btn button:first-child:hover {
+    background-color: rgb(64, 64, 64);
+}
+
+div.form-action-btn button:last-child {
+    margin: 0 5px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(2, 167, 225);
+    color: white;
+    border: none;
+    width: 120px;
+}
+
+div.form-action-btn button:last-child:hover {
+    background-color: rgb(36, 125, 225);
+}
+
+div.input-checkbox-container div {
+    display: flex;
+    align-items: center;
 }

@@ -21,15 +21,27 @@
     (function () {
         require(["jquery", "owlcarousel"], function ($) {
             $(document).ready(function () {
-                $('.owl-carousel').owlCarousel({
+                $(".owl-carousel").css("visibility", "hidden");
+                //
+                // owl.on("initialized.owl.carousel", function () {
+                //     $(this).css("visibility", "visible");
+                // });
+
+                var owl = $('.owl-carousel').owlCarousel({
                     loop: true,
                     margin: 10,
                     autoplay: true,
                     nav: false,
                     items: 1,
                     dots: true,
+                    lazyEffect: true,
                     // dotsEach: true,
-                })
+                });
+
+                //
+                // owl.on("initialized.owl.carousel", function () {
+                //     $(this).css("visibility", "visible");
+                // });
 
                 <?php if ($block->isFullScreen()): ?>
                 function resizeCarouselContainer() {
@@ -41,10 +53,20 @@
 
                 resizeCarouselContainer()
 
+
+                owl.on("refresh.owl.carousel", function () {
+                    var timeout = setTimeout(function () {
+                        // console.log($(this));
+                        owl.css("visibility", "visible");
+                    },500);
+                });
+
+
                 $('.owl-carousel').owlCarousel('refresh');
+
                 window.addEventListener('resize', function () {
-                    // resizeCarouselContainer()
-                })
+                    resizeCarouselContainer()
+                });
                 <?php endif; ?>
             });
         });

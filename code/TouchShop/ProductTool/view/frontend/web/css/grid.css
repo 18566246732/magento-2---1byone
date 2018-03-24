@@ -1,0 +1,25 @@
+.product-item-info {
+    position: relative;
+}
+
+/*.product-item-bargain {*/
+    /*position: absolute;*/
+    /*top: 2px;*/
+    /*left: 10px;*/
+    /*z-index: 3;*/
+/*}*/
+
+.product-item-hot {
+    position: absolute;
+    right: 0px;
+    bottom: 120px;
+    z-index: 3;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #9e1b1e;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    line-height: 2;
+}

@@ -22,11 +22,13 @@ $products = $block->getProducts();
         <div class="flex-container">
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -34,11 +36,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -46,11 +50,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -58,11 +64,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -70,11 +78,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -82,11 +92,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -94,11 +106,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3>this is a</h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -106,11 +120,13 @@ $products = $block->getProducts();
             </div>
             <div class="flex-item">
                 <div class="post">
-                    <img src="" alt="">
+                    <img src="" alt="" draggable="false">
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <span>X</span>
+                    <a href="">FAQ >></a>
+                    <a href="">Products Details >></a>
+                    <span>x</span>
                     <h3>Download List</h3>
                     <ul>
                     </ul>
@@ -133,16 +149,47 @@ $products = $block->getProducts();
                 console.log("require working....");
 
                 $("#supportSearch").on("click", function (e) {
-                    console.log("search clicked !",<?php echo json_encode($products)?>);
+                    //console.log("search clicked !",<?php //echo json_encode($products)?>//);
                     fuck(e, 1);
                 });
-                var totalP = 1,
+                var currentPage = 1,
                     imgArr = $(".flex-item img"),
-                    fileContainer = $(".flex-item ul");
+                    fileContainer = $(".flex-item ul"),
+                    prodName = $(".flex-item .post h3"),
+                    closeBtn = $(".flex-item .post-cover span"),
+                    post = $(".flex-item .post"),
+                    postCover = $(".flex-item .post-cover"),
+                    aArr = $(".flex-item .post-cover a"),
+                    faq = aArr[0],
+                    prodDetails = aArr[1];
+
+                closeBtn.on("click",function () {
+                    // console.log("closeBtn", this);
+                    let postCover= $(this).parent();
+                    postCover.css("display", "none");
+                });
+
+                post.on("click", function () {
+                    post.next().css("display","none");
+                    // console.log("flexItem", this);
+                    let postCover = $(this).next();
+                    postCover.css("display", "flex");
+                });
+                
+                // paginatinoIni(1, currentPage);
+
+                fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails);
+                console.log("done");
+
+                $("#pagination-demo").on("click",function () {
+                    fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails);
+                });
+
+            });
+
+            function paginatinoIni(totalP, currentPage) {
+                console.log(totalP);
                 $('#pagination-demo').twbsPagination({
-                    onPageClick: function (e, page) {
-                        fuck(e, page, imgArr, fileContainer);
-                    },
                     totalPages: totalP,
                     visiblePages: 7,
                     prev: "<",
@@ -150,10 +197,15 @@ $products = $block->getProducts();
                     firstClass: "first-btn",
                     lastClass: "last-btn",
                     paginationClass: "pagination-overall",
+                    onPageClick: function (e, page) {
+                        // fuck(e, page, imgArr, fileContainer, prodName);
+                        currentPage = page;
+                    },
                 });
-            });
+            }
 
-            function fuck(e, page, imgArr, fileContainer) {
+
+            function fuck(page, imgArr, fileContainer, prodName, faq, prodDetails) {
                 console.log("fuck in");
                 console.log(page, imgArr);
                 var responseText = $.ajax({
@@ -168,36 +220,43 @@ $products = $block->getProducts();
                     success: function (res) {
                         console.log("ajax ok");
                         console.log(res);
-                        display(res, imgArr, fileContainer);
+                        display(res, imgArr, fileContainer, prodName, faq, prodDetails);
                     },
                     error: function (jqXHR,textstatus, errorThrown) {
                         console.log(jqXHR,textstatus,errorThrown);
                         console.log("ajax error");
                     }
                 });
-                console.log(responseText,"outside");
+                // console.log(responseText,"outside");
             }
 
-            function display(res, imgArr, fileContainer) {
+            function display(res, imgArr, fileContainer, prodName, faq, prodDetails) {
                 // console.log(res.total, res.products);
                 let total = res.total_count;
                 let productsArr = res.products;
-                totalP = Math.ceil(total/8);
+                let totalP = Math.ceil(total/8);
+                paginatinoIni(totalP);
                 // console.log(totalP);
                 // console.log(imgArr);
                 imgArr.each(function (index,ele) {
                     // console.log(ele, productArr[index].image);
                     ele.src = "../" + productsArr[index].image;
-                    console.log(ele.src);
+                    // console.log(ele.src);
                     let resHtml = "";
                     let dFiles = productsArr[index].download_files;
-                    console.log(dFiles);
+                    let dataPName = productsArr[index].product_name;
+                    let dataFAQ = productsArr[index].faq;
+                    let dataUrl = productsArr[index].url;
+                    // console.log(dFiles, dataPName);
                     dFiles.forEach(function (ele) {
-                        console.log(ele);
-                        resHtml += "<li>"+ ele.label +"</li>";
+                        // console.log(ele);
+                        resHtml += "<li><a href= ../"+ele.src + ">"+ ele.label + " >> </a></li>";
                     });
                     // console.log(fileContainer,$(fileContainer[index]),resHtml);
                     $(fileContainer[index]).html(resHtml);
+                    $(prodName).text(dataPName);
+                    $(faq).attr("href", dataFAQ);
+                    $(prodDetails).attr("href", dataUrl);
                 });
             }
         });

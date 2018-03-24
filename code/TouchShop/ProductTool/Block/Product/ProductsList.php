@@ -28,4 +28,10 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
         return ProductHelper::isHot($product);
     }
 
+    public function getImgBaseUrl($product)
+    {
+        return $this->getBaseUrl() . 'pub/media/wysiwyg/products/' . $product;
+    }
+
+
 }

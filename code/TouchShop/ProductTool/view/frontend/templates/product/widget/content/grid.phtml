@@ -8,6 +8,9 @@
 
 /** @var \TouchShop\ProductTool\Block\Product\ProductsList $block */
 ?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ProductTool::css/grid.css")?>">
+
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
     <?php
     $type = 'widget-product-grid';
@@ -45,6 +48,17 @@
                     <?php if ($iterator++ != 1): ?></li><?php endif ?>
                     <li class="product-item">
                         <div class="product-item-info">
+
+<!--                            <div class="product-item-bargain">-->
+<!--                                <span>--><?php //echo $block->getDiscount($_item)?><!-- %</span><img src="--><?php //echo $block->getImgBaseUrl("bargain.png")?><!--" alt="">-->
+<!--                            </div>-->
+                            <?php if ($block->isHot($_item) || true): ?>
+                                <div class="product-item-hot">
+                                    hot seller
+<!--                                <img src="--><?php //echo $block->getImgBaseUrl("hot.png")?><!--" alt="">-->
+                                </div>
+                            <?php endif?>
+
                             <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
                                class="product-item-photo">
                                 <?= $block->getImage($_item, $image)->toHtml() ?>

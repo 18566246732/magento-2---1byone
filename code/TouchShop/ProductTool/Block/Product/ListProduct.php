@@ -27,4 +27,10 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     {
         return ProductHelper::isHot($product);
     }
+
+    public function getImgBaseUrl($product)
+    {
+        return $this->getBaseUrl() . 'pub/media/wysiwyg/products' . $product;
+    }
+
 }

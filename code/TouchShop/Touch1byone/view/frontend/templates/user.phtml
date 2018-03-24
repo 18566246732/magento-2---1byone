@@ -10,23 +10,56 @@
 <!--login popup-->
 
 <div class="login-back">
-    <div class="login-panel">
-        <label>Welcome Back</label>
+    <form class="login-panel">
+        <span>x</span>
+        <h1>Welcome Back</h1>
         <div class="main">
-            div.
-            <lable>Email address</lable>
-            <input type="email" />
-            <lable>Password</lable>
-            <input type="password" />
+            <lable>Email address<br/><input type="email" /></lable>
+
+            <lable>Password<br/><input type="password" /></lable>
+
         </div>
-        <div class="controller"></div>
-    </div>
+        <div class="controller">
+            <a href="">forget your password ?</a>
+            <button class="logInBtn" type="button">sign in</button>
+            <a href="">sign up</a>
+        </div>
+    </form>
 </div>
 <script>
     (function () {
-        var $j = jQuery.noConflict();
+        var $j = jQuery.noConflict(),
+            account = $j(".main input[type = 'email']").val(),
+            pwd = $j(".main input[type = 'password']").val();
         $j(".user-icon").on("click", function () {
+            console.log($j(".login-back"));
+            $j(".login-back").css("display", "block");
+        });
 
-        })
+        $j("form.login-panel > span").on("click", function () {
+            $j(".login-back").css("display", "none");
+        });
+
+        $j(".logInBtn").on("click", function () {
+            console.log("logInBtn clicked");
+            var responseText = $j.ajax({
+                //url: "<?php //echo $block->getUrl('/magento2/customer/account/loginPost') ?>//",
+                url: "/magento2/customer/account/loginPost",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    password: pwd,
+                    username: account
+                },
+                success: function (res) {
+                    console.log("ajax ok");
+                    console.log(res);
+                },
+                error: function (jqXHR,textstatus, errorThrown) {
+                    console.log(jqXHR,textstatus,errorThrown);
+                    console.log("ajax error");
+                }
+            });
+        });
     })()
 </script>

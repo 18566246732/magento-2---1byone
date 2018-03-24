@@ -55,6 +55,7 @@
 .owl-carousel-container {
     position: relative;
     /*width: 1920px !important;*/
+    margin-top: -100px;
 }
 
 .owl-dots {

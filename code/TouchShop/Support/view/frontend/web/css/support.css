@@ -3,21 +3,15 @@
     background-color: white;
 }
 
-#maincontent {
-
-}
-
 .column.main {
     background-color: blue;
     padding-top: 20px;
-    margin-top: 100px;
 }
 
 .column.main form[action="/refound"] {
     max-width: 800px;
     margin: 0 auto;
     color: black;
-    margin-top: 100px;
 }
 
 .catalog-panel {
@@ -90,20 +84,67 @@ div.flex-item .post {
     position: relative;
     height: 100%;
     flex-direction: column;
+    cursor: pointer;
 }
 
 div.flex-item .post img {
     height: 100px;
     width: 100px;
+    margin: 20px;
+}
+
+div.flex-item .post h3 {
+    font-size: 15px;
 }
 
 div.flex-item .post-cover {
     position: absolute;
     z-index: 2;
-    background-color: rgba(0, 0, 255, 0.5);
+    background-color: rgba(22, 51, 160, 0.8);
     top: 0;
     left: 0;
+    height: 100%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    color: white;
     display: none;
+}
+
+div.flex-item .post-cover span {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    cursor: pointer;
+}
+
+div.flex-item .post-cover a {
+    font-size: 15px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+div.flex-item .post-cover h3 {
+    border-bottom: white 1px solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    width: 100%;
+}
+
+div.flex-item .post-cover ul {
+    list-style: none;
+}
+
+div.flex-item .post-cover li {
+    margin-bottom: 0;
+}
+
+div.flex-item .post-cover li a {
+    font-size: 10px;
 }
 
 /*overwrite pagination style*/

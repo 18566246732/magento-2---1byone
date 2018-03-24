@@ -1,7 +1,7 @@
 /*global-setting*/
 
 body {
-    color: white !important;
+    color: grey;
 }
 
 * {
@@ -19,6 +19,7 @@ body {
 
 div.sections.nav-sections {
     background-color: rgba(255,255,255,0);
+    margin-bottom: 0;
 }
 
 div.section-items.nav-sections-items {
@@ -38,6 +39,7 @@ div.panel.header {
     display: flex;
     align-items: center;
     height: 50px;
+    color: white;
 }
 
 .page-header {
@@ -50,8 +52,8 @@ div.panel.header {
 /*main content*/
 
 main.page-main {
-    margin-top: 50px;
-    max-width: 1920px;
+    margin-top: 150px;
+    /*max-width: 1920px;*/
     padding: 0;
 }
 
@@ -95,6 +97,15 @@ main.page-main {
 .page-v-cards ul li {
     background-color: grey;
     width: 600px;
+}
+
+/*campaign page*/
+div.columns {
+
+}
+
+.widget.block.block-static-block {
+    margin-top: 100px;
 }
 
 
