@@ -15,10 +15,12 @@ interface ReviewAdvancedInterface extends ExtensibleDataInterface
 {
     const EXTENSION_ID = 'extension_id';
     const REVIEW_ID = 'review_id';
+    const IMAGE_URLS = 'image_urls';
+    const VIDEO_URLS = 'video_urls';
+    const FORMAT = 'format';
     const VERIFIED_PURCHASE = 'verified_purchase';
     const HELPFUL = 'helpful';
     const ORIGIN = 'origin';
-    const TARGET_ID = 'target_id';
     const TOP_INDEX = 'top_index';
     const RESPONSE = 'response';
 
@@ -43,6 +45,38 @@ interface ReviewAdvancedInterface extends ExtensibleDataInterface
      * @return self
      */
     public function setReviewId($reviewId);
+
+    /**@return string */
+    public function getImageUrls();
+
+    /**
+     * @param $image_urls string
+     * @return self
+     */
+    public function setImageUrls($image_urls);
+
+    /**
+     * @return string
+     */
+    public function getVideoUrls();
+
+    /**
+     * @param $video_urls string
+     * @return self
+     */
+    public function setVideoUrls($video_urls);
+
+    /**
+     * @return string
+     */
+    public function getFormat();
+
+    /**
+     * @param $format string
+     * @return self
+     */
+    public function setFormat($format);
+
 
     /**
      * @return string
@@ -76,17 +110,6 @@ interface ReviewAdvancedInterface extends ExtensibleDataInterface
      * @return self
      */
     public function setOrigin($origin);
-
-    /**
-     * @return int
-     */
-    public function getTargetId();
-
-    /**
-     * @param int $targetId
-     * @return self
-     */
-    public function setTargetId($targetId);
 
     /**
      * @return int

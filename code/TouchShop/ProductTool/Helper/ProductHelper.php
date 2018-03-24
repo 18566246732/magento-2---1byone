@@ -10,11 +10,14 @@ namespace TouchShop\ProductTool\Helper;
 
 
 use Magento\Catalog\Model\Product;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 
 class ProductHelper
 {
     const AMAZON_ASIN = 'amazon_asin';
     const AMAZON_URL = 'amazon_url';
+    const SIMPLE = 'simple';
+    const CONFIGURABLE = Configurable::TYPE_CODE;
 
     const DEFAULT_URL = 'https://www.amazon.com';
     const BY_AT_AMAZON_LINK_LABEL = 'Buy at Amazon';
@@ -40,5 +43,15 @@ class ProductHelper
             }
         }
         return $default;
+    }
+
+    public static function isSimple(Product $product)
+    {
+        return $product->getTypeId() == self::SIMPLE;
+    }
+
+    public static function isConfigurable(Product $product)
+    {
+        return $product->getTypeId() == self::CONFIGURABLE;
     }
 }

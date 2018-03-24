@@ -16,6 +16,9 @@ use Magento\Framework\Db\Ddl\Table;
 class InstallSchema implements InstallSchemaInterface
 {
 
+    const TABLE_NAME = 'touchshop_review_extension';
+    const EXTENSION_ID = 'extension_id';
+
     /**
      * {@inheritdoc}
      */
@@ -26,9 +29,9 @@ class InstallSchema implements InstallSchemaInterface
         $installer->startSetup();
 
         $table = $installer->getConnection()->newTable(
-            $installer->getTable('review_extension')
+            $installer->getTable(self::TABLE_NAME)
         )->addColumn(
-            'extension_id',
+            self::EXTENSION_ID,
             Table::TYPE_BIGINT,
             null,
             ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
@@ -46,6 +49,12 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => true],
             'Verified purchase'
         )->addColumn(
+            'format',
+            Table::TYPE_TEXT,
+            2048,
+            ['nullable' => true],
+            'type format'
+        )->addColumn(
             'helpful',
             Table::TYPE_INTEGER,
             null,
@@ -56,13 +65,7 @@ class InstallSchema implements InstallSchemaInterface
             Table::TYPE_TEXT,
             255,
             ['nullable' => true],
-            'Origin of where extension data from'
-        )->addColumn(
-            'target_id',
-            Table::TYPE_INTEGER,
-            null,
-            ['unsigned' => true, 'nullable' => true],
-            'Product id'
+            'Origin review_id'
         )->addColumn(
             'top_index',
             Table::TYPE_INTEGER,
@@ -87,7 +90,7 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => true]
         )->addForeignKey(
             $installer->getFkName(
-                'review_extension',
+                self::TABLE_NAME,
                 'review_id',
                 'review',
                 'review_id'

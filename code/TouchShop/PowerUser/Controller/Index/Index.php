@@ -50,7 +50,7 @@ class Index extends Action
 
                 $powerUser = $this->powerUserModelFactory->create();
                 $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
-                    ->setEmail($post['email'])->setCustomerId($post['customerId']);
+                    ->setEmail($post['email'])->setCustomerId(1);
                 $this->powerUserResourceModel->save($powerUser);
 
                 // Display the succes form validation message
@@ -58,7 +58,7 @@ class Index extends Action
 
                 // Redirect to your form page (or anywhere you want...)
                 $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-                $resultRedirect->setUrl('/');
+                $resultRedirect->setUrl($this->_redirect->getRefererUrl());
 
                 return $resultRedirect;
             }

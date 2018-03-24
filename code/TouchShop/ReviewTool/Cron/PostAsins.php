@@ -17,9 +17,6 @@ use TouchShop\ProductTool\Helper\ProductHelper;
 
 class PostAsins
 {
-    const SIMPLE = 'simple';
-    const CONFIGURABLE = Configurable::TYPE_CODE;
-
     private $collectionFactory;
     private $configurable;
 
@@ -42,9 +39,9 @@ class PostAsins
         foreach ($collection as $product) {
             $asin = ProductHelper::getAsin($product);
             if ($asin) {
-                if ($this->isSimple($product)) {
+                if (ProductHelper::isSimple($product) && empty($this->configurable->getParentIdsByChild($product->getId()))) {
                     $asins[] = $asin;
-                } elseif ($this->isConfigurable($product)) {
+                } elseif (ProductHelper::isConfigurable($product)) {
                     $children = $product->getTypeInstance()->getUsedProducts($product);
                     $asin_list = [];
                     foreach ($children as $child) {
@@ -59,16 +56,6 @@ class PostAsins
         }
 
         HttpHelper::post('', $asins);
-    }
-
-    private function isSimple(Product $product)
-    {
-        return $product->getTypeId() == self::SIMPLE && empty($this->configurable->getParentIdsByChild($product->getId()));
-    }
-
-    private function isConfigurable(Product $product)
-    {
-        return $product->getTypeId() == self::CONFIGURABLE;
     }
 
 }

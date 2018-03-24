@@ -8,16 +8,32 @@
 
 namespace TouchShop\ReviewTool\Model;
 
+use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Model\AbstractModel;
 use TouchShop\ReviewTool\Api\Data\ReviewAdvancedInterface;
-use TouchShop\ReviewTool\Api\Data\ReviewAdvancedExtensionInterface;
+use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvancedResourceModel;
+use TouchShop\ReviewTool\Setup\InstallSchema;
 
-class ReviewAdvanced implements ReviewAdvancedInterface
+class ReviewAdvanced extends AbstractModel implements ReviewAdvancedInterface, IdentityInterface
 {
+    const CACHE_TAG = InstallSchema::TABLE_NAME;
+    protected $_cacheTag = self::CACHE_TAG;
+    protected $_eventPrefix = self::CACHE_TAG;
+
     /** @var int */
     private $extensionId;
 
     /** @var int */
     private $reviewId;
+
+    /** @var string */
+    private $image_urls;
+
+    /** @var string */
+    private $video_urls;
+
+    /** @var string */
+    private $format;
 
     /**@var string */
     private $verifiedPurchase;
@@ -130,6 +146,7 @@ class ReviewAdvanced implements ReviewAdvancedInterface
         return $this->targetId;
     }
 
+
     /**
      * @inheritdoc
      */
@@ -173,23 +190,62 @@ class ReviewAdvanced implements ReviewAdvancedInterface
         return $this;
     }
 
-//    /**
-//     * @inheritdoc
-//     */
-//    public function getExtensionAttributes()
-//    {
-//        return $this->extensionAttributes;
-//    }
-//
-//    /**
-//     * @inheritdoc
-//     */
-//    public function setExtensionAttributes(
-//        \TouchShop\ReviewTool\Api\Data\ReviewAdvancedExtensionInterface $extensionAttributes
-//    )
-//    {
-//        $this->extensionAttributes = $extensionAttributes;
-//        return $this;
-//    }
+    /**
+     * @inheritdoc
+     */
+    public function getImageUrls()
+    {
+        return $this->image_urls;
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function setImageUrls($image_urls)
+    {
+        $this->image_urls = $image_urls;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getVideoUrls()
+    {
+        return $this->video_urls;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setVideoUrls($video_urls)
+    {
+        $this->video_urls = $video_urls;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
+
+
+    protected function _construct()
+    {
+        $this->_init(ReviewAdvancedResourceModel::class);
+    }
+
+    public function getIdentities()
+    {
+        return self::CACHE_TAG . '_' . $this->getId();
+    }
 }

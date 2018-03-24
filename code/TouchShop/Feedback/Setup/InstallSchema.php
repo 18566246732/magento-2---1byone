@@ -40,7 +40,6 @@ class InstallSchema implements InstallSchemaInterface
                     null,
                     ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
                     'Complaint Id'
-
                 )->addColumn(
                     'email',
                     Table::TYPE_TEXT,
