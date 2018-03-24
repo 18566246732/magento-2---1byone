@@ -9,6 +9,7 @@
 namespace TouchShop\ProductTool\Block\Product;
 
 
+use Magento\Catalog\Model\Product;
 use TouchShop\ProductTool\Helper\ProductHelper;
 
 class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
@@ -23,14 +24,9 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
         return ProductHelper::getMark($product);
     }
 
-    public function isHot($product)
+    public function getImgBaseUrl($image_name)
     {
-        return ProductHelper::isHot($product);
-    }
-
-    public function getImgBaseUrl($product)
-    {
-        return $this->getBaseUrl() . 'pub/media/wysiwyg/products/' . $product;
+        return $this->getBaseUrl() . 'pub/media/wysiwyg/products/' . $image_name;
     }
 
 

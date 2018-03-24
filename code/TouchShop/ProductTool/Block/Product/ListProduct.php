@@ -24,9 +24,9 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
         return ProductHelper::getMark($product);
     }
 
-    public function getImgBaseUrl(Product $product)
+    public function getImgBaseUrl($image_name)
     {
-        return $this->getBaseUrl() . 'pub/media/wysiwyg/products' . $product;
+        return $this->getBaseUrl() . 'pub/media/wysiwyg/products' . $image_name;
     }
 
 }
