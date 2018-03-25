@@ -15,7 +15,7 @@ div.login-back {
     display: none;
 }
 
-form.login-panel {
+.login-back .sign-panel {
     position: relative;
     background-color: white;
     height: 400px;
@@ -31,19 +31,20 @@ form.login-panel {
     box-shadow: 0px 0px 10px 3px #747777;
 }
 
-form.login-panel > span {
+.login-back .sign-panel > span {
     position: absolute;
     top: 3px;
     right: 8px;
     cursor: pointer;
     font-size: 20px;
-}
-
-form.login-panel > h1 {
     color: grey;
 }
 
-form.login-panel .main {
+.login-back .sign-panel > h1 {
+    color: grey;
+}
+
+.login-back .sign-panel .main {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -75,4 +76,13 @@ div.controller button:hover {
 
 div.controller a:last-child {
     align-self: flex-end;
+}
+
+.login-back .sign-panel .sign-up {
+    display: none;
+    height: 600px;
+}
+
+.sign-up .user-name input {
+    display: inline-block;
 }

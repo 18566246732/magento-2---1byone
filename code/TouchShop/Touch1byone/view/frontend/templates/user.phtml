@@ -10,9 +10,9 @@
 <!--login popup-->
 
 <div class="login-back">
-    <form class="login-panel">
+    <form class="sign-panel sign-in">
         <span>x</span>
-        <h1>Welcome Back</h1>
+        <h1>Sign In</h1>
         <div class="main">
             <lable>Email address<br/><input type="email" /></lable>
 
@@ -21,8 +21,28 @@
         </div>
         <div class="controller">
             <a href="">forget your password ?</a>
-            <button class="logInBtn" type="button">sign in</button>
-            <a href="">sign up</a>
+            <button class="log-btn" type="submit">sign in</button>
+            <a href="#" id="signIn">sign up</a>
+        </div>
+    </form>
+    <form class="sign-panel sign-up">
+        <span>x</span>
+        <h1>Sign Up</h1>
+        <div class="main">
+            <div class="user-name">
+                <lable>First Name <input type="text" /></lable>
+                <lable>Last Name <input type="text" /></lable>
+            </div>
+            <lable><input type="checkbox" />Sign Up for Newsletter</lable>
+            <lable>Email address<br/><input type="email" /></lable>
+            <lable>Password<br/><input type="password" /></lable>
+            <lable>Password Confirmation<br/><input type="password" /></lable>
+
+        </div>
+        <div class="controller">
+            <a href="">need help ?</a>
+            <button class="log-btn" type="button">sign up</button>
+            <a href="#" id="signUp">sign in</a>
         </div>
     </form>
 </div>
@@ -30,26 +50,40 @@
     (function () {
         var $j = jQuery.noConflict(),
             account = $j(".main input[type = 'email']").val(),
-            pwd = $j(".main input[type = 'password']").val();
+            pwd = $j(".main input[type = 'password']").val(),
+            signUp = $j("#signUp"),
+            signIn = $j("#signIn"),
+            signUpPanel = $j(".sign-up"),
+            signInPanel = $j(".sign-in");
         $j(".user-icon").on("click", function () {
-            console.log($j(".login-back"));
             $j(".login-back").css("display", "block");
         });
 
-        $j("form.login-panel > span").on("click", function () {
+        $j("form.sign-panel > span").on("click", function () {
             $j(".login-back").css("display", "none");
         });
 
-        $j(".logInBtn").on("click", function () {
-            console.log("logInBtn clicked");
-            var responseText = $j.ajax({
-                //url: "<?php //echo $block->getUrl('/magento2/customer/account/loginPost') ?>//",
+        signUp.on("click",function () {
+            signUpPanel.css("display", "none");
+            signInPanel.css("display", "flex");
+        });
+
+        signIn.on("click",function () {
+            signInPanel.css("display", "none");
+            signUpPanel.css("display", "flex");
+        });
+
+
+        $j(".log-btn").on("click", function () {
+            $j.ajax({
                 url: "/magento2/customer/account/loginPost",
                 type: "POST",
                 dataType: "json",
                 data: {
-                    password: pwd,
-                    username: account
+                    // login: {
+                        password: pwd,
+                        username: account
+                    // }
                 },
                 success: function (res) {
                     console.log("ajax ok");

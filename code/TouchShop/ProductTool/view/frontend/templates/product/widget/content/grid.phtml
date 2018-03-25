@@ -43,7 +43,6 @@
                 $type ?>">
                     <?php $iterator = 1; ?>
                     <?php foreach ($items
-
                     as $_item): ?>
                     <?php if ($iterator++ != 1): ?></li><?php endif ?>
                     <li class="product-item">
@@ -52,10 +51,9 @@
 <!--                            <div class="product-item-bargain">-->
 <!--                                <span>--><?php //echo $block->getDiscount($_item)?><!-- %</span><img src="--><?php //echo $block->getImgBaseUrl("bargain.png")?><!--" alt="">-->
 <!--                            </div>-->
-                            <?php if ($block->isHot($_item) || true): ?>
+                            <?php if ($block->getMark($_item) || true) : ?>
                                 <div class="product-item-hot">
-                                    hot seller
-<!--                                <img src="--><?php //echo $block->getImgBaseUrl("hot.png")?><!--" alt="">-->
+                                    <?php echo $block->getMark($_item)?>
                                 </div>
                             <?php endif?>
 
