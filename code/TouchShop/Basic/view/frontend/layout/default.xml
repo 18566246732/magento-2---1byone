@@ -21,6 +21,19 @@
                 </block>
             </container>
         </referenceContainer>
+
+
+        find footer_links' father to fix
+        <referenceBlock name="footer">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="footer_links"
+                    template="TouchShop_Touch1byone::footLinks.phtml">
+                <arguments>
+                    <argument name="label" xsi:type="string">Custom Links</argument>
+                    <argument name="path" xsi:type="string">page-url</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
         <!--<move element="logo" destination="catalog.topnav" before="-"/>-->
         <move element="logo" destination="store.menu" before="-"/>
         <move element="top.search" destination="header.panel" after="header.links"/>

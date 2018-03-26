@@ -1,12 +1,73 @@
-.field.newsletter {
-    padding-right: 20px
+.block.newsletter {
+    color: white ;
+    margin-top: 0;
+}
+
+.block.newsletter h1 strong a {
+    color: white;
+    text-decoration: none;
+}
+
+.block.newsletter h1 strong {
+    font-size: 16px;
+}
+
+.block.newsletter .field .control::before {
+    content: none;
 }
 
 .field.newsletter #newsletter {
-    border-radius: 25px;
+    border-radius: 5px;
+    background: none;
+    color: white;
 }
 
+/*.field.newsletter #newsletter:hover {*/
+    /*background-color: grey;*/
+/*}*/
+
 .form.subscribe .subscribe.primary {
-    border-radius: 25px;
+    border-radius: 5px;
+    background: white;
+    color: grey;
     padding: 6px 15px;
+}
+
+.form.subscribe .subscribe.primary:hover {
+    background-color: #b4b4b4;
+    color: grey;
+}
+
+.block.newsletter > h1 a{
+    font-size: 16px;
+    color: white;
+}
+
+.block.newsletter > h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.block.newsletter .title, .follow{
+    display: block;
+    font-size: 14px;
+}
+
+.follow > p {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+#newsletter-validate-detail {
+    width: 80%;
+}
+
+#newsletter {
+    padding-left: 10px;
+    margin-right: 20px;
+}
+
+.block.newsletter .field {
+    margin-right: 20px;
 }
