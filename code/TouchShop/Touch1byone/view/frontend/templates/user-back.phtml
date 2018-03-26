@@ -1,0 +1,99 @@
+<?php
+/** @var TouchShop\Touch1byone\Block\User $block */
+?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Touch1byone::css/user.css")?>">
+<div class="user-icon">
+    <img src="<?php echo $block->getImgBaseUrl("user.png")?>" alt="">
+</div>
+
+<!--login popup-->
+
+<div class="login-back">
+    <form class="sign-panel sign-in">
+        <span>x</span>
+        <h1>Sign In</h1>
+        <div class="main">
+            <lable>Email address<br/><input type="email" /></lable>
+
+            <lable>Password<br/><input type="password" /></lable>
+
+        </div>
+        <div class="controller">
+            <a href="">forget your password ?</a>
+            <button class="log-btn" type="submit">sign in</button>
+            <a href="#" id="signIn">sign up</a>
+        </div>
+    </form>
+    <form class="sign-panel sign-up">
+        <span>x</span>
+        <h1>Sign Up</h1>
+        <div class="main">
+            <div class="user-name">
+                <lable>First Name <input type="text" /></lable>
+                <lable>Last Name <input type="text" /></lable>
+            </div>
+            <lable><input type="checkbox" />Sign Up for Newsletter</lable>
+            <lable>Email address<br/><input type="email" /></lable>
+            <lable>Password<br/><input type="password" /></lable>
+            <lable>Password Confirmation<br/><input type="password" /></lable>
+
+        </div>
+        <div class="controller">
+            <a href="">need help ?</a>
+            <button class="log-btn" type="button">sign up</button>
+            <a href="#" id="signUp">sign in</a>
+        </div>
+    </form>
+</div>
+<script>
+    (function () {
+        var $j = jQuery.noConflict(),
+            account = $j(".main input[type = 'email']").val(),
+            pwd = $j(".main input[type = 'password']").val(),
+            signUp = $j("#signUp"),
+            signIn = $j("#signIn"),
+            signUpPanel = $j(".sign-up"),
+            signInPanel = $j(".sign-in");
+        $j(".user-icon").on("click", function () {
+            $j(".login-back").css("display", "block");
+        });
+
+        $j("form.sign-panel > span").on("click", function () {
+            $j(".login-back").css("display", "none");
+        });
+
+        signUp.on("click",function () {
+            signUpPanel.css("display", "none");
+            signInPanel.css("display", "flex");
+        });
+
+        signIn.on("click",function () {
+            signInPanel.css("display", "none");
+            signUpPanel.css("display", "flex");
+        });
+
+
+        $j(".log-btn").on("click", function () {
+            $j.ajax({
+                url: "/magento2/customer/account/loginPost",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    // login: {
+                        password: pwd,
+                        username: account
+                    // }
+                },
+                success: function (res) {
+                    console.log("ajax ok");
+                    console.log(res);
+                },
+                error: function (jqXHR,textstatus, errorThrown) {
+                    console.log(jqXHR,textstatus,errorThrown);
+                    console.log("ajax error");
+                }
+            });
+        });
+    })()
+</script>

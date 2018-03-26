@@ -6,7 +6,7 @@
             <container name="header.panel.wrapper" htmlClass="header-wrapper" htmlTag="div" before="-">
                 <!--here is main div-->
                 <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
-                    <block class="TouchShop\Touch1byone\Block\User" name="user-icon"
+                    <block class="Magento\Customer\Block\Form\Register" name="user-icon"
                            template="TouchShop_Touch1byone::user.phtml">
 
                     </block>
