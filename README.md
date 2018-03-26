@@ -11,6 +11,7 @@
 + install extension:  
     + plumrocket/module-psloginfree
     + mageplaza/magento-2-blog-extension
+    + beeketing/magento-countdowncart
 + admin configurations:
     + Mageplaza Extensions
         + register
@@ -59,7 +60,7 @@
     + Amazon url, Text,amazon_url,
     + discount,Text,discount,Used for Sorting in Product Listing
     + Suggested,Text,suggested,Used for Sorting in Product Listing
-    + Mark,Text,mark
+    + Mark,Text,mark,in Product Listing
     + Product FAQ, Text area, product_faq
     + Download Files,Text area, download_files
     
