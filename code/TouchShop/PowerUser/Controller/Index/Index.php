@@ -38,13 +38,7 @@ class Index extends Action
      */
     public function execute()
     {
-        $post = (array)$this->getRequest()->getPost();
-        $post = [
-            'interests' => ['aaa', 'bbb'],
-            'email' => '310491287@qq.com',
-            'customerId' => 1
-        ];
-
+        $post = (array)$this->getRequest()->getPost();        
         if (!empty($post)) {
             if (isset($post['interests'])) {
 

@@ -51,7 +51,7 @@
 <!--                            <div class="product-item-bargain">-->
 <!--                                <span>--><?php //echo $block->getDiscount($_item)?><!-- %</span><img src="--><?php //echo $block->getImgBaseUrl("bargain.png")?><!--" alt="">-->
 <!--                            </div>-->
-                            <?php if ($block->getMark($_item) || true) : ?>
+                            <?php if ($block->getMark($_item)) : ?>
                                 <div class="product-item-hot">
                                     <?php echo $block->getMark($_item)?>
                                 </div>

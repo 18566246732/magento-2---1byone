@@ -12,6 +12,10 @@ namespace TouchShop\ReviewTool\Cron;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\Review\Model\RatingFactory;
+use Magento\Review\Model\Review;
+use Magento\Review\Model\ReviewFactory;
+use TouchShop\Basic\Helper\HttpHelper;
 use TouchShop\ProductTool\Helper\ProductHelper;
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\ReviewAdvancedCollection;
 
@@ -26,21 +30,49 @@ class SyncReviews
     /**@var Configurable */
     private $configurable;
 
+    /**@var ReviewFactory */
+    private $reviewFactory;
+
+    /**@var \Magento\Review\Model\ResourceModel\Review */
+    private $reviewResourceModel;
+
+    /** @var RatingFactory */
+    private $ratingFactory;
+
+
     public function __construct(
         ReviewAdvancedCollection $collection,
         Configurable $configurable,
+        ReviewFactory $reviewFactory,
+        \Magento\Review\Model\ResourceModel\Review $reviewResourceModel,
+        RatingFactory $ratingFactory,
         CollectionFactory $collectionFactory
     )
     {
         $this->reviewAdvancedCollection = $collection;
         $this->productCollectionFactory = $collectionFactory;
+        $this->reviewFactory = $reviewFactory;
+        $this->ratingFactory = $ratingFactory;
+        $this->reviewResourceModel = $reviewResourceModel;
         $this->configurable = $configurable;
     }
 
 
+    /**
+     * @throws \Exception
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     */
     public function execute()
     {
-//        HttpHelper::post('', []);
+        $resp = HttpHelper::post('http://192.168.0.153:8080/reviewListByCondition', [
+            "filter" => [
+                "has_output" => false
+            ],
+            "pageSize" => 100,
+            "pageNum" => 1
+        ]);
+
+        $data = $resp;
 
         $data = [
             'reviews' => [
@@ -61,6 +93,11 @@ class SyncReviews
         }
     }
 
+    /**
+     * @param $review
+     * @throws \Exception
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     */
     private function addReview($review)
     {
         $product_id = $this->getMainProductByAsin($review['asin']);
@@ -70,14 +107,32 @@ class SyncReviews
                 'title' => $review['title'],
                 'detail' => $review['content']
             ];
+            $entity = $this->reviewFactory->create()->setData($data);
+            $entity->unsetData('review_id');
 
-            $rating = [
-                'rating_id' => 4,
-                'rating_value' => $review['star']
-            ];
+            $validate = $entity->validate();
+            if ($validate === true) {
+                $entity->setEntityId($entity
+                    ->getEntityIdByCode(Review::ENTITY_PRODUCT_CODE))
+                    ->setEntityPkValue($product_id)
+                    ->setStatusId(Review::STATUS_PENDING)
+                    ->setCusomerId(null)
+                    ->setCreatedAt(strtotime($review['date']))
+                    ->setStoreId(null)
+                    ->setStores([null]);
+                // todo
+                $this->reviewResourceModel->save($entity);
+
+                $optionId = 15 + $review['star'];
+
+                $this->ratingFactory->create()
+                    ->setReviewId($entity->getId())
+                    ->setCustomerId(null)
+                    ->addOptionVote($optionId, $product_id);
+
+                $entity->aggregate();
+            }
         }
-
-
     }
 
     private function getMainProductByAsin($asin)

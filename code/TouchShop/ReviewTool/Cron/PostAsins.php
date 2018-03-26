@@ -71,7 +71,7 @@ class PostAsins
             }
         }
 
-        HttpHelper::post('http://192.168.0.210:8080/saveAsin', ['asin_arr' => $asins]);
+        $resp = HttpHelper::post('http://192.168.0.153:8080/saveAsin', ['asin_arr' => $asins]);
     }
 
 }
