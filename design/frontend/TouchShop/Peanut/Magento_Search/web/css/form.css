@@ -20,6 +20,11 @@
     margin-left: 10px;
 }
 
+#searchBtn::before {
+    color: white;
+    cursor: pointer;
+}
+
 .block-search input {
     background-color: grey;
     /*padding-right: 0px;*/
