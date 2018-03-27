@@ -43,61 +43,61 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         $this->categoryRepository = $categoryRepository;
         parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
-    /**
-     * @param Node $menuTree
-     * @param string $childrenWrapClass
-     * @param int $limit
-     * @param array $colBrakes
-     * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
-    protected function _getHtml(
-        \Magento\Framework\Data\Tree\Node $menuTree,
-        $childrenWrapClass,
-        $limit,
-        $colBrakes = []
-    )
-    {
-        $html = parent::_getHtml($menuTree, $childrenWrapClass, $limit, $colBrakes);
-        $parentLevel = $menuTree->getLevel();
-        $childLevel = $parentLevel === null ? 0 : $parentLevel + 1;
-        $menuId = $menuTree->getId();
-
-        if ($childLevel == 1 && $this->isCategory($menuId)) {
-            $html .= '<li class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></li>';
-        }
-
-        return $html;
-    }
-
-
-    /**
-     * @param $categoryId
-     * @return mixed
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
-    protected function getCategoryImage($categoryId)
-    {
-        $categoryIdElements = explode('-', $categoryId);
-        $category = $this->categoryRepository->get(end($categoryIdElements));
-        $categoryName = $category->getImageUrl();
-
-        return $categoryName;
-    }
-
-    /**
-     * Check if current menu element corresponds to a category
-     *
-     * @param string $menuId Menu element composed ID
-     *
-     * @return string
-     */
-    protected function isCategory($menuId)
-    {
-        $menuId = explode('-', $menuId);
-
-        return 'category' == array_shift($menuId);
-    }
+//    /**
+//     * @param Node $menuTree
+//     * @param string $childrenWrapClass
+//     * @param int $limit
+//     * @param array $colBrakes
+//     * @return string
+//     * @throws \Magento\Framework\Exception\NoSuchEntityException
+//     */
+//    protected function _getHtml(
+//        \Magento\Framework\Data\Tree\Node $menuTree,
+//        $childrenWrapClass,
+//        $limit,
+//        $colBrakes = []
+//    )
+//    {
+//        $html = parent::_getHtml($menuTree, $childrenWrapClass, $limit, $colBrakes);
+//        $parentLevel = $menuTree->getLevel();
+//        $childLevel = $parentLevel === null ? 0 : $parentLevel + 1;
+//        $menuId = $menuTree->getId();
+//
+//        if ($childLevel == 1 && $this->isCategory($menuId)) {
+//            $html .= '<li class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></li>';
+//        }
+//
+//        return $html;
+//    }
+//
+//
+//    /**
+//     * @param $categoryId
+//     * @return mixed
+//     * @throws \Magento\Framework\Exception\NoSuchEntityException
+//     */
+//    protected function getCategoryImage($categoryId)
+//    {
+//        $categoryIdElements = explode('-', $categoryId);
+//        $category = $this->categoryRepository->get(end($categoryIdElements));
+//        $categoryName = $category->getImageUrl();
+//
+//        return $categoryName;
+//    }
+//
+//    /**
+//     * Check if current menu element corresponds to a category
+//     *
+//     * @param string $menuId Menu element composed ID
+//     *
+//     * @return string
+//     */
+//    protected function isCategory($menuId)
+//    {
+//        $menuId = explode('-', $menuId);
+//
+//        return 'category' == array_shift($menuId);
+//    }
 
     public function getHtml(
         $outermostClass = '',
