@@ -120,6 +120,8 @@ div.columns {
 
 .footer.content {
     padding-top: 64px;
+    display: flex;
+    justify-content: space-between;
 }
 
 ul.footer.links {
@@ -202,6 +204,6 @@ ul.footer.links {
 }
 
 
-small.copyright {
+.page-wrapper small.copyright {
     background-color: grey;
 }

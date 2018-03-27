@@ -23,7 +23,7 @@
         </referenceContainer>
 
 
-        find footer_links' father to fix
+        <!--find footer_links' father to fix-->
         <referenceBlock name="footer">
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="footer_links"
                     template="TouchShop_Touch1byone::footLinks.phtml">
