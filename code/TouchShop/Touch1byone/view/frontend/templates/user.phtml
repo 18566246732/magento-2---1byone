@@ -14,7 +14,6 @@
 //?>
 
 
-
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Touch1byone::css/user.css") ?>">
 <div class="user-icon">
     <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/user.png' ?> " alt="">
@@ -22,11 +21,12 @@
 
 <!--login popup-->
 
+
 <div class="login-back">
 
     <div class="sign-panel sign-in">
         <span class="close-btn">x</span>
-<!--        --><?php //echo $block->getLayout()->getBlock('head')->setTitle($this->__('123'));  ?>
+        <!--        --><?php //echo $block->getLayout()->getBlock('head')->setTitle($this->__('123'));  ?>
         <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("TouchShop_Touch1byone::login.phtml")->toHtml(); ?>
     </div>
 
@@ -35,17 +35,26 @@
         <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("TouchShop_Touch1byone::register.phtml")->toHtml(); ?>
     </div>
 
-<!--    remove page title-->
-    <?php $block->getLayout()->getBlock('page.main.title')->setPageTitle(' ');?>
+    <!--    remove page title-->
+    <?php $block->getLayout()->getBlock('page.main.title')->setPageTitle(' '); ?>
 </div>
+
+
 <script>
     (function () {
         var $j = jQuery.noConflict();
         $j(document).ready(function () {
-           var  signUp = $j("#signUp"),
+            var signUp = $j("#signUp"),
                 signIn = $j("#signIn"),
                 signUpPanel = $j(".sign-up"),
                 signInPanel = $j(".sign-in");
+
+            <?php if ($block->hasLogin()):?>
+            $j(".user-icon").on("click", function () {
+                location.href="<?php echo $block->getBaseUrl() . "customer/account/"?>";
+            });
+            <?php else:?>
+
             $j(".user-icon").on("click", function () {
                 $j(".login-back").css("display", "block");
             });
@@ -54,15 +63,16 @@
                 $j(".login-back").css("display", "none");
             });
 
-            signIn.on("click",function () {
+            signIn.on("click", function () {
                 signUpPanel.css("display", "none");
                 signInPanel.css("display", "flex");
             });
 
-            signUp.on("click",function () {
+            signUp.on("click", function () {
                 signInPanel.css("display", "none");
                 signUpPanel.css("display", "flex");
             });
+            <?php endif;?>
         });
     })()
 </script>

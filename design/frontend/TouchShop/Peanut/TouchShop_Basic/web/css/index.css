@@ -16,7 +16,7 @@ body {
     /*margin: 0 auto;*/
 /*}*/
 
-ul.header.links .customer-welcome {
+.header.panel > .header.links > li.customer-welcome {
     display: none;
 }
 

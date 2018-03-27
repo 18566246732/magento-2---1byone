@@ -17,4 +17,9 @@ class User extends Template
     {
         return $this->getBaseUrl() . 'pub/media/wysiwyg/' . $imgName;
     }
+
+    public function hasLogin() {
+        return true;
+    }
 }
+
