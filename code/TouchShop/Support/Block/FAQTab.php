@@ -10,6 +10,7 @@ namespace TouchShop\Support\Block;
 
 
 use Magento\Framework\View\Element\Template;
+use TouchShop\Support\Helper\FAQHelper;
 
 class FAQTab extends Template
 {
@@ -28,11 +29,12 @@ class FAQTab extends Template
     public function getFAQ()
     {
         $product = $this->_registry->registry('current_product');
-        $faq = $product->getCustomAttribute('product_faq');
-        if (null != $faq) {
-            return $faq->getValue();
-        }
-        return 'Hello\n FAQ!';
+        return FAQHelper::getFAQ($product);
+    }
+
+    public function addFaqAction()
+    {
+        return $this->getBaseUrl() . '/support/add/faq';
     }
 
 }
