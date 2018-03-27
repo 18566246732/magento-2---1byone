@@ -20,6 +20,8 @@ use Magento\Framework\App\Action\Action;
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Catalog::css/list.css")?>">
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty">
         <div><?= /* @escapeNotVerified */
@@ -54,7 +56,14 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
             <?php foreach ($_productCollection as $_product): ?>
                 <?= /* @escapeNotVerified */
                 ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
-                <div class="product-item-info" data-container="product-grid">
+                <div class="product-item-info hover-prevent" data-container="product-grid">
+
+                    <?php if ($block->getMark($_product)) : ?>
+                        <div class="product-item-hot">
+                            <?php echo $block->getMark($_product)?>
+                        </div>
+                    <?php endif?>
+
                     <?php
                     $productImage = $block->getImage($_product, $image);
                     if ($pos != null) {
