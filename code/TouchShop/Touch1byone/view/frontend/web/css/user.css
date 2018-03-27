@@ -1,3 +1,7 @@
+.user {
+    position: relative;
+}
+
 .user-icon {
     width: 30px;
     cursor: pointer;
@@ -208,3 +212,33 @@ small.copyright {
     justify-content: space-between;
 }
 
+.user-submenu {
+    background-color: white;
+    box-shadow: 1px 2px 3px .5px grey;
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    padding: 8px;
+    display: none;
+}
+
+.user-submenu > ul {
+    display: flex;
+    color: grey;
+    list-style: none;
+    flex-direction: column;
+}
+
+.user-submenu > ul li:not(:last-child) {
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.user-submenu > ul li a {
+    color: grey;
+    text-decoration: none;
+}
+
+.user-submenu > ul li a:hover{
+    color: #2e99ff;
+}

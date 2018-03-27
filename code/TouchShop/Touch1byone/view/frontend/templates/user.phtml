@@ -15,9 +15,20 @@
 
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Touch1byone::css/user.css") ?>">
-<div class="user-icon">
-    <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/user.png' ?> " alt="">
+
+<div class="user">
+    <div class="user-icon">
+        <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/user.png' ?> " alt="">
+    </div>
+
+    <div class="user-submenu">
+        <ul>
+            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/"?>">Account Info</a></li>
+            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/logout"?>">Log out</a></li>
+        </ul>
+    </div>
 </div>
+
 
 <!--login popup-->
 
@@ -50,9 +61,13 @@
                 signInPanel = $j(".sign-in");
 
             <?php if ($block->hasLogin()):?>
-            $j(".user-icon").on("click", function () {
-                location.href="<?php echo $block->getBaseUrl() . "customer/account/"?>";
+            //$j(".user-icon").on("click", function () {
+            //    location.href="<?php //echo $block->getBaseUrl() . "customer/account/"?>//";
+            //});
+            $j(".user-icon").on("mouseover", function () {
+                $j(".user-submenu").css("display", "block");
             });
+
             <?php else:?>
 
             $j(".user-icon").on("click", function () {
