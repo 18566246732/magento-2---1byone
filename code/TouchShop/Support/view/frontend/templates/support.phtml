@@ -1,6 +1,5 @@
 <?php
 /**@var $block TouchShop\Support\Block\SupportBlock */
-$products = $block->getProducts();
 ?>
 
 <!--this should be added globally inside head tag-->
@@ -10,7 +9,6 @@ $products = $block->getProducts();
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css")?>">
 <div class="catalog-panel">
     <div class="catalog-header">
-<!--        support/Index/index.php == support-->
         <form method="post">
             <lable>Search by Product Name/SKU</lable>
             <div class="input-group" >
@@ -27,8 +25,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -41,8 +39,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -55,8 +53,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -69,8 +67,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -83,8 +81,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -97,8 +95,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -111,8 +109,8 @@ $products = $block->getProducts();
                     <h3>this is a</h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -125,8 +123,8 @@ $products = $block->getProducts();
                     <h3></h3>
                 </div>
                 <div class="post-cover">
-                    <a href="">FAQ >></a>
-                    <a href="">Products Details >></a>
+                    <a href="#">FAQ >></a>
+                    <a href="#">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -140,6 +138,16 @@ $products = $block->getProducts();
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
     </div>
+    <div class="faq-cover">
+        <div class="faq-info">
+            <span>x</span>
+            <div class="faq-block">
+                <div class="question"></div>
+                <div class="answer"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -148,7 +156,6 @@ $products = $block->getProducts();
         require(["jquery", "twbsPagination"], function ($) {
             $(document).ready(function () {
                 console.log("require working....");
-
                 $("#supportSearch").on("click", function (e) {
                     //console.log("search clicked !",<?php //echo json_encode($products)?>//);
                     fuck(e, 1);
@@ -160,9 +167,18 @@ $products = $block->getProducts();
                     closeBtn = $(".flex-item .post-cover span"),
                     post = $(".flex-item .post"),
                     postCover = $(".flex-item .post-cover"),
-                    aArr = $(".flex-item .post-cover a"),
-                    faq = aArr[0],
-                    prodDetails = aArr[1];
+                    faq = $(".flex-item .post-cover a:first-child"),
+                    prodDetails = $(".flex-item .post-cover a:last-child"),
+                    faqCover = $(".faq-cover"),
+                    faqInfo = $(".faq-info"),
+                    faqCloseBtn = $(".faq-info > span"),
+                    faqQ = $(".faq-info .question"),
+                    faqA = $(".faq-info .answer");
+
+                // console.log(aArr, aArr[0]);
+                faqCloseBtn.on("click", function () {
+                    faqCover.css("display", "none");
+                });
 
                 closeBtn.on("click",function () {
                     // console.log("closeBtn", this);
@@ -179,11 +195,11 @@ $products = $block->getProducts();
                 
                 // paginatinoIni(1, currentPage);
 
-                fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails);
+                fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
                 console.log("done");
 
                 $("#pagination-demo").on("click",function () {
-                    fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails);
+                    fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
                 });
 
             });
@@ -206,7 +222,7 @@ $products = $block->getProducts();
             }
 
 
-            function fuck(page, imgArr, fileContainer, prodName, faq, prodDetails) {
+            function fuck(page, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover) {
                 console.log("fuck in");
                 console.log(page, imgArr);
                 var responseText = $.ajax({
@@ -221,7 +237,7 @@ $products = $block->getProducts();
                     success: function (res) {
                         console.log("ajax ok");
                         console.log(res);
-                        display(res, imgArr, fileContainer, prodName, faq, prodDetails);
+                        display(res, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
                     },
                     error: function (jqXHR,textstatus, errorThrown) {
                         console.log(jqXHR,textstatus,errorThrown);
@@ -231,7 +247,7 @@ $products = $block->getProducts();
                 // console.log(responseText,"outside");
             }
 
-            function display(res, imgArr, fileContainer, prodName, faq, prodDetails) {
+            function display(res, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover) {
                 // console.log(res.total, res.products);
                 let total = res.total_count;
                 let productsArr = res.products;
@@ -253,10 +269,18 @@ $products = $block->getProducts();
                         // console.log(ele);
                         resHtml += "<li><a href= ../"+ele.src + ">"+ ele.label + " >> </a></li>";
                     });
+                    // console.log("123");
                     // console.log(fileContainer,$(fileContainer[index]),resHtml);
                     $(fileContainer[index]).html(resHtml);
                     $(prodName).text(dataPName);
-                    $(faq).attr("href", dataFAQ);
+                    // $(faq).attr("href", dataFAQ);
+                    // console.log(faq);
+                    $(faq[index]).on("click",function () {
+                        console.log(faqQ,faqA);
+                        faqCover.css("display", "block");
+                        $(faqQ).text(dataFAQ[0].question);
+                        $(faqA).text(dataFAQ[0].answer);
+                    });
                     $(prodDetails).attr("href", dataUrl);
                 });
             }

@@ -5,10 +5,9 @@
         <referenceContainer name="header.container">
             <container name="header.panel.wrapper" htmlClass="header-wrapper" htmlTag="div" before="-">
                 <!--here is main div-->
-                <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
-                    <block class="Magento\Customer\Block\Form\Register" name="user-icon"
-                           template="TouchShop_Touch1byone::user.phtml">
-
+                    <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
+                        <block name="user-icon"
+                               template="TouchShop_Touch1byone::user.phtml">
                     </block>
                 </container>
             </container>

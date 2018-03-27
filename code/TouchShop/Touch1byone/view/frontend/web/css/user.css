@@ -184,9 +184,11 @@ small.copyright {
     display: flex;
     flex-wrap: wrap;
 }
+
 .field-name-firstname ,.field-name-lastname {
     width: 45%;
 }
+
 .field-name-firstname {
     padding-right: 10%;
 }

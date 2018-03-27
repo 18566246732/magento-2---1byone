@@ -43,7 +43,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         $this->categoryRepository = $categoryRepository;
         parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
-
     /**
      * @param Node $menuTree
      * @param string $childrenWrapClass
