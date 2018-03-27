@@ -9,6 +9,8 @@
 namespace TouchShop\Support\Block;
 
 
+use Magento\Backend\Block\Template\Context;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use TouchShop\Support\Helper\FAQHelper;
 
@@ -17,8 +19,8 @@ class FAQTab extends Template
     protected $_registry;
 
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
+        Context $context,
+        Registry $registry,
         array $data = []
     )
     {
@@ -34,7 +36,7 @@ class FAQTab extends Template
 
     public function addFaqAction()
     {
-        return $this->getBaseUrl() . '/support/add/faq';
+        return $this->getBaseUrl() . 'support/add/faq';
     }
 
 }
