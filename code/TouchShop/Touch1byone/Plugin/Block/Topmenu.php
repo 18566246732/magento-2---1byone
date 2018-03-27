@@ -9,38 +9,106 @@
 namespace TouchShop\Touch1byone\Plugin\Block;
 
 
+use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\Data\Tree;
 use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Data\Tree\NodeFactory;
+use Magento\Framework\Data\TreeFactory;
 use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\Template;
 
-class Topmenu
+class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 {
-
     /** @var NodeFactory */
-    protected $nodeFactory;
+    private $nodeFactory;
 
     /** @var UrlInterface */
     private $urlBuilder;
 
+    /**@var CategoryRepository */
+    private $categoryRepository;
 
-    public function __construct(NodeFactory $nodeFactory, UrlInterface $urlBuilder)
+
+    public function __construct(
+        UrlInterface $url,
+        CategoryRepository $categoryRepository,
+        Template\Context $context,
+        NodeFactory $nodeFactory,
+        TreeFactory $treeFactory,
+        array $data = []
+    )
     {
         $this->nodeFactory = $nodeFactory;
-        $this->urlBuilder = $urlBuilder;
+        $this->urlBuilder = $url;
+        $this->categoryRepository = $categoryRepository;
+        parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
 
-    public function beforeGetHtml(
-        \Magento\Theme\Block\Html\Topmenu $subject,
+    /**
+     * @param Node $menuTree
+     * @param string $childrenWrapClass
+     * @param int $limit
+     * @param array $colBrakes
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    protected function _getHtml(
+        \Magento\Framework\Data\Tree\Node $menuTree,
+        $childrenWrapClass,
+        $limit,
+        $colBrakes = []
+    )
+    {
+        $html = parent::_getHtml($menuTree, $childrenWrapClass, $limit, $colBrakes);
+        $parentLevel = $menuTree->getLevel();
+        $childLevel = $parentLevel === null ? 0 : $parentLevel + 1;
+        $menuId = $menuTree->getId();
+
+        if ($childLevel == 1 && $this->isCategory($menuId)) {
+            $html .= '<li class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></li>';
+        }
+
+        return $html;
+    }
+
+
+    /**
+     * @param $categoryId
+     * @return mixed
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    protected function getCategoryImage($categoryId)
+    {
+        $categoryIdElements = explode('-', $categoryId);
+        $category = $this->categoryRepository->get(end($categoryIdElements));
+        $categoryName = $category->getImageUrl();
+
+        return $categoryName;
+    }
+
+    /**
+     * Check if current menu element corresponds to a category
+     *
+     * @param string $menuId Menu element composed ID
+     *
+     * @return string
+     */
+    protected function isCategory($menuId)
+    {
+        $menuId = explode('-', $menuId);
+
+        return 'category' == array_shift($menuId);
+    }
+
+    public function getHtml(
         $outermostClass = '',
         $childrenWrapClass = '',
         $limit = 0
     )
     {
-        //remove all children
-//        $this->removeChildren($subject);
-        $root = $subject->getMenu();
+        $root = $this->getMenu();
         $this->createNodeTree($root->getTree(), $root, $this->getTopmenuArray());
+        return parent::getHtml($outermostClass, $childrenWrapClass, $limit);
     }
 
     private function getNodeAsArray($name, $id)
@@ -54,14 +122,6 @@ class Topmenu
         ];
     }
 
-    private function removeChildren(\Magento\Theme\Block\Html\Topmenu $subject)
-    {
-        $children = $subject->getMenu()->getChildren();
-        foreach ($children as $child) {
-            $subject->getMenu()->removeChild($child);
-        }
-    }
-
     private function getTopmenuArray()
     {
         return [
@@ -70,7 +130,6 @@ class Topmenu
                 'Testimony:testimony',
                 'Products:products'
             ],
-//            'Community:community',
             'Deals:sales' => [
                 'Sales:sales',
                 'Campaign & Lucky Draw:campaign',
