@@ -18,17 +18,21 @@
     opacity: 1;
     margin-right: 10px;
     margin-left: 10px;
-
-
 }
+
 
 #searchBtn::before {
     color: white;
     cursor: pointer;
 }
 
+#search {
+    border: none;
+    box-shadow: initial;
+}
+
+
 .block-search input {
-    background-color: grey;
     /*padding-right: 0px;*/
     /*!*ainmation prepare*!*/
     /*width: 0;*/

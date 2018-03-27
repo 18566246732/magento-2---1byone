@@ -72,10 +72,11 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
     (function () {
         var $j = jQuery.noConflict();
         $j(document).ready(function () {
-            var btn = $j("#searchBtn");
-                search = $j("div.block.block-search");
-                input = $j("#search");
+            var btn = $j("#searchBtn"),
+                search = $j("div.block.block-search"),
+                input = $j("#search"),
                 searchInput =$j("#searchInput");
+
 
             // console.log(search);
             // console.log(btn.attr("disabled"));
@@ -97,6 +98,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                     // if(e.target.id == "searchInput") {
                         search.css({"width":"250px","padding-left":"15px"});
                         input.css("visibility","visible");
+                        btn
                     // }
                 },
                 // keyup : function () {
