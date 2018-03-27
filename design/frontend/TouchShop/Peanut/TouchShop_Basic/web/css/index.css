@@ -110,54 +110,71 @@ div.columns {
 
 
 /*footer-right style*/
-.follow {
-    float: right;
-    position: relative;
-    width: 34%;
-    right: -34%;
-    top: 45px;
+
+
+
+.page-footer {
+    height: 379px;
+    margin-top: 0;
 }
 
-.follow p {
-    color: #cfcfcf;
-    margin-bottom: 0;
-    font-size: 12px;
+.footer.content {
+    padding-top: 64px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.follow a {
-    background: #cfcfcf;
-    /* padding: 5px; */
-    margin-right: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
+ul.footer.links {
+    margin-top: 64px;
 }
+/*.follow {*/
+    /*float: right;*/
+    /*position: relative;*/
+    /*width: 34%;*/
+    /*right: -34%;*/
+    /*top: 45px;*/
+/*}*/
 
-.follow a.facebook:hover {
-    background: #4267b2
-}
+/*.follow p {*/
+    /*color: #cfcfcf;*/
+    /*margin-bottom: 0;*/
+    /*font-size: 12px;*/
+/*}*/
 
-.follow a.twitter:hover {
-    background: #50a5e6
-}
+/*.follow a {*/
+    /*background: #cfcfcf;*/
+    /*!* padding: 5px; *!*/
+    /*margin-right: 10px;*/
+    /*border-radius: 50%;*/
+    /*display: inline-block;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*line-height: 30px;*/
+    /*text-align: center;*/
+/*}*/
 
-.follow a.youtube:hover {
-    background: #e6231a;
-}
+/*.follow a.facebook:hover {*/
+    /*background: #4267b2*/
+/*}*/
 
-.follow .link {
-    margin-top: 30px;
-}
+/*.follow a.twitter:hover {*/
+    /*background: #50a5e6*/
+/*}*/
 
-@media screen and (max-width: 767px) {
-    .follow {
-        position: static;
-        float: initial;
-    }    
-}
+/*.follow a.youtube:hover {*/
+    /*background: #e6231a;*/
+/*}*/
+
+/*.follow .link {*/
+    /*margin-top: 30px;*/
+/*}*/
+
+/*@media screen and (max-width: 767px) {*/
+    /*.follow {*/
+        /*position: static;*/
+        /*float: initial;*/
+    /*}    */
+/*}*/
 
 /*animation*/
 
@@ -184,4 +201,9 @@ div.columns {
     height: 5px;
     background-color: rgba(125,125,125,0.7);
     border-radius: 6px;
+}
+
+
+small.copyright {
+    background-color: grey;
 }
