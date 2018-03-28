@@ -33,8 +33,6 @@ li.product-item .product-item-inner {
 
 .products-grid .product-item-info:not(:hover):not(.active) .product-item-inner {
     overflow: initial;
-    width: initial;
-    clip: initial;
     margin: initial;
     padding: initial;
     height: initial;

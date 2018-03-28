@@ -31,6 +31,7 @@
     background: white;
     color: grey;
     padding: 6px 15px;
+    font-size: 14px;
 }
 
 .form.subscribe .subscribe.primary:hover {
@@ -45,7 +46,7 @@
 }
 
 .block.newsletter > h1 a:hover {
-    color: #59ceff;
+    color: #ff4964;
 }
 
 .block.newsletter > h1 {
@@ -67,6 +68,9 @@
 
 #newsletter-validate-detail {
     width: 80%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
 #newsletter {
