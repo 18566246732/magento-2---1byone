@@ -64,6 +64,21 @@ class CategoryNavigator extends Template
     {
         $tree = $this->tree->getTree();
         $result = $this->resolve($tree[0]);
+        $result = $this->bykey_reitem($result, 'url');
         return json_encode($result);
+    }
+
+    private function bykey_reitem($arr, $key)
+    {
+        if (!array_key_exists($key, $arr)) {
+            return $arr;
+        }
+        $keys = array_keys($arr);
+        $index = array_search($key, $keys);
+        if ($index !== FALSE) {
+            array_splice($arr, $index, 1);
+        }
+        return $arr;
+
     }
 }
