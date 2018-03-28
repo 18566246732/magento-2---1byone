@@ -60,9 +60,7 @@
                 signInPanel = $j(".sign-in");
 
             <?php if ($block->hasLogin()):?>
-            //$j(".user-icon").on("click", function () {
-            //    location.href="<?php //echo $block->getBaseUrl() . "customer/account/"?>//";
-            //});
+
             $j(".user-icon").on("mouseover", function () {
                 $j(".user-submenu").css("display", "block");
             });
