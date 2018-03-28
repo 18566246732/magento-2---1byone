@@ -22,7 +22,7 @@ body {
 
 
 div.sections.nav-sections {
-    background-color: rgba(255,255,255,0);
+    background-color: rgba(255,255,255,0.8);
     margin-bottom: 0;
     z-index: 3;
 }
@@ -112,6 +112,7 @@ div.columns {
 .widget.block.block-static-block {
     margin-top: 70px;
 }
+
 
 
 /*footer-right style*/

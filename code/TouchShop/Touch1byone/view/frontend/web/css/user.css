@@ -158,7 +158,6 @@ div.controller a:last-child {
 }
 
 small.copyright {
-    background: none;
     padding: 0;
 }
 
@@ -167,9 +166,6 @@ small.copyright {
     justify-content: space-between;
 }
 
-.page-wrapper small.copyright {
-    background: none;
-}
 
 .pslogin-block .pslogin-clearfix::after {
     content: none;
@@ -230,13 +226,15 @@ small.copyright {
 }
 
 .user-submenu > ul li:not(:last-child) {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
     border-bottom: 1px solid grey;
 }
 
 .user-submenu > ul li a {
     color: grey;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .user-submenu > ul li a:hover{

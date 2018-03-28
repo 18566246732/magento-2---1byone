@@ -5,6 +5,15 @@ nav.navigation {
 nav.navigation ul li {
     color: white;
 }
+
+/*nav.navigation ul li a:hover {*/
+    /*color: #ff4964;*/
+/*}*/
+
+
+.navigation .level0 > .level-top:hover {
+    color: #ff4964;
+}
 /*.navigation img{*/
     /*height: 20px;*/
 /*}*/
