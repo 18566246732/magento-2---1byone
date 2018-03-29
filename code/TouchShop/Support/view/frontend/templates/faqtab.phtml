@@ -1,4 +1,7 @@
 <?php /** @var $block \TouchShop\Support\Block\FAQTab */ ?>
+
+<?php $FAQ = $block->getFAQ();?>
+<?php if (count($FAQ)):?>
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
 
 <div class="product-details-faq">
@@ -36,3 +39,4 @@
         })
     })()
 </script>
+<?php endif?>
