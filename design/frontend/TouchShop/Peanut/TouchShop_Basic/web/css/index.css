@@ -184,9 +184,9 @@ ul.footer.links {
 
 /*animation*/
 
-* {
-    transition: all 0.1s ease-out;
-}
+/** {*/
+    /*transition: all 0.1s ease-out;*/
+/*}*/
 
 /*scrollBar*/
 /*::-webkit-scrollbar {*/
