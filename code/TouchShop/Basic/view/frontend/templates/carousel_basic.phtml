@@ -38,12 +38,10 @@
                     spanArr = allSpan.slice(2,6),
                     navText = $(".navigation .level0 > .level-top"),
                     owlImgNum = allSpan.length - 8 ;
-                console.log(owlImgNum);
 
                     // change color every switch
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
                     var index = e.relatedTarget.current();
-                    console.log(index ,spanArr[(index-2) % owlImgNum].getAttribute("data-color"));
                     navText.css("color", spanArr[(index-2) % owlImgNum].getAttribute("data-color"));
                 });
 
