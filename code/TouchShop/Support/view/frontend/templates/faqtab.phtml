@@ -1,1 +1,42 @@
 <?php /** @var $block \TouchShop\Support\Block\FAQTab */ ?>
+
+<?php $FAQ = $block->getFAQ();?>
+<?php if (count($FAQ)):?>
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
+
+<div class="product-details-faq">
+    <?php foreach ($block->getFAQ() as $item): ?>
+        <div class="faq-assembling">
+                <span class="faq-toggle triangle-facing-up">
+                </span>
+            <div class="faq-item-panel">
+                <h1><?php echo $item['question'] ?></h1>
+                <p><?php echo $item['answer'] ?></p>
+            </div>
+        </div>
+    <?php endforeach ?>
+    <form action="">
+        <label>Ask a question <input type="text" required="required"/></label>
+        <label>Email address <input type="email" required="required"/></label>
+        <input type="reset" value="reset">
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<script>
+    (function () {
+
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function () {
+                $("p").slideToggle(0);
+                $(".faq-toggle").on("click", function () {
+                    $(this).toggleClass("triangle-facing-down");
+                    // console.log($(this).parent(".faq-assembling").find("p"));
+                    $(this).parent(".faq-assembling").find("p").slideToggle(0);
+                    $(this).parent(".faq-assembling").toggleClass("back-color-grey");
+                }); 
+            })
+        })
+    })()
+</script>
+<?php endif?>

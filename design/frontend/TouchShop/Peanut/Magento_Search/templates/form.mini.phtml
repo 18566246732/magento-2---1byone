@@ -68,44 +68,20 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 
 <script>
     (function () {
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
-            var btn = $j("#searchBtn"),
-                search = $j("div.block.block-search"),
-                input = $j("#search"),
-                searchInput = $j("#searchInput");
 
-
-            // console.log(search);
-            // console.log(btn.attr("disabled"));
-            // btn.attr("disabled",false);
-            // btn.prop("disabled",false);
-            // console.log(btn.attr("disabled"));
-            // console.log("on error");
-
-            // search.on("click", function (e) {
-            //     console.log(e.target.id);
-            //     if(e.target.id = "searchBtn") {
-            //         search.css("width","auto");
-            //         input.css("visibility","visible");
-            //     }
-            // });
+        require(['jquery', 'jquery/ui'], function ($) {
+            var btn = $("#searchBtn"),
+                search = $("div.block.block-search"),
+                input = $("#search");
             search.on({
                 mouseover: function (e) {
                     console.log(e.target);
                     search.css({"width": "250px", "padding-left": "15px"});
                     input.css("visibility", "visible");
-
+                    input.focus();
                 },
-                // keyup : function () {
-                //     // if(e.target.id == "searchInput") {
-                //         search.css({"width":"28px","padding-left":"initial"});
-                //         input.css("visibility","hidden");
-                //     // }
-                // }
             });
-
-        });
+        })
     })()
 </script>
 

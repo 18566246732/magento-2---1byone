@@ -1,1 +1,16 @@
 <?php /** @var $block \TouchShop\Support\Block\DownloadFiles */ ?>
+<?php $downloadFiles = $block->getDownloadFiles(); ?>
+<?php if (count($downloadFiles)): ?>
+    <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/download_files.css") ?>">
+
+    <div>
+        <ul>
+            <?php foreach ($downloadFiles as $item): ?>
+                <li><a href="<?= $item['src'] ?>"
+                       download="<?= $item['label'] ?>"><?= $item['label'] ?></a></li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+
+<?php endif; ?>
+

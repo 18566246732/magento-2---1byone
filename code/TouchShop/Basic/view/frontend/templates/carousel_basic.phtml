@@ -10,6 +10,7 @@
         <?php foreach ($block->getImages() as $name => $image): ?>
             <div style="cursor: pointer" class="item" onclick="toView('<?php echo $image["url"] ?>')">
                 <img style="max-height: 998px" src="<?php echo $image["src"]; ?>"/>
+                <span data-color="<?php echo $image["text-color"]?>" style="display: none"></span>
             </div>
         <?php endforeach; ?>
     </div>
@@ -22,11 +23,6 @@
         require(["jquery", "owlcarousel"], function ($) {
             $(document).ready(function () {
                 $(".owl-carousel").css("visibility", "hidden");
-                //
-                // owl.on("initialized.owl.carousel", function () {
-                //     $(this).css("visibility", "visible");
-                // });
-
                 var owl = $('.owl-carousel').owlCarousel({
                     loop: true,
                     margin: 10,
@@ -38,10 +34,16 @@
                     // dotsEach: true,
                 });
 
-                //
-                // owl.on("initialized.owl.carousel", function () {
-                //     $(this).css("visibility", "visible");
-                // });
+                var allSpan = $(".owl-carousel.owl-theme span"),
+                    spanArr = allSpan.slice(2,6),
+                    navText = $(".navigation .level0 > .level-top"),
+                    owlImgNum = allSpan.length - 8 ;
+
+                    // change color every switch
+                owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
+                    var index = e.relatedTarget.current();
+                    navText.css("color", spanArr[(index-2) % owlImgNum].getAttribute("data-color"));
+                });
 
                 <?php if ($block->isFullScreen()): ?>
                 function resizeCarouselContainer() {
@@ -53,14 +55,11 @@
 
                 resizeCarouselContainer()
 
-
                 owl.on("refresh.owl.carousel", function () {
                     var timeout = setTimeout(function () {
-                        // console.log($(this));
                         owl.css("visibility", "visible");
                     },500);
                 });
-
 
                 $('.owl-carousel').owlCarousel('refresh');
 

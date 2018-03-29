@@ -166,6 +166,9 @@ small.copyright {
     justify-content: space-between;
 }
 
+.third-party-login small.copyright {
+    background: none;
+}
 
 .pslogin-block .pslogin-clearfix::after {
     content: none;

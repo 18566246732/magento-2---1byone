@@ -48,18 +48,16 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
 
 <script>
     (function () {
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
+        require(['jquery', 'jquery/ui'], function ($) {
             console.log("sections script in");
-            // $j(window).scroll(function () {
-                // var docTop = $j(document).scrollTop();
-                // if(docTop >= 30) {
-                //     $j(".sections").css("background-color", "rgba(255,255,255,0.8)");
-                // } else {
-                //     $j(".sections").css("background-color", "rgba(255,255,255,0)");
-                // }
-            // });
-
+            $(window).scroll(function () {
+                var docTop = $(document).scrollTop();
+                if(docTop >= 30) {
+                    $(".sections").css("background-color", "rgba(255,255,255,0.8)");
+                } else {
+                    $(".sections").css("background-color", "rgba(255,255,255,0)");
+                }
+            });
         })
     })()
 </script>

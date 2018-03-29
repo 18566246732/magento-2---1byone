@@ -2,9 +2,9 @@ nav.navigation {
     background-color: rgba(0,0,0,0);
 }
 
-nav.navigation ul li {
-    color: white;
-}
+/*nav.navigation ul li {*/
+/*color: white;*/
+/*}*/
 
 /*nav.navigation ul li a:hover {*/
     /*color: #ff4964;*/
@@ -12,7 +12,7 @@ nav.navigation ul li {
 
 
 .navigation .level0 > .level-top:hover {
-    color: #ff4964;
+    color: #8d131c;
 }
 /*.navigation img{*/
     /*height: 20px;*/
