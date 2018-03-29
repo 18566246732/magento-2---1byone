@@ -12,4 +12,6 @@
         <plugin name="add_wysiwyg_data" type="TouchShop\Touch1byone\Plugin\Block\WysiwygConfig" sortOrder="30"/>
     </type>
     <preference for="Mageplaza\Blog\Model\ResourceModel\Author" type="TouchShop\Touch1byone\Plugin\Block\Author"/>
+    <preference for="Magento\Customer\Block\Form\Login" type="TouchShop\Touch1byone\Block\Login"/>
+    <preference for="Magento\Customer\Block\Form\Register" type="TouchShop\Touch1byone\Block\Register"/>
 </config>

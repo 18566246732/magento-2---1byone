@@ -1,1 +1,36 @@
 <?php /** @var $block \TouchShop\Support\Block\FAQTab */ ?>
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
+
+<div class="product-details-faq">
+    <?php foreach ($block->getFAQ() as $item): ?>
+        <div class="faq-assembling">
+                <span class="faq-toggle triangle-facing-up">
+                </span>
+            <div class="faq-item-panel">
+                <h1><?php echo $item['question'] ?></h1>
+                <p><?php echo $item['answer'] ?></p>
+            </div>
+        </div>
+    <?php endforeach ?>
+    <form action="">
+        <label>Ask a question <input type="text" required="required"/></label>
+        <label>Email address <input type="email" required="required"/></label>
+        <input type="reset" value="reset">
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<script>
+    (function () {
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            $j("p").slideToggle(0);
+            $j(".faq-toggle").on("click", function () {
+                $j(this).toggleClass("triangle-facing-down");
+                // console.log($j(this).parent(".faq-assembling").find("p"));
+                $j(this).parent(".faq-assembling").find("p").slideToggle(0);
+                $j(this).parent(".faq-assembling").toggleClass("back-color-grey");
+            });
+        })
+    })()
+</script>

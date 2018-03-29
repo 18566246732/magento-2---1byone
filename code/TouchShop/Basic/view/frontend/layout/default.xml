@@ -45,10 +45,12 @@
         <referenceBlock name="breadcrumbs" remove="true" />
         <move element="form.subscribe" destination="footer_right" before="-"/>
     </body>
+
     <head>
         <css src="TouchShop_Basic::css/index.css"/>
         <!--including jquery-->
         <script type="text/javascript" src="TouchShop_Basic::js/jquery-3.3.1.min.js" />
+        <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" />-->
         <script type="text/javascript" src="TouchShop_Basic::js/index.js"/>
     </head>
 </page>

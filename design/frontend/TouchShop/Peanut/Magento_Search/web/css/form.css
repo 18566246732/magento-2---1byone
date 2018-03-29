@@ -30,6 +30,9 @@
     box-shadow: initial;
 }
 
+#search:focus {
+    box-shadow: 0 0 5px 1px white;
+}
 
 .block-search input {
     /*padding-right: 0px;*/
@@ -45,3 +48,4 @@ div.block.block-search {
     padding-left: initial;
     margin-left: 10px;
 }
+

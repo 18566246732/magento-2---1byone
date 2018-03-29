@@ -72,8 +72,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
         $j(document).ready(function () {
             var btn = $j("#searchBtn"),
                 search = $j("div.block.block-search"),
-                input = $j("#search"),
-                searchInput = $j("#searchInput");
+                input = $j("#search");
 
 
             // console.log(search);
@@ -95,6 +94,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                     console.log(e.target);
                     search.css({"width": "250px", "padding-left": "15px"});
                     input.css("visibility", "visible");
+                    input.focus();
 
                 },
                 // keyup : function () {

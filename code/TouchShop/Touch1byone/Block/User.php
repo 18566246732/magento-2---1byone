@@ -37,5 +37,5 @@ class User extends Template
     {
         return $this->sessionFactory->create()->isLoggedIn();
     }
-}
 
+}

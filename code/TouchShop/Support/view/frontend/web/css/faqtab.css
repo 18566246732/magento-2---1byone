@@ -1,0 +1,87 @@
+.product-details-faq > *{
+    padding: 10px 15px;
+}
+/*.faq-assembling {*/
+    /*background-color: grey;*/
+/*}*/
+
+.faq-assembling:first-child {
+    margin-top: 20px;
+}
+
+.faq-assembling {
+    display: flex;
+}
+
+.faq-assembling .faq-item-panel h1{
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+}
+
+/*class for toggle*/
+
+.back-color-grey {
+    background-color: grey;
+    color: white;
+}
+
+
+.faq-assembling .faq-item-panel p{
+    font-size: 14px;
+}
+
+.triangle-facing-up {
+    display: inline-block;
+    border-left: 2.4px solid #8d131c;
+    border-bottom: 2.4px solid #8d131c;
+    width: 8px;
+    height: 8px;
+    transform: rotate(-45deg);
+    margin-right: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.triangle-facing-down {
+    /*display: inline-block;*/
+    /*border-left: 2.4px solid #8d131c;*/
+    /*border-bottom: 2.4px solid #8d131c;*/
+    /*width: 8px;*/
+    /*height: 8px;*/
+    transform: rotate(135deg);
+    /*margin-right: 8px;*/
+    /*cursor: pointer;*/
+}
+
+#faq\.tab {
+    padding: 0;
+}
+
+
+.product-details-faq label input {
+    margin: 10px 0;
+    width: 40%;
+    display: block;
+}
+
+
+.product-details-faq form > input {
+    padding: 5px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.product-details-faq form > input {
+    background-color: #595959;
+    color: white;
+    margin-right: 20px;
+}
+
+
+.product-details-faq form > input:last-child {
+    background-color: #8d131c;
+    color: white;
+}

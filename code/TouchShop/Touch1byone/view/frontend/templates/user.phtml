@@ -45,8 +45,6 @@
         <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("TouchShop_Touch1byone::register.phtml")->toHtml(); ?>
     </div>
 
-    <!--    remove page title-->
-    <?php $block->getLayout()->getBlock('page.main.title')->setPageTitle(' '); ?>
 </div>
 
 
@@ -61,8 +59,13 @@
 
             <?php if ($block->hasLogin()):?>
 
-            $j(".user-icon").on("mouseover", function () {
-                $j(".user-submenu").css("display", "block");
+            $j(".user").on({
+                mouseover: function () {
+                    $j(".user-submenu").css("display", "block");
+                },
+                mouseout: function () {
+                    $j(".user-submenu").css("display", "none");
+                }
             });
 
             <?php else:?>

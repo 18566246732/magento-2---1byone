@@ -31,7 +31,7 @@ class FAQHelper
                             $tail = substr($qa, 2);
                             if ($head === 'Q:') {
                                 $item['question'] = $tail;
-                            } elseif ($head == 'A:') {
+                            } elseif ($head === 'A:') {
                                 $item['answer'] = $tail;
                             }
                         }
