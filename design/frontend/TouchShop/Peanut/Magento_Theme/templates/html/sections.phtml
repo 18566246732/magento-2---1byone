@@ -51,14 +51,14 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
         var $j = jQuery.noConflict();
         $j(document).ready(function () {
             console.log("sections script in");
-            // $j(window).scroll(function () {
-                // var docTop = $j(document).scrollTop();
-                // if(docTop >= 30) {
-                //     $j(".sections").css("background-color", "rgba(255,255,255,0.8)");
-                // } else {
-                //     $j(".sections").css("background-color", "rgba(255,255,255,0)");
-                // }
-            // });
+            $j(window).scroll(function () {
+                var docTop = $j(document).scrollTop();
+                if(docTop >= 30) {
+                    $j(".sections").css("background-color", "rgba(255,255,255,0.8)");
+                } else {
+                    $j(".sections").css("background-color", "rgba(255,255,255,0)");
+                }
+            });
 
         })
     })()
