@@ -11,28 +11,10 @@
                 type="TouchShop\ReviewTool\Model\ReviewAdvanced"/>
     <preference for="TouchShop\ReviewTool\Api\ReviewAdvancedProviderInterface"
                 type="TouchShop\ReviewTool\Model\ReviewAdvanced\Provider"/>
-    <type name="Magento\Review\Model\ResourceModel\Review\Collection">
-        <plugin name="joinReviewAdvancedToReviewCollection"
-                type="TouchShop\ReviewTool\Model\Plugin\Product\Repository"/>
-    </type>
-    <type name="Magento\Review\Model\Review">
-        <plugin name="saveReviewAdvancedAfterSaveReview"
-                type="TouchShop\ReviewTool\Model\Plugin\Product\ReviewPlugin"/>
-    </type>
-    <type name="Magento\Framework\EntityManager\MetadataPool">
-        <arguments>
-            <argument name="metadata" xsi:type="array">
-                <item name="TouchShop\ReviewTool\Api\Data\ReviewAdvancedInterface" xsi:type="array">
-                    <item name="entityTableName" xsi:type="string">review_extension</item>
-                    <item name="identifierField" xsi:type="string">extension_id</item>
-                </item>
-            </argument>
-        </arguments>
-    </type>
     <type name="Magento\Theme\Model\View\Design">
         <arguments>
             <argument name="themes" xsi:type="array">
-                <item name="adminhtml" xsi:type="string">TouchShop/Peanut-admin</item> <!-- Example: "Magento/backend" -->
+                <item name="adminhtml" xsi:type="string">TouchShop/Peanut-admin</item>
             </argument>
         </arguments>
     </type>
