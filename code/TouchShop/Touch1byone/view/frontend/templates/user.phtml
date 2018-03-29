@@ -50,32 +50,31 @@
 
 <script>
     (function () {
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
-            var signUp = $j("#signUp"),
-                signIn = $j("#signIn"),
-                signUpPanel = $j(".sign-up"),
-                signInPanel = $j(".sign-in");
+        require(['jquery', 'jquery/ui'], function ($) {
+            var signUp = $("#signUp"),
+                signIn = $("#signIn"),
+                signUpPanel = $(".sign-up"),
+                signInPanel = $(".sign-in");
 
             <?php if ($block->hasLogin()):?>
 
-            $j(".user").on({
+            $(".user").on({
                 mouseover: function () {
-                    $j(".user-submenu").css("display", "block");
+                    $(".user-submenu").css("display", "block");
                 },
                 mouseout: function () {
-                    $j(".user-submenu").css("display", "none");
+                    $(".user-submenu").css("display", "none");
                 }
             });
 
             <?php else:?>
 
-            $j(".user-icon").on("click", function () {
-                $j(".login-back").css("display", "block");
+            $(".user-icon").on("click", function () {
+                $(".login-back").css("display", "block");
             });
 
-            $j(".close-btn").on("click", function () {
-                $j(".login-back").css("display", "none");
+            $(".close-btn").on("click", function () {
+                $(".login-back").css("display", "none");
             });
 
             signIn.on("click", function () {
@@ -88,7 +87,8 @@
                 signUpPanel.css("display", "flex");
             });
             <?php endif;?>
-        });
+        })
+
     })()
 </script>
 

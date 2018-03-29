@@ -17,30 +17,31 @@
 <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
 <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
 
-<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Theme::css/topmenu.css")?>">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Theme::css/topmenu.css") ?>">
 
 <nav class="navigation" data-action="navigation">
     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
-        <?= /* @escapeNotVerified */ $_menu ?>
-        <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+        <?= /* @escapeNotVerified */
+        $_menu ?>
+        <?= /* @escapeNotVerified */
+        $block->getChildHtml() ?>
     </ul>
 </nav>
 
 <script>
     (function () {
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
-            console.log("topmenu in");
-            var li = $j("nav>ul li");
-            li.on({
-                mouseover: function (e) {
-                    $j(this).children("ul").css("display","block");
-                },
-                mouseout: function (e) {
-                    $j(this).children("ul").css("display","none");
-                }
-            });
-
-        });
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function () {
+                var li = $("nav>ul li");
+                li.on({
+                    mouseover: function (e) {
+                        $(this).children("ul").css("display", "block");
+                    },
+                    mouseout: function (e) {
+                        $(this).children("ul").css("display", "none");
+                    }
+                });
+            })
+        })
     })()
 </script>

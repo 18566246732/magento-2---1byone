@@ -22,15 +22,17 @@
 
 <script>
     (function () {
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
-            $j("p").slideToggle(0);
-            $j(".faq-toggle").on("click", function () {
-                $j(this).toggleClass("triangle-facing-down");
-                // console.log($j(this).parent(".faq-assembling").find("p"));
-                $j(this).parent(".faq-assembling").find("p").slideToggle(0);
-                $j(this).parent(".faq-assembling").toggleClass("back-color-grey");
-            });
+
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function () {
+                $("p").slideToggle(0);
+                $(".faq-toggle").on("click", function () {
+                    $(this).toggleClass("triangle-facing-down");
+                    // console.log($(this).parent(".faq-assembling").find("p"));
+                    $(this).parent(".faq-assembling").find("p").slideToggle(0);
+                    $(this).parent(".faq-assembling").toggleClass("back-color-grey");
+                }); 
+            })
         })
     })()
 </script>
