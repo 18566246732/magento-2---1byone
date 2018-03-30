@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+#searchBtn.changeBefore::before {
+    color: grey;
+}
+
 #search {
     border: none;
     box-shadow: initial;

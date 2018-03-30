@@ -1,9 +1,14 @@
 .sections {
-    height: 100px;
+    height: 80px;
     position: fixed;
     width: 100%;
     z-index: 2;
     top: 50px;
     /*we will listen to the page scroll action to change this*/
     background-color: rgba(255,255,255,0);
+}
+
+
+.nav-background-grey {
+    color: rgb(70,70,70) !important;
 }
