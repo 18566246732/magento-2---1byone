@@ -18,4 +18,22 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="reviews_extension_listing_data_source" xsi:type="string">
+                    TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">touchshop_review_extension</argument>
+            <argument name="resourceModel" xsi:type="string">
+                TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvancedResourceModel
+            </argument>
+        </arguments>
+    </virtualType>
 </config>

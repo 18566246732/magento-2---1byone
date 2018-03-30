@@ -20,5 +20,25 @@
             <block class="TouchShop\ProductTool\Block\AmazonASIN" name="product.info.asin"
                    template="TouchShop_ProductTool::amazon_asin.phtml"/>
         </referenceContainer>
+
+        <referenceBlock name="product.info.details">
+            <arguments>
+                <argument name="template" xsi:type="string">TouchShop_ProductTool::product/view/details.phtml</argument>
+            </arguments>
+            <block class="TouchShop\Support\Block\FAQTab" name="faq.tab"
+                   template="TouchShop_Support::faqtab.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">FAQ</argument>
+                </arguments>
+            </block>
+            <block class="TouchShop\Support\Block\DownloadFiles" name="download.files"
+                   template="TouchShop_Support::download_files.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Download Files</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>

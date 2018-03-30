@@ -2,8 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="TouchShop_ReviewTool::reviews" title="Reviews" module="TouchShop_ReviewTool" sortOrder="10"
-             action="reviews/" resource="TouchShop_ReviewTool::reviews"
+        <add id="TouchShop_ReviewTool::reviews_report" title="Review Report" module="TouchShop_ReviewTool"
+             sortOrder="10"
+             action="reviews/" resource="TouchShop_ReviewTool::reviews_report"
+             parent="TouchShop_Basic::basic"/>
+        <add id="TouchShop_ReviewTool::reviews" title="Review Extension" module="TouchShop_ReviewTool" sortOrder="10"
+             action="reviews/extension" resource="TouchShop_ReviewTool::reviews"
              parent="TouchShop_Basic::basic"/>
     </menu>
 </config>

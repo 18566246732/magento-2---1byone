@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: jing
- * Date: 3/6/18
- * Time: 12:28 AM
+ * Date: 3/29/18
+ * Time: 6:04 PM
  */
 
-namespace TouchShop\ReviewTool\Controller\Adminhtml\Index;
+namespace TouchShop\ReviewTool\Controller\Adminhtml\Extension;
 
 
 use Magento\Backend\App\Action;
@@ -30,7 +30,7 @@ class Index extends Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend((__('Reviews Report')));
+        $resultPage->getConfig()->getTitle()->prepend((__('Reviews')));
 
         return $resultPage;
     }
