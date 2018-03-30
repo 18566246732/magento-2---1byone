@@ -22,9 +22,10 @@
         </referenceContainer>
 
         <referenceBlock name="product.info.details">
-            <arguments>
+            <action method="setTemplate">
                 <argument name="template" xsi:type="string">TouchShop_ProductTool::product/view/details.phtml</argument>
-            </arguments>
+            </action>
+
             <block class="TouchShop\Support\Block\FAQTab" name="faq.tab"
                    template="TouchShop_Support::faqtab.phtml"
                    group="detailed_info">
