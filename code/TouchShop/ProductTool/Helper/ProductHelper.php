@@ -47,12 +47,6 @@ class ProductHelper
         return intval($discount);
     }
 
-    public static function isHot(Product $product)
-    {
-        $suggested = self::getCustomAttribute($product, self::SUGGESTED, '10000');
-        return $suggested >= '80000';
-    }
-
     private static function getCustomAttribute(Product $product, $attribute, $default = null)
     {
         $customAttribute = $product->getCustomAttribute($attribute);
