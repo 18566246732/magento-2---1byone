@@ -17,6 +17,7 @@ use Magento\Review\Model\Review;
 use Magento\Review\Model\ReviewFactory;
 use TouchShop\Basic\Helper\HttpHelper;
 use TouchShop\ProductTool\Helper\ProductHelper;
+use TouchShop\ReviewTool\Helper\Config;
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\ReviewAdvancedCollection;
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvancedResourceModel;
 use TouchShop\ReviewTool\Model\ReviewAdvanced;
@@ -77,15 +78,15 @@ class SyncReviews
      */
     public function execute()
     {
-//        $resp = HttpHelper::post('http://192.168.0.153:8080/reviewListByCondition', [
-//            "filter" => [
-//                "has_output" => false
-//            ],
-//            "pageSize" => 100,
-//            "pageNum" => 1
-//        ]);
-//
-//        $data = $resp;
+        $resp = HttpHelper::post('http://' . Config::IP . ':8080/reviewListByCondition', [
+            "filter" => [
+                "has_output" => false
+            ],
+            "pageSize" => 100,
+            "pageNum" => 1
+        ]);
+
+        $data = $resp;
 
         $data = [
             'reviews' => [

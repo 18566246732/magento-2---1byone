@@ -15,6 +15,7 @@ use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use TouchShop\Basic\Helper\HttpHelper;
 use TouchShop\ProductTool\Helper\ProductHelper;
+use TouchShop\ReviewTool\Helper\Config;
 
 class PostAsins
 {
@@ -71,7 +72,7 @@ class PostAsins
             }
         }
 
-        $resp = HttpHelper::post('http://192.168.0.153:8080/saveAsin', ['asin_arr' => $asins]);
+        $resp = HttpHelper::post('http://' . Config::IP . ':8080/saveAsin', ['asin_arr' => $asins]);
     }
 
 }
