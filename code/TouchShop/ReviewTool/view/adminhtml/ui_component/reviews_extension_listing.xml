@@ -18,7 +18,7 @@
                 Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
             </argument>
             <argument name="name" xsi:type="string">reviews_extension_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">extension</argument>
+            <argument name="primaryFieldName" xsi:type="string">extension_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
