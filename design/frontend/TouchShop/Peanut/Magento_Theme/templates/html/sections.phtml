@@ -64,8 +64,6 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             var pInfoNav = $(".data.item.title");
             var toolbar = $(".page-header");
             var menubar = $(".sections.nav-sections");
-            var isOver = -1;
-            console.log(isOver);
 
             $(window).scroll(function (e) {
                 var docTop = $(document).scrollTop();
@@ -82,7 +80,6 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                 // }
 
 
-                scrollFunc(e, isOver);
                 // console.log(toolbar.height());
                 // console.log(productInfo.offset().top, productInfo.scrollTop());
                 if (docTop >= 30) {
@@ -93,45 +90,6 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                     $(".navigation .level0 > .level-top").removeClass("nav-background-grey");
                 }
             });
-
-
-            var scrollFunc = function (e, isOver) {
-
-
-
-                console.log(isOver);
-
-                e = e || window.event;
-                if (e.wheelDelta) {  //第一步：先判断浏览器IE，谷歌滑轮事件
-                    if (e.wheelDelta > 0) { //当滑轮向上滚动时
-                        console.log("滑轮向上滚动");
-                    }
-                    if (e.wheelDelta < 0) { //当滑轮向下滚动时
-                        console.log("滑轮向下滚动");
-                    }
-                } else if (e.detail) {  //Firefox滑轮事件
-                    if (e.detail> 0) { //当滑轮向上滚动时
-                        console.log("滑轮向上滚动");
-                    }
-                    if (e.detail< 0) { //当滑轮向下滚动时
-                        console.log("滑轮向下滚动");
-                    }
-                }
-            }
-            // //给页面绑定滑轮滚动事件
-            // if (document.addEventListener) {//firefox
-            //     document.addEventListener('DOMMouseScroll', scrollFunc, false);
-            // }
-            // //滚动滑轮触发scrollFunc方法  //ie 谷歌
-            // window.onmousewheel = document.onmousewheel = scrollFunc;
-
-
-
-
-
-
-
-
 
         })
     })()
