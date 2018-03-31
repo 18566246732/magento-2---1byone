@@ -5,43 +5,194 @@
  */
 
 // @codingStandardsIgnoreFile
-
+/** @var Magento\Catalog\Block\Product\View\Description $block */
 ?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ProductTool::css/details.css") ?>">
+
 <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')): ?>
     <div class="product info detailed">
+        <div class="details-up-content-cover"></div>
         <?php $layout = $block->getLayout(); ?>
-        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-            <?php foreach ($detailedInfoGroup as $name): ?>
-                <?php
-                $html = $layout->renderElement($name);
-                if (!trim($html)) {
-                    continue;
-                }
-                $alias = $layout->getElementAlias($name);
-                $label = $block->getChildData($alias, 'title');
-                ?>
-                <div class="data item title"
-                     aria-labeledby="tab-label-<?= /* @escapeNotVerified */
-                     $alias ?>-title"
-                     data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */
-                $alias ?>">
-                    <a class="data switch"
-                       tabindex="-1"
-                       data-toggle="switch"
-                       href="#<?= /* @escapeNotVerified */
-                       $alias ?>"
-                       id="tab-label-<?= /* @escapeNotVerified */
-                       $alias ?>-title">
+        <div class="product data items">
+            <div class="details-menu">
+                <ul>
+                    <?php foreach ($detailedInfoGroup as $name): ?>
+                        <?php
+                        $html = $layout->renderElement($name);
+                        if (!trim($html)) {
+                            continue;
+                        }
+                        $alias = $layout->getElementAlias($name);
+                        $label = $block->getChildData($alias, 'title');
+                        ?>
+                        <li><a><?= $label ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+            <div class="details-main">
+                <?php foreach ($detailedInfoGroup as $index => $name): ?>
+                    <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
+                    $alias ?>">
+                        <a class="details-tab" href="#<?= /* @escapeNotVerified */
+                        $alias ?>"
+                           id="tab-label-<?= $index ?>"
+                        >
+                            <?= $label ?>
+                        </a>
+                    </div>
+                    <div class="details-content" id="<?= /* @escapeNotVerified */
+                    $alias ?>">
                         <?= /* @escapeNotVerified */
-                        $label . 'aaa' ?>
-                    </a>
-                </div>
-                <div class="data item content" id="<?= /* @escapeNotVerified */
-                $alias ?>" data-role="content">
-                    <?= /* @escapeNotVerified */
-                    $html ?>
-                </div>
-            <?php endforeach; ?>
+                        $html ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 <?php endif; ?>
+
+
+<script>
+    (function () {
+        require(['jquery', 'jquery/ui'], function ($) {
+
+
+            var productInfo = $(".product.info.detailed");
+            var detailsMenu = $(".details-menu");
+            var detailsMenuItem = $(".details-menu li");
+            var doc = $(document);
+            var section = $(".sections");
+            var sectionTop = 50;
+            var currentStates = 'A';
+            var isUp = false;
+            var detailsMain = $(".details-main");
+            var last = 0;
+            var contentArr = $(".details-tab");
+            var contentTopArr = [];
+            // assuming that the page content offsetTop is constant
+            // var contentTopArr = contentArr.offset().top;
+            var detailsMenuAItem = $(".details-menu li a");
+
+            function resizeProductContainer(e) {
+                var WINDOW_WIDTH = document.body.offsetWidth
+                var TARGET_WIDTH = $('.page-main').width()
+                e.width(WINDOW_WIDTH)
+                e.css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
+            }
+
+
+            // var isUpFunc = function (e) {
+            //     // log(e);
+            //     console.log("isUpFunc functional");
+            //     e = e || window.event;
+            //     if (e.wheelDelta) {  //第一步：先判断浏览器IE，谷歌滑轮事件
+            //         if (e.wheelDelta > 0) { //当滑轮向上滚动时
+            //             console.log("page down");
+            //             isUp = false;
+            //
+            //         }
+            //         if (e.wheelDelta < 0) { //当滑轮向下滚动时
+            //             console.log("page up");
+            //             isUp = true;
+            //         }
+            //     } else if (e.detail) {  //Firefox滑轮事件
+            //         if (e.detail < 0) { //当滑轮向上滚动时
+            //             console.log("page down");
+            //             isUp = false;
+            //         }
+            //         if (e.detail > 0) { //当滑轮向下滚动时
+            //             console.log("page up");
+            //             isUp = true;
+            //         }
+            //     }
+            // }
+            //
+            // //给页面绑定滑轮滚动事件
+            // if (document.addEventListener) {//firefox
+            //     document.addEventListener('DOMMouseScroll', isUpFunc, false);
+            // }
+            // //滚动滑轮触发scrollFunc方法  //ie 谷歌
+            // window.onmousewheel = document.onmousewheel = isUpFunc;
+
+            contentArr.each(function () {
+                console.log($(this).offset().top);
+                contentTopArr.push($(this).offset().top);
+            })
+
+
+            var len = contentTopArr.length;
+
+            resizeProductContainer(detailsMenu);
+            detailsMenuItem.on("click", function (e) {
+
+                detailsMenuAItem.css("color", "grey");
+                $(e.target).css("color", "#8d131c");
+                // console.log("e:",e);
+                location.href = "#tab-label-" + $(this).index();
+
+                // add 200px offset scroll distance
+                var ac = $(window).scrollTop();
+                $("body,html").animate({'scrollTop': ac - 200}, 100);
+
+            })
+
+            doc.scroll(function () {
+
+                $(detailsMenuAItem).css("color", "grey")
+
+                var now = doc.scrollTop();
+                isUp = (now > last);
+                last = now;
+
+                for(let i = len; i > 0; i-- ) {
+                    if(now > (contentTopArr[i-1] - 300)) {
+                        $(detailsMenuAItem[i-1]).css("color", "#8d131c");
+                        // cannot use return null; will exit callback function
+                        break;
+                    }
+                }
+                var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
+                sectionTop = productInfo.offset().top - 80;
+                if (currentStates === 'A') {
+                    if (isOverNum <= 0 && isUp) {
+                        console.log("A -> B set style", isOverNum, isUp);
+                        section.addClass("back-normal-flow").css("top", sectionTop);
+                        currentStates = 'B';
+                    }
+                } else if (currentStates === 'B') {
+                    if (isUp && (isOverNum <= -80)) {
+                        console.log("B -> C set style");
+                        detailsMenu.addClass("fix-top");
+                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                        currentStates = 'C';
+                    } else if (!isUp && (isOverNum >= 0)) {
+                        console.log("B -> A set style");
+                        section.removeClass("back-normal-flow").css("top", 50);
+                        currentStates = 'A';
+                    }
+                } else {
+                    if (!isUp && (isOverNum >= -80)) {
+                        console.log("C -> B set style");
+                        detailsMenu.removeClass("fix-top");
+                        currentStates = 'B';
+                    }
+                }
+            });
+
+
+
+
+
+        })
+    })()
+</script>
