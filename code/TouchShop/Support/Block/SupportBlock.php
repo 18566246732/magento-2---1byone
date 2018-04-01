@@ -13,4 +13,5 @@ use Magento\Framework\View\Element\Template;
 
 class SupportBlock extends Template
 {
+
 }

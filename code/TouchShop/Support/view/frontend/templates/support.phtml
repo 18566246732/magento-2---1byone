@@ -7,6 +7,9 @@
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">-->
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/bootstrap.min.css") ?>">
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePagination.css") ?>">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePaginationOverwrite.css") ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css") ?>">
 <div class="catalog-panel">
     <div class="catalog-header">
@@ -29,7 +32,7 @@
                 </div>
                 <div class="post-cover">
                     <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
+                    <a href="#" class="product-details">Products Details >></a>
                     <span>x</span>
                     <h3>Download List</h3>
                     <ul>
@@ -62,7 +65,7 @@
 <script>
     (function () {
 
-        require(["jquery", "twbsPagination"], function ($) {
+        require(["jquery", "simplePagination"], function ($) {
 
             var currentPage = 1,
                 imgArr = $(".flex-item img"),
@@ -72,16 +75,17 @@
                 post = $(".flex-item .post"),
                 postCover = $(".flex-item .post-cover"),
                 faq = $(".flex-item .post-cover a:first-child"),
-                prodDetails = $(".flex-item .post-cover a:last-child"),
+                prodDetails = $(".flex-item .post-cover .product-details"),
                 faqCover = $(".faq-cover"),
                 faqInfo = $(".faq-info"),
                 faqCloseBtn = $(".faq-info > span"),
                 faqQ = $(".faq-info .question"),
                 faqA = $(".faq-info .answer"),
                 paginationItem = $(".pagination-demo ul"),
+                searchInput = $(".catalog-header .input-group input:first-child");
                 currentPage = 1,
                 isSearching = false,
-                isPageIni = false;
+                isPageIni = false,
 
             $(document).ready(function () {
                 console.log("require working....");
@@ -115,25 +119,30 @@
                     isSearching = true;
                     sendAjax(1);
                 });
+
+                $(document).keypress(function (e) {
+                    if(e.which == 13 && searchInput.is(":focus")) {
+                        e.preventDefault();
+                        $("#supportSearch").click();
+                    }
+                })
+
+
             });
 
-            function paginatinoIni(totalP) {
-                $('#pagination-demo').twbsPagination({
-                    totalPages: totalP,
-                    visiblePages: 7,
-                    prev: "<",
-                    next: ">",
-                    firstClass: "first-btn",
-                    lastClass: "last-btn",
-                    paginationClass: "pagination-overall",
-                    onPageClick: function (e, page) {
+            function paginatinoIni(total) {
+                $("#pagination-demo").pagination({
+                    items: total,
+                    itemsOnPage: 8,
+                    currentPage: 1,
+                    cssStyle: '',
+                    prevText: '<span>&laquo;</span>',
+                    nextText: '<span>&raquo;</span>',
+                    onPageClick: function (page, e) {
                         //2. click pagination , send ajax
-                        currentPage = page;
-                        $(e.target).click(function () {
-                            sendAjax(currentPage);
-                        })
+                            sendAjax(page);
                     },
-                });
+                })
             }
 
             function sendAjax(page) {
@@ -169,16 +178,16 @@
                     console.log("data is zero");
                 } else {
                     let productsArr = res.products;
-                    let totalP = Math.ceil(total / 8);
+                    // let totalP = Math.ceil(total / 8);
 
                     if(isSearching || isPageIni ) {
                         // twbsPagination totalPage refresh
                         //1. remove target element
-                        $("#pagination-demo").remove();
+                        // $("#pagination-demo").remove();
                         //2. add it from it's parent
-                        $(".footer > .pagination").append("<ul id=\"pagination-demo\" class=\"pagination-sm\"></ul>");
+                        // $(".footer > .pagination").append("<ul id=\"pagination-demo\" class=\"pagination-sm\"></ul>");
                         //3. re-initialize
-                        paginatinoIni(totalP);
+                        paginatinoIni(total);
 
                         console.log("pagini");
                     }
@@ -210,7 +219,7 @@
                                 $(faqQ).text(dataFAQ[0].question);
                                 $(faqA).text(dataFAQ[0].answer);
                             });
-                            $(prodDetails).attr("href", dataUrl);
+                            $(prodDetails[index]).attr("href", dataUrl);
                         } else {
                             return false;
                         }
