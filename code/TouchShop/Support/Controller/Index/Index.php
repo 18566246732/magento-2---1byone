@@ -28,20 +28,16 @@ class Index extends Action
     private $searchCriteriaBuilder;
 
     /** @var FilterBuilder */
-    private
-        $filterBuilder;
+    private $filterBuilder;
 
     /** @var ProductRepositoryInterface */
-    private
-        $productRepository;
+    private $productRepository;
 
     /** @var SortOrderBuilder */
-    private
-        $sortOrderBuilder;
+    private $sortOrderBuilder;
 
     /** @var FilterGroupBuilder */
-    private
-        $filterGroupBuilder;
+    private $filterGroupBuilder;
 
     public function __construct(
         Context $context,
@@ -94,7 +90,7 @@ class Index extends Action
                     'image' => '/pub/media/catalog/product' . $item->getImage(),
                     'faq' => FAQHelper::getFAQ($item),
                     'download_files' => DownloadFilesHelper::getDownloadFiles($item),
-                    'url'=>$item->getProductUrl()
+                    'url' => $item->getProductUrl()
                 ];
             }
             $result['products'] = $products;
