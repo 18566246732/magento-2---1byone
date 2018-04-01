@@ -6,13 +6,13 @@
 <!--suppress JSAnnotator -->
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">-->
 
-<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/bootstrap.min.css")?>">
-<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css")?>">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/bootstrap.min.css") ?>">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css") ?>">
 <div class="catalog-panel">
     <div class="catalog-header">
         <form method="post">
             <lable>Search by Product Name/SKU</lable>
-            <div class="input-group" >
+            <div class="input-group">
                 <input type="text" placeholder="find what you what ...">
                 <input type="button" id="supportSearch" value="search"/>
             </div>
@@ -20,6 +20,8 @@
     </div>
     <div class="main">
         <div class="flex-container">
+            <?php $index = 8; ?>
+            <?php while ($index-- > 0): ?>
             <div class="flex-item">
                 <div class="post">
                     <img src="" alt="" draggable="false">
@@ -34,104 +36,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3>this is a</h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
-                </div>
-                <div class="post-cover">
-                    <a href="#">FAQ >></a>
-                    <a href="#">Products Details >></a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
+            <?php endwhile;?>
         </div>
     </div>
     <div class="footer">
@@ -156,60 +61,63 @@
 
 <script>
     (function () {
-        // var paginationClicked = false;
+
         require(["jquery", "twbsPagination"], function ($) {
+
+            var currentPage = 1,
+                imgArr = $(".flex-item img"),
+                fileContainer = $(".flex-item ul"),
+                prodName = $(".flex-item .post h3"),
+                closeBtn = $(".flex-item .post-cover span"),
+                post = $(".flex-item .post"),
+                postCover = $(".flex-item .post-cover"),
+                faq = $(".flex-item .post-cover a:first-child"),
+                prodDetails = $(".flex-item .post-cover a:last-child"),
+                faqCover = $(".faq-cover"),
+                faqInfo = $(".faq-info"),
+                faqCloseBtn = $(".faq-info > span"),
+                faqQ = $(".faq-info .question"),
+                faqA = $(".faq-info .answer"),
+                paginationItem = $(".pagination-demo ul"),
+                currentPage = 1,
+                isSearching = false,
+                isPageIni = false;
+
             $(document).ready(function () {
                 console.log("require working....");
-                $("#supportSearch").on("click", function (e) {
-                    //console.log("search clicked !",<?php //echo json_encode($products)?>//);
-                    fuck(e, 1);
-                });
-                var currentPage = 1,
-                    imgArr = $(".flex-item img"),
-                    fileContainer = $(".flex-item ul"),
-                    prodName = $(".flex-item .post h3"),
-                    closeBtn = $(".flex-item .post-cover span"),
-                    post = $(".flex-item .post"),
-                    postCover = $(".flex-item .post-cover"),
-                    faq = $(".flex-item .post-cover a:first-child"),
-                    prodDetails = $(".flex-item .post-cover a:last-child"),
-                    faqCover = $(".faq-cover"),
-                    faqInfo = $(".faq-info"),
-                    faqCloseBtn = $(".faq-info > span"),
-                    faqQ = $(".faq-info .question"),
-                    faqA = $(".faq-info .answer");
 
-                // console.log(aArr, aArr[0]);
+
                 faqCloseBtn.on("click", function () {
                     faqCover.css("display", "none");
                 });
 
-                closeBtn.on("click",function () {
-                    // console.log("closeBtn", this);
-                    let postCover= $(this).parent();
+                closeBtn.on("click", function () {
+                    let postCover = $(this).parent();
                     postCover.css("display", "none");
                 });
 
                 post.on("click", function () {
-                    post.next().css("display","none");
-                    // console.log("flexItem", this);
+                    post.next().css("display", "none");
                     let postCover = $(this).next();
                     postCover.css("display", "flex");
                 });
-                
-                // paginatinoIni(1, currentPage);
 
-                fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
-                console.log("done");
+                //1. page first loaded , send ajax, display result
 
-                $("#pagination-demo").on("click",function () {
-                    fuck(currentPage, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
+                sendAjax(currentPage);
+                isPageIni = true;
+                //2. click pagination item, send ajax,  finished on pagenationIni callback
+
+
+
+                //3. click search button , send ajax
+                $("#supportSearch").on("click", function (e) {
+                    isSearching = true;
+                    sendAjax(1);
                 });
-
             });
 
-            function paginatinoIni(totalP, currentPage) {
-                console.log(totalP);
+            function paginatinoIni(totalP) {
                 $('#pagination-demo').twbsPagination({
                     totalPages: totalP,
                     visiblePages: 7,
@@ -219,16 +127,17 @@
                     lastClass: "last-btn",
                     paginationClass: "pagination-overall",
                     onPageClick: function (e, page) {
-                        // fuck(e, page, imgArr, fileContainer, prodName);
+                        //2. click pagination , send ajax
                         currentPage = page;
+                        $(e.target).click(function () {
+                            sendAjax(currentPage);
+                        })
                     },
                 });
             }
 
-
-            function fuck(page, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover) {
-                console.log("fuck in");
-                console.log(page, imgArr);
+            function sendAjax(page) {
+                console.log("sendAjax in");
                 var responseText = $.ajax({
                     url: "<?php echo $block->getUrl('support') ?>",
                     type: "POST",
@@ -240,53 +149,73 @@
                     },
                     success: function (res) {
                         console.log("ajax ok");
-                        console.log(res);
-                        display(res, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover);
+                        console.log(res, page);
+                        display(res, page);
                     },
-                    error: function (jqXHR,textstatus, errorThrown) {
-                        console.log(jqXHR,textstatus,errorThrown);
+                    error: function (jqXHR, textstatus, errorThrown) {
+                        console.log(jqXHR, textstatus, errorThrown);
                         console.log("ajax error");
                     }
                 });
-                // console.log(responseText,"outside");
             }
 
-            function display(res, imgArr, fileContainer, prodName, faq, prodDetails, faqQ, faqA, faqCover) {
-                // console.log(res.total, res.products);
+
+            function display(res, currentPage) {
+                // hide all posts
+                post.css("visibility", "hidden");
                 let total = res.total_count;
-                let productsArr = res.products;
-                let totalP = Math.ceil(total/8);
-                paginatinoIni(totalP);
-                // console.log(totalP);
-                // console.log(imgArr);
-                imgArr.each(function (index,ele) {
-                    // console.log(ele, productArr[index].image);
-                    ele.src = "../" + productsArr[index].image;
-                    // console.log(ele.src);
-                    let resHtml = "";
-                    let dFiles = productsArr[index].download_files;
-                    let dataPName = productsArr[index].product_name;
-                    let dataFAQ = productsArr[index].faq;
-                    let dataUrl = productsArr[index].url;
-                    // console.log(dFiles, dataPName);
-                    dFiles.forEach(function (ele) {
-                        // console.log(ele);
-                        resHtml += "<li><a href= ../"+ele.src + ">"+ ele.label + " >> </a></li>";
+
+                if (total == 0) {
+                    console.log("data is zero");
+                } else {
+                    let productsArr = res.products;
+                    let totalP = Math.ceil(total / 8);
+
+                    if(isSearching || isPageIni ) {
+                        // twbsPagination totalPage refresh
+                        //1. remove target element
+                        $("#pagination-demo").remove();
+                        //2. add it from it's parent
+                        $(".footer > .pagination").append("<ul id=\"pagination-demo\" class=\"pagination-sm\"></ul>");
+                        //3. re-initialize
+                        paginatinoIni(totalP);
+
+                        console.log("pagini");
+                    }
+
+                    isSearching = false;
+                    isPageIni = false;
+
+                    imgArr.each(function (index, ele) {
+                        if(index <= total -1) {
+                            $(post[index]).css("visibility", "visible");
+                            console.log(productsArr, index);
+                            ele.src = "../" + productsArr[index].image;
+                            // console.log(ele.src);
+                            let resHtml = "";
+                            let dFiles = productsArr[index].download_files;
+                            let dataPName = productsArr[index].product_name;
+                            let dataFAQ = productsArr[index].faq;
+                            let dataUrl = productsArr[index].url;
+                            // console.log(dFiles, dataPName);
+                            dFiles.forEach(function (ele) {
+                                // console.log(ele);
+                                resHtml += "<li><a href= ../" + ele.src + ">" + ele.label + " >> </a></li>";
+                            });
+                            $(fileContainer[index]).html(resHtml);
+                            $(prodName).text(dataPName);
+                            $(faq[index]).on("click", function () {
+                                // console.log(faqQ,faqA);
+                                faqCover.css("display", "block");
+                                $(faqQ).text(dataFAQ[0].question);
+                                $(faqA).text(dataFAQ[0].answer);
+                            });
+                            $(prodDetails).attr("href", dataUrl);
+                        } else {
+                            return false;
+                        }
                     });
-                    // console.log("123");
-                    // console.log(fileContainer,$(fileContainer[index]),resHtml);
-                    $(fileContainer[index]).html(resHtml);
-                    $(prodName).text(dataPName);
-                    // $(faq).attr("href", dataFAQ);
-                    // console.log(faq);
-                    $(faq[index]).on("click",function () {
-                        console.log(faqQ,faqA);
-                        faqCover.css("display", "block");
-                        $(faqQ).text(dataFAQ[0].question);
-                        $(faqA).text(dataFAQ[0].answer);
-                    });
-                    $(prodDetails).attr("href", dataUrl);
-                });
+                }
             }
         });
     })()
