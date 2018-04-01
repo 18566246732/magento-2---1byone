@@ -2,8 +2,8 @@ var config = {
     paths: {
         'owlcarousel': "TouchShop_Basic/js/owl.carousel.min",
         'twbsPagination' : "TouchShop_Basic/js/jquery.twbsPagination.min",
-        'pagination' : "TouchShop_Basic/js/jquery.simplePagination",
         'bootstrap' : "TouchShop_Basic/js/bootstrap.min",
+        'simplePagination' : "TouchShop_Basic/js/jquery.simplePagination",
     },
     shim: {
         'owlcarousel': {
@@ -15,7 +15,7 @@ var config = {
         'twbsPagination' : {
             deps: ['jquery']
         },
-        'pagination' : {
+        'simplePagination' : {
             deps: ['jquery']
         }
     }

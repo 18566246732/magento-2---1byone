@@ -1,0 +1,8 @@
+#pagination-demo {
+    display: flex;
+    align-items: center;
+}
+
+#pagination-demo li.active span{
+    margin: 0 10px;
+}
