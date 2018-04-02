@@ -6,7 +6,23 @@
 
 /** @var \TouchShop\ReviewTool\Model\Preference\ReviewPreference $block */
 ?>
-<div>
-    <?= $block->testReview() ?>
-</div>>
+<div>hahhahahahhahahah</div>
+<div id="product-review-container"></div>
 <?= $block->getChildHtml() ?>
+
+<script>
+    (function () {
+        require(['jquery'], function ($) {
+            $(function () {
+                console.log("dom ready, ajax test start");
+                $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>', function (res) {
+                    console.log(res);
+                    $("#product-review-container").html(res);
+                }).error(function (xhr, status, info) {
+                    console.log(xhr, status, info);
+                })
+            })
+        })
+    })()
+
+</script>
