@@ -13,8 +13,15 @@ use Magento\Review\Block\Product\Review;
 
 class ReviewPreference extends Review
 {
-    public function testReview()
+    public function getCurrentProductId()
     {
-        return 'Hello Touch Shop!';
+        $product = $this->_coreRegistry->registry('current_product');
+        if (!$product) {
+            $product = $this->_coreRegistry->registry('product');
+        }
+        if ($product) {
+            return $product->getId();
+        }
+        return null;
     }
 }

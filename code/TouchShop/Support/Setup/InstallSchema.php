@@ -61,7 +61,7 @@ class InstallSchema implements InstallSchemaInterface
                     'customer_id',
                     Table::TYPE_INTEGER,
                     null,
-                    ['unsigned' => true]
+                    ['unsigned' => true, 'nullable' => true]
                 )->addColumn(
                     'email',
                     Table::TYPE_TEXT,
@@ -87,6 +87,7 @@ class InstallSchema implements InstallSchemaInterface
                     ),
                     'customer_id',
                     $installer->getTable('customer_entity'),
+                    'entity_id',
                     Table::ACTION_CASCADE
                 )->setComment(
                     'FQA'
