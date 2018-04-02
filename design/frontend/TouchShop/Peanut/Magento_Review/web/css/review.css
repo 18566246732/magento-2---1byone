@@ -38,15 +38,15 @@
 
 .rating-background .star-five {
     color: grey;
-    border-bottom: grey;
+    border-bottom: 70em solid grey;
 }
 
 .rating-background .star-five:before {
-    border-bottom: grey;
+    border-bottom: 80em solid grey;
 }
 .rating-background .star-five:after {
     color: grey;
-    border-bottom: grey;
+    border-bottom: 70em solid grey;
 }
 
 .star-five {
@@ -83,7 +83,7 @@
 
 }
 
-.rating-background .star-five:after {
+.star-five:after {
     position: absolute;
     display: block;
     color: red;
@@ -121,12 +121,14 @@
     display: inline-block;
 }
 
-.reviews-rating .rating-result:first-child {
+.reviews-rating {
     position: relative;
 }
 
 .reviews-rating .rating-result:last-child {
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .reviews-flex-text {
@@ -143,3 +145,5 @@
 p.reports-content {
     max-lines: 3;
 }
+
+

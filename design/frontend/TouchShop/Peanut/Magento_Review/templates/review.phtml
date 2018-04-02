@@ -5,7 +5,9 @@
  */
 
 /** @var \TouchShop\ReviewTool\Model\Preference\ReviewPreference $block */
+$currentProductId = $block->getCurrentProductId();
 ?>
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Review::css/review.css")?>">
 <div id="product-review-container"></div>
 <?= $block->getChildHtml() ?>
 <input id="productIdValue" value="null" type="hidden"/>
@@ -15,11 +17,17 @@
         require(['jquery'], function ($) {
             $(function () {
                 console.log("dom ready, ajax test start");
-                $("#productIdValue").val(<?=$block->getCurrentProductId()?>);
-                $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>', function (res) {
-                    console.log(res);
-                    $("#product-review-container").html(res);
-                }).error(function (xhr, status, info) {
+
+                $("#productIdValue").val(<?=$currentProductId?>);
+                $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>',
+                    {
+                        id: "<?= $currentProductId?>",
+                        page_num : 1,
+                        page_size: 10
+                    }
+                    , function (res) {
+                        $("#product-review-container").html(res);
+                    }).error(function (xhr, status, info) {
                     console.log(xhr, status, info);
                 })
             })

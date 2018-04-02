@@ -75,6 +75,5 @@ class ListView extends Template
 
             return $result;
         }
-        return null;
     }
 }
