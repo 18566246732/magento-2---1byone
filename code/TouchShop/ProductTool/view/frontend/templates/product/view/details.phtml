@@ -76,7 +76,7 @@
             var currentStates = 'A';
             var isUp = false;
             var detailsMain = $(".details-main");
-            var last = 0;
+            var last = doc.scrollTop();
             var contentArr = $(".details-tab");
             var contentTopArr = [];
             // assuming that the page content offsetTop is constant
@@ -124,6 +124,9 @@
             // //滚动滑轮触发scrollFunc方法  //ie 谷歌
             // window.onmousewheel = document.onmousewheel = isUpFunc;
 
+
+
+
             contentArr.each(function () {
                 console.log($(this).offset().top);
                 contentTopArr.push($(this).offset().top);
@@ -132,7 +135,7 @@
 
             var len = contentTopArr.length;
 
-            resizeProductContainer(detailsMenu);
+            // resizeProductContainer(detailsMenu);
             detailsMenuItem.on("click", function (e) {
 
                 detailsMenuAItem.css("color", "grey");
@@ -187,7 +190,33 @@
                         currentStates = 'B';
                     }
                 }
+
+                $(".product.data.items li").on({
+                    click: function () {
+                        if(currentStates === 'A') {
+                            console.log("A -> C set style");
+                            section.addClass("back-normal-flow").css("top", sectionTop);
+                            detailsMenu.addClass("fix-top");
+                            detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                            currentStates = 'C';
+                        }
+                    }
+                });
+                console.log("state", currentStates,"isUp:",isUp);
+                // page first loaded
+                if(currentStates === 'A') {
+                    console.log("isOverNum:",isOverNum);
+                    if ((isOverNum <= -80)) {
+                        console.log("A -> C set style", isOverNum, isUp);
+                        section.addClass("back-normal-flow").css("top", sectionTop);
+                        detailsMenu.addClass("fix-top");
+                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                        currentStates = 'C';
+                    }
+                }
             });
+
+
 
 
 

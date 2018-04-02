@@ -1,0 +1,145 @@
+.reviews-item {
+    border-bottom: 1px solid grey;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.reviews-media {
+    display: flex;
+}
+
+.reviews-media-item {
+    display: inline-block;
+    margin-right: 20px;
+    width: 200px;
+    height: 120px;
+    background-color: yellow;
+    /*background-image: url("http://192.168.0.152/magento2/pub/media/wysiwyg/banner.jpg");*/
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+.reviews-media-item img {
+    width: max-content;
+}
+
+.reviews-media-item video {
+    height: 100%;
+    width: 100%;
+}
+
+.reviews-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.rating-background .star-five {
+    color: grey;
+    border-bottom: grey;
+}
+
+.rating-background .star-five:before {
+    border-bottom: grey;
+}
+.rating-background .star-five:after {
+    color: grey;
+    border-bottom: grey;
+}
+
+.star-five {
+    margin: 50em 0;
+    position: relative;
+    display: block;
+    color: red;
+    width: 0em;
+    height: 0em;
+    border-right:  100em solid transparent;
+    border-bottom: 70em  solid red;
+    border-left:   100em solid transparent;
+    -moz-transform:    rotate(35deg);
+    -webkit-transform: rotate(35deg);
+    -ms-transform:     rotate(35deg);
+    -o-transform:      rotate(35deg);
+}
+
+.star-five:before {
+    border-bottom: 80em solid red;
+    border-left: 30em solid transparent;
+    border-right: 30em solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45em;
+    left: -65em;
+    display: block;
+    content: '';
+    -webkit-transform: rotate(-35deg);
+    -moz-transform:    rotate(-35deg);
+    -ms-transform:     rotate(-35deg);
+    -o-transform:      rotate(-35deg);
+
+}
+
+.rating-background .star-five:after {
+    position: absolute;
+    display: block;
+    color: red;
+    top: 3em;
+    left: -105em;
+    width: 0em;
+    height: 0em;
+    border-right: 100em solid transparent;
+    border-bottom: 70em solid red;
+    border-left: 100em solid transparent;
+    -webkit-transform: rotate(-70deg);
+    -moz-transform:    rotate(-70deg);
+    -ms-transform:     rotate(-70deg);
+    -o-transform:      rotate(-70deg);
+    content: '';
+}
+
+
+.reviews-heading > *{
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.reviews-customize ul{
+    list-style: none;
+    padding: 0;
+}
+
+.rating-result ul {
+    font-size: 0.1px;
+}
+
+
+.rating-result ul li {
+    display: inline-block;
+}
+
+.reviews-rating .rating-result:first-child {
+    position: relative;
+}
+
+.reviews-rating .rating-result:last-child {
+    position: absolute;
+}
+
+.reviews-flex-text {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reviews-flex-text .reviews-details {
+    align-self: flex-end;
+}
+
+p.reports-content {
+    max-lines: 3;
+}
