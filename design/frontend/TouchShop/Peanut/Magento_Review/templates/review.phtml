@@ -8,12 +8,14 @@
 ?>
 <div id="product-review-container"></div>
 <?= $block->getChildHtml() ?>
+<input id="productIdValue" value="null" type="hidden"/>
 
 <script>
     (function () {
         require(['jquery'], function ($) {
             $(function () {
                 console.log("dom ready, ajax test start");
+                $("#productIdValue").val(<?=$block->getCurrentProductId()?>);
                 $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>', function (res) {
                     console.log(res);
                     $("#product-review-container").html(res);

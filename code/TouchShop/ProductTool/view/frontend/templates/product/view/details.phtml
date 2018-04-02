@@ -91,44 +91,10 @@
             }
 
 
-            // var isUpFunc = function (e) {
-            //     // log(e);
-            //     console.log("isUpFunc functional");
-            //     e = e || window.event;
-            //     if (e.wheelDelta) {  //第一步：先判断浏览器IE，谷歌滑轮事件
-            //         if (e.wheelDelta > 0) { //当滑轮向上滚动时
-            //             console.log("page down");
-            //             isUp = false;
-            //
-            //         }
-            //         if (e.wheelDelta < 0) { //当滑轮向下滚动时
-            //             console.log("page up");
-            //             isUp = true;
-            //         }
-            //     } else if (e.detail) {  //Firefox滑轮事件
-            //         if (e.detail < 0) { //当滑轮向上滚动时
-            //             console.log("page down");
-            //             isUp = false;
-            //         }
-            //         if (e.detail > 0) { //当滑轮向下滚动时
-            //             console.log("page up");
-            //             isUp = true;
-            //         }
-            //     }
-            // }
-            //
-            // //给页面绑定滑轮滚动事件
-            // if (document.addEventListener) {//firefox
-            //     document.addEventListener('DOMMouseScroll', isUpFunc, false);
-            // }
-            // //滚动滑轮触发scrollFunc方法  //ie 谷歌
-            // window.onmousewheel = document.onmousewheel = isUpFunc;
-
 
 
 
             contentArr.each(function () {
-                console.log($(this).offset().top);
                 contentTopArr.push($(this).offset().top);
             })
 
@@ -140,7 +106,6 @@
 
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#8d131c");
-                // console.log("e:",e);
                 location.href = "#tab-label-" + $(this).index();
 
                 // add 200px offset scroll distance
@@ -168,24 +133,20 @@
                 sectionTop = productInfo.offset().top - 80;
                 if (currentStates === 'A') {
                     if (isOverNum <= 0 && isUp) {
-                        console.log("A -> B set style", isOverNum, isUp);
                         section.addClass("back-normal-flow").css("top", sectionTop);
                         currentStates = 'B';
                     }
                 } else if (currentStates === 'B') {
                     if (isUp && (isOverNum <= -80)) {
-                        console.log("B -> C set style");
                         detailsMenu.addClass("fix-top");
                         detailsMain.css("margin-top", detailsMenu.outerHeight(true));
                         currentStates = 'C';
                     } else if (!isUp && (isOverNum >= 0)) {
-                        console.log("B -> A set style");
                         section.removeClass("back-normal-flow").css("top", 50);
                         currentStates = 'A';
                     }
                 } else {
                     if (!isUp && (isOverNum >= -80)) {
-                        console.log("C -> B set style");
                         detailsMenu.removeClass("fix-top");
                         currentStates = 'B';
                     }
@@ -194,7 +155,6 @@
                 $(".product.data.items li").on({
                     click: function () {
                         if(currentStates === 'A') {
-                            console.log("A -> C set style");
                             section.addClass("back-normal-flow").css("top", sectionTop);
                             detailsMenu.addClass("fix-top");
                             detailsMain.css("margin-top", detailsMenu.outerHeight(true));
@@ -202,12 +162,9 @@
                         }
                     }
                 });
-                console.log("state", currentStates,"isUp:",isUp);
                 // page first loaded
                 if(currentStates === 'A') {
-                    console.log("isOverNum:",isOverNum);
                     if ((isOverNum <= -80)) {
-                        console.log("A -> C set style", isOverNum, isUp);
                         section.addClass("back-normal-flow").css("top", sectionTop);
                         detailsMenu.addClass("fix-top");
                         detailsMain.css("margin-top", detailsMenu.outerHeight(true));
