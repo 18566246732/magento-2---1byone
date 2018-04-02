@@ -6,7 +6,142 @@
 
 /** @var \TouchShop\ReviewTool\Model\Preference\ReviewPreference $block */
 ?>
-<div>
-    <?= $block->testReview() ?>
-</div>>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Review::css/review.css") ?>">
+
+<div class="reviews-customize">
+    <div class="reviews-list">
+        <ul class="reviews-items">
+            <?php $index = 10 ?>
+            <?php while ($index-- > 0): ?>
+                <li class="reviews-item">
+                    <div class="reviews-heading">
+                        <div class="reviews-rating">
+
+                            <div class="rating-result">
+                                <ul>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="reviews-title"></div>
+                    </div>
+
+                    <div class="reviews-media">
+                        <div class="reviews-media-item">
+                            <video controls="controls">
+                                <source src="movie.ogg" type="video/ogg">
+                                <source src="movie.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="reviews-media-item"></div>
+                        <div class="reviews-media-item"></div>
+                        <div class="reviews-media-item"></div>
+                    </div>
+                    <div class="reviews-flex-text">
+                        <p class="reviews-content"></p>
+                        <div class="reviews-details"><span><strong></strong></span> published at
+                            <time></time>
+                        </div>
+                    </div>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+    <div class="pagination">
+    </div>
+</div>
+
 <?= $block->getChildHtml() ?>
+
+<script>
+    (function () {
+        require(['jquery', 'jquery/ui'], function ($) {
+
+            $(function () {
+                var reviewsItem = $(".reviews-item");
+                var star = $(".star-five ul li");
+                var reviewTitle = $(".reviews-title");
+                var reviewVideo = $(".reviews-media-item video");
+                var reviewImg = $(".reviews-media-item");
+                var reviewsContent = $(".review-content");
+                var author = $(".review-details strong");
+                var timeStamp = $(".review-details time");
+
+                var res = {
+                    reviews_data: [
+                        {
+                            star: 4,
+                            title: "this products is very good",
+                            vedio_url: ['', '', ''],
+                            images_url: ['', '', ''],
+                            comment: "lalalallallal jp fsad ;;f ;af j;dsaf ;jf ;saf sdfj ;asfj ;sdfj ;sa   ajf;a\n" +
+                            "                            sfj as;f   a; df;f afaf  ffsda ;f fff ;a; f; f;dsa f;d ;f f; f;a  ;a f\n" +
+                            "                            j f qpj q  jpofj qwp j jpqjfoqwp  j pqwfjqw jpqw lalallallallallalallallalallallalallallalallalal\n" +
+                            "                            lallall lallalal lalallal jqworfj afwof j jfqw; jof jfoqwfj\n",
+                            author: "baozi",
+                            date: "2017/8/09 12:00",
+                        },
+                        {
+                            star: 4,
+                            title: "this products is very good",
+                            vedio_url: "",
+                            images_url: ['', '', ''],
+                            comment: "lalalallallal jp fsad ;;f ;af j;dsaf ;jf ;saf sdfj ;asfj ;sdfj ;sa   ajf;a\n" +
+                            "                            sfj as;f   a; df;f afaf  ffsda ;f fff ;a; f; f;dsa f;d ;f f; f;a  ;a f\n" +
+                            "                            j f qpj q  jpofj qwp j jpqjfoqwp  j pqwfjqw jpqw lalallallallallalallallalallallalallallalallalal\n" +
+                            "                            lallall lallalal lalallal jqworfj afwof j jfqw; jof jfoqwfj\n",
+                            author: "baozi",
+                            date: "2017/8/09 12:00",
+                        }
+                    ]
+                };
+
+
+
+                function display(res) {
+                    console.log("res:", res);
+                    reviewsItem.css("display", "none");
+                }
+
+                // display(res);
+
+
+                var curentProductId = "null";
+                console.log("swatch-option", $(".product-info-main"));
+                $(".product-info-main").on("click", function (e) {
+                    console.log("e:", e.target);
+                    $.ajax({
+                        //url: "",
+                        url: "<?php echo $block->getBaseUrl() . 'reviews/index/currentProduct'?>",
+                        //url: "<?php //echo $block->getBaseUrl() . 'productdetails/index/optiondetails'?>//",
+                        type: "POST",
+
+                        // dataType: "json",
+                        success: function (res) {
+                            console.log("ajax ok");
+                            let id = res.id;
+                            console.log("res:", res, "id:", id);
+                            if (id != curentProductId) {
+                                console.log("id changed");
+                                curentProductId = id;
+                                //todo
+                            }
+                        },
+                        error: function (jqXHR, textstatus, errorThrown) {
+                            console.log(jqXHR, textstatus, errorThrown);
+                            console.log("review ajax error");
+                        }
+                    });
+
+                });
+            })
+        })
+    })()
+</script>
