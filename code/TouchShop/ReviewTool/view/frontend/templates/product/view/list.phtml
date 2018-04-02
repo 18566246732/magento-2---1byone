@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ProductTool::css/list.css") ?>">
+
+<div class="reviews-customize">
+    <div class="reviews-list">
+        <ul class="reviews-items">
+            <?php foreach ($reviews as $item):?>
+                <li class="reviews-item">
+                    <div class="reviews-heading">
+                        <div class="reviews-rating">
+
+                            <div class="rating-result rating-background">
+                                <ul>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                </ul>
+                            </div>
+                            <div class="rating-result">
+                                <ul>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+<!--                                    <li class="star-five"></li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="reviews-title"><?= $item.title?></div>
+                    </div>
+
+                    <div class="reviews-media">
+                        <?php foreach ($item.vedios_url as $vedio_url):?>
+                        <div class="reviews-media-item">
+                            <video controls="controls">
+                                <source src="<?= $vedio_url?>" type="video/ogg">
+                                <source src="movie.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <?php endforeach;?>
+                        <?php foreach ($item.images_url as $img_url):?>
+                        <div class="reviews-media-item" style="background-image: url("<?= $img_url?>")"></div>
+                        <?php endforeach;?>
+                    </div>
+                    <div class="reviews-flex-text">
+                        <p class="reviews-content"><?= $item.comment?></p>
+                        <div class="reviews-details"><span><strong><?= $item.author?></strong></span> published at <time><?= $item.date?></time>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="pagination">
+    </div>
+</div>
+
+<div>123</div>

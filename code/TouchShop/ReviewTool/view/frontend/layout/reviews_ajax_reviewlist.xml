@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block class="TouchShop\ReviewTool\Block\Product\View\ListView" name="product.info.review_list"
+               as="review_list" template="TouchShop_ReviewTool::product/view/list.phtml"/>
+    </container>
+</layout>
