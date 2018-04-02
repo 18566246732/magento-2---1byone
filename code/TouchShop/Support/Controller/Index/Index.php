@@ -76,7 +76,7 @@ class Index extends Action
     {
         if (isset($data['key']) && isset($data['page_num']) && isset($data['page_size'])) {
             $this->searchCriteriaBuilder->setFilterGroups($this->getFilterGroups($data['key']));
-            $sortOrder = $this->sortOrderBuilder->setField('sku')->setDirection(SortOrder::SORT_ASC)->create();
+            $sortOrder = $this->sortOrderBuilder->setField('suggested')->setDirection(SortOrder::SORT_DESC)->create();
             $this->searchCriteriaBuilder->setSortOrders([$sortOrder]);
             $searchCriteria = $this->searchCriteriaBuilder->setCurrentPage($data['page_num'])->setPageSize($data['page_size'])->create();
             $searchResults = $this->productRepository->getList($searchCriteria);
