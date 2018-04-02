@@ -26,14 +26,16 @@ class FAQHelper
                 foreach (preg_split(self::DOUBLE_LINE_BREAK_PATTERN, $faq) as $question) {
                     $item = [];
                     foreach (preg_split(self::LINE_BREAK_PATTERN, $question) as $qa) {
-                        if (strlen($qa) > 2) {
-                            $head = substr($qa, 0, 2);
-                            $tail = substr($qa, 2);
-                            if ($head === 'Q:') {
-                                $item['question'] = $tail;
-                            } elseif ($head === 'A:') {
-                                $item['answer'] = $tail;
-                            }
+                        $question_labels = ['Question:', 'question:', 'q:', 'Q:'];
+                        $answer_labels = ['Answer:', 'answer:', 'a:', 'A:'];
+                        $question = self::getContent($qa, $question_labels);
+                        if ($question) {
+                            $item['question'] = $question;
+                            continue;
+                        }
+                        $answer = self::getContent($qa, $answer_labels);
+                        if ($answer) {
+                            $item['answer'] = $answer;
                         }
                     }
                     $results[] = $item;
@@ -43,6 +45,20 @@ class FAQHelper
         }
 
         return [];
+    }
+
+    private static function getContent($qa, $labels)
+    {
+        foreach ($labels as $label) {
+            $len = strlen($label);
+            if (strlen($qa) > $len) {
+                $head = substr($qa, 0, $len);
+                if ($head === $label) {
+                    return substr($qa, $len);
+                }
+            }
+        }
+        return '';
     }
 
 }
