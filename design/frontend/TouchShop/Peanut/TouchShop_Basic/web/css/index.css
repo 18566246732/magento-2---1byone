@@ -115,17 +115,23 @@ div.columns {
 /*margin-left: calc;*/
 /*}*/
 
-.page-products .products-grid .item.product.product-item:nth-child(3n+1) {
+.page-main .column.main .products-grid li.product-item:nth-child(3n+1) {
     margin-left: 0;
 }
 
-.page-products .products-grid .item.product.product-item {
-    margin-left: calc((100% - 3 * 24.439%) / 2);
+.page-main .column.main .products-grid li.product-item {
+    margin-left: calc((100% - 3 * 24.7%) / 2);
 }
 
 .product-item .swatch-option {
     display: none;
 }
+
+
+/*grid continue*/
+/*.block.widget .products-grid .product-item {*/
+
+/*}*/
 
 /*product details*/
 div.swatch-option.text {

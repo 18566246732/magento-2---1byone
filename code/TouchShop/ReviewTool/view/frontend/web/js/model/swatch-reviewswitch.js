@@ -50,13 +50,26 @@ define([
             let product_id = this._CalcProducts().slice().shift();
             let item = $("#productIdValue");
             let last_product_id = item.val();
+            let url = window.location;
+            let baseUrl = url.protocol + "//" + url.hostname + "/" + url.pathname.split('/')[1] + '/';
+            let ajaxUrl = baseUrl + 'reviews/ajax/reviewList';
+            console.log("baseUrl", baseUrl);
             if (last_product_id !== product_id) {
-                //todo
+
                 console.log('updating ', product_id);
-                item.val(product_id)
+                item.val(product_id);
+
+                $.post(ajaxUrl, {
+                    id: product_id,
+                    page_num: 1,
+                    page_size: 10
+                }, function (res) {
+                    console.log("res", res);
+                }).error(function (xhr, status, info) {
+                    console.log(xhr, status, info);
+
+                });
             }
-
-
             return original();
         });
 
