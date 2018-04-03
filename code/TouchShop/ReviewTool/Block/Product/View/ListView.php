@@ -89,10 +89,11 @@ class ListView extends Template
                 $review['star'] = $item->getStar();
                 $review['title'] = $item->getTitle();
                 $review['author'] = $item->getAuthor();
-                $review['comment'] = $item->getComment();
+                $review['comment'] = $item->getContent();
                 $review['date'] = $item->getDate();
                 $review['videos_url'] = explode(",", $item->getVideoUrls());
                 $review['images_url'] = explode(",", $item->getImageUrls());
+                $result['reviews_data'][] = $review;
             }
 
             return $result;
