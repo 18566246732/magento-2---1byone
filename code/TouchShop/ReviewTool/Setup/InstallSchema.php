@@ -55,6 +55,31 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => true],
             'type format'
         )->addColumn(
+            'star',
+            Table::TYPE_INTEGER,
+            null,
+            ['default' => 5]
+        )->addColumn(
+            'date',
+            Table::TYPE_TEXT,
+            255,
+            ['nullable' => true]
+        )->addColumn(
+            'author',
+            Table::TYPE_TEXT,
+            255,
+            ['nullable' => true]
+        )->addColumn(
+            'title',
+            Table::TYPE_TEXT,
+            255,
+            ['nullable' => true]
+        )->addColumn(
+            'content',
+            Table::TYPE_BLOB,
+            '5M',
+            ['nullable' => true]
+        )->addColumn(
             'helpful',
             Table::TYPE_INTEGER,
             null,
@@ -88,6 +113,16 @@ class InstallSchema implements InstallSchemaInterface
             Table::TYPE_TEXT,
             2048,
             ['nullable' => true]
+        )->addColumn(
+            'product_id',
+            Table::TYPE_INTEGER,
+            null,
+            ['unsigned' => true, 'nullable' => true]
+        )->addColumn(
+            'status',
+            Table::TYPE_TEXT,
+            255,
+            ['nullable' => true, 'default' => 'Pending']
         )->addForeignKey(
             $installer->getFkName(
                 self::TABLE_NAME,
@@ -98,6 +133,17 @@ class InstallSchema implements InstallSchemaInterface
             'review_id',
             $installer->getTable('review'),
             'review_id',
+            Table::ACTION_CASCADE
+        )->addForeignKey(
+            $installer->getFkName(
+                self::TABLE_NAME,
+                'product_id',
+                'catalog_product_entity',
+                'entity_id'
+            ),
+            'product_id',
+            $installer->getTable('catalog_product_entity'),
+            'entity_id',
             Table::ACTION_CASCADE
         )->setComment(
             'Review extension'

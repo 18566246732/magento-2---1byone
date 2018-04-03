@@ -46,16 +46,13 @@ class PostAsins
 
         /**@var $product Product */
         foreach ($collection as $product) {
-            if ($product->getId() == 1801 || $product->getId() == 1786) {
-                $x = 5;
-            }
             $asin = ProductHelper::getAsin($product);
             if (ProductHelper::isSimple($product) && empty($this->configurable->getParentIdsByChild($product->getId()))) {
                 if ($asin) {
                     $asins[] = $asin;
                 }
             } elseif (ProductHelper::isConfigurable($product)) {
-                $children = $product->getTypeInstance()->getUsedProducts($product);
+                $children = ProductHelper::getChildren($product);
                 $asin_list = [];
                 /**@var Product $child */
                 foreach ($children as $child) {
@@ -72,7 +69,9 @@ class PostAsins
             }
         }
 
-        $resp = HttpHelper::post('http://' . Config::IP . ':8080/saveAsin', ['asin_arr' => $asins]);
+        $resp = HttpHelper::post(
+            'http://' . Config::IP . ':' . Config::PORT . '/saveAsin',
+            ['asin_arr' => $asins]
+        );
     }
-
 }
