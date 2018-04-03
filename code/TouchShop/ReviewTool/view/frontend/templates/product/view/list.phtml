@@ -1,4 +1,5 @@
 <?php /**@var $block TouchShop\ReviewTool\Block\Product\View\ListView */ ?>
+<!--<link rel="stylesheet" href="--><?php //echo $block->getViewFileUrl("TouchShop_Support::css/bootstrap.min.css") ?><!--">-->
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePagination.css") ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ReviewTool::css/list.css") ?>">
 <?php
@@ -20,7 +21,7 @@ $reviews = [
         [
             'star' => 4,
             'title' => "this products is very good",
-            'videos_url' => ['123.mp4'],
+            'videos_url' => ['https://images-na.ssl-images-amazon.com/images/I/B19CXRwrp%2BS.mp4'],
             'images_url' => ['', '', ''],
             'comment' => 'lalalallal fjasofj f a jf; jas j jfdruoewf;kfj liu ni  fhao al fjasdjfop l jopj  ;l jpoi ;lfj  ni lhao wo de lmingZI ',
             'author' => "baozi",
@@ -38,7 +39,7 @@ $reviews = [
         [
             'star' => 4,
             'title' => "this products is very good",
-            'videos_url' => ['123.mp4'],
+            'videos_url' => ['https://images-na.ssl-images-amazon.com/images/I/B19CXRwrp%2BS.mp4'],
             'images_url' => ['', '', ''],
             'comment' => 'lalalallal fjasofj f a jf; jas j jfdruoewf;kfj liu ni  fhao al fjasdjfop l jopj  ;l jpoi ;lfj  ni lhao wo de lmingZI ',
             'author' => "baozi",
@@ -56,7 +57,7 @@ $reviews = [
         [
             'star' => 4,
             'title' => "this products is very good",
-            'videos_url' => ['123.mp4'],
+            'videos_url' => ['https://images-na.ssl-images-amazon.com/images/I/B19CXRwrp%2BS.mp4'],
             'images_url' => ['', '', ''],
             'comment' => 'lalalallal fjasofj f a jf; jas j jfdruoewf;kfj liu ni  fhao al fjasdjfop l jopj  ;l jpoi ;lfj  ni lhao wo de lmingZI ',
             'author' => "baozi",
@@ -74,7 +75,7 @@ $reviews = [
         [
             'star' => 4,
             'title' => "this products is very good",
-            'videos_url' => ['123.mp4'],
+            'videos_url' => ['https://images-na.ssl-images-amazon.com/images/I/B19CXRwrp%2BS.mp4'],
             'images_url' => ['', '', ''],
             'comment' => 'lalalallal fjasofj f a jf; jas j jfdruoewf;kfj liu ni  fhao al fjasdjfop l jopj  ;l jpoi ;lfj  ni lhao wo de lmingZI ',
             'author' => "baozi",
@@ -146,32 +147,34 @@ $reviews = [
     (function () {
         require(['jquery', 'simplePagination'], function ($) {
             $(function () {
-                var id = $("#productIdValue").val();
+                console.log(123);
+                //console.log("total:", <?//= $reviews['total']?>//);
                 //paginatinoIni(<?//= $reviews['total']?>//);
                 paginatinoIni(1000);
             });
 
-            function sendAjax(page, id) {
+            function sendAjax(page) {
                 console.log("sendAjax in");
-                //$.ajax({
-                //    url: "<?php //echo $block->getUrl('support') ?>//",
-                //    type: "POST",
-                //    dataType: "json",
-                //    data: {
-                //        id : id
-                //        page_num: page,
-                //        page_size: 2
-                //    },
-                //    success: function (res) {
-                //        console.log("ajax ok");
-                //        console.log(res, page);
-                //        display(res, page);
-                //    },
-                //    error: function (jqXHR, textstatus, errorThrown) {
-                //        console.log(jqXHR, textstatus, errorThrown);
-                //        console.log("ajax error");
-                //    }
-                //});
+                var id = $("#productIdValue").val();
+                $.ajax({
+                    url: "<?php echo $block->getUrl('support') ?>",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id : id,
+                        page_num: page,
+                        page_size: 2
+                    },
+                    success: function (res) {
+                        console.log("ajax ok");
+                        console.log(res, page);
+                        display(res, page);
+                    },
+                    error: function (jqXHR, textstatus, errorThrown) {
+                        console.log(jqXHR, textstatus, errorThrown);
+                        console.log("ajax error");
+                    }
+                });
             }
 
 
@@ -185,7 +188,8 @@ $reviews = [
                     nextText: '<span>&raquo;</span>',
                     onPageClick: function (page, e) {
                         //2. click pagination , send ajax
-                        sendAjax(page);
+                        console.log("page:",page);
+                        // sendAjax(page);
                     },
                 })
             }
