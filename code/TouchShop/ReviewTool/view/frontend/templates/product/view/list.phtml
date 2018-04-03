@@ -84,7 +84,6 @@ $reviews = [
     ]
 ];
 ?>
-<div>123</div>
 <div class="reviews-customize">
     <div class="reviews-list">
         <ul class="reviews-items">
@@ -116,6 +115,7 @@ $reviews = [
 
                     <div class="reviews-media">
                         <?php foreach ($item['videos_url'] as $video_url): ?>
+                        <?php if($video_url != ''):?>
                             <div class="reviews-media-item">
                                 <video controls="controls" preload="auto">
                                     <source src="<?= $video_url ?>"
@@ -123,10 +123,13 @@ $reviews = [
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
+                        <?php endif;?>
                         <?php endforeach; ?>
                         <?php foreach ($item['images_url'] as $img_url): ?>
-                            <div class="reviews-media-item" style="background-image: url('<?= $img_url ?>/*')">
+                        <?php if($img_url != ''):?>
+                            <div class="reviews-media-item" style="background-image: url('<?= $img_url ?>')">
                             </div>
+                        <?php endif;?>
                         <?php endforeach; ?>
                     </div>
                     <div class="reviews-flex-text">

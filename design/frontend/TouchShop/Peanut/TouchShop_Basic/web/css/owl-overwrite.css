@@ -31,11 +31,13 @@
 }
 .owl-dots .owl-dot span {
     cursor: pointer;
-    width: 10px;
-    height: 10px;
+    color: white;
+    width: 20px;
+    height: 20px;
     margin: 5px 7px;
-    background: #d6d6d6;
+    background: none;
     display: block;
+    font-size: 14px;
     -webkit-backface-visibility: visible;
     -webkit-transition: opacity 200ms ease;
     -moz-transition: opacity 200ms ease;
@@ -44,10 +46,13 @@
     transition: opacity 200ms ease;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
-    border-radius: 30px
+    border-radius: 30px;
+    border: 2px solid #e70012;
+    text-align: center;
+    background-size: cover;
 }
 .owl-dots .owl-dot.active span,  .owl-dots .owl-dot:hover span {
-    background: #869791
+    background: #e70012;
 }
 
 /*dot absolute position*/

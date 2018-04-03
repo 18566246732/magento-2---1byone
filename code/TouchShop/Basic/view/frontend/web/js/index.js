@@ -10,7 +10,6 @@
                 }
             });
             proItemLink.each(function (index, e) {
-                console.log($(e).text().length, $(e).text());
                 if($(e).text().length >= (60 + 78)) {
                     $(e).parent().addClass("p-i-n");
                 }

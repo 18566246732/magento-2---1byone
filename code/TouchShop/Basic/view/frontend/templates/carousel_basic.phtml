@@ -43,6 +43,9 @@
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
                     var index = e.relatedTarget.current();
                     navText.css("color", spanArr[(index-2) % owlImgNum].getAttribute("data-color"));
+
+                    $(".owl-dot > span").css("background-image", "none");
+                    $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')");
                 });
 
                 <?php if ($block->isFullScreen()): ?>
@@ -67,6 +70,9 @@
                     resizeCarouselContainer()
                 });
                 <?php endif; ?>
+
+                $(".owl-dot > span").css("background-image", "none");
+                $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')")
             });
         });
     })();
