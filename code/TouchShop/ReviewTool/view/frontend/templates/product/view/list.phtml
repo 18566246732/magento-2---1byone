@@ -76,7 +76,6 @@ $reviews = $block->getReviewData();
         require(['jquery', 'simplePagination'], function ($) {
             $(function () {
                 paginatinoIni(<?= $reviews['total']?>);
-                paginatinoIni(1000);
             });
             function sendAjax(page) {
                 console.log("sendAjax in");
@@ -92,7 +91,6 @@ $reviews = $block->getReviewData();
                     },
                     success: function (res) {
                         console.log("ajax ok");
-                        console.log(res, page);
                         $("#product-review-container").html(res);
                     },
                     error: function (jqXHR, textstatus, errorThrown) {

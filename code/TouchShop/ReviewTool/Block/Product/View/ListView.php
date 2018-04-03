@@ -95,7 +95,7 @@ class ListView extends Template
                 $review['images_url'] = explode(",", $item->getImageUrls());
                 $result['reviews_data'][] = $review;
             }
-
+            
             return $result;
         }
         return [
