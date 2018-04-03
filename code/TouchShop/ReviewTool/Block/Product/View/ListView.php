@@ -83,7 +83,7 @@ class ListView extends Template
             $collection->addOrder('date', 'DESC');
             $collection->setCurPage($data['page_num']);
             $collection->setPageSize($data['page_size']);
-
+            $result['reviews_data'] = [];
             foreach ($collection as $item) {
                 $review = [];
                 $review['star'] = $item->getStar();

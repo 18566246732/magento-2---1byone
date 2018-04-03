@@ -50,9 +50,11 @@
     border: 2px solid #e70012;
     text-align: center;
     background-size: cover;
+    /*background: white;*/
 }
 .owl-dots .owl-dot.active span,  .owl-dots .owl-dot:hover span {
-    background: #e70012;
+    /*background: white;*/
+    background-size: cover;
 }
 
 /*dot absolute position*/

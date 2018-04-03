@@ -63,21 +63,21 @@ $reviews = $block->getReviewData();
             <?php endforeach; ?>
         </ul>
     </div>
+
     <div class="pagination">
         <ul id="pagination-review" class="pagination-sm"></ul>
     </div>
+
 </div>
 
-
+<?php if ($reviews['total'] > 0):?>
 <script>
     (function () {
         require(['jquery', 'simplePagination'], function ($) {
-
             $(function () {
                 paginatinoIni(<?= $reviews['total']?>);
                 paginatinoIni(1000);
             });
-
             function sendAjax(page) {
                 console.log("sendAjax in");
                 var id = $("#productIdValue").val();
@@ -121,7 +121,7 @@ $reviews = $block->getReviewData();
         })
     })()
 </script>
-
+<?php endif;?>
 
 
 
