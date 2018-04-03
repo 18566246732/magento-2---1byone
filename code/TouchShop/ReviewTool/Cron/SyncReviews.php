@@ -78,43 +78,31 @@ class SyncReviews
      */
     public function execute()
     {
-        $resp = HttpHelper::post('http://' . Config::IP . ':8080/reviewListByCondition', [
-            "filter" => [
-                "has_output" => false
-            ],
-            "pageSize" => 100,
-            "pageNum" => 1
-        ]);
+        $total = 100;
+        while ($total > 0) {
+            $resp = HttpHelper::post('http://' . Config::IP . ':' . Config::PORT . '/reviewListByCondition', [
+                "filter" => [
+                    "has_output" => false
+                ],
+                "pageSize" => 100,
+                "pageNum" => 1
+            ]);
 
-        $data = $resp;
+            $data = json_decode($resp, true);
+            $total = $data['totalCount'];
 
-        $data = [
-            'reviews' => [
-                [
-                    'review_id' => 'RXSZE4AXM7JNR' . time(),
-                    'star' => 2,
-                    'title' => 'Two Stars',
-                    'content' => 'Too slippery;;',
-                    'imgs_url' => '',
-                    'video_url' => '',
-                    'type' => 'Color: Rose Gold',
-                    'date' => '2018-03-09',
-                    'author' => 'bostonrenner',
-                    'verified_purchase' => 'Verified Purchase',
-                    'asin' => 'B077ZMVNS2',
-                    'helpful' => 0
-                ]
-            ]
-        ];
-
-        if (isset($data['reviews'])) {
-            foreach ($data['reviews'] as $review) {
-                $origin = $review['review_id'];
-                $collection = $this->reviewAdvancedCollection->addFieldToFilter(
-                    'origin', $origin
-                )->load();
-                if ($collection->getSize() == 0) {
-                    $this->addReview($review);
+            if (isset($data['reviewList'])) {
+                foreach ($data['reviewList'] as $review) {
+                    $product_id = $this->getProductByAsin($review['asin']);
+                    if ($product_id) {
+                        $origin = $review['review_id'];
+                        $collection = $this->reviewAdvancedCollection->addFieldToFilter(
+                            'origin', $origin
+                        )->load();
+                        if ($collection->getSize() == 0) {
+                            $this->addReview($review, $product_id);
+                        }
+                    }
                 }
             }
         }
@@ -122,12 +110,13 @@ class SyncReviews
 
     /**
      * @param $review
+     * @param $product_id
      * @throws \Exception
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    private function addReview($review)
+    private function addReview($review, $product_id)
     {
-        $product_id = $this->getProductByAsin($review['asin']);
+
         if ($product_id) {
             $data = [
                 'nickname' => $review['author'],
@@ -142,15 +131,15 @@ class SyncReviews
                 $entity->setEntityId($entity
                     ->getEntityIdByCode(Review::ENTITY_PRODUCT_CODE))
                     ->setEntityPkValue($product_id)
+                    ->setCreatedAt($review['date'])
                     ->setStatusId(Review::STATUS_PENDING)
                     ->setCusomerId(null)
-                    ->setCreatedAt(strtotime($review['date']))
                     ->setStoreId(1)
                     ->setStores([1]);
-                // todo
+                // todo stores
                 $this->reviewResourceModel->save($entity);
 
-                $this->addReviewAdvanced($entity->getId(), $review);
+                $this->addReviewAdvanced($entity->getId(), $product_id, $review);
 
                 $optionId = $review['star'];
 
@@ -167,17 +156,24 @@ class SyncReviews
 
     /**
      * @param $review_id
+     * @param $product_id
      * @param $review
      * @throws \Exception
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    private function addReviewAdvanced($review_id, $review)
+    private function addReviewAdvanced($review_id, $product_id, $review)
     {
         /**@var $advanced ReviewAdvanced */
         $advanced = $this->reviewAdvancedFactory->create();
         $advanced->setReviewId($review_id);
         $advanced->setVerifiedPurchase($review['verified_purchase']);
         $advanced->setFormat($review['type']);
+        $advanced->setStar($review['star']);
+        $advanced->setTitle($review['title']);
+        $advanced->setDate($review['date']);
+        $advanced->setAuthor($review['author']);
+        $advanced->setProductId($product_id);
+        $advanced->setContent($review['content']);
         $advanced->setHelpful($review['helpful']);
         $advanced->setOrigin($review['review_id']);
         $advanced->setImageUrls($review['imgs_url']);

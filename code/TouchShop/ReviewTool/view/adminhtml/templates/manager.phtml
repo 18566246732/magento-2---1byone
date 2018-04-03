@@ -1,0 +1,25 @@
+<?php /**@var $block TouchShop\ReviewTool\Block\Manager */ ?>
+<div>
+    <button id="reviewResetBtn">reviewReset</button>
+</div>
+
+<script>
+    (function () {
+        require(['jquery'], function ($) {
+            $(function () {
+                $("#reviewResetBtn").click(function () {
+                    console.log('clicked');
+                    $.get(
+                        '<?= $block->getUrl('reviews/reviewReset')?>',
+                        function (res) {
+                            console.log(res);
+                        }).error(function (xhr, status, info) {
+                        console.log(xhr, status, info)
+                    })
+                })
+            })
+
+
+        })
+    })()
+</script>

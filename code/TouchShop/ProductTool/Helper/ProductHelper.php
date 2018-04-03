@@ -68,4 +68,14 @@ class ProductHelper
     {
         return $product->getTypeId() == self::CONFIGURABLE;
     }
+
+
+    /**
+     * @param Product $product
+     * @return array
+     */
+    public static function getChildren(Product $product)
+    {
+        return $product->getTypeInstance()->getUsedProducts($product);
+    }
 }

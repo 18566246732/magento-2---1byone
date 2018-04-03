@@ -114,6 +114,41 @@
                 <label>Format</label>
             </settings>
         </column>
+        <column name="status">
+            <settings>
+                <filter>select</filter>
+                <options class="TouchShop\ReviewTool\Ui\Component\Listing\Columns\Status"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+            </settings>
+        </column>
+        <column name="date">
+            <settings>
+                <filter>text</filter>
+                <label>Date</label>
+            </settings>
+        </column>
+        <column name="star">
+            <settings>
+                <filter>text</filter>
+                <label>Star</label>
+            </settings>
+        </column>
+        <column name="author">
+            <settings>
+                <filter>text</filter>
+                <label>Author</label>
+            </settings>
+        </column>
+        <column name="title">
+            <settings>
+                <filter>text</filter>
+                <label>Title</label>
+            </settings>
+        </column>
         <column name="helpful">
             <settings>
                 <filter>text</filter>
@@ -139,7 +174,7 @@
         <!--</settings>-->
         <!--</column>-->
         <!--<actionsColumn name="actions" class="TouchShop\Feedback\Ui\Component\Listing\Columns\ComplaintActions"-->
-                       <!--sortOrder="100">-->
+        <!--sortOrder="100">-->
         <!--</actionsColumn>-->
     </columns>
 </listing>
