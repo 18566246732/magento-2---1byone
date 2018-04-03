@@ -98,7 +98,10 @@ class ListView extends Template
 
             return $result;
         }
-        return null;
+        return [
+            'total' => 0,
+            'reviews_data' => []
+        ];
     }
 
     /**
