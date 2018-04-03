@@ -19,6 +19,7 @@ $currentProductId = $block->getCurrentProductId();
                 console.log("dom ready, ajax test start");
 
                 $("#productIdValue").val(<?=$currentProductId?>);
+                //console.log(<?//=$currentProductId?>//);
                 $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>',
                     {
                         id: <?= $currentProductId?>,
@@ -26,6 +27,7 @@ $currentProductId = $block->getCurrentProductId();
                         page_size: 10
                     }
                     , function (res) {
+                        console.log("done");
                         $("#product-review-container").html(res);
                     }).error(function (xhr, status, info) {
                     console.log(xhr, status, info);

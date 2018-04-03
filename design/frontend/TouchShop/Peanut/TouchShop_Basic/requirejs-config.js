@@ -4,6 +4,7 @@ var config = {
         'twbsPagination' : "TouchShop_Basic/js/jquery.twbsPagination.min",
         'bootstrap' : "TouchShop_Basic/js/bootstrap.min",
         'simplePagination' : "TouchShop_Basic/js/jquery.simplePagination",
+        'clamp' : 'TouchShop_Basic/js/clamp.min'
     },
     shim: {
         'owlcarousel': {

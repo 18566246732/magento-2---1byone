@@ -59,7 +59,6 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
 <script>
     (function () {
         require(['jquery', 'jquery/ui'], function ($) {
-            console.log("sections script in");
 
             var pInfoNav = $(".data.item.title");
             var toolbar = $(".page-header");
@@ -68,20 +67,6 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             $(window).scroll(function (e) {
                 var docTop = $(document).scrollTop();
                 var productInfo = $(".product.info.detailed");
-
-                // console.log(docTop, productInfo.offset().top);
-
-                // isOver = productInfo.offset().top - docTop -130;
-                // console.log(isOver);
-
-
-                // if(isOver <= 0) {
-                //     pInfoNav.css("position", "fixed");
-                // }
-
-
-                // console.log(toolbar.height());
-                // console.log(productInfo.offset().top, productInfo.scrollTop());
                 if (docTop >= 30) {
                     $(".sections").css("background-color", "rgba(255,255,255,0.8)");
                     $(".navigation .level0 > .level-top").addClass("nav-background-grey");

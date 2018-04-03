@@ -12,17 +12,16 @@ body {
 /*header*/
 
 /*div.section-items.nav-sections-items:nth-child(2) {*/
-    /*max-width: 1280px;*/
-    /*margin: 0 auto;*/
+/*max-width: 1280px;*/
+/*margin: 0 auto;*/
 /*}*/
 
 .header.panel > .header.links > li.customer-welcome {
     display: none;
 }
 
-
 div.sections.nav-sections {
-    background-color: rgba(255,255,255,0);
+    background-color: rgba(255, 255, 255, 0);
     margin-bottom: 0;
     z-index: 3;
 }
@@ -38,7 +37,6 @@ div.section-item-content.nav-sections-item-content {
     display: flex !important;
     align-items: center;
 }
-
 
 div.panel.header {
     display: flex;
@@ -61,7 +59,6 @@ main.page-main {
     /*max-width: 1920px;*/
     padding: 0;
 }
-
 
 /*cms widget 1byOne-home-page*/
 
@@ -88,10 +85,10 @@ main.page-main {
 .page-h-cards ul li {
     background-color: grey;
     width: 400px;
-    box-shadow: 0 3px 8px 0px rgba(0,0,0,0.25);
+    box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
-.page-v-cards ul{
+.page-v-cards ul {
     padding: 0;
     min-height: 930px;
     display: flex;
@@ -113,11 +110,72 @@ div.columns {
     margin-top: 70px;
 }
 
+/*product item*/
+/*.page-products .products-grid .item.product.product-item:nth-child(4n+1) {*/
+/*margin-left: calc;*/
+/*}*/
 
+.page-main .column.main .products-grid li.product-item:nth-child(3n+1) {
+    margin-left: 0;
+}
+
+.page-main .column.main .products-grid li.product-item {
+    margin-left: calc((100% - 3 * 24.7%) / 2);
+}
+
+.product-item .swatch-option {
+    display: none;
+}
+
+
+/*grid continue*/
+/*.block.widget .products-grid .product-item {*/
+
+/*}*/
+
+/*product details*/
+div.swatch-option.text {
+    padding: 0 8px;
+}
+
+.product-reviews-summary.short {
+    height: 25px;
+    margin-bottom: 0;
+}
+
+.product-item .price-box {
+    margin: 0;
+    padding: 10px 0 10px;
+}
+
+/*.product-item-name {*/
+/*height: 40px;*/
+/*line-height: 20px;*/
+/*overflow: hidden;*/
+/*!*text-overflow: ellipsis;*!*/
+/*}*/
+
+.product-item-name {
+    position: relative;
+    line-height: 20px;
+    /*max-height: 40px;*/
+    height: 40px;
+    overflow: hidden;
+}
+
+.product-item-name.p-i-n::after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 40px;
+    /*background: -webkit-linear-gradient(left, transparent, #fff 55%);*/
+    /*background: -o-linear-gradient(right, transparent, #fff 55%);*/
+    /*background: -moz-linear-gradient(right, transparent, #fff 55%);*/
+    /*background: linear-gradient(to right, transparent, #fff 55%);*/
+}
 
 /*footer-right style*/
-
-
 
 .page-footer {
     height: 379px;
@@ -133,65 +191,66 @@ div.columns {
 ul.footer.links {
     margin-top: 64px;
 }
+
 /*.follow {*/
-    /*float: right;*/
-    /*position: relative;*/
-    /*width: 34%;*/
-    /*right: -34%;*/
-    /*top: 45px;*/
+/*float: right;*/
+/*position: relative;*/
+/*width: 34%;*/
+/*right: -34%;*/
+/*top: 45px;*/
 /*}*/
 
 /*.follow p {*/
-    /*color: #cfcfcf;*/
-    /*margin-bottom: 0;*/
-    /*font-size: 12px;*/
+/*color: #cfcfcf;*/
+/*margin-bottom: 0;*/
+/*font-size: 12px;*/
 /*}*/
 
 /*.follow a {*/
-    /*background: #cfcfcf;*/
-    /*!* padding: 5px; *!*/
-    /*margin-right: 10px;*/
-    /*border-radius: 50%;*/
-    /*display: inline-block;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*line-height: 30px;*/
-    /*text-align: center;*/
+/*background: #cfcfcf;*/
+/*!* padding: 5px; *!*/
+/*margin-right: 10px;*/
+/*border-radius: 50%;*/
+/*display: inline-block;*/
+/*width: 30px;*/
+/*height: 30px;*/
+/*line-height: 30px;*/
+/*text-align: center;*/
 /*}*/
 
 /*.follow a.facebook:hover {*/
-    /*background: #4267b2*/
+/*background: #4267b2*/
 /*}*/
 
 /*.follow a.twitter:hover {*/
-    /*background: #50a5e6*/
+/*background: #50a5e6*/
 /*}*/
 
 /*.follow a.youtube:hover {*/
-    /*background: #e6231a;*/
+/*background: #e6231a;*/
 /*}*/
 
 /*.follow .link {*/
-    /*margin-top: 30px;*/
+/*margin-top: 30px;*/
 /*}*/
 
 /*@media screen and (max-width: 767px) {*/
-    /*.follow {*/
-        /*position: static;*/
-        /*float: initial;*/
-    /*}    */
+/*.follow {*/
+/*position: static;*/
+/*float: initial;*/
+/*}    */
 /*}*/
 
 /*animation*/
 
 /** {*/
-    /*transition: all 0.1s ease-out;*/
+/*transition: all 0.1s ease-out;*/
 /*}*/
 
 /*scrollBar*/
 /*::-webkit-scrollbar {*/
-    /*width: 5px;*/
-    /*height: 5px;*/
+/*width: 5px;*/
+/*height: 5px;*/
 /*}*/
 ::-webkit-scrollbar {
     width: 5px;
@@ -204,10 +263,9 @@ ul.footer.links {
 
 ::-webkit-scrollbar-thumb:vertical {
     height: 5px;
-    background-color: rgba(125,125,125,0.7);
+    background-color: rgba(125, 125, 125, 0.7);
     border-radius: 6px;
 }
-
 
 .page-wrapper small.copyright {
     background-color: grey;

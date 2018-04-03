@@ -23,7 +23,9 @@ ul.simple-pagination {
 
 .simple-pagination li {
 	list-style: none;
-	padding: 0;
+	/*customized by baozi*/
+	/*padding: 0;*/
+	padding: 0 10px;
 	margin: 0;
 	float: left;
 }

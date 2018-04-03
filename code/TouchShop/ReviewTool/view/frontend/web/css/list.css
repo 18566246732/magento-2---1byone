@@ -2,9 +2,18 @@
 
 .pagination {
     width: 100%;
-    margin: 0 auto;
 }
 
 .page-link {
     border: none;
+}
+
+li.active > span {
+    padding: 8px;
+}
+
+#pagination-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
