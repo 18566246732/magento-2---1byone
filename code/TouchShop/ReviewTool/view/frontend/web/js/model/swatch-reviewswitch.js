@@ -49,8 +49,8 @@ define([
             // }
             let product_id = this._CalcProducts().slice().shift();
             let item = $("#productIdValue");
-            let product_id_updated = item.val();
-            if (product_id_updated !== product_id) {
+            let last_product_id = item.val();
+            if (last_product_id !== product_id) {
                 //todo
                 console.log('updating ', product_id);
                 item.val(product_id)
