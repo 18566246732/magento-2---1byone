@@ -22,6 +22,7 @@ class HttpHelper
         ));
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
         $response = curl_exec($curl);
         curl_close($curl);
         return $response;

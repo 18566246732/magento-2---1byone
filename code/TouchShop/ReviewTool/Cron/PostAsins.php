@@ -13,6 +13,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Psr\Log\LoggerInterface;
 use TouchShop\Basic\Helper\HttpHelper;
 use TouchShop\ProductTool\Helper\ProductHelper;
 use TouchShop\ReviewTool\Helper\Config;
@@ -23,13 +24,16 @@ class PostAsins
     private $configurable;
     /**@var ProductRepositoryInterface */
     private $repository;
+    private $logger;
 
     public function __construct(
         Configurable $configurable,
         ProductRepositoryInterface $repository,
+        LoggerInterface $logger,
         CollectionFactory $collectionFactory
     )
     {
+        $this->logger = $logger;
         $this->configurable = $configurable;
         $this->repository = $repository;
         $this->collectionFactory = $collectionFactory;
@@ -69,9 +73,12 @@ class PostAsins
             }
         }
 
+
+        $this->logger->error('find asins' . json_encode($asins));
         $resp = HttpHelper::post(
             'http://' . Config::IP . ':' . Config::PORT . '/saveAsin',
             ['asin_arr' => $asins]
         );
+        $this->logger->error('resp of post asin :' . json_encode($resp));
     }
 }

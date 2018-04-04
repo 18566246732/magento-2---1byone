@@ -12,9 +12,11 @@ namespace TouchShop\ReviewTool\Cron;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\Framework\DB\Adapter\DuplicateException;
 use Magento\Review\Model\RatingFactory;
 use Magento\Review\Model\Review;
 use Magento\Review\Model\ReviewFactory;
+use Magento\Setup\Exception;
 use TouchShop\Basic\Helper\HttpHelper;
 use TouchShop\ProductTool\Helper\ProductHelper;
 use TouchShop\ReviewTool\Helper\Config;
@@ -95,12 +97,10 @@ class SyncReviews
                 foreach ($data['reviewList'] as $review) {
                     $product_id = $this->getProductByAsin($review['asin']);
                     if ($product_id) {
-                        $origin = $review['review_id'];
-                        $collection = $this->reviewAdvancedCollection->addFieldToFilter(
-                            'origin', $origin
-                        )->load();
-                        if ($collection->getSize() == 0) {
+                        try {
                             $this->addReview($review, $product_id);
+                        } catch (\Exception $e) {
+                            // todo do nothing if multi unique, others should be done
                         }
                     }
                 }
@@ -112,7 +112,6 @@ class SyncReviews
      * @param $review
      * @param $product_id
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     private function addReview($review, $product_id)
     {
@@ -132,7 +131,7 @@ class SyncReviews
                     ->getEntityIdByCode(Review::ENTITY_PRODUCT_CODE))
                     ->setEntityPkValue($product_id)
                     ->setCreatedAt($review['date'])
-                    ->setStatusId(Review::STATUS_PENDING)
+                    ->setStatusId(Review::STATUS_APPROVED)
                     ->setCusomerId(null)
                     ->setStoreId(1)
                     ->setStores([1]);

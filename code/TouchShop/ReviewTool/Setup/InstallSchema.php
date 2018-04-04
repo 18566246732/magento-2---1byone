@@ -8,6 +8,7 @@
 
 namespace TouchShop\ReviewTool\Setup;
 
+use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -123,6 +124,16 @@ class InstallSchema implements InstallSchemaInterface
             Table::TYPE_TEXT,
             255,
             ['nullable' => true, 'default' => 'Pending']
+        )->addIndex(
+            $installer->getIdxName(
+                $installer->getTable(self::TABLE_NAME),
+                ['origin'],
+                AdapterInterface::INDEX_TYPE_UNIQUE
+            ),
+            ['origin'],
+            [
+                'type' => AdapterInterface::INDEX_TYPE_UNIQUE
+            ]
         )->addForeignKey(
             $installer->getFkName(
                 self::TABLE_NAME,

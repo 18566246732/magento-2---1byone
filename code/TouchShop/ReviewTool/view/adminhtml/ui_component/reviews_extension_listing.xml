@@ -167,15 +167,9 @@
                 <label>Shown Order</label>
             </settings>
         </column>
-        <!--<column name="response">-->
-        <!--<settings>-->
-        <!--<filter>text</filter>-->
-        <!--<label>Response</label>-->
-        <!--</settings>-->
-        <!--</column>-->
-        <!--<actionsColumn name="actions" class="TouchShop\Feedback\Ui\Component\Listing\Columns\ComplaintActions"-->
-        <!--sortOrder="100">-->
-        <!--</actionsColumn>-->
+        <actionsColumn name="actions" class="TouchShop\ReviewTool\Ui\Component\Listing\Columns\ReviewExtensionActions"
+                       sortOrder="100">
+        </actionsColumn>
     </columns>
 </listing>
 
