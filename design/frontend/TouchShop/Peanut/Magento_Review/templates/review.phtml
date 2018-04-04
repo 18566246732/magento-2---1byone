@@ -16,6 +16,7 @@ $currentProductId = $block->getCurrentProductId();
     (function () {
         require(['jquery'], function ($) {
             $(function () {
+                var proContainer = $("#product-review-container");
                 console.log("dom ready, ajax test start");
 
                 $("#productIdValue").val(<?=$currentProductId?>);
@@ -28,7 +29,8 @@ $currentProductId = $block->getCurrentProductId();
                     }
                     , function (res) {
                         console.log("done");
-                        $("#product-review-container").html(res);
+                        proContainer.html(res);
+                        // detailsMain[0].dispatchEvent("event");
                     }).error(function (xhr, status, info) {
                     console.log(xhr, status, info);
                 });

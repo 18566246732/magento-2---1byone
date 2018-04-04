@@ -123,6 +123,12 @@
 
                 $(detailsMenuAItem).css("color", "grey")
 
+                contentTopArr = [];
+                contentArr.each(function () {
+                    contentTopArr.push($(this).offset().top);
+                })
+
+
                 var now = doc.scrollTop();
                 isUp = (now > last);
                 last = now;
