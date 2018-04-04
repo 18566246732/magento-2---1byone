@@ -82,6 +82,7 @@
             // assuming that the page content offsetTop is constant
             // var contentTopArr = contentArr.offset().top;
             var detailsMenuAItem = $(".details-menu li a");
+            var body = $("body");
 
             function resizeProductContainer(e) {
                 var WINDOW_WIDTH = document.body.offsetWidth
@@ -89,6 +90,10 @@
                 e.width(WINDOW_WIDTH)
                 e.css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
             }
+
+            $(document).resize(function () {
+                console.log("body height:", $(this).height());
+            });
 
 
 
@@ -118,6 +123,12 @@
 
                 $(detailsMenuAItem).css("color", "grey")
 
+                contentTopArr = [];
+                contentArr.each(function () {
+                    contentTopArr.push($(this).offset().top);
+                })
+
+
                 var now = doc.scrollTop();
                 isUp = (now > last);
                 last = now;
@@ -129,6 +140,7 @@
                         break;
                     }
                 }
+
                 var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
                 sectionTop = productInfo.offset().top - 80;
                 if (currentStates === 'A') {

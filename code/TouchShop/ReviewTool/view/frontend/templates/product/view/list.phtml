@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ReviewTool::css/list.css") ?>">
 <?php
 $reviews = $block->getReviewData();
+
 ?>
+
 <div class="reviews-customize">
     <div class="reviews-list">
         <ul class="reviews-items">
@@ -92,6 +94,7 @@ $reviews = $block->getReviewData();
                     success: function (res) {
                         console.log("ajax ok");
                         $("#product-review-container").html(res);
+                        $(".details-menu.fix-top a:contains('Reviews')").trigger("click");
                     },
                     error: function (jqXHR, textstatus, errorThrown) {
                         console.log(jqXHR, textstatus, errorThrown);
@@ -99,7 +102,6 @@ $reviews = $block->getReviewData();
                     }
                 });
             };
-
 
             function paginatinoIni(total) {
                 $("#pagination-review").pagination({
