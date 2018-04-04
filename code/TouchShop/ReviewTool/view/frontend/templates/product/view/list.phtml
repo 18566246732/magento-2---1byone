@@ -104,7 +104,7 @@ $reviews = $block->getReviewData();
             function paginatinoIni(total) {
                 $("#pagination-review").pagination({
                     items: total,
-                    itemsOnPage: 8,
+                    itemsOnPage: 10,
                     currentPage: <?php echo $reviews['page_num']?>,
                     cssStyle: '',
                     prevText: '<span>&laquo;</span>',
