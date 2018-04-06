@@ -22,7 +22,7 @@ nav.navigation {
 ul.top-menu{
     list-style: none;
     display: flex;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     margin-left: 15px;
 }
 

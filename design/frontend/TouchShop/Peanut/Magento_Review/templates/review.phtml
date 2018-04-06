@@ -30,6 +30,10 @@ $currentProductId = $block->getCurrentProductId();
                     , function (res) {
                         console.log("done");
                         proContainer.html(res);
+                        // console.log($(".details-main"));
+                        if(proContainer.height() != 0) {
+                            $(document).trigger("Hchanged");
+                        }
                         // detailsMain[0].dispatchEvent("event");
                     }).error(function (xhr, status, info) {
                     console.log(xhr, status, info);

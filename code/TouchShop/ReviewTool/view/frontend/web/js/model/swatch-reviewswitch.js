@@ -29,6 +29,7 @@ define([
                     page_size: 10
                 }, function (res) {
                     $("#product-review-container").html(res);
+                    $(document).trigger("Hchanged");
                 }).error(function (xhr, status, info) {
                     console.log(xhr, status, info);
                 });
