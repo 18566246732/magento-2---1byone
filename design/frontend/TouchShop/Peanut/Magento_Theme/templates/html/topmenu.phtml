@@ -13,6 +13,116 @@
  *
  * @var $block \Magento\Theme\Block\Html\Topmenu
  */
+
+$topmenus = [
+    [
+        "label" => 'support',
+        'url' => 'support',
+        'image_url' => 'http://img.88tph.com/production/20180322/12508225-1.jpg',
+        'submenus' => [
+            [
+                "label" => 'ajfpoewhj',
+                'url' => 'support',
+                'image_url' => 'http://img.88tph.com/production/20180322/12508251-1.jpg',
+            ], [
+                "label" => 'anvpoife',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+
+            ], [
+                "label" => 'cnpsdewni',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ]
+        ]
+    ],
+    [
+        "label" => 'support',
+        'url' => 'support',
+        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+        'submenus' => [
+            [
+                "label" => 'ajfpoewhj',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ], [
+                "label" => 'anvpoife',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+
+            ], [
+                "label" => 'cnpsdewni',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ]
+        ]
+    ],
+    [
+        "label" => 'support',
+        'url' => 'support',
+        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+        'submenus' => [
+            [
+                "label" => 'ajfpoewhj',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ], [
+                "label" => 'anvpoife',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+
+            ], [
+                "label" => 'cnpsdewni',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ]
+        ]
+    ],
+    [
+        "label" => 'support',
+        'url' => 'support',
+        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+        'submenus' => [
+            [
+                "label" => 'ajfpoewhj',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ], [
+                "label" => 'anvpoife',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+
+            ], [
+                "label" => 'cnpsdewni',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ]
+        ]
+    ],
+    [
+        "label" => 'support',
+        'url' => 'support',
+        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+        'submenus' => [
+            [
+                "label" => 'ajfpoewhj',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ], [
+                "label" => 'anvpoife',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+
+            ], [
+                "label" => 'cnpsdewni',
+                'url' => 'support',
+                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
+            ]
+        ]
+    ],
+]
+
+
 ?>
 <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
 <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
@@ -20,28 +130,91 @@
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Theme::css/topmenu.css") ?>">
 
 <nav class="navigation" data-action="navigation">
-    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
-        <?= /* @escapeNotVerified */
-        $_menu ?>
-        <?= /* @escapeNotVerified */
-        $block->getChildHtml() ?>
+    <ul class="top-menu">
+        <?php foreach ($topmenus as $menu): ?>
+            <div class="top-menu-wrapper">
+                <li><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>
+                <div class="menu-info">
+                    <div class="submenu">
+                        <ul>
+                            <?php foreach ($menu['submenus'] as $submenu): ?>
+                                <li data-src="<?= $submenu['image_url']?>"><a href="<?= $submenu['url']?>"><?= $submenu['label'] ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="menu-image" style="background-image: url('<?= $menu['image_url']?>')" >
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </ul>
+    <div class="menu-info-cover"></div>
 </nav>
+
 
 <script>
     (function () {
         require(['jquery', 'jquery/ui'], function ($) {
             $(document).ready(function () {
-                var li = $("nav>ul li");
-                li.on({
-                    mouseover: function (e) {
-                        $(this).children("ul").css("display", "block");
-                    },
-                    mouseout: function (e) {
-                        $(this).children("ul").css("display", "none");
-                    }
-                });
-            })
+                    var li = $("nav>ul li");
+                    var menuInfo = $('.menu-info');
+                    var topMenuItem = $(".top-menu-wrapper > li");
+                    var sections = $(".sections");
+                    var menuInfoCover = $(".menu-info-cover");
+                    var navigation = $("nav.navigation");
+                    var isHoverd = false;
+                    var submenu = $(".submenu ul li");
+                    var menuImg = $(".menu-image");
+                    li.on({
+                        mouseover: function (e) {
+                            $(this).children("ul").css("display", "block");
+                        },
+                        mouseout: function (e) {
+                            $(this).children("ul").css("display", "none");
+                        }
+                    });
+
+                    console.log($(".navigation ul li"));
+                    menuInfoCover.hide();
+                    // A-->B
+                    topMenuItem.on({
+                        mouseover: function (e) {
+                            sections.css({
+                                "background-color": "rgba(255, 255, 255, 0.8)",
+                                "border-bottom": "1px solid grey"
+                            });
+                            menuInfo.removeClass("active");
+                            menuInfoCover.css("display", "block");
+                            $(this).next().addClass("active");
+                        }
+                    });
+                    // B-->A
+                    menuInfoCover.on({
+                        mouseleave: function (e) {
+                            setTimeout(function () {
+                                if (!isHoverd) {
+                                    sections.css("border-bottom", "none");
+                                    if ($(document).scrollTop() <= 30) {
+                                        sections.css("background-color", "rgba(255,255,255, 0)");
+                                    }
+                                    menuInfoCover.css("display", "none");
+                                    menuInfo.removeClass("active");
+                                }
+                            }, 1);
+                        }
+                    })
+                    menuInfo.hover(function () {
+                        isHoverd = true;
+                    }, function () {
+                        isHoverd = false;
+                    });
+
+                    submenu.hover(function () {
+                        console.log("data-url:", $(this).attr("data-src") );
+                        menuImg.css("background-image", "url("+ $(this).attr("data-src") +")");
+                    });
+                }
+            )
         })
     })()
 </script>

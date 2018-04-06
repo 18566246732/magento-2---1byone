@@ -38,27 +38,27 @@
 
 .rating-background .star-five {
     color: grey;
-    border-bottom: 70em solid grey;
+    border-bottom: 7px solid grey;
 }
 
 .rating-background .star-five:before {
-    border-bottom: 80em solid grey;
+    border-bottom: 8px solid grey;
 }
 .rating-background .star-five:after {
     color: grey;
-    border-bottom: 70em solid grey;
+    border-bottom: 7px solid grey;
 }
 
 .star-five {
-    margin: 50em 0;
+    margin: 5px 0;
     position: relative;
     display: block;
     color: red;
-    width: 0em;
-    height: 0em;
-    border-right:  100em solid transparent;
-    border-bottom: 70em  solid red;
-    border-left:   100em solid transparent;
+    width: 0;
+    height: 0;
+    border-right:  10px solid transparent;
+    border-bottom: 7px  solid red;
+    border-left:   10px solid transparent;
     -moz-transform:    rotate(35deg);
     -webkit-transform: rotate(35deg);
     -ms-transform:     rotate(35deg);
@@ -66,34 +66,33 @@
 }
 
 .star-five:before {
-    border-bottom: 80em solid red;
-    border-left: 30em solid transparent;
-    border-right: 30em solid transparent;
+    border-bottom: 8px solid red;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
     position: absolute;
     height: 0;
     width: 0;
-    top: -45em;
-    left: -65em;
+    top: -4.5px;
+    left: -6.5px;
     display: block;
     content: '';
     -webkit-transform: rotate(-35deg);
     -moz-transform:    rotate(-35deg);
     -ms-transform:     rotate(-35deg);
     -o-transform:      rotate(-35deg);
-
 }
 
 .star-five:after {
     position: absolute;
     display: block;
     color: red;
-    top: 3em;
-    left: -105em;
-    width: 0em;
-    height: 0em;
-    border-right: 100em solid transparent;
-    border-bottom: 70em solid red;
-    border-left: 100em solid transparent;
+    top: 0.3px;
+    left: -10.5px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid transparent;
+    border-bottom: 7px solid red;
+    border-left: 10px solid transparent;
     -webkit-transform: rotate(-70deg);
     -moz-transform:    rotate(-70deg);
     -ms-transform:     rotate(-70deg);
@@ -113,7 +112,7 @@
 }
 
 .rating-result ul {
-    font-size: 0.1px;
+    /*font-size: 0.1px;*/
 }
 
 

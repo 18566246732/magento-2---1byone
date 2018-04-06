@@ -139,7 +139,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'Refund & Exchange:refund',
                 'Feedback:feedback'
             ]
-
         ];
     }
 
