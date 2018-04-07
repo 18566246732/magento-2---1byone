@@ -119,16 +119,19 @@
 
             })
 
-            doc.scroll(function () {
-
-                $(detailsMenuAItem).css("color", "grey")
-
+            $(document).on("Hchanged", function () {
+                console.log("Hchanged !");
                 contentTopArr = [];
                 contentArr.each(function () {
                     contentTopArr.push($(this).offset().top);
                 })
+            })
 
 
+
+            doc.scroll(function () {
+
+                $(detailsMenuAItem).css("color", "grey");
                 var now = doc.scrollTop();
                 isUp = (now > last);
                 last = now;

@@ -31,6 +31,7 @@
         function init() {
             // init tree
             var TREE_DATA = <?php echo $block->getCategoryTree()?>;
+            console.log("tree_data: ",TREE_DATA);
             var TEMPLATE = document.querySelector('template');
 
             function createLeaf(dom, data, fater) {
@@ -39,13 +40,16 @@
                 leaf.classList.add('leaf-contianer');
                 leaf.setAttribute('data-fater', fater)
                 // data
-                if (!data.children) leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text).replace(/icon/, 'icon hide');
+                //remove number
+                // data.text = data.text.slice();
+
+                if (!data.children) leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/,  data.text).replace(/icon/, 'icon hide');
                 else leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text);
                 leaf.querySelector('.icon').setAttribute('data-fater', data.text)
                 if (data.url) {
                     leaf.querySelector('.tag-name').classList.add('a')
                     leaf.querySelector('.tag-name').onclick = function () {
-                        window.open(data.url)
+                        location.href = data.url;
                     }
                 }
                 dom.appendChild(leaf);

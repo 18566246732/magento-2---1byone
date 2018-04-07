@@ -63,16 +63,17 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             var pInfoNav = $(".data.item.title");
             var toolbar = $(".page-header");
             var menubar = $(".sections.nav-sections");
+            var topmenu = $(".top-menu li a");
 
             $(window).scroll(function (e) {
                 var docTop = $(document).scrollTop();
                 var productInfo = $(".product.info.detailed");
                 if (docTop >= 30) {
                     $(".sections").css("background-color", "rgba(255,255,255,0.8)");
-                    $(".navigation .level0 > .level-top").addClass("nav-background-grey");
+                    topmenu.addClass("nav-background-grey");
                 } else {
                     $(".sections").css("background-color", "rgba(255,255,255,0)");
-                    $(".navigation .level0 > .level-top").removeClass("nav-background-grey");
+                    topmenu.removeClass("nav-background-grey");
                 }
             });
 

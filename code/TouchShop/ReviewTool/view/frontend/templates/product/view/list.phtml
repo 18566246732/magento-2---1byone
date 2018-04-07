@@ -94,7 +94,7 @@ $reviews = $block->getReviewData();
                     success: function (res) {
                         console.log("ajax ok");
                         $("#product-review-container").html(res);
-                        $(".details-menu.fix-top a:contains('Reviews')").trigger("click");
+                        $(document).trigger("Hchanged");
                     },
                     error: function (jqXHR, textstatus, errorThrown) {
                         console.log(jqXHR, textstatus, errorThrown);
