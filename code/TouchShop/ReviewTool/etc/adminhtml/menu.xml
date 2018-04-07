@@ -9,9 +9,9 @@
         <add id="TouchShop_ReviewTool::reviews" title="Review Extension" module="TouchShop_ReviewTool" sortOrder="10"
              action="reviews/extension" resource="TouchShop_ReviewTool::reviews"
              parent="TouchShop_Basic::basic"/>
-        <add id="TouchShop_ReviewTool::reviews_manager" title="Review Manager" module="TouchShop_ReviewTool"
-             sortOrder="10"
-             action="reviews/manager" resource="TouchShop_ReviewTool::reviews_manager"
-             parent="TouchShop_Basic::basic"/>
+        <!--<add id="TouchShop_ReviewTool::reviews_manager" title="Review Manager" module="TouchShop_ReviewTool"-->
+        <!--sortOrder="10"-->
+        <!--action="reviews/manager" resource="TouchShop_ReviewTool::reviews_manager"-->
+        <!--parent="TouchShop_Basic::basic"/>-->
     </menu>
 </config>

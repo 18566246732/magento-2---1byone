@@ -76,7 +76,6 @@ class SyncReviews
 
     /**
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     public function execute()
     {
@@ -95,7 +94,7 @@ class SyncReviews
 
             if (isset($data['reviewList'])) {
                 foreach ($data['reviewList'] as $review) {
-                    $product_id = $this->getProductByAsin($review['asin']);
+                    $product_id = $this->getProductIdByAsin($review['asin']);
                     if ($product_id) {
                         try {
                             $this->addReview($review, $product_id);
@@ -181,7 +180,7 @@ class SyncReviews
         $this->reviewAdvancedResourceModel->save($advanced);
     }
 
-    private function getProductByAsin($asin)
+    private function getProductIdByAsin($asin)
     {
         $collection = $this->productCollectionFactory->create()->addAttributeToFilter(
             ProductHelper::AMAZON_ASIN, $asin

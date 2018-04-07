@@ -10,28 +10,39 @@ namespace TouchShop\ReviewTool\Controller\Adminhtml\Index;
 
 
 use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\App\Action\Context;
 
 class Index extends Action
 {
 
-    protected $resultPageFactory = false;
+    private $resultPageFactory;
+    private $registry;
 
+    /**
+     * Index constructor.
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param Registry $registry
+     */
     public function __construct(
         Context $context,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        Registry $registry
     )
     {
-        parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
+        $this->registry = $registry;
+        parent::__construct($context);
     }
 
     public function execute()
     {
+        $post = (array)$this->getRequest()->getPost();
+        $this->registry->register('postData', $post);
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend((__('Reviews Report')));
-
         return $resultPage;
     }
 }
