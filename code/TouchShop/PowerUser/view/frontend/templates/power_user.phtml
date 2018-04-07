@@ -1,13 +1,22 @@
 <?php
 /** @var TouchShop\PowerUser\Block\PowerUser $block */
+
+$data = [
+    "interests:" => [
+        "USB Hubs and Adapters",
+    ],
+    "email:" => "123@qq.com",
+]
+
 ?>
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_PowerUser::css/PowerUser.css") ?>">
 <form action="<?php echo $block->getFormAction() ?>" method="post">
+
     <div class="power-user-banner">
-        <img src="<?php echo $block->getBaseImgUrl('power-user-banner.jpg')?>" alt="">
+        <img src="<?php echo $block->getBaseImgUrl('power-user-banner.jpg') ?>" alt="">
     </div>
 
     <div class="input-container-title">We'd love to learn more about you so that we can offter products that are most
@@ -17,14 +26,15 @@
         <label for="email">I am interested in:</label>
         <div class="input-container input-container-full">
             <div class="input-checkbox-container">
-                <div><input type="checkbox" name="interests" value="USB Hubs and Adapters"> TV Accessories </div>
-                <div><input type="checkbox" name="interests" value="Cell Phone Batteries"> Home Decoration </div>
-                <div><input type="checkbox" name="interests" value="USB Wall/car Chargers"> Stage Lighting & Effects </div>
-                <div><input type="checkbox" name="interests" value="Screen Protectors"> Home Security </div>
-                <div><input type="checkbox" name="interests" value="Phone/Tablet Cases"> Accessories </div>
-                <div><input type="checkbox" name="interests" value="Portable Chargers"> Power </div>
-                <div><input type="checkbox" name="interests" value="Phone/Laptop Batteries"> Health </div>
-                <div><input type="checkbox" name="interests" value="Keyboards and Mice"> Audio & Sounds </div>
+                <div><input type="checkbox" name="interests" value="USB Hubs and Adapters"> TV Accessories</div>
+                <div><input type="checkbox" name="interests" value="Cell Phone Batteries"> Home Decoration</div>
+                <div><input type="checkbox" name="interests" value="USB Wall/car Chargers"> Stage Lighting & Effects
+                </div>
+                <div><input type="checkbox" name="interests" value="Screen Protectors"> Home Security</div>
+                <div><input type="checkbox" name="interests" value="Phone/Tablet Cases"> Accessories</div>
+                <div><input type="checkbox" name="interests" value="Portable Chargers"> Power</div>
+                <div><input type="checkbox" name="interests" value="Phone/Laptop Batteries"> Health</div>
+                <div><input type="checkbox" name="interests" value="Keyboards and Mice"> Audio & Sounds</div>
             </div>
         </div>
     </div>
@@ -33,16 +43,130 @@
     <div class="input-container-title">Power User Infomation</div>
 
     <div class="input-container">
-        <label for="email">Email address <span>*</span></label>
-        <input name="email" id="email" type="email" required="required">
-    </div>
+        <div class="form-action-control-container">
+            <div class="control1">
 
-    <div class="form-action-btn">
-        <button type="reset">RESET</button>
-        <button type="submit">SUBMIT</button>
+                <div class="hidden-formkey"><?php echo $block->getBlockHtml('formkey') ?></div>
+                <label for="email">Email address <span>*</span>
+                    <input name="email" id="powerUserEmail" type="email" required="required">
+                </label>
+            </div>
+            <div class="power-user-pwd1">
+
+
+                <label for="password">Password <span>*</span>
+                    <input name="password" id="powerUserPwd1" type="password" required="required">
+                </label>
+            </div>
+
+            <div class="power-user-pwd2">
+
+                <label for="password">Please enter your Password again<span>*</span>
+                    <input name="password" id="powerUserPwd2" type="password" required="required">
+                </label>
+            </div>
+
+            <div class="form-action-btn">
+                <button type="reset">RESET</button>
+                <button type="submit">SUBMIT</button>
+            </div>
+        </div>
     </div>
 </form>
 
 <script>
+    (function () {
+        require(['jquery'], function ($) {
+            var vip = "<?php echo $block->getAjax()?>";
+            console.log(vip);
+            var email = "";
+            var interests = [];
+            var inputCheckBox = $(".input-checkbox-container input");
+            var powerUserPwd1 = $(".form-action-control-container .power-user-pwd1");
+            var powerUserPwd2 = $(".form-action-control-container .power-user-pwd2");
+            // var vip1 = 0;
+            var formkey = $(".hidden-formkey input").val();
+            $(function () {
+                //vip == 2
+                if (vip == 2) {
+                    // interests
+                    inputCheckBox.each(function (index, e) {
+                        if (interests.indexOf($(e).val()) != -1) {
+                            $(e).attr("checked", "checked");
+                        }
+                    });
+                    // email
+                    $("#email").attr({"placeholder": email, "disabled": "disabled"});
+                }
+                //vip == 1
+                else if (vip == 1) {
+                    //interests
+                    //todo
+                    //email
+                    //todo
+                }
 
+                // vip == 0
+                else {
+                    email.blur(function () {
+                        if (email.val() != "") {
+                            console.log("email blured");
+                            if (email.val() != "") {
+                                let param = {
+                                    email: email.val()
+                                };
+                                sendAjax(url, param, function (res) {
+                                    let vip1 = res.vip
+                                    if (vip1 == 0) {
+                                        //todo ---signup
+                                        powerUserPwd1.css("display", "block");
+                                        powerUserPwd2.css("display", "block");
+                                        let param = {
+                                            email:,
+                                            firstname : 'customer',
+                                            lastname : 'user',
+                                            password : ''
+                                        };
+                                        sendAjax(param, function (res) {
+                                            console.log(res);
+                                        });
+                                    }
+                                    //vip = 1 or 2
+                                    else {
+                                        //todo ---signin
+                                        powerUserPwd1.css("display", "block");
+                                        let param = {
+                                            username: '',
+                                            password: ''
+                                        };
+
+                                        sendAjax(param, function (res) {
+                                            console.log(res);
+                                        });
+                                    }
+                                })
+                            }
+                        )
+                }
+                function sendAjax(url, param, ajaxHandler) {
+                    console.log("sendAjax in");
+                    var responseText = $.ajax({
+                        url: url,
+                        type: "POST",
+                        // dataType: "json",
+                        data: param,
+                        success: function (res) {
+                            console.log("ajax ok");
+                            console.log(res);
+                            ajaxHandler(res);
+                        },
+                        error: function (jqXHR, textstatus, errorThrown) {
+                            console.log(jqXHR, textstatus, errorThrown);
+                            console.log("ajax error");
+                        }
+                    });
+                }
+            })
+        })
+    })();
 </script>

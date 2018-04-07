@@ -15,6 +15,8 @@ form {
     margin-top: 20px;
 }
 
+
+
 div.form-action-btn {
     display: flex;
     justify-content: flex-end;
@@ -50,4 +52,25 @@ div.form-action-btn button:last-child:hover {
 div.input-checkbox-container div {
     display: flex;
     align-items: center;
+}
+
+.form-action-btn {
+    margin-top: 20px;
+}
+
+.form-action-control-container {
+    width: 50%;
+}
+
+.form-action-control-container > div {
+    margin: 20px 0;
+    /*padding: auto 0;*/
+}
+
+.form-action-control-container .power-user-pwd1, .form-action-control-container .power-user-pwd2 {
+    display: none;
+}
+
+#powerUserEmail:focus {
+    box-shadow: 0 0 3px 1px #0a6c9f;
 }
