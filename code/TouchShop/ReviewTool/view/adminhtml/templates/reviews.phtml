@@ -5,156 +5,171 @@
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_ReviewTool::css/index.css") ?>">
 
+<?php
+$review_data = $block->getChartData();
+if ($review_data) {
+    $asin = $review_data['post']['asin'];
+    $time = $review_data['post']['time'];
+} else {
+    $asin = '';
+    $time = 7;
+}
+?>
+
 <div id="reviews-container">
     <div class="screen-container">
-        <form action="">
-            <div class="asin-container"><label for="asin">ASIN: </label><input id="asin" name="asin" placeholder="ASIN"
-                                                                               type="text"></div>
-            <div class="time-container"><label for="time">Time: </label><input type="radio" name="time" value="7"> 7 day
-                <input type="radio" name="time" value="14"> 14 day <input type="radio" name="time" value="30"> 1 month
+        <form action="<?= $block->getAction() ?>" method="post">
+            <?php echo $block->getBlockHtml('formkey') ?>
+            <div class="asin-container">
+                <label for="asin">ASIN: </label>
+                <input id="asin" name="asin" placeholder="ASIN" type="text" value="<?= $asin ?>">
             </div>
+            <div class="time-container">
+                <label for="time">Time: </label>
+                <input type="radio" name="time" value="7" <?= $block->isChecked($time, 7) ?>> 7 days
+                <input type="radio" name="time" value="14" <?= $block->isChecked($time, 14) ?>> 14 days
+                <input type="radio" name="time" value="30" <?= $block->isChecked($time, 30) ?>> 1 month
+            </div>
+            <input type="submit" value="Submit"/>
         </form>
     </div>
 
-    <div class="input-container">
-        <div class="button-group">
-            <button id="star-btn">star</button><!--
-            -->
-            <button id="review-btn">review</button>
-        </div>
-        <div id="main-chart" class="main-chart"></div>
+    <?php if ($review_data): ?>
+        <div class="input-container">
+            <div class="button-group">
+                <button id="star-btn">star(1-5)</button>
+                <button id="review-btn">positive-critical</button>
+            </div>
+            <div id="main-chart" class="main-chart"></div>
 
-        <div class="input-container">
-            <div id="left-chart"></div>
+            <div class="input-container">
+                <div id="left-chart"></div>
+            </div>
+            <div class="input-container">
+                <div id="right-chart"></div>
+            </div>
         </div>
-        <div class="input-container">
-            <div id="right-chart"></div>
-        </div>
-    </div>
+    <?php endif; ?>
 </div>
 
-<script>
-    (function () {
-        require(["jquery", "Highcharts"], function ($) {
-            var main_chart = {
-                data: [
-                    <?php foreach ($this->getChartData()['Grading trend map']['data']  as $key=> $value): ?>
-                    {
-                        name: <?php echo json_encode($key) ?>,
-                        data: <?php echo json_encode($value) ?>
-                    },
-                    <?php endforeach; ?>
-                ],
-                // 0:star 1:review
-                type: 0
-            }
-
-            function modifyChartData(type) {
-                main_chart.type = type
-                mainChart()
-            }
-
-            function mainChart() {
-                // 图表配置
-                var options = {
-                    chart: {
-                        type: 'line'                          //指定图表的类型，默认是折线图（line）
-                    },
-                    title: {
-                        text: 'Grading trend map'                 // 标题
-                    },
-                    xAxis: {
-                        categories: <?php echo json_encode($this->getChartData()['Grading trend map']['y']) ?>   // x 轴分类
-                    },
-                    series: []
-                };
-
-                for (var i = 0; i < main_chart.data.length; i++) {
-                    var obj = main_chart.data[i];
-                    if (main_chart.type == 0) {
-                        if (/star/.test(obj.name)) options.series.push(obj)
-                    } else {
-                        if (!(/star/.test(obj.name))) options.series.push(obj)
-                    }
-                }
-                // 图表初始化函数
-                var chart = Highcharts.chart('main-chart', options);
-            }
-
-            function leftChart() {
-                // 图表配置
-                var options = {
-                    chart: {
-                        type: 'line'                          //指定图表的类型，默认是折线图（line）
-                    },
-                    title: {
-                        text: 'star'                 // 标题
-                    },
-                    xAxis: {
-                        categories: <?php echo json_encode($this->getChartData()['star']['y']) ?>   // x 轴分类
-                    },
-                    series: [
-                        <?php foreach ($this->getChartData()['star']['data']  as $key=> $value): ?>
+<?php if ($review_data): ?>
+    <script>
+        (function () {
+            require(["jquery", "Highcharts"], function ($) {
+                var main_chart = {
+                    data: [
+                        <?php foreach ($review_data['data']['Grading trend map']['data']  as $key=> $value): ?>
                         {
                             name: <?php echo json_encode($key) ?>,
                             data: <?php echo json_encode($value) ?>
                         },
                         <?php endforeach; ?>
-                    ]
+                    ],
+                    // 0:star 1:review
+                    type: 0
                 };
 
-                // 图表初始化函数
-                var chart = Highcharts.chart('left-chart', options);
-            };
+                function modifyChartData(type) {
+                    main_chart.type = type;
+                    mainChart()
+                }
 
-            function rightChart() {
-                // 图表配置
-                var options = {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false
-                    },
-                    title: {
-                        text: 'star ratio'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            }
+                function mainChart() {
+                    var options = {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Grading trend map'
+                        },
+                        xAxis: {
+                            categories: <?php echo json_encode($review_data['data']['Grading trend map']['y']) ?>
+                        },
+                        series: []
+                    };
+
+                    for (var i = 0; i < main_chart.data.length; i++) {
+                        var obj = main_chart.data[i];
+                        if (main_chart.type == 0) {
+                            if (/star/.test(obj.name)) options.series.push(obj)
+                        } else {
+                            if (!(/star/.test(obj.name))) options.series.push(obj)
                         }
-                    },
-                    series: [{
-                        type: 'pie',
-                        name: 'star',
-                        data: <?php echo json_encode($this->getChartData()['star ratio']['data']) ?>,
-                    }]
+                    }
+                    var chart = Highcharts.chart('main-chart', options);
+                }
+
+                function leftChart() {
+                    var options = {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'star'
+                        },
+                        xAxis: {
+                            categories: <?php echo json_encode($review_data['data']['star']['y']) ?>
+                        },
+                        series: [
+                            <?php foreach ($review_data['data']['star']['data']  as $key=> $value): ?>
+                            {
+                                name: <?php echo json_encode($key) ?>,
+                                data: <?php echo json_encode($value) ?>
+                            },
+                            <?php endforeach; ?>
+                        ]
+                    };
+
+                    var chart = Highcharts.chart('left-chart', options);
                 };
-                // 图表初始化函数
-                var chart = Highcharts.chart('right-chart', options);
-            }
 
-            function init() {
-                $('#star-btn').click(function () {
-                    modifyChartData(0)
-                })
+                function rightChart() {
+                    var options = {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false
+                        },
+                        title: {
+                            text: 'star ratio'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                }
+                            }
+                        },
+                        series: [{
+                            type: 'pie',
+                            name: 'star',
+                            data: <?php echo json_encode($review_data['data']['star ratio']['data']) ?>,
+                        }]
+                    };
+                    var chart = Highcharts.chart('right-chart', options);
+                }
 
-                $('#review-btn').click(function () {
-                    modifyChartData(1)
-                })
-            }
+                function init() {
+                    $('#star-btn').click(function () {
+                        modifyChartData(0)
+                    });
 
-            init();
-            mainChart();
-            leftChart();
-            rightChart();
-        });
-    })();
-</script>
+                    $('#review-btn').click(function () {
+                        modifyChartData(1)
+                    })
+                }
+
+                init();
+                mainChart();
+                leftChart();
+                rightChart();
+            });
+        })();
+    </script>
+<?php endif; ?>

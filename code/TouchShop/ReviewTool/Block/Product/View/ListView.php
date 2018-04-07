@@ -11,35 +11,24 @@ namespace TouchShop\ReviewTool\Block\Product\View;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\Search\SearchCriteriaBuilder;
-use Magento\Framework\Api\SortOrder;
-use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\iterator;
 use TouchShop\ProductTool\Helper\ProductHelper;
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\ReviewAdvancedCollection;
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\ReviewAdvancedCollectionFactory;
+use TouchShop\ReviewTool\Ui\Component\Listing\Columns\Status;
 
 class ListView extends Template
 {
     /** @var Registry */
     private $registry;
 
-    /** @var SearchCriteriaBuilder */
-    private $searchCriteriaBuilder;
-
-    /** @var FilterBuilder */
-    private $filterBuilder;
 
     /** @var ReviewAdvancedCollectionFactory */
     private $reviewAdvancedCollectionFactory;
 
-    /** @var SortOrderBuilder */
-    private $sortOrderBuilder;
 
     /** @var ProductRepositoryInterface */
     private $productRepository;
@@ -47,20 +36,14 @@ class ListView extends Template
 
     public function __construct(
         Registry $registry,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        FilterBuilder $filterBuilder,
         ReviewAdvancedCollectionFactory $reviewAdvancedCollectionFactory,
-        SortOrderBuilder $sortOrderBuilder,
         Context $context,
         ProductRepositoryInterface $productRepository,
         array $data
     )
     {
         $this->registry = $registry;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->filterBuilder = $filterBuilder;
         $this->reviewAdvancedCollectionFactory = $reviewAdvancedCollectionFactory;
-        $this->sortOrderBuilder = $sortOrderBuilder;
         $this->productRepository = $productRepository;
         parent::__construct($context, $data);
     }
@@ -95,7 +78,7 @@ class ListView extends Template
                 $review['images_url'] = explode(",", $item->getImageUrls());
                 $result['reviews_data'][] = $review;
             }
-            
+
             return $result;
         }
         return [
@@ -131,5 +114,6 @@ class ListView extends Template
         }
 
         $collection->addFieldToFilter($fields, $conditions);
+        $collection->addFieldToFilter('status', Status::APPROVED);
     }
 }

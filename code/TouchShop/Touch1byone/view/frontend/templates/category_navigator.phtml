@@ -2,10 +2,6 @@
 
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?php echo $block->getViewFileUrl("TouchShop_Touch1byone::css/index.css") ?>">
-<!-- template -->
-<!--    <div class="leaf-contianer">-->
 <template>
     <div class="leaf-content">
         <div class="tag-name" title="-tag-title-">-tag-</div>
@@ -14,9 +10,6 @@
         </div>
     </div>
 </template>
-<!--    </div>-->
-
-<!-- template end -->
 <div class="tree-container" id="tree-container">
 
 </div>
@@ -53,7 +46,7 @@
                 if (!data.children) leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/,  data.text).replace(/icon/, 'icon hide');
                 else leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text);
                 leaf.querySelector('.icon').setAttribute('data-fater', data.text)
-                if(data.url) {
+                if (data.url) {
                     leaf.querySelector('.tag-name').classList.add('a')
                     leaf.querySelector('.tag-name').onclick = function () {
                         location.href = data.url;
@@ -79,7 +72,7 @@
                             var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
                             var fater = params.getAttribute('data-fater')
                             for (var a = 0; a < dom.length; a++) {
-                                if(dom[a].getAttribute('data-fater') == fater)
+                                if (dom[a].getAttribute('data-fater') == fater)
                                     dom[a].classList.add('active');
                             }
                         },
@@ -87,7 +80,7 @@
                             var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
                             var fater = params.getAttribute('data-fater')
                             for (var a = 0; a < dom.length; a++) {
-                                if(dom[a].getAttribute('data-fater') == fater)
+                                if (dom[a].getAttribute('data-fater') == fater)
                                     dom[a].classList.remove('active');
                             }
                         }

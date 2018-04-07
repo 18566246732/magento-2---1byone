@@ -20,7 +20,6 @@
     cursor: pointer;
 }
 
-
 .reviews-media-item img {
     width: max-content;
 }
@@ -44,6 +43,7 @@
 .rating-background .star-five:before {
     border-bottom: 8px solid grey;
 }
+
 .rating-background .star-five:after {
     color: grey;
     border-bottom: 7px solid grey;
@@ -56,13 +56,13 @@
     color: red;
     width: 0;
     height: 0;
-    border-right:  10px solid transparent;
-    border-bottom: 7px  solid red;
-    border-left:   10px solid transparent;
-    -moz-transform:    rotate(35deg);
+    border-right: 10px solid transparent;
+    border-bottom: 7px solid red;
+    border-left: 10px solid transparent;
+    -moz-transform: rotate(35deg);
     -webkit-transform: rotate(35deg);
-    -ms-transform:     rotate(35deg);
-    -o-transform:      rotate(35deg);
+    -ms-transform: rotate(35deg);
+    -o-transform: rotate(35deg);
 }
 
 .star-five:before {
@@ -77,9 +77,9 @@
     display: block;
     content: '';
     -webkit-transform: rotate(-35deg);
-    -moz-transform:    rotate(-35deg);
-    -ms-transform:     rotate(-35deg);
-    -o-transform:      rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+    -ms-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
 }
 
 .star-five:after {
@@ -94,19 +94,18 @@
     border-bottom: 7px solid red;
     border-left: 10px solid transparent;
     -webkit-transform: rotate(-70deg);
-    -moz-transform:    rotate(-70deg);
-    -ms-transform:     rotate(-70deg);
-    -o-transform:      rotate(-70deg);
+    -moz-transform: rotate(-70deg);
+    -ms-transform: rotate(-70deg);
+    -o-transform: rotate(-70deg);
     content: '';
 }
 
-
-.reviews-heading > *{
+.reviews-heading > * {
     display: inline-block;
     margin: 20px 0;
 }
 
-.reviews-customize ul{
+.reviews-customize ul {
     list-style: none;
     padding: 0;
 }
@@ -114,7 +113,6 @@
 .rating-result ul {
     /*font-size: 0.1px;*/
 }
-
 
 .rating-result ul li {
     display: inline-block;
