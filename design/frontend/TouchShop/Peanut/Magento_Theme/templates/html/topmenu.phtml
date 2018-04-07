@@ -165,6 +165,7 @@ $topmenus = [
                     var isHoverd = false;
                     var submenu = $(".submenu ul li");
                     var menuImg = $(".menu-image");
+                    var topmenu = $(".top-menu li a");
                     li.on({
                         mouseover: function (e) {
                             $(this).children("ul").css("display", "block");
@@ -179,6 +180,9 @@ $topmenus = [
                     // A-->B
                     topMenuItem.on({
                         mouseover: function (e) {
+
+                            // $(this).css("color", "#8d131c");
+                            topmenu.addClass("nav-background-grey");
                             sections.css({
                                 "background-color": "rgba(255, 255, 255, 0.8)",
                                 "border-bottom": "1px solid grey"
@@ -195,6 +199,7 @@ $topmenus = [
                                 if (!isHoverd) {
                                     sections.css("border-bottom", "none");
                                     if ($(document).scrollTop() <= 30) {
+                                        topmenu.removeClass("nav-background-grey");
                                         sections.css("background-color", "rgba(255,255,255, 0)");
                                     }
                                     menuInfoCover.css("display", "none");

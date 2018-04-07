@@ -31,7 +31,7 @@ ul.top-menu{
 }
 
 .top-menu li a:hover {
-    color: #8d131c;
+    color: #8d131c !important;
 }
 
 .top-menu-wrapper {
