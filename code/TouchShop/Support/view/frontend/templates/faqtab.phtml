@@ -32,8 +32,14 @@
                     $(this).toggleClass("triangle-facing-up");
                     // console.log($(this).parent(".faq-assembling").find("p"));
                     $(this).parent(".faq-assembling").find("p").slideToggle(0);
-                    $(this).parent(".faq-assembling").toggleClass("back-color-grey");
-                }); 
+                    // $(this).parent(".faq-assembling").toggleClass("back-color-grey");
+                    $(document).trigger("Hchanged");
+                });
+                $(".faq-item-panel > h1").click(function () {
+                    $(this).parent().prev().toggleClass("triangle-facing-up");
+                    $(this).next().slideToggle(0);
+                    $(document).trigger("Hchanged");
+                })
             })
         })
     })()
