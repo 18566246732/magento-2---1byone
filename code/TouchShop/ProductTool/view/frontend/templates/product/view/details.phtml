@@ -42,7 +42,7 @@
                     $label = $block->getChildData($alias, 'title');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
-                    $alias ?>">
+                    $label ?>">
                         <a class="details-tab" href="#<?= /* @escapeNotVerified */
                         $alias ?>"
                            id="tab-label-<?= $index ?>"
@@ -72,7 +72,7 @@
             var detailsMenuItem = $(".details-menu li");
             var doc = $(document);
             var section = $(".sections");
-            var sectionTop = 50;
+            // var sectionTop = 50;
             var currentStates = 'A';
             var isUp = false;
             var detailsMain = $(".details-main");
@@ -83,6 +83,8 @@
             // var contentTopArr = contentArr.offset().top;
             var detailsMenuAItem = $(".details-menu li a");
             var body = $("body");
+            var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
+            var sectionTop = productInfo.offset().top - 80;
 
             function resizeProductContainer(e) {
                 var WINDOW_WIDTH = document.body.offsetWidth
@@ -91,12 +93,10 @@
                 e.css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
             }
 
+            $(document).trigger("Hchanged");
             $(document).resize(function () {
                 console.log("body height:", $(this).height());
             });
-
-
-
 
 
             contentArr.each(function () {
@@ -111,7 +111,7 @@
 
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#8d131c");
-                location.href = "#tab-label-" + $(this).index();
+                location.href = "#tab-label-" + $(this).text();
 
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
@@ -127,7 +127,16 @@
                 })
             })
 
-
+            // page first loaded
+            if(currentStates === 'A') {
+                console.log("status", currentStates);
+                if ((isOverNum <= -80)) {
+                    section.addClass("back-normal-flow").css("top", sectionTop);
+                    detailsMenu.addClass("fix-top");
+                    detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                    currentStates = 'C';
+                }
+            }
 
             doc.scroll(function () {
 
@@ -144,7 +153,7 @@
                     }
                 }
 
-                var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
+                isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
                 sectionTop = productInfo.offset().top - 80;
                 if (currentStates === 'A') {
                     if (isOverNum <= 0 && isUp) {
@@ -177,22 +186,8 @@
                         }
                     }
                 });
-                // page first loaded
-                if(currentStates === 'A') {
-                    if ((isOverNum <= -80)) {
-                        section.addClass("back-normal-flow").css("top", sectionTop);
-                        detailsMenu.addClass("fix-top");
-                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
-                        currentStates = 'C';
-                    }
-                }
+
             });
-
-
-
-
-
-
 
         })
     })()

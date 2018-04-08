@@ -75,3 +75,7 @@
     margin: 0 auto;
     z-index: 2;
 }
+
+.product.info.detailed .product.attribute.description p {
+    display: block !important;
+}
