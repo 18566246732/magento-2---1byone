@@ -175,14 +175,23 @@
                         section.removeClass("back-normal-flow").css("top", 50);
                         currentStates = 'A';
                     }
-                } else {
+                } else { // 'C' => 'B'
                     if (!isUp && (isOverNum >= -80)) {
                         detailsMenu.removeClass("fix-top");
                         detailsMain.css("margin-top", 90 );
                         currentStates = 'B';
+                    } // 'C' => 'A'
+                    else if(!isUp && (isOverNum >= 0)){
+                        section.removeClass("back-normal-flow").css("top", 50);
+                        detailsMain.css("margin-top", 90);
+                        detailsMenu.removeClass("fix-top");
+                        currentStates = 'A';
+
                     }
                 }
 
+
+                //'A' => 'C'
                 $(".product.data.items li").on({
                     click: function () {
                         if (currentStates === 'A') {
@@ -193,6 +202,20 @@
                         }
                     }
                 });
+
+
+                // 'C' => 'A'
+                $(".back-top").click(function () {
+                    console.log(currentStates, isOverNum);
+                    if(currentStates === 'C'){
+                        console.log("ok");
+                        section.removeClass("back-normal-flow").css("top", 50);
+                        detailsMain.css("margin-top", 90);
+                        detailsMenu.removeClass("fix-top");
+                        currentStates = 'A';
+                    }
+                });
+
 
             });
 
