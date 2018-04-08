@@ -10,8 +10,6 @@ namespace TouchShop\Touch1byone\Plugin\Block;
 
 
 use Magento\Catalog\Model\CategoryRepository;
-use Magento\Framework\Data\Tree;
-use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Data\Tree\NodeFactory;
 use Magento\Framework\Data\TreeFactory;
 use Magento\Framework\UrlInterface;
@@ -84,7 +82,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 
                     ], [
                         "label" => 'Power User',
-                        'url' => $this->getUrl('power-user'),
+                        'url' => $this->getUrl('poweruser'),
                         'image_url' => $this->getMediaUrl('power_user_top.png'),
                     ]
                 ]
@@ -105,7 +103,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 
                     ], [
                         "label" => 'Feedback',
-                        'url' => $this->$this->getUrl('feedback'),
+                        'url' => $this->getUrl('feedback'),
                         'image_url' => $this->getMediaUrl('feedback_top.png'),
                     ]
                 ]

@@ -9,11 +9,12 @@
 namespace TouchShop\Basic\Controller\Account;
 
 
+use Magento\Customer\Model\AccountManagement;
 use Magento\Customer\Model\CustomerFactory;
+use Magento\Customer\Model\ResourceModel\Customer;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\State;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -21,44 +22,44 @@ class CreatePost extends Action
 {
     private $session;
     private $storeManager;
-    private $state;
     private $customerFactory;
+    private $resourceModel;
+    private $customerAccountManagement;
 
     public function __construct(
         Context $context,
         StoreManagerInterface $storeManager,
-        State $state,
         CustomerFactory $customerFactory,
+        Customer $customer,
+        AccountManagement $management,
         Session $session
     )
     {
         parent::__construct($context);
         $this->session = $session;
         $this->storeManager = $storeManager;
-        $this->state = $state;
+        $this->resourceModel = $customer;
         $this->customerFactory = $customerFactory;
+        $this->customerAccountManagement = $management;
     }
 
 
     public function execute()
     {
-
-
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         try {
             $post = $this->getRequest()->getPost();
-//            $this->state->setAreaCode('frontend');
             $websiteId = $this->storeManager->getWebsite()->getId();
-            $store = $this->storeManager->getStore();
-            $storeId = $store->getId();
             $customer = $this->customerFactory->create();
             $customer->setWebsiteId($websiteId);
             $customer->setEmail($post['email']);
             $customer->setFirstname($post['firstname']);
             $customer->setLastname($post['lastname']);
             $customer->setPassword($post['password']);
-            $customer->save();
+            $this->resourceModel->save($customer);
 
+
+            $customer = $this->customerAccountManagement->authenticate($post['email'], $post['password']);
             $this->session->setCustomerDataAsLoggedIn($customer);
             $this->session->regenerateId();
             $result->setData(['result' => 'success', 'status_code' => 200]);

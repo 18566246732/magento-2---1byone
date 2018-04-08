@@ -11,116 +11,10 @@
 /**
  * Top menu for store
  *
- * @var $block \Magento\Theme\Block\Html\Topmenu
+ * @var $block \TouchShop\Touch1byone\Plugin\Block\Topmenu
  */
 
-$topmenus = [
-    [
-        "label" => 'support',
-        'url' => 'support',
-        'image_url' => 'http://img.88tph.com/production/20180322/12508225-1.jpg',
-        'submenus' => [
-            [
-                "label" => 'ajfpoewhj',
-                'url' => 'support',
-                'image_url' => 'http://img.88tph.com/production/20180322/12508251-1.jpg',
-            ], [
-                "label" => 'anvpoife',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-
-            ], [
-                "label" => 'cnpsdewni',
-                'url' => 'support',
-                'image_url' => 'http://img.88tph.com/production/20180228/12504960-1.jpg',
-            ]
-        ]
-    ],
-    [
-        "label" => 'support',
-        'url' => 'support',
-        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-        'submenus' => [
-            [
-                "label" => 'ajfpoewhj',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ], [
-                "label" => 'anvpoife',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-
-            ], [
-                "label" => 'cnpsdewni',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ]
-        ]
-    ],
-    [
-        "label" => 'support',
-        'url' => 'support',
-        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-        'submenus' => [
-            [
-                "label" => 'ajfpoewhj',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ], [
-                "label" => 'anvpoife',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-
-            ], [
-                "label" => 'cnpsdewni',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ]
-        ]
-    ],
-    [
-        "label" => 'support',
-        'url' => 'support',
-        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-        'submenus' => [
-            [
-                "label" => 'ajfpoewhj',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ], [
-                "label" => 'anvpoife',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-
-            ], [
-                "label" => 'cnpsdewni',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ]
-        ]
-    ],
-    [
-        "label" => 'support',
-        'url' => 'support',
-        'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-        'submenus' => [
-            [
-                "label" => 'ajfpoewhj',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ], [
-                "label" => 'anvpoife',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-
-            ], [
-                "label" => 'cnpsdewni',
-                'url' => 'support',
-                'image_url' => 'http://192.168.0.152/magento2/pub/media/sales/top-img.png',
-            ]
-        ]
-    ],
-]
+$topmenus = $block->getTopMenus();
 
 
 ?>
@@ -138,11 +32,12 @@ $topmenus = [
                     <div class="submenu">
                         <ul>
                             <?php foreach ($menu['submenus'] as $submenu): ?>
-                                <li data-src="<?= $submenu['image_url']?>"><a href="<?= $submenu['url']?>"><?= $submenu['label'] ?></a></li>
+                                <li data-src="<?= $submenu['image_url'] ?>"><a
+                                            href="<?= $submenu['url'] ?>"><?= $submenu['label'] ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <div class="menu-image" style="background-image: url('<?= $menu['image_url']?>')" >
+                    <div class="menu-image" style="background-image: url('<?= $menu['image_url'] ?>')">
                     </div>
                 </div>
             </div>
@@ -215,8 +110,8 @@ $topmenus = [
                     });
 
                     submenu.hover(function () {
-                        console.log("data-url:", $(this).attr("data-src") );
-                        menuImg.css("background-image", "url("+ $(this).attr("data-src") +")");
+                        console.log("data-url:", $(this).attr("data-src"));
+                        menuImg.css("background-image", "url(" + $(this).attr("data-src") + ")");
                     });
                 }
             )
