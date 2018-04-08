@@ -8,9 +8,26 @@
     background-color: rgba(255,255,255,0);
 }
 
-
-
-
 .nav-background-grey {
     color: rgb(70,70,70) !important;
+}
+
+.back-top {
+    background-color: #8d131c;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 80px;
+    right: 50px;
+    font-size: 30px;
+    line-height: 40px;
+    color: white;
+    text-align: center;
+    display: none;
+    border-radius: 4px;
+}
+
+.back-top:hover {
+    background-color: #0a6c9f;
 }

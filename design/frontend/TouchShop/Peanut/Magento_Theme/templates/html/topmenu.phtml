@@ -44,7 +44,6 @@ $topmenus = $block->getTopMenus();
         <?php endforeach; ?>
     </ul>
     <div class="menu-info-cover"></div>
-    <div class="back-top"></div>
 </nav>
 
 
@@ -118,6 +117,8 @@ $topmenus = $block->getTopMenus();
                         console.log("data-url:", $(this).attr("data-src"));
                         menuImg.css("background-image", "url(" + $(this).attr("data-src") + ")");
                     });
+
+
                 }
             )
         })

@@ -53,6 +53,7 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                     $html ?></div>
             <?php endforeach; ?>
         </div>
+        <div class="back-top">^</div>
     </div>
 <?php endif; ?>
 
@@ -64,6 +65,8 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             var toolbar = $(".page-header");
             var menubar = $(".sections.nav-sections");
             var topmenu = $(".top-menu li a");
+            var backTop = $(".back-top");
+
 
             $(window).scroll(function (e) {
                 var docTop = $(document).scrollTop();
@@ -77,6 +80,18 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                         topmenu.removeClass("nav-background-grey");
                     }
                 }
+
+                if(docTop >= 600) {
+                    backTop.css("display", "block");
+                }else {
+                    backTop.css("display", "none");
+                }
+
+            });
+
+            backTop.click(function () {
+                $(document).scrollTop(0);
+                // $(this).css("display", "none");
             });
 
         })
