@@ -49,6 +49,7 @@ class SignInPost extends Action
                     return $result;
                 }
             }
+            return $result->setData([['result' => 'fail', 'status_code' => 400, 'error_message' => 'username or password is empty']]);
         }
     }
 }

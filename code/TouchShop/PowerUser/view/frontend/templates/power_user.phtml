@@ -1,13 +1,6 @@
 <?php
 /** @var TouchShop\PowerUser\Block\PowerUser $block */
 
-$data = [
-    "interests:" => [
-        "USB Hubs and Adapters",
-    ],
-    "email:" => "123@qq.com",
-]
-
 ?>
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
@@ -46,11 +39,11 @@ $data = [
         <div class="form-action-control-container">
             <div class="control1">
 
-                <div class="hidden-formkey"><?php echo $block->getBlockHtml('formkey') ?></div>
                 <label for="email">Email address <span>*</span>
                     <input name="email" id="powerUserEmail" type="email" required="required">
                 </label>
             </div>
+            <div class="power-user-hint"></div>
             <div class="power-user-pwd1">
 
 
@@ -77,15 +70,20 @@ $data = [
 <script>
     (function () {
         require(['jquery'], function ($) {
-            var vip = "<?php echo $block->getAjax()?>";
-            console.log(vip);
-            var email = "";
-            var interests = [];
+            var data = <?php echo($block->getAjax())?>;
+            // var vip = data.vip;
+            var vip = 2;
+            // console.log(vip);
+            var email = data.email || '12321@qq.com';
+            var interests = data.interests || ['USB Hubs and Adapters', 'Cell Phone Batteries'];
+            var powerUserEmail = $("#powerUserEmail");
             var inputCheckBox = $(".input-checkbox-container input");
             var powerUserPwd1 = $(".form-action-control-container .power-user-pwd1");
             var powerUserPwd2 = $(".form-action-control-container .power-user-pwd2");
-            // var vip1 = 0;
-            var formkey = $(".hidden-formkey input").val();
+            var submitBtn = $(".form-action-btn button[type='submit']");
+            var vip1 = 0;
+            var hint = $(".power-user-hint");
+            // var hiddenSubmit = $(".form-action-control-container input[type= 'submit']");
             $(function () {
                 //vip == 2
                 if (vip == 2) {
@@ -96,36 +94,53 @@ $data = [
                         }
                     });
                     // email
-                    $("#email").attr({"placeholder": email, "disabled": "disabled"});
+                    $("#powerUserEmail").attr({"placeholder": email, "disabled": "disabled"});
                 }
                 //vip == 1
                 else if (vip == 1) {
-                    //interests
-                    //todo
-                    //email
-                    //todo
+                    // hint.text("you have submit successfully, thanks for your feedback")
+                    // $("#powerUserEmail").attr({"placeholder": email, "disabled": "disabled"});
+                    // sendAjax();
                 }
 
                 // vip == 0
                 else {
-                    email.blur(function () {
-                        if (email.val() != "") {
+
+                    // powerUserEmail.removeAttrs("disabled");
+
+                    powerUserEmail.blur(function () {
+                        if (powerUserEmail.val() != "") {
                             console.log("email blured");
-                            if (email.val() != "") {
-                                let param = {
-                                    email: email.val()
-                                };
-                                sendAjax(url, param, function (res) {
-                                    let vip1 = res.vip
+                            let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
+                            let param = {
+                                email: powerUserEmail.val()
+                            };
+                            sendAjax(url, param, function (res) {
+                                let vip1 = res.vip;
+                                console.log(vip1);
+                                if (vip1 == 0) {
+                                    //todo ---signup
+                                    powerUserPwd1.css("display", "block");
+                                    powerUserPwd2.css("display", "block");
+                                }
+                                //vip = 1 or 2
+                                else {
+                                    //todo ---signin
+                                    powerUserPwd1.css("display", "block");
+                                }
+
+                                submitBtn.click(function (e) {
+                                    // e.preventDefault();
+                                    // return true;
                                     if (vip1 == 0) {
                                         //todo ---signup
-                                        powerUserPwd1.css("display", "block");
-                                        powerUserPwd2.css("display", "block");
+                                        // powerUserPwd1.css("display", "block");
+                                        // powerUserPwd2.css("display", "block");
                                         let param = {
-                                            email:,
-                                            firstname : 'customer',
-                                            lastname : 'user',
-                                            password : ''
+                                            username: powerUserEmail.val(),
+                                            firstname: 'customer',
+                                            lastname: 'user',
+                                            password: ''
                                         };
                                         sendAjax(param, function (res) {
                                             console.log(res);
@@ -134,20 +149,32 @@ $data = [
                                     //vip = 1 or 2
                                     else {
                                         //todo ---signin
-                                        powerUserPwd1.css("display", "block");
+                                        // powerUserPwd1.css("display", "block");
                                         let param = {
-                                            username: '',
-                                            password: ''
+                                            login: {
+                                                username: powerUserEmail.val(),
+                                                password: powerUserPwd1.find("#powerUserPwd1").val()
+                                            }
                                         };
+                                        // console.log("pwd1:", powerUserPwd1.val());
+                                        let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
 
-                                        sendAjax(param, function (res) {
+                                        sendAjax(url, param, function (res) {
                                             console.log(res);
+                                            if (res.status_code == 200) {
+                                                // hiddenSubmit.trigger("click");
+                                                $("form").submit();
+                                            } else {
+                                                //todo
+                                            }
                                         });
                                     }
-                                })
-                            }
-                        )
+                                });
+                            })
+                        }
+                    })
                 }
+
                 function sendAjax(url, param, ajaxHandler) {
                     console.log("sendAjax in");
                     var responseText = $.ajax({
@@ -157,7 +184,7 @@ $data = [
                         data: param,
                         success: function (res) {
                             console.log("ajax ok");
-                            console.log(res);
+                            console.log("res", res);
                             ajaxHandler(res);
                         },
                         error: function (jqXHR, textstatus, errorThrown) {

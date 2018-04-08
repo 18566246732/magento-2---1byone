@@ -47,7 +47,7 @@ class CreatePost extends Action
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         try {
             $post = $this->getRequest()->getPost();
-            $this->state->setAreaCode('frontend');
+//            $this->state->setAreaCode('frontend');
             $websiteId = $this->storeManager->getWebsite()->getId();
             $store = $this->storeManager->getStore();
             $storeId = $store->getId();

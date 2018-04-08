@@ -9,6 +9,7 @@
 namespace TouchShop\PowerUser\Controller\HasSignUp;
 
 
+use Magento\Customer\Model\Customer;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -39,6 +40,8 @@ class Index extends Action
         if (isset($data['email'])) {
             $email = $data['email'];
             $customer = $this->repository->get($email);#todo
+            /**@var $customer Customer*/
+//            $ajax['username'] = $customer->getName();
             if ($customer) {
                 $customer_id = $customer->getId();
                 $this->collection->addFieldToFilter('customer_id', $customer_id);
