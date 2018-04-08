@@ -79,34 +79,21 @@
             var last = doc.scrollTop();
             var contentArr = $(".details-tab");
             var contentTopArr = [];
-            // assuming that the page content offsetTop is constant
-            // var contentTopArr = contentArr.offset().top;
             var detailsMenuAItem = $(".details-menu li a");
             var body = $("body");
             var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
             var sectionTop = productInfo.offset().top - 80;
-
-            function resizeProductContainer(e) {
-                var WINDOW_WIDTH = document.body.offsetWidth
-                var TARGET_WIDTH = $('.page-main').width()
-                e.width(WINDOW_WIDTH)
-                e.css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
-            }
+            var docHeight = doc.height();
+            var windowHeight = $(window).height();
 
             $(document).trigger("Hchanged");
             $(document).resize(function () {
                 console.log("body height:", $(this).height());
             });
-
-
             contentArr.each(function () {
                 contentTopArr.push($(this).offset().top);
             })
-
-
             var len = contentTopArr.length;
-
-            // resizeProductContainer(detailsMenu);
             var detailsMenuItemLen = detailsMenuAItem.length;
             detailsMenuItem.on("click", function (e) {
 
@@ -117,20 +104,23 @@
 
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
-                console.log($(this).index() );
 
-                //bottom situation
-                if($(this).index() < detailsMenuItemLen - 1) {
+                //bottom situation,
+                if (docHeight - windowHeight + 200 < contentTopArr[$(this).index()]) {
+
+                } else {
+
                     $("body,html").animate({'scrollTop': ac - 200}, 0);
                 }
-            })
+            });
 
             $(document).on("Hchanged", function () {
                 console.log("Hchanged !");
                 contentTopArr = [];
+                docHeight = doc.height();
                 contentArr.each(function () {
                     contentTopArr.push($(this).offset().top);
-                })
+                });
             })
 
             // page first loaded
@@ -178,15 +168,8 @@
                 } else { // 'C' => 'B'
                     if (!isUp && (isOverNum >= -80)) {
                         detailsMenu.removeClass("fix-top");
-                        detailsMain.css("margin-top", 90 );
-                        currentStates = 'B';
-                    } // 'C' => 'A'
-                    else if(!isUp && (isOverNum >= 0)){
-                        section.removeClass("back-normal-flow").css("top", 50);
                         detailsMain.css("margin-top", 90);
-                        detailsMenu.removeClass("fix-top");
-                        currentStates = 'A';
-
+                        currentStates = 'B';
                     }
                 }
 
@@ -206,9 +189,7 @@
 
                 // 'C' => 'A'
                 $(".back-top").click(function () {
-                    console.log(currentStates, isOverNum);
-                    if(currentStates === 'C'){
-                        console.log("ok");
+                    if (currentStates === 'C') {
                         section.removeClass("back-normal-flow").css("top", 50);
                         detailsMain.css("margin-top", 90);
                         detailsMenu.removeClass("fix-top");
