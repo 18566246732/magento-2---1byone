@@ -43,133 +43,78 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         $this->categoryRepository = $categoryRepository;
         parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
-//    /**
-//     * @param Node $menuTree
-//     * @param string $childrenWrapClass
-//     * @param int $limit
-//     * @param array $colBrakes
-//     * @return string
-//     * @throws \Magento\Framework\Exception\NoSuchEntityException
-//     */
-//    protected function _getHtml(
-//        \Magento\Framework\Data\Tree\Node $menuTree,
-//        $childrenWrapClass,
-//        $limit,
-//        $colBrakes = []
-//    )
-//    {
-//        $html = parent::_getHtml($menuTree, $childrenWrapClass, $limit, $colBrakes);
-//        $parentLevel = $menuTree->getLevel();
-//        $childLevel = $parentLevel === null ? 0 : $parentLevel + 1;
-//        $menuId = $menuTree->getId();
-//
-//        if ($childLevel == 1 && $this->isCategory($menuId)) {
-//            $html .= '<li class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></li>';
-//        }
-//
-//        return $html;
-//    }
-//
-//
-//    /**
-//     * @param $categoryId
-//     * @return mixed
-//     * @throws \Magento\Framework\Exception\NoSuchEntityException
-//     */
-//    protected function getCategoryImage($categoryId)
-//    {
-//        $categoryIdElements = explode('-', $categoryId);
-//        $category = $this->categoryRepository->get(end($categoryIdElements));
-//        $categoryName = $category->getImageUrl();
-//
-//        return $categoryName;
-//    }
-//
-//    /**
-//     * Check if current menu element corresponds to a category
-//     *
-//     * @param string $menuId Menu element composed ID
-//     *
-//     * @return string
-//     */
-//    protected function isCategory($menuId)
-//    {
-//        $menuId = explode('-', $menuId);
-//
-//        return 'category' == array_shift($menuId);
-//    }
 
-    public function getHtml(
-        $outermostClass = '',
-        $childrenWrapClass = '',
-        $limit = 0
-    )
-    {
-        $root = $this->getMenu();
-        $this->createNodeTree($root->getTree(), $root, $this->getTopmenuArray());
-        return parent::getHtml($outermostClass, $childrenWrapClass, $limit);
-    }
-
-    private function getNodeAsArray($name, $id)
+    public function getTopMenus()
     {
         return [
-            'name' => $name,
-            'id' => $id,
-            'url' => $this->urlBuilder->getUrl($id),
-            'has_active' => false,
-            'is_active' => false
-        ];
-    }
-
-    private function getTopmenuArray()
-    {
-        return [
-            'Brand:blog.html' => [
-                'Blog:blog.html',
-                'Testimony:testimony',
-                'Products:products'
-            ],
-            'Deals:sales' => [
-                'Sales:sales',
-                'Campaign & Lucky Draw:campaign',
-                'Power User:power-user'
-            ],
-            'Support:refund' => [
-                'FAQ & Downloads:support',
-                'Refund & Exchange:refund',
-                'Feedback:feedback'
-            ]
-        ];
-    }
-
-    private function createNodeTree(Tree $tree, $parent, $children)
-    {
-        foreach ($children as $key => $value) {
-            if (is_integer($key)) {
-                $this->createChild($tree, $parent, $value);
-            } else {
-                $node = $this->createChild($tree, $parent, $key);
-                $this->createNodeTree($tree, $node, $value);
-            }
-
-        }
-    }
-
-    private function createChild(Tree $tree, Node $parent, $value)
-    {
-        $explodes = explode(':', $value, 2);
-        $name = $explodes[0];
-        $id = $explodes[1];
-        $node = $this->nodeFactory->create(
             [
-                'data' => $this->getNodeAsArray($name, $id),
-                'idField' => 'id',
-                'tree' => $tree
+                "label" => 'Brand',
+                'url' => $this->getUrl('blog.html'),
+                'image_url' => $this->getMediaUrl('brand_top.png'),
+                'submenus' => [
+                    [
+                        "label" => 'Blog',
+                        'url' => $this->getUrl('blog.html'),
+                        'image_url' => $this->getMediaUrl('blog_top.png'),
+                    ], [
+                        "label" => 'Testimony',
+                        'url' => $this->getUrl('testimony'),
+                        'image_url' => $this->getMediaUrl('testimony_top.png'),
 
+                    ], [
+                        "label" => 'Products',
+                        'url' => $this->getUrl('products'),
+                        'image_url' => $this->getMediaUrl('products_top.png'),
+                    ]
+                ]
+            ],
+            [
+                "label" => 'Deals',
+                'url' => $this->getUrl('deals'),
+                'image_url' => $this->getMediaUrl('deals_top.png'),
+                'submenus' => [
+                    [
+                        "label" => 'Sales',
+                        'url' => $this->getUrl('sales'),
+                        'image_url' => $this->getMediaUrl('sales_top.png'),
+                    ], [
+                        "label" => 'Campaign & Lucky Draw',
+                        'url' => $this->getUrl('campaign'),
+                        'image_url' => $this->getMediaUrl('campaign_top.png'),
+
+                    ], [
+                        "label" => 'Power User',
+                        'url' => $this->getUrl('power-user'),
+                        'image_url' => $this->getMediaUrl('power_user_top.png'),
+                    ]
+                ]
+            ],
+            [
+                "label" => 'Support',
+                'url' => $this->getUrl('support'),
+                'image_url' => $this->getMediaUrl('support_top.png'),
+                'submenus' => [
+                    [
+                        "label" => 'FAQ & Download',
+                        'url' => $this->getUrl('support'),
+                        'image_url' => $this->getMediaUrl('support_top.png'),
+                    ], [
+                        "label" => 'Refund & Exchange',
+                        'url' => $this->getUrl('refund'),
+                        'image_url' => $this->getMediaUrl('refund_top.png'),
+
+                    ], [
+                        "label" => 'Feedback',
+                        'url' => $this->$this->getUrl('feedback'),
+                        'image_url' => $this->getMediaUrl('feedback_top.png'),
+                    ]
+                ]
             ]
-        );
-        $parent->addChild($node);
-        return $node;
+        ];
     }
 
+    public function getMediaUrl($filename)
+    {
+        return $this->getBaseUrl() . 'pub/media/home_page/' . $filename;
+    }
 }
