@@ -107,7 +107,9 @@
             var len = contentTopArr.length;
 
             // resizeProductContainer(detailsMenu);
+            var detailsMenuItemLen = detailsMenuAItem.length;
             detailsMenuItem.on("click", function (e) {
+
 
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#8d131c");
@@ -115,8 +117,12 @@
 
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
-                $("body,html").animate({'scrollTop': ac - 200}, 100);
+                console.log($(this).index() );
 
+                //bottom situation
+                if($(this).index() < detailsMenuItemLen - 1) {
+                    $("body,html").animate({'scrollTop': ac - 200}, 0);
+                }
             })
 
             $(document).on("Hchanged", function () {
@@ -128,12 +134,12 @@
             })
 
             // page first loaded
-            if(currentStates === 'A') {
+            if (currentStates === 'A') {
                 console.log("status", currentStates);
                 if ((isOverNum <= -80)) {
                     section.addClass("back-normal-flow").css("top", sectionTop);
                     detailsMenu.addClass("fix-top");
-                    detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                    detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                     currentStates = 'C';
                 }
             }
@@ -145,9 +151,9 @@
                 isUp = (now > last);
                 last = now;
 
-                for(let i = len; i > 0; i-- ) {
-                    if(now > (contentTopArr[i-1] - 300)) {
-                        $(detailsMenuAItem[i-1]).css("color", "#8d131c");
+                for (let i = len; i > 0; i--) {
+                    if (now > (contentTopArr[i - 1] - 200)) {
+                        $(detailsMenuAItem[i - 1]).css("color", "#8d131c");
                         // cannot use return null; will exit callback function
                         break;
                     }
@@ -163,7 +169,7 @@
                 } else if (currentStates === 'B') {
                     if (isUp && (isOverNum <= -80)) {
                         detailsMenu.addClass("fix-top");
-                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                        detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                         currentStates = 'C';
                     } else if (!isUp && (isOverNum >= 0)) {
                         section.removeClass("back-normal-flow").css("top", 50);
@@ -172,16 +178,17 @@
                 } else {
                     if (!isUp && (isOverNum >= -80)) {
                         detailsMenu.removeClass("fix-top");
+                        detailsMain.css("margin-top", 90 );
                         currentStates = 'B';
                     }
                 }
 
                 $(".product.data.items li").on({
                     click: function () {
-                        if(currentStates === 'A') {
+                        if (currentStates === 'A') {
                             section.addClass("back-normal-flow").css("top", sectionTop);
                             detailsMenu.addClass("fix-top");
-                            detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                            detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                             currentStates = 'C';
                         }
                     }
