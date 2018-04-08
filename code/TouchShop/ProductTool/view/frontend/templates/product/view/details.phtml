@@ -110,7 +110,7 @@
 
                 } else {
 
-                    $("body,html").animate({'scrollTop': ac - 200}, 0);
+                    $("body,html").animate({'scrollTop': ac - 140}, 0);
                 }
             });
 
@@ -125,7 +125,6 @@
 
             // page first loaded
             if (currentStates === 'A') {
-                console.log("status", currentStates);
                 if ((isOverNum <= -80)) {
                     section.addClass("back-normal-flow").css("top", sectionTop);
                     detailsMenu.addClass("fix-top");
@@ -142,7 +141,7 @@
                 last = now;
 
                 for (let i = len; i > 0; i--) {
-                    if (now > (contentTopArr[i - 1] - 200)) {
+                    if (now > (contentTopArr[i - 1] - 140)) {
                         $(detailsMenuAItem[i - 1]).css("color", "#8d131c");
                         // cannot use return null; will exit callback function
                         break;
