@@ -72,8 +72,10 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                     $(".sections").css("background-color", "rgba(255,255,255,0.8)");
                     topmenu.addClass("nav-background-grey");
                 } else {
-                    $(".sections").css("background-color", "rgba(255,255,255,0)");
-                    topmenu.removeClass("nav-background-grey");
+                    if(!topMenuIsHoverd) {
+                        $(".sections").css("background-color", "rgba(255,255,255,0)");
+                        topmenu.removeClass("nav-background-grey");
+                    }
                 }
             });
 
