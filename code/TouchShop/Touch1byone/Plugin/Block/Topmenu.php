@@ -12,6 +12,7 @@ namespace TouchShop\Touch1byone\Plugin\Block;
 use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\Data\Tree\NodeFactory;
 use Magento\Framework\Data\TreeFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 
@@ -26,6 +27,8 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
     /**@var CategoryRepository */
     private $categoryRepository;
 
+    private $media_base_url;
+
 
     public function __construct(
         UrlInterface $url,
@@ -36,15 +39,72 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         array $data = []
     )
     {
+        parent::__construct($context, $nodeFactory, $treeFactory, $data);
         $this->nodeFactory = $nodeFactory;
         $this->urlBuilder = $url;
         $this->categoryRepository = $categoryRepository;
-        parent::__construct($context, $nodeFactory, $treeFactory, $data);
+        $this->media_base_url = $this->_storeManager->getStore()->getBaseUrl('media');
+    }
+
+    // top in top menu
+    private function resolve()
+    {
+        $result = [];
+        try {
+            $root = $this->categoryRepository->get(1);
+            $main_root_ids = $root->getChildren();
+            if (strpos($main_root_ids, ',') === false) {
+                $main_root = $this->categoryRepository->get($main_root_ids);
+                $main_top_ids = $main_root->getChildren();
+                foreach (explode(',', $main_top_ids) as $menu_id) {
+                    $menu = $this->categoryRepository->get($menu_id);
+                    $menu_data = [
+                        'label' => $menu->getName(),
+                        'url' => $menu->getUrl(),
+                        'image_url' => $this->getImageUrl($menu)
+                    ];
+                    $sub_menu_ids = $menu->getChildren();
+                    $sub_menus_data = [];
+                    foreach (explode(',', $sub_menu_ids) as $sub_menu_id) {
+                        $sub_menu = $this->categoryRepository->get($sub_menu_id);
+                        $sub_menus_data[] = [
+                            'label' => $sub_menu->getName(),
+                            'url' => $sub_menu->getUrl(),
+                            'image_url' => $this->getImageUrl($sub_menu)
+                        ];
+                    }
+                    $menu_data['submenus'] = $sub_menus_data;
+                    $result[] = $menu_data;
+                }
+            }
+
+        } catch (NoSuchEntityException $e) {
+        }
+        return $result;
+
+    }
+
+    private function getProductsUrl()
+    {
+        try {
+            $root = $this->categoryRepository->get(1);
+            $main_root_ids = $root->getChildren();
+            if (strpos($main_root_ids, ',') === false) {
+                $main_root = $this->categoryRepository->get($main_root_ids);
+                $main_top_ids = $main_root->getChildren();
+                $id = explode(',', $main_top_ids)[0];
+                return $this->categoryRepository->get($id)->getUrl();
+            }
+        } catch (\Exception $e) {
+        }
     }
 
     public function getTopMenus()
     {
-        return [
+//        $result = $this->resolve();
+
+        $result = [];
+        $to_merge = [
             [
                 "label" => 'Brand',
                 'url' => $this->getUrl('blog.html'),
@@ -61,7 +121,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 
                     ], [
                         "label" => 'Products',
-                        'url' => $this->getUrl('products'),
+                        'url' => $this->getProductsUrl(),
                         'image_url' => $this->getMediaUrl('products_top.png'),
                     ]
                 ]
@@ -109,10 +169,22 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 ]
             ]
         ];
+        return array_merge($result, $to_merge);
     }
 
-    public function getMediaUrl($filename)
+    private function getMediaUrl($filename)
     {
-        return $this->getBaseUrl() . 'pub/media/home_page/' . $filename;
+        return $this->media_base_url . 'home_page/' . $filename;
+    }
+
+    private function getImageUrl($category)
+    {
+        $mapper = [
+
+        ];
+        $name = $category->getName();
+        if (isset($mapper[$name])) {
+            return $this->getMediaUrl($mapper[$name]);
+        }
     }
 }
