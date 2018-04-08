@@ -47,7 +47,7 @@ class Index extends Action
                     if (count($items) > 0) {
                         $ajax['vip'] = 2;
                         $entity = $items[$customer_id];
-                        $ajax['interests'] = $entity->getInterests();
+                        $ajax['interests'] = preg_split(',', $entity->getInterests());
                     } else {
                         $ajax['vip'] = 1;
                     }

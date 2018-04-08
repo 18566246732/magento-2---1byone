@@ -63,7 +63,7 @@ class PowerUser extends Template
                 $entity = $this->powerUserCollection->getItems()[$customer_id];
                 $interests = $entity->getInterests();
                 if ($interests) {
-                    $result['interests'] = $interests;
+                    $result['interests'] = preg_split(',', $interests);
                 }
             } else {
                 $result['vip'] = 1;
