@@ -275,3 +275,8 @@ ul.footer.links {
 .page-wrapper small.copyright {
     background-color: grey;
 }
+
+.fieldset.login #signUp > a {
+    text-transform: capitalize;
+}
+

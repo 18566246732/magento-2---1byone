@@ -28,6 +28,8 @@ ul.top-menu{
 
 .top-menu li a{
     color: grey;
+    font-size: 13.5px;
+    font-weight: initial;
 }
 
 .top-menu li a:hover {
