@@ -9,50 +9,25 @@
 namespace TouchShop\Touch1byone\Block;
 
 
-use Magento\Catalog\Model\ResourceModel\Category\Collection;
-use Magento\Catalog\Block\Adminhtml\Category\Tree;
+use Magento\Catalog\Model\CategoryRepository;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
-use Magento\Catalog\Model\Category;
 
 class CategoryNavigator extends Template
 {
 
-    /**@var Collection */
-    private $collection;
-
-    /** @var Tree */
-    private $tree;
+    /** @var CategoryRepository */
+    private $repository;
 
 
     public function __construct(
-        Collection $collection,
-        Tree $tree,
+        CategoryRepository $repository,
         Template\Context $context,
         array $data = []
     )
     {
         parent::__construct($context, $data);
-        $this->collection = $collection;
-        $this->tree = $tree;
-    }
-
-    private function resolve($tree)
-    {
-        $result = [];
-        $result['text'] = $tree['text'];
-        if (isset($tree['id'])) {
-            /**@var Category $category */
-            $category = $this->collection->getItemById($tree['id']);
-            $result['url'] = $category->getUrl();
-        }
-        if (isset($tree['children'])) {
-            $result['children'] = [];
-            foreach ($tree['children'] as $index => $child) {
-                $child = $this->resolve($child);
-                $result['children'][$index] = $child;
-            }
-        }
-        return $result;
+        $this->repository = $repository;
     }
 
     public function getImgBaseUrl($img_urlName)
@@ -60,25 +35,41 @@ class CategoryNavigator extends Template
         return $this->getBaseUrl() . 'pub/media/icon/' . $img_urlName;
     }
 
+    private function resolve($category)
+    {
+        $result = [
+            'text' => $category->getName(),
+            'url' => $category->getUrl()
+        ];
+
+        $subs = $category->getChildren();
+        if (strpos($subs, ',') !== false) {
+            foreach (explode(',', $subs) as $sub) {
+                try {
+                    $sub_category = $this->repository->get($sub);
+                    $result['children'][] = $this->resolve($sub_category);
+                } catch (NoSuchEntityException $e) {
+                }
+            }
+        }
+
+
+        return $result;
+    }
+
     public function getCategoryTree()
     {
-        $tree = $this->tree->getTree();
-        $result = $this->resolve($tree[0]);
-        $result = $this->bykey_reitem($result, 'url');
-        return json_encode($result);
+        try {
+            $root = $this->repository->get(1);
+            $main_root_ids = $root->getChildren();
+            if (strpos($main_root_ids, ',') === false) {
+                $main_root = $this->repository->get($main_root_ids);
+                $resolved = $this->resolve($main_root);
+                return json_encode($resolved);
+            }
+        } catch (NoSuchEntityException $e) {
+        }
+        return [];
     }
 
-    private function bykey_reitem($arr, $key)
-    {
-        if (!array_key_exists($key, $arr)) {
-            return $arr;
-        }
-        $keys = array_keys($arr);
-        $index = array_search($key, $keys);
-        if ($index !== FALSE) {
-            array_splice($arr, $index, 1);
-        }
-        return $arr;
-
-    }
 }
