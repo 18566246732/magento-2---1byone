@@ -48,6 +48,8 @@ $topmenus = $block->getTopMenus();
 
 
 <script>
+    var topMenuIsHoverd = false;
+
     (function () {
         require(['jquery', 'jquery/ui'], function ($) {
             $(document).ready(function () {
@@ -75,8 +77,8 @@ $topmenus = $block->getTopMenus();
                     // A-->B
                     topMenuItem.on({
                         mouseover: function (e) {
-
                             // $(this).css("color", "#8d131c");
+                            topMenuIsHoverd = true;
                             topmenu.addClass("nav-background-grey");
                             sections.css({
                                 "background-color": "rgba(255, 255, 255, 0.8)",
@@ -92,6 +94,8 @@ $topmenus = $block->getTopMenus();
                         mouseleave: function (e) {
                             setTimeout(function () {
                                 if (!isHoverd) {
+
+                                    topMenuIsHoverd = false;
                                     sections.css("border-bottom", "none");
                                     if ($(document).scrollTop() <= 30) {
                                         topmenu.removeClass("nav-background-grey");
