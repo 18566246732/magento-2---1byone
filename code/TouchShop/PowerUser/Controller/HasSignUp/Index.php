@@ -36,28 +36,29 @@ class Index extends Action
     public function execute()
     {
         $ajax = [];
-        $data = (array)$this->getRequest()->getPost();
-        if (isset($data['email'])) {
-            $email = $data['email'];
-            $customer = $this->repository->get($email);#todo
-            /**@var $customer Customer*/
-//            $ajax['username'] = $customer->getName();
-            if ($customer) {
-                $customer_id = $customer->getId();
-                $this->collection->addFieldToFilter('customer_id', $customer_id);
-                $items = $this->collection->getItems();
-                if (count($items) > 0) {
-                    $ajax['vip'] = 2;
-                    $entity = $items[$customer_id];
-                    $ajax['interests'] = $entity->getInterests();
+        try {
+            $data = (array)$this->getRequest()->getPost();
+            if (isset($data['email'])) {
+                $email = $data['email'];
+                $customer = $this->repository->get($email);#todo
+                if ($customer) {
+                    $customer_id = $customer->getId();
+                    $this->collection->addFieldToFilter('customer_id', $customer_id);
+                    $items = $this->collection->getItems();
+                    if (count($items) > 0) {
+                        $ajax['vip'] = 2;
+                        $entity = $items[$customer_id];
+                        $ajax['interests'] = preg_split(',', $entity->getInterests());
+                    } else {
+                        $ajax['vip'] = 1;
+                    }
                 } else {
-                    $ajax['vip'] = 1;
+                    $ajax['vip'] = 0;
                 }
-            } else {
-                $ajax['vip'] = 0;
             }
-
-
+        } catch (\Exception $e) {
+            $ajax['vip'] = 0;
+            $ajax['error_message'] = $e->getMessage();
         }
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         $result->setData($ajax);

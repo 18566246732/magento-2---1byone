@@ -64,7 +64,7 @@ class CreatePost extends Action
             $result->setData(['result' => 'success', 'status_code' => 200]);
             return $result;
         } catch (\Exception $e) {
-            $result->setData([['result' => 'fail', 'status_code' => 400, 'error_message' => $e->getMessage()]]);
+            $result->setData(['result' => 'fail', 'status_code' => 400]);
             return $result;
         }
     }

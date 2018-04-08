@@ -74,3 +74,7 @@ div.input-checkbox-container div {
 #powerUserEmail:focus {
     box-shadow: 0 0 3px 1px #0a6c9f;
 }
+
+.form-action-control-container div.control input {
+    margin-left: 0;
+}
