@@ -11,49 +11,31 @@ namespace TouchShop\Support\Controller\Index;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\Search\FilterGroupBuilder;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Api\SortOrder;
-use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Controller\ResultFactory;
 use TouchShop\Support\Helper\DownloadFilesHelper;
 use TouchShop\Support\Helper\FAQHelper;
 
 class Index extends Action
 {
-    /** @var SearchCriteriaBuilder */
-    private $searchCriteriaBuilder;
 
-    /** @var FilterBuilder */
-    private $filterBuilder;
 
-    /** @var ProductRepositoryInterface */
-    private $productRepository;
-
-    /** @var SortOrderBuilder */
-    private $sortOrderBuilder;
-
-    /** @var FilterGroupBuilder */
-    private $filterGroupBuilder;
+    private $repository;
+    private $connection;
 
     public function __construct(
         Context $context,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        FilterBuilder $filterBuilder,
-        ProductRepositoryInterface $productRepository,
-        SortOrderBuilder $sortOrderBuilder,
-        FilterGroupBuilder $filterGroupBuilder
+        ProductRepositoryInterface $repository,
+        ResourceConnection $connection
+
     )
     {
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->filterBuilder = $filterBuilder;
-        $this->productRepository = $productRepository;
-        $this->sortOrderBuilder = $sortOrderBuilder;
-        $this->filterGroupBuilder = $filterGroupBuilder;
+
         parent::__construct($context);
+        $this->repository = $repository;
+        $this->connection = $connection->getConnection(ResourceConnection::DEFAULT_CONNECTION);
     }
 
 
@@ -72,26 +54,38 @@ class Index extends Action
     }
 
 
+    /**
+     * @param $data
+     * @return null
+     */
     private function getProducts($data)
     {
         if (isset($data['key']) && isset($data['page_num']) && isset($data['page_size'])) {
-            $this->searchCriteriaBuilder->setFilterGroups($this->getFilterGroups($data['key']));
-            $sortOrder = $this->sortOrderBuilder->setField('suggested')->setDirection(SortOrder::SORT_DESC)->create();
-            $this->searchCriteriaBuilder->setSortOrders([$sortOrder]);
-            $searchCriteria = $this->searchCriteriaBuilder->setCurrentPage($data['page_num'])->setPageSize($data['page_size'])->create();
-            $searchResults = $this->productRepository->getList($searchCriteria);
-            $result = [];
-            $result['total_count'] = $searchResults->getTotalCount();
+
+            $template = $this->getSqlTemplate($data['key']);
+            $page_num = $data['page_num'];
+            $page_size = $data['page_size'];
+            $start = $page_num * $page_size;
+            $end = $start + $page_size - 1;
+            $result = [
+                'total_count' => $this->connection->fetchOne($this->getCount($template, $start, $end))
+            ];
             $products = [];
-            foreach ($searchResults->getItems() as $item) {
-                /**@var $item Product */
-                $products[] = [
-                    'product_name' => $item->getName(),
-                    'image' => '/pub/media/catalog/product' . $item->getImage(),
-                    'faq' => FAQHelper::getFAQ($item),
-                    'download_files' => DownloadFilesHelper::getDownloadFiles($item),
-                    'url' => $item->getProductUrl()
-                ];
+            $product_ids = $this->connection->fetchAll($this->getSearch($template, $start, $end));
+            foreach ($product_ids as $product_id) {
+                try {
+                    $item = $this->repository->getById(intval($product_id['entity_id']));
+                    /**@var $item Product */
+                    $products[] = [
+                        'product_name' => $item->getName(),
+                        'image' => '/pub/media/catalog/product' . $item->getImage(),
+                        'faq' => FAQHelper::getFAQ($item),
+                        'download_files' => DownloadFilesHelper::getDownloadFiles($item),
+                        'url' => $item->getProductUrl()
+                    ];
+                } catch (\Exception $exception) {
+
+                }
             }
             $result['products'] = $products;
             return $result;
@@ -99,19 +93,45 @@ class Index extends Action
         return null;
     }
 
-    private function getFilterGroups($key)
+    private function getCount($template, $start, $end)
     {
-        $filter_fields = [
-            'name',
-            'sku',
-            'amazon_asin'
-        ];
-        $key = '%' . $key . '%';
-        foreach ($filter_fields as $field) {
-            $filter = $this->filterBuilder->setField($field)->setValue($key)->setConditionType('like')->create();
-            $this->filterGroupBuilder->addFilter($filter);
-        }
-        return [$this->filterGroupBuilder->create()];
+        return 'select count(distinct e.entity_id)' . $template . ' limit ' . $start . ',' . $end;
     }
+
+    private function getSearch($template, $start, $end)
+    {
+        return 'select distinct e.entity_id' . $template . ' limit ' . $start . ',' . $end;
+    }
+
+    private function getSqlTemplate($key)
+    {
+        return ' from ' . $this->connection->getTableName('catalog_product_entity') . ' as e '
+            . ' left join ' . $this->connection->getTableName('catalog_product_entity_varchar')
+            . ' as v on e.entity_id=v.entity_id where'
+            . '(select count(1) as num from catalog_product_super_link as s where s.product_id = e.entity_id) = 0 and ('
+            . $this->getLikeStatement('name', $key) . ' or '
+            . $this->getLikeStatement('amazon_asin', $key) . ' or '
+            . '(e.sku like \'%' . $key . '%\'))';
+
+
+    }
+
+    private function getLikeStatement($attribute_code, $key)
+    {
+        $attribute_id = $this->getAttributeId($attribute_code);
+        return '( v.attribute_id=' . $attribute_id . ' and v.value like \'%' . $key . '%\')';
+    }
+
+    private function getAttributeId($attribute)
+    {
+        $tableName = $this->connection->getTableName('eav_attribute');
+        return $this->connection->fetchOne(
+            'select e.attribute_id from '
+            . $tableName
+            . ' as e where e.attribute_code=\''
+            . $attribute . '\' and e.entity_type_id=4;'
+        );
+    }
+
 
 }
