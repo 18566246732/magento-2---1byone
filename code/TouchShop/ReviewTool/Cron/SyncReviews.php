@@ -24,6 +24,7 @@ use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvanced\ReviewAdvancedCollec
 use TouchShop\ReviewTool\Model\ResourceModel\ReviewAdvancedResourceModel;
 use TouchShop\ReviewTool\Model\ReviewAdvanced;
 use TouchShop\ReviewTool\Model\ReviewAdvancedFactory;
+use TouchShop\ReviewTool\Ui\Component\Listing\Columns\Status;
 
 class SyncReviews
 {
@@ -176,6 +177,7 @@ class SyncReviews
         $advanced->setOrigin($review['review_id']);
         $advanced->setImageUrls($review['imgs_url']);
         $advanced->setVideoUrls($review['video_url']);
+        $advanced->setStatus(Status::APPROVED);
 
         $this->reviewAdvancedResourceModel->save($advanced);
     }

@@ -43,13 +43,11 @@ class CategoryNavigator extends Template
         ];
 
         $subs = $category->getChildren();
-        if (strpos($subs, ',') !== false) {
-            foreach (explode(',', $subs) as $sub) {
-                try {
-                    $sub_category = $this->repository->get($sub);
-                    $result['children'][] = $this->resolve($sub_category);
-                } catch (NoSuchEntityException $e) {
-                }
+        foreach (explode(',', $subs) as $sub) {
+            try {
+                $sub_category = $this->repository->get($sub);
+                $result['children'][] = $this->resolve($sub_category);
+            } catch (NoSuchEntityException $e) {
             }
         }
 
