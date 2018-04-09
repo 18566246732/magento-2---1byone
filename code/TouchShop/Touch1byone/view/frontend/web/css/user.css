@@ -9,7 +9,7 @@
 }
 
 div.login-back {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@ div.controller {
     justify-content: space-around;
 }
 
-div.controller p{
+div.controller p {
 
 }
 
@@ -93,11 +93,12 @@ div.controller a:last-child {
     display: flex;
     justify-content: space-between;
 }
+
 /*.sign-up .user-name label {*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: space-around;*/
-    /*width: 50%;*/
+/*display: flex;*/
+/*align-items: center;*/
+/*justify-content: space-around;*/
+/*width: 50%;*/
 /*}*/
 
 .sign-up input {
@@ -108,12 +109,12 @@ div.controller a:last-child {
     width: 150px;
 }
 
-.sign-up .user-name label{
+.sign-up .user-name label {
     flex-shrink: 0;
 }
 
 /*.login-back .sign-panel.sign-up .main {*/
-    /*height: 45%;*/
+/*height: 45%;*/
 /*}*/
 
 .sign-up .main label:last-child {
@@ -124,7 +125,6 @@ div.controller a:last-child {
 .sign-up .main {
     height: 50%;
 }
-
 
 /*login panel content style*/
 
@@ -141,6 +141,7 @@ div.controller a:last-child {
 .action.login.primary {
     width: 100%;
 }
+
 .fieldset.login .secondary {
 
 }
@@ -151,9 +152,7 @@ div.controller a:last-child {
     align-items: right;
 }
 
-
 /*third party login */
-
 
 small.copyright {
     padding: 0;
@@ -176,6 +175,15 @@ small.copyright {
     display: flex;
 }
 
+.social-btn .btn-social {
+    display: initial;
+    border-radius: 0;
+}
+
+.account-social-login .actions-toolbar.social-btn {
+    width: initial;
+    margin-right: 6px;
+}
 
 /*sign up content style*/
 
@@ -184,13 +192,12 @@ small.copyright {
     align-items: center;
 }
 
-
 .fieldset.create.info {
     display: flex;
     flex-wrap: wrap;
 }
 
-.field-name-firstname ,.field-name-lastname {
+.field-name-firstname, .field-name-lastname {
     width: 45%;
 }
 
@@ -242,6 +249,6 @@ small.copyright {
     font-size: 14px;
 }
 
-.user-submenu > ul li a:hover{
+.user-submenu > ul li a:hover {
     color: #2e99ff;
 }
