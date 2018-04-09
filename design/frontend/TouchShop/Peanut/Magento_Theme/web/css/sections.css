@@ -13,7 +13,7 @@
 }
 
 .back-top {
-    background-color: #8d131c;
+    background-color: grey;
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -26,8 +26,9 @@
     text-align: center;
     display: none;
     border-radius: 4px;
+    font-weight: bold;
 }
 
 .back-top:hover {
-    background-color: #0a6c9f;
+    background-color: #8d131c;
 }

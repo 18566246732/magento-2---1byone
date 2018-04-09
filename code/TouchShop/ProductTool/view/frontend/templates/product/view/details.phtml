@@ -42,7 +42,7 @@
                     $label = $block->getChildData($alias, 'title');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
-                    $alias ?>">
+                    $label ?>">
                         <a class="details-tab" href="#<?= /* @escapeNotVerified */
                         $alias ?>"
                            id="tab-label-<?= $index ?>"
@@ -72,62 +72,66 @@
             var detailsMenuItem = $(".details-menu li");
             var doc = $(document);
             var section = $(".sections");
-            var sectionTop = 50;
+            // var sectionTop = 50;
             var currentStates = 'A';
             var isUp = false;
             var detailsMain = $(".details-main");
             var last = doc.scrollTop();
             var contentArr = $(".details-tab");
             var contentTopArr = [];
-            // assuming that the page content offsetTop is constant
-            // var contentTopArr = contentArr.offset().top;
             var detailsMenuAItem = $(".details-menu li a");
             var body = $("body");
+            var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
+            var sectionTop = productInfo.offset().top - 80;
+            var docHeight = doc.height();
+            var windowHeight = $(window).height();
 
-            function resizeProductContainer(e) {
-                var WINDOW_WIDTH = document.body.offsetWidth
-                var TARGET_WIDTH = $('.page-main').width()
-                e.width(WINDOW_WIDTH)
-                e.css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
-            }
-
+            $(document).trigger("Hchanged");
             $(document).resize(function () {
                 console.log("body height:", $(this).height());
             });
-
-
-
-
-
             contentArr.each(function () {
                 contentTopArr.push($(this).offset().top);
             })
-
-
             var len = contentTopArr.length;
-
-            // resizeProductContainer(detailsMenu);
+            var detailsMenuItemLen = detailsMenuAItem.length;
             detailsMenuItem.on("click", function (e) {
+
 
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#8d131c");
-                location.href = "#tab-label-" + $(this).index();
+                location.href = "#tab-label-" + $(this).text();
 
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
-                $("body,html").animate({'scrollTop': ac - 200}, 100);
 
-            })
+                //bottom situation,
+                if (docHeight - windowHeight + 200 < contentTopArr[$(this).index()]) {
+
+                } else {
+
+                    $("body,html").animate({'scrollTop': ac - 140}, 0);
+                }
+            });
 
             $(document).on("Hchanged", function () {
                 console.log("Hchanged !");
                 contentTopArr = [];
+                docHeight = doc.height();
                 contentArr.each(function () {
                     contentTopArr.push($(this).offset().top);
-                })
+                });
             })
 
-
+            // page first loaded
+            if (currentStates === 'A') {
+                if ((isOverNum <= -80)) {
+                    section.addClass("back-normal-flow").css("top", sectionTop);
+                    detailsMenu.addClass("fix-top");
+                    detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
+                    currentStates = 'C';
+                }
+            }
 
             doc.scroll(function () {
 
@@ -136,15 +140,15 @@
                 isUp = (now > last);
                 last = now;
 
-                for(let i = len; i > 0; i-- ) {
-                    if(now > (contentTopArr[i-1] - 300)) {
-                        $(detailsMenuAItem[i-1]).css("color", "#8d131c");
+                for (let i = len; i > 0; i--) {
+                    if (now > (contentTopArr[i - 1] - 140)) {
+                        $(detailsMenuAItem[i - 1]).css("color", "#8d131c");
                         // cannot use return null; will exit callback function
                         break;
                     }
                 }
 
-                var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
+                isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
                 sectionTop = productInfo.offset().top - 80;
                 if (currentStates === 'A') {
                     if (isOverNum <= 0 && isUp) {
@@ -154,45 +158,46 @@
                 } else if (currentStates === 'B') {
                     if (isUp && (isOverNum <= -80)) {
                         detailsMenu.addClass("fix-top");
-                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                        detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                         currentStates = 'C';
                     } else if (!isUp && (isOverNum >= 0)) {
                         section.removeClass("back-normal-flow").css("top", 50);
                         currentStates = 'A';
                     }
-                } else {
+                } else { // 'C' => 'B'
                     if (!isUp && (isOverNum >= -80)) {
                         detailsMenu.removeClass("fix-top");
+                        detailsMain.css("margin-top", 90);
                         currentStates = 'B';
                     }
                 }
 
+
+                //'A' => 'C'
                 $(".product.data.items li").on({
                     click: function () {
-                        if(currentStates === 'A') {
+                        if (currentStates === 'A') {
                             section.addClass("back-normal-flow").css("top", sectionTop);
                             detailsMenu.addClass("fix-top");
-                            detailsMain.css("margin-top", detailsMenu.outerHeight(true));
+                            detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                             currentStates = 'C';
                         }
                     }
                 });
-                // page first loaded
-                if(currentStates === 'A') {
-                    if ((isOverNum <= -80)) {
-                        section.addClass("back-normal-flow").css("top", sectionTop);
-                        detailsMenu.addClass("fix-top");
-                        detailsMain.css("margin-top", detailsMenu.outerHeight(true));
-                        currentStates = 'C';
+
+
+                // 'C' => 'A'
+                $(".back-top").click(function () {
+                    if (currentStates === 'C') {
+                        section.removeClass("back-normal-flow").css("top", 50);
+                        detailsMain.css("margin-top", 90);
+                        detailsMenu.removeClass("fix-top");
+                        currentStates = 'A';
                     }
-                }
+                });
+
+
             });
-
-
-
-
-
-
 
         })
     })()

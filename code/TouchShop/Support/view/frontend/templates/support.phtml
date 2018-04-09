@@ -215,7 +215,7 @@
                             }
 
                             $(fileContainer[index]).html(resHtml);
-                            $(prodName).text(dataPName);
+                            $(prodName[index]).text(dataPName);
                             // console.log("datafaq:", dataFAQ);
                             // dataFAQ.forEach(function (e) {
                             //     console.log(e);
@@ -229,7 +229,7 @@
                                 // faqCover.css("display", "block");
                                 // $(faqQ).text(dataFAQ[0].question);
                                 // $(faqA).text(dataFAQ[0].answer);
-                                $(this).attr("href", dataUrl + "#tab-label-4");
+                                $(this).attr("href", dataUrl + "#tab-label-FAQ");
 
                             });
                             $(prodDetails[index]).attr("href", dataUrl);
