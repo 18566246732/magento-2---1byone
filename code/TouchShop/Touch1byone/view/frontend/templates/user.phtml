@@ -49,12 +49,13 @@
 
 
 <script>
-    (function () {
         require(['jquery', 'jquery/ui'], function ($) {
             var signUp = $("#signUp"),
                 signIn = $("#signIn"),
                 signUpPanel = $(".sign-up"),
-                signInPanel = $(".sign-in");
+                signInPanel = $(".sign-in"),
+                socialLoginIcon = $(".third-party-login .btn-social");
+
 
             <?php if ($block->hasLogin()):?>
 
@@ -88,10 +89,14 @@
                 signInPanel.css("display", "none");
                 signUpPanel.css("display", "flex");
             });
-            <?php endif;?>
-        })
 
-    })()
+            socialLoginIcon.each(function (index, e) {
+                let txtArr = $(e).text().trim().split(" ");
+                console.log($(e), txtArr, $(e).text());
+                // $(e).text(txtArr.pop());
+            });
+        <?php endif;?>
+        })
 </script>
 
 <script>

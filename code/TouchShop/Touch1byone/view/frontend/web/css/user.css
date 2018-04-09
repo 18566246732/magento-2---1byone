@@ -153,9 +153,7 @@ div.controller a:last-child {
 
 
 /*third party login */
-.third-party-login {
-    margin-top: 30px;
-}
+
 
 small.copyright {
     padding: 0;
@@ -170,8 +168,12 @@ small.copyright {
     background: none;
 }
 
-.pslogin-block .pslogin-clearfix::after {
-    content: none;
+.footer.content .block {
+    float: initial;
+}
+
+.block.social-login-authentication-channel.account-social-login .block-content {
+    display: flex;
 }
 
 
@@ -215,7 +217,7 @@ small.copyright {
     background-color: white;
     box-shadow: 1px 2px 3px .5px grey;
     width: 100px;
-    height: 80px;
+    height: 70px;
     position: absolute;
     padding: 8px;
     display: none;

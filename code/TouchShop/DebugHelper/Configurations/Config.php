@@ -11,5 +11,5 @@ namespace TouchShop\DebugHelper\Configurations;
 
 class Config
 {
-    const WRITE_LAYOUT = false;
+    const WRITE_LAYOUT = true;
 }
