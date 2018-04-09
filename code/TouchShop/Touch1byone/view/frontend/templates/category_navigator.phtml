@@ -15,7 +15,10 @@
 </div>
 
 <script>
+
+
     (function () {
+        require(['jquery'], function ($) {
         function toggle(tag, fn) {
             var status;
             if (tag.classList.contains('active')) {
@@ -87,8 +90,12 @@
                     })
                 }
             }
+            icon.forEach(function (e) {
+                $(e).trigger("click");
+            });
         }
 
         init()
+        })
     })()
 </script>

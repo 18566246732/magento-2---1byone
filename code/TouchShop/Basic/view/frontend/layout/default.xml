@@ -32,7 +32,6 @@
                 </arguments>
             </block>
         </referenceBlock>
-
         <!--<move element="logo" destination="catalog.topnav" before="-"/>-->
         <move element="logo" destination="store.menu" before="-"/>
         <move element="top.search" destination="header.panel" after="header.links"/>
@@ -44,6 +43,7 @@
         <referenceBlock name="authorization-link-login" remove="true"/>
         <referenceBlock name="breadcrumbs" remove="true" />
         <move element="form.subscribe" destination="footer_right" before="-"/>
+
     </body>
 
     <head>
