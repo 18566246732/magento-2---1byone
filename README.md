@@ -9,7 +9,7 @@
 + disable DebugHelper Shopial_Facebook
 + change theme to Peanut: content->configuration
 + install extension:  
-    + plumrocket/module-psloginfree
+    + mageplaza/magento-2-social-login
     + mageplaza/magento-2-blog-extension
     + beeketing/magento-countdowncart
 + admin configurations:

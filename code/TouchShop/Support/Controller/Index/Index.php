@@ -63,10 +63,10 @@ class Index extends Action
         if (isset($data['key']) && isset($data['page_num']) && isset($data['page_size'])) {
 
             $template = $this->getSqlTemplate($data['key']);
-            $page_num = $data['page_num'];
+            $page_num = $data['page_num'] - 1;
             $page_size = $data['page_size'];
             $start = $page_num * $page_size;
-            $end = $start + $page_size - 1;
+            $end = $start + $page_size;
             $result = [
                 'total_count' => $this->connection->fetchOne($this->getCount($template, $start, $end))
             ];

@@ -41,13 +41,13 @@
                     <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button></div>
                     <div id="signUp"><a href="#">sign up</a></div>
                 </div>
-                <div class="third-party-login">
-                    <div>Using third party account to log in</div>
-                    <small class="copyright">
-                        <?php echo $this->getLayout()->createBlock("Plumrocket\SocialLoginFree\Block\Buttons")->setTemplate("Plumrocket_SocialLoginFree::customer/form/login/buttons.phtml")->toHtml(); ?>
-                        <span><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></span>
-                    </small>
-                </div>
+<!--                <div class="third-party-login">-->
+<!--                    <div>Using third party account to log in</div>-->
+<!--                    <small class="copyright">-->
+<!--                        --><?php //echo $this->getLayout()->createBlock("Plumrocket\SocialLoginFree\Block\Buttons")->setTemplate("Plumrocket_SocialLoginFree::customer/form/login/buttons.phtml")->toHtml(); ?>
+<!--                        <span>--><?php ///* @escapeNotVerified */ echo $block->getCopyright() ?><!--</span>-->
+<!--                    </small>-->
+<!--                </div>-->
             </fieldset>
         </form>
     </div>
