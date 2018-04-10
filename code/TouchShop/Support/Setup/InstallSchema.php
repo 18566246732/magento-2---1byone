@@ -67,6 +67,18 @@ class InstallSchema implements InstallSchemaInterface
                     Table::TYPE_TEXT,
                     255,
                     ['nullable' => true]
+                )->addColumn(
+                    'store_id',
+                    Table::TYPE_SMALLINT,
+                    null,
+                    ['unsigned' => true, 'default' => '0'],
+                    'Store id'
+                )->addForeignKey(
+                    $installer->getFkName(self::TABLE_NAME, 'store_id', 'store', 'store_id'),
+                    'store_id',
+                    $installer->getTable('store'),
+                    'store_id',
+                    Table::ACTION_SET_NULL
                 )->addForeignKey(
                     $installer->getFkName(
                         'catalog_product_entity',

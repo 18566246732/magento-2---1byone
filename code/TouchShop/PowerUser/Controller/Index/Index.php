@@ -12,6 +12,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\PowerUser\Helper\PowerUserHelper;
 use TouchShop\PowerUser\Model\PowerUserModelFactory;
 use TouchShop\PowerUser\Model\ResourceModel\PowerUserResourceModel;
@@ -21,17 +22,20 @@ class Index extends Action
     private $powerUserModelFactory;
     private $powerUserResourceModel;
     private $session;
+    private $storeManger;
 
     public function __construct(
         Context $context,
         PowerUserModelFactory $modelFactory,
         PowerUserResourceModel $resourceModel,
+        StoreManagerInterface $storeManager,
         Session $session
     )
     {
         parent::__construct($context);
         $this->powerUserModelFactory = $modelFactory;
         $this->powerUserResourceModel = $resourceModel;
+        $this->storeManger = $storeManager;
         $this->session = $session;
     }
 
@@ -49,7 +53,8 @@ class Index extends Action
                 $powerUser = $this->powerUserModelFactory->create();
                 $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
                     ->setEmail($post['email'])
-                    ->setCustomerId($this->session->getCustomerId());
+                    ->setCustomerId($this->session->getCustomerId())
+                    ->setStoreId($this->storeManger->getStore()->getId());
                 $this->powerUserResourceModel->save($powerUser);
 
                 // Display the succes form validation message

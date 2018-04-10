@@ -10,22 +10,31 @@ namespace TouchShop\Support\Block;
 
 
 use Magento\Backend\Block\Template\Context;
+use Magento\Customer\Model\ResourceModel\CustomerRepository;
+use Magento\Customer\Model\Session;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
+use TouchShop\Basic\Helper\CustomerHelper;
 use TouchShop\Support\Helper\FAQHelper;
 
 class FAQTab extends Template
 {
     protected $_registry;
+    private $repository;
+    private $session;
 
     public function __construct(
         Context $context,
         Registry $registry,
+        Session $session,
+        CustomerRepository $repository,
         array $data = []
     )
     {
-        $this->_registry = $registry;
         parent::__construct($context, $data);
+        $this->_registry = $registry;
+        $this->session = $session;
+        $this->repository = $repository;
     }
 
     public function getFAQ()
@@ -34,9 +43,14 @@ class FAQTab extends Template
         return FAQHelper::getFAQ($product);
     }
 
-    public function addFaqAction()
+    public function getFaqAction()
     {
         return $this->getBaseUrl() . 'support/add/faq';
+    }
+
+    public function getLoginInfo()
+    {
+        return CustomerHelper::getLoginInfo($this->session, $this->repository);
     }
 
 }
