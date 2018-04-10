@@ -8,9 +8,11 @@
 
 namespace TouchShop\Feedback\Controller\Index;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\Feedback\Model\Complaint;
 use TouchShop\Feedback\Model\ComplaintFactory;
 
@@ -21,17 +23,23 @@ class Index extends Action
 
     /** @var \TouchShop\Feedback\Model\ResourceModel\Complaint */
     private $resourceModel;
+    private $storeManager;
+    private $session;
 
 
     public function __construct(
         Context $context,
         ComplaintFactory $complaintFactory,
+        Session $session,
+        StoreManagerInterface $storeManager,
         \TouchShop\Feedback\Model\ResourceModel\Complaint $resourceModel
     )
     {
         parent::__construct($context);
         $this->complaintFactory = $complaintFactory;
         $this->resourceModel = $resourceModel;
+        $this->session = $session;
+        $this->storeManager = $storeManager;
     }
 
 
@@ -50,7 +58,12 @@ class Index extends Action
             $complaint->setEmail($post['email'])
                 ->setName($post['name'])
                 ->setOrder($post['order'])
-                ->setDetail($post['detail']);
+                ->setDetail($post['detail'])
+                ->setStoreId($this->storeManager->getStore()->getId());
+
+            if ($this->session->isLoggedIn()) {
+                $complaint->setCustomerId($this->session->getCustomerId());
+            }
 
             $this->resourceModel->save($complaint);
 
