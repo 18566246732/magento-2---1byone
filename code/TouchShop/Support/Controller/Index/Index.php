@@ -66,7 +66,7 @@ class Index extends Action
             $page_num = $data['page_num'] - 1;
             $page_size = $data['page_size'];
             $start = $page_num * $page_size;
-            $end = $start + $page_size;
+            $end = $page_size;
             $result = [
                 'total_count' => $this->connection->fetchOne($this->getCount($template))
             ];
@@ -95,7 +95,7 @@ class Index extends Action
 
     private function getCount($template)
     {
-        return 'select count(distinct e.entity_id)' . $template ;
+        return 'select count(distinct e.entity_id)' . $template;
     }
 
     private function getSearch($template, $start, $end)
