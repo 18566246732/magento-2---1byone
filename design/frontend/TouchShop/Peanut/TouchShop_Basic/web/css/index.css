@@ -146,11 +146,28 @@ div.swatch-option.text {
 .product-reviews-summary.short {
     height: 25px;
     margin-bottom: 0;
+    display: inline-block;
 }
 
 .product-item .price-box {
     margin: 0;
     padding: 10px 0 10px;
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 20px;
+}
+
+strong.product.name.product-item-name {
+    padding-bottom: 25px;
+}
+
+/*review */
+.product-item .product-reviews-summary .reviews-actions {
+    display: none;
+}
+
+a.product-item-link {
+    height: 40px;
 }
 
 /*.product-item-name {*/

@@ -57,7 +57,7 @@
 <script>
     (function () {
 
-        require(["jquery", "simplePagination"], function ($) {
+        require(["jquery", "simplePagination", "dotdotdot"], function ($) {
 
             var currentPage = 1,
                 imgArr = $(".flex-item img"),
@@ -97,6 +97,7 @@
                     let postCover = $(this).next();
                     postCover.css("display", "flex");
                 });
+
 
                 //1. page first loaded , send ajax, display result
 
@@ -170,6 +171,7 @@
                     console.log("data is zero");
                 } else {
                     let productsArr = res.products;
+                    let productsArrLen = productsArr.length;
                     // let totalP = Math.ceil(total / 8);
 
                     if(isSearching || isPageIni ) {
@@ -188,7 +190,8 @@
                     isPageIni = false;
 
                     imgArr.each(function (index, ele) {
-                        if(index <= total -1) {
+
+                        if(index < productsArrLen) {
                             $(post[index]).css("visibility", "visible");
                             // console.log(productsArr, index);
                             ele.src = "../" + productsArr[index].image;
@@ -215,6 +218,7 @@
 
                             $(fileContainer[index]).html(resHtml);
                             $(prodName[index]).text(dataPName);
+                            $(prodName[index]).dotdotdot();
                             // console.log("datafaq:", dataFAQ);
                             // dataFAQ.forEach(function (e) {
                             //     console.log(e);

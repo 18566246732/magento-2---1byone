@@ -71,10 +71,18 @@ div.input-checkbox-container div {
     display: none;
 }
 
-#powerUserEmail:focus {
+#powerUserEmail:focus ,#powerUserPwd1:focus ,#powerUserPwd2:focus {
     box-shadow: 0 0 3px 1px #0a6c9f;
 }
 
 .form-action-control-container div.control input {
     margin-left: 0;
+}
+
+.power-user-hint {
+    color: red;
+}
+
+.form-action-control-container label {
+    padding-left: 4px;
 }
