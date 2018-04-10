@@ -2,16 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: jing
- * Date: 3/31/18
- * Time: 11:38 PM
+ * Date: 4/10/18
+ * Time: 1:13 AM
  */
 
-namespace TouchShop\ReviewTool\Model\Preference;
+namespace TouchShop\ProductTool\Model\Preference;
 
 
-use Magento\Review\Block\Product\Review;
+use Magento\Catalog\Block\Product\View\Description;
 
-class ReviewPreference extends Review
+class DescriptionPreference extends Description
 {
     public function getCurrentProductId()
     {

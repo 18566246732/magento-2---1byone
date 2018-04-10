@@ -5,6 +5,8 @@
                 type="TouchShop\ProductTool\Block\Product\ProductsList"/>
     <preference for="Magento\Catalog\Block\Product\ListProduct"
                 type="TouchShop\ProductTool\Block\Product\ListProduct"/>
+    <preference for="Magento\Catalog\Block\Product\View\Description"
+                type="TouchShop\ProductTool\Model\Preference\DescriptionPreference"/>
     <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
         <plugin name="TouchShop_ProductTool::customToolbar"
                 type="TouchShop\ProductTool\Plugin\Model\Toolbar"/>

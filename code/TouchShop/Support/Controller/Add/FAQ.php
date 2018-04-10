@@ -13,6 +13,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\Support\Model\FAQModel;
 use TouchShop\Support\Model\FAQModelFactory;
@@ -27,13 +28,15 @@ class FAQ extends Action
     private $faqResourceModel;
     private $storeManager;
     private $session;
+    private $registry;
 
     public function __construct(
         Context $context,
         Session $session,
         StoreManagerInterface $storeManager,
         FAQModelFactory $modelFactory,
-        FAQResourceModel $resourceModel
+        FAQResourceModel $resourceModel,
+        Registry $registry
     )
     {
         parent::__construct($context);
@@ -41,6 +44,8 @@ class FAQ extends Action
         $this->faqResourceModel = $resourceModel;
         $this->session = $session;
         $this->storeManager = $storeManager;
+        $this->registry = $registry;
+
     }
 
 
@@ -56,7 +61,7 @@ class FAQ extends Action
             /** @var FAQModel */
             $faqModel = $this->faqModelFactory->create();
             $faqModel->setContent($post['content'])
-                ->setProductId($post['productId'])
+                ->setProductId($this->registry->registry('current_product'))
                 ->setCustomerId($this->session->getCustomerId())
                 ->setEmail($post['email'])
                 ->setStoreId($this->storeManager->getStore()->getId());
