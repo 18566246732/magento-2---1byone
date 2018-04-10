@@ -29,7 +29,6 @@ class Index extends Action
         Context $context,
         ProductRepositoryInterface $repository,
         ResourceConnection $connection
-
     )
     {
 
