@@ -6,7 +6,7 @@
       href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_PowerUser::css/PowerUser.css") ?>">
-<form action="<?php echo $block->getFormAction() ?>" method="post">
+<form action="<?php echo $block->getFormAction() ?>" method="post" class="power-user-form">
 
     <div class="power-user-banner">
         <img src="<?php echo $block->getBaseImgUrl('power-user-banner.jpg') ?>" alt="">
@@ -87,6 +87,7 @@
             var emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
             // var hiddenSubmit = $(".form-action-control-container input[type= 'submit']");
             $(function () {
+                console.log(vip);
                 //vip == 2
                 if (vip == 2) {
                     // interests
@@ -99,7 +100,7 @@
                     $("#powerUserEmail").attr({"placeholder": email, "disabled": "disabled"});
                     submitBtn.off("click");
                     submitBtn.click(function () {
-                        $("form").submit();
+                        $(".power-user-form").submit();
                     })
 
                 }
@@ -109,7 +110,9 @@
                     $("#powerUserEmail").attr({"placeholder": email, "disabled": "disabled"});
                     submitBtn.off("click");
                     submitBtn.click(function () {
-                        $("form").submit();
+                        console.log("form submit");
+                        $(".power-user-form").submit();
+                        console.log("form submited");
                     })
                 }
 
@@ -134,7 +137,7 @@
                                     //display logic
                                     if (vip1 == 0) {
                                         //todo ---signup
-                                        hint.text("You haven't registered yet, quickly sign up by clicking the submit button and submit your interests");
+                                        hint.text("You haven't registered yet, quickly sign up and submit your interests");
                                         powerUserPwd1Con.css("display", "block");
                                         powerUserPwd2Con.css("display", "block");
                                         powerUserPwd1.val("");
@@ -144,6 +147,7 @@
                                     else {
                                         //todo ---signin
                                         powerUserPwd1Con.css("display", "block");
+                                        powerUserPwd2Con.css("display", "none");
                                         powerUserPwd1.val("");
                                         // $("form").reset();
                                         // console.log(powerUserPwd1.val());
@@ -158,7 +162,7 @@
 
                                     submitBtn.off("click");
                                     submitBtn.on("click", function (e) {
-                                        e.preventDefault();
+                                        // e.preventDefault();
                                         // return true;
                                         if (powerUserPwd1Con.css("display") == "block") {
                                             if (powerUserPwd1.val() != "") {
@@ -176,7 +180,7 @@
                                                         sendAjax(url, param, function (res) {
                                                             console.log(res);
                                                             if (res.status_code == 200) {
-                                                                $("form").submit();
+                                                                $(".power-user-form").submit();
                                                             } else {
                                                                 hint.text(res.error_message);
                                                             }
@@ -199,7 +203,7 @@
                                                     sendAjax(url, param, function (res) {
                                                         console.log(res);
                                                         if (res.status_code == 200) {
-                                                            $("form").submit();
+                                                            $(".power-user-form").submit();
                                                         } else {
                                                             hint.text(res.error_message);
                                                         }
