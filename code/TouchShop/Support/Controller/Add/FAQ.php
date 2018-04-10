@@ -9,9 +9,11 @@
 namespace TouchShop\Support\Controller\Add;
 
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\Support\Model\FAQModel;
 use TouchShop\Support\Model\FAQModelFactory;
 use TouchShop\Support\Model\ResourceModel\FAQResourceModel;
@@ -23,9 +25,13 @@ class FAQ extends Action
 
     /** @var FAQResourceModel */
     private $faqResourceModel;
+    private $storeManager;
+    private $session;
 
     public function __construct(
         Context $context,
+        Session $session,
+        StoreManagerInterface $storeManager,
         FAQModelFactory $modelFactory,
         FAQResourceModel $resourceModel
     )
@@ -33,6 +39,8 @@ class FAQ extends Action
         parent::__construct($context);
         $this->faqModelFactory = $modelFactory;
         $this->faqResourceModel = $resourceModel;
+        $this->session = $session;
+        $this->storeManager = $storeManager;
     }
 
 
@@ -44,21 +52,20 @@ class FAQ extends Action
     public function execute()
     {
         $post = (array)$this->getRequest()->getPost();
-        $post = [
-            'content' => 'It is an awesome question!',
-            'productId' => 1801
-        ];
         if (!empty($post)) {
             /** @var FAQModel */
             $faqModel = $this->faqModelFactory->create();
             $faqModel->setContent($post['content'])
-                ->setProductId($post['productId']);
+                ->setProductId($post['productId'])
+                ->setCustomerId($this->session->getCustomerId())
+                ->setEmail($post['email'])
+                ->setStoreId($this->storeManager->getStore()->getId());
 
             $this->faqResourceModel->save($faqModel);
 
             // Display the succes form validation message
             $this->messageManager->addSuccessMessage(
-                'Thank you for you feedback, we will contact you as soon as possible to solve this problem'
+                'Success! we will contact you as soon as possible to solve this problem'
             );
 
             // Redirect to your form page (or anywhere you want...)

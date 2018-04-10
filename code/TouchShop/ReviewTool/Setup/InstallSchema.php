@@ -124,6 +124,18 @@ class InstallSchema implements InstallSchemaInterface
             Table::TYPE_TEXT,
             255,
             ['nullable' => true, 'default' => 'Pending']
+        )->addColumn(
+            'store_id',
+            Table::TYPE_SMALLINT,
+            null,
+            ['unsigned' => true, 'default' => '0'],
+            'Store id'
+        )->addForeignKey(
+            $installer->getFkName(self::TABLE_NAME, 'store_id', 'store', 'store_id'),
+            'store_id',
+            $installer->getTable('store'),
+            'store_id',
+            Table::ACTION_SET_NULL
         )->addIndex(
             $installer->getIdxName(
                 $installer->getTable(self::TABLE_NAME),
