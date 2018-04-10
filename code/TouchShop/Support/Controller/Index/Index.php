@@ -68,7 +68,7 @@ class Index extends Action
             $start = $page_num * $page_size;
             $end = $start + $page_size;
             $result = [
-                'total_count' => $this->connection->fetchOne($this->getCount($template, $start, $end))
+                'total_count' => $this->connection->fetchOne($this->getCount($template))
             ];
             $products = [];
             $product_ids = $this->connection->fetchAll($this->getSearch($template, $start, $end));
@@ -93,9 +93,9 @@ class Index extends Action
         return null;
     }
 
-    private function getCount($template, $start, $end)
+    private function getCount($template)
     {
-        return 'select count(distinct e.entity_id)' . $template . ' limit ' . $start . ',' . $end;
+        return 'select count(distinct e.entity_id)' . $template ;
     }
 
     private function getSearch($template, $start, $end)

@@ -56,7 +56,7 @@ class InstallSchema implements InstallSchemaInterface
                     'order',
                     Table::TYPE_TEXT,
                     255,
-                    ['nullable' => false],
+                    ['nullable' => true],
                     'Order id'
                 )->addColumn(
                     'customer_id',
@@ -82,6 +82,12 @@ class InstallSchema implements InstallSchemaInterface
                     '5K',
                     ['nullable' => true],
                     'Issue detail'
+                )->addColumn(
+                    'store_id',
+                    Table::TYPE_SMALLINT,
+                    null,
+                    ['unsigned' => true, 'default' => '0'],
+                    'Store id'
                 )->addForeignKey(
                     $installer->getFkName(
                         'customer_entity',
@@ -93,6 +99,12 @@ class InstallSchema implements InstallSchemaInterface
                     $installer->getTable('customer_entity'),
                     'entity_id',
                     Table::ACTION_CASCADE
+                )->addForeignKey(
+                    $installer->getFkName(self::TABLE_NAME, 'store_id', 'store', 'store_id'),
+                    'store_id',
+                    $installer->getTable('store'),
+                    'store_id',
+                    Table::ACTION_SET_NULL
                 )->setComment(
                     'Complain'
                 );
