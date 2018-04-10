@@ -23,38 +23,29 @@
 
     <div class="user-submenu">
         <ul>
-            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/"?>">Account Info</a></li>
-            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/logout"?>">Log out</a></li>
+            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/" ?>">Account Info</a></li>
+            <li><a href="<?php echo $block->getBaseUrl() . "customer/account/logout" ?>">Log out</a></li>
         </ul>
     </div>
 </div>
 
 
-<!--login popup-->
-<!--move to footer links-->
-<!---->
-<!--<div class="login-back">-->
-<!---->
-<!--    <div class="sign-panel sign-in">-->
-<!--        <span class="close-btn">x</span>-->
-<!--        --><?php //echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("TouchShop_Touch1byone::login.phtml")->toHtml(); ?>
-<!--    </div>-->
-<!---->
-<!--    <div class="sign-panel sign-up">-->
-<!--        <span class="close-btn">x</span>-->
-<!--        --><?php //echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("TouchShop_Touch1byone::register.phtml")->toHtml(); ?>
-<!--    </div>-->
-<!---->
-<!--</div>-->
-
-
 <script>
-        require(['jquery', 'jquery/ui'], function ($) {
+    require(['jquery'], function ($) {
+        $(function () {
             var signUp = $("#signUp"),
                 signIn = $("#signIn"),
                 signUpPanel = $(".sign-up"),
                 signInPanel = $(".sign-in"),
                 socialLoginIcon = $(".third-party-login .btn-social");
+            console.log("socialLoginIcon text trim start");
+            socialLoginIcon.each(function (index, e) {
+                let txtArr = $(e).text().trim().split(" ");
+                console.log(($(e).contents())[2].nodeValue);
+                ($(e).contents())[2].nodeValue = txtArr.pop();
+
+                // console.log("socialLoginIcon text trim start");
+            });
 
 
             <?php if ($block->hasLogin()):?>
@@ -89,14 +80,9 @@
                 signInPanel.css("display", "none");
                 signUpPanel.css("display", "flex");
             });
-
-            socialLoginIcon.each(function (index, e) {
-                let txtArr = $(e).text().trim().split(" ");
-                console.log(($(e).contents())[2].nodeValue );
-                ($(e).contents())[2].nodeValue = txtArr.pop();
-            });
-        <?php endif;?>
-        })
+            <?php endif;?>
+        });
+    })
 </script>
 
 <script>

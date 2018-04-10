@@ -43,15 +43,6 @@
     </div>
 
     <div class="catalog-panel-background"></div>
-<!--    <div class="faq-cover">-->
-<!--        <div class="faq-info">-->
-<!--            <span>x</span>-->
-<!--            <div class="faq-blocks">-->
-<!--                -->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
 </div>
 
 <script>
@@ -172,8 +163,6 @@
                 } else {
                     let productsArr = res.products;
                     let productsArrLen = productsArr.length;
-                    // let totalP = Math.ceil(total / 8);
-
                     if(isSearching || isPageIni ) {
                         // twbsPagination totalPage refresh
                         //1. remove target element
@@ -193,9 +182,7 @@
 
                         if(index < productsArrLen) {
                             $(post[index]).css("visibility", "visible");
-                            // console.log(productsArr, index);
-                            ele.src = "../" + productsArr[index].image;
-                            // console.log(ele.src);
+                            $(ele).css("background-image", 'url(..' + productsArr[index].image + ')');
                             let resHtml = "";
                             let dFiles = productsArr[index].download_files;
                             let dataPName = productsArr[index].product_name;
@@ -219,19 +206,7 @@
                             $(fileContainer[index]).html(resHtml);
                             $(prodName[index]).text(dataPName);
                             $(prodName[index]).dotdotdot();
-                            // console.log("datafaq:", dataFAQ);
-                            // dataFAQ.forEach(function (e) {
-                            //     console.log(e);
-                            //     faqText += "<div class='faq-block'>" + "<div class='question'>"+ e.question +"</div>" + "<div class='answer'>"+ e.answer +"</div>" + "</div>";
-                            // });
-
-                            // $(".faq-blocks").html(faqText);
-
                             $(faq[index]).on("click", function () {
-                                // console.log(faqQ,faqA);
-                                // faqCover.css("display", "block");
-                                // $(faqQ).text(dataFAQ[0].question);
-                                // $(faqA).text(dataFAQ[0].answer);
                                 $(this).attr("href", dataUrl + "#tab-label-FAQ");
 
                             });

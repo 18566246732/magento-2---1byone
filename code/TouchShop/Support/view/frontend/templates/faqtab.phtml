@@ -15,9 +15,9 @@
             </div>
         </div>
     <?php endforeach ?>
-    <form action="">
-        <label>Ask a question <input type="text" required="required"/></label>
-        <label>Email address <input type="email" required="required"/></label>
+    <form action="<?php echo $block->getFaqAction()?>" method="post">
+        <label>Ask a question <input type="text" name="content" required="required"/></label>
+        <label>Email address <input type="email" name="email" required="required"/></label>
         <input type="reset" value="reset">
         <input type="submit" value="submit">
     </form>

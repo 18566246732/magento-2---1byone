@@ -34,7 +34,7 @@ class FAQTab extends Template
         return FAQHelper::getFAQ($product);
     }
 
-    public function addFaqAction()
+    public function getFaqAction()
     {
         return $this->getBaseUrl() . 'support/add/faq';
     }
