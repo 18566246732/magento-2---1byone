@@ -92,8 +92,8 @@
 
             socialLoginIcon.each(function (index, e) {
                 let txtArr = $(e).text().trim().split(" ");
-                console.log($(e), txtArr, $(e).text());
-                // $(e).text(txtArr.pop());
+                console.log(($(e).contents())[2].nodeValue );
+                ($(e).contents())[2].nodeValue = txtArr.pop();
             });
         <?php endif;?>
         })
