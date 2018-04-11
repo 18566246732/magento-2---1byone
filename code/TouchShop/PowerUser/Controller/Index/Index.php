@@ -15,6 +15,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\PowerUser\Helper\PowerUserHelper;
 use TouchShop\PowerUser\Model\PowerUserModelFactory;
+use TouchShop\PowerUser\Model\ResourceModel\PowerUser\PowerUserCollection;
 use TouchShop\PowerUser\Model\ResourceModel\PowerUserResourceModel;
 
 class Index extends Action
@@ -23,12 +24,14 @@ class Index extends Action
     private $powerUserResourceModel;
     private $session;
     private $storeManger;
+    private $powerUserCollection;
 
     public function __construct(
         Context $context,
         PowerUserModelFactory $modelFactory,
         PowerUserResourceModel $resourceModel,
         StoreManagerInterface $storeManager,
+        PowerUserCollection $powerUserCollection,
         Session $session
     )
     {
@@ -36,6 +39,7 @@ class Index extends Action
         $this->powerUserModelFactory = $modelFactory;
         $this->powerUserResourceModel = $resourceModel;
         $this->storeManger = $storeManager;
+        $this->powerUserCollection = $powerUserCollection;
         $this->session = $session;
     }
 
@@ -47,10 +51,23 @@ class Index extends Action
     public function execute()
     {
         $post = (array)$this->getRequest()->getPost();
+        $powerUser = null;
         if (!empty($post)) {
             if (isset($post['interests'])) {
+                if (isset($post['customerId'])) {
+                    $customer_id = $post['customerId'];
+                    $this->powerUserCollection->addFieldToFilter('customer_id', $customer_id);
+                    $size = $this->powerUserCollection->getSize();
+                    if ($size) {
+                        $items = $this->powerUserCollection->getItems();
+                        $powerUser = $items[array_keys($items)[0]];
+                    }
+                }
 
-                $powerUser = $this->powerUserModelFactory->create();
+
+                if (!$powerUser) {
+                    $powerUser = $this->powerUserModelFactory->create();
+                }
                 $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
                     ->setEmail($post['email'])
                     ->setCustomerId($this->session->getCustomerId())

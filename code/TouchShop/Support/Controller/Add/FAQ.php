@@ -28,15 +28,13 @@ class FAQ extends Action
     private $faqResourceModel;
     private $storeManager;
     private $session;
-    private $registry;
 
     public function __construct(
         Context $context,
         Session $session,
         StoreManagerInterface $storeManager,
         FAQModelFactory $modelFactory,
-        FAQResourceModel $resourceModel,
-        Registry $registry
+        FAQResourceModel $resourceModel
     )
     {
         parent::__construct($context);
@@ -44,7 +42,6 @@ class FAQ extends Action
         $this->faqResourceModel = $resourceModel;
         $this->session = $session;
         $this->storeManager = $storeManager;
-        $this->registry = $registry;
 
     }
 
@@ -61,7 +58,7 @@ class FAQ extends Action
             /** @var FAQModel */
             $faqModel = $this->faqModelFactory->create();
             $faqModel->setContent($post['content'])
-                ->setProductId($this->registry->registry('current_product'))
+                ->setProductId($post['productId'])
                 ->setCustomerId($this->session->getCustomerId())
                 ->setEmail($post['email'])
                 ->setStoreId($this->storeManager->getStore()->getId());

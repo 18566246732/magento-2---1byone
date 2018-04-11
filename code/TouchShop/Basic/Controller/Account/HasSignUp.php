@@ -2,35 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: jing
- * Date: 4/7/18
- * Time: 2:09 AM
+ * Date: 4/10/18
+ * Time: 6:35 AM
  */
 
-namespace TouchShop\PowerUser\Controller\HasSignUp;
+namespace TouchShop\Basic\Controller\Account;
 
 
-use Magento\Customer\Model\Customer;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
-use TouchShop\PowerUser\Helper\PowerUserHelper;
-use TouchShop\PowerUser\Model\ResourceModel\PowerUser\PowerUserCollection;
 
-class Index extends Action
+class HasSignUp extends Action
 {
     private $repository;
-    private $collection;
 
     public function __construct(
         Context $context,
-        CustomerRepository $repository,
-        PowerUserCollection $collection
+        CustomerRepository $repository
     )
     {
         parent::__construct($context);
         $this->repository = $repository;
-        $this->collection = $collection;
     }
 
 
@@ -43,16 +37,7 @@ class Index extends Action
                 $email = $data['email'];
                 $customer = $this->repository->get($email);#todo
                 if ($customer) {
-                    $customer_id = $customer->getId();
-                    $this->collection->addFieldToFilter('customer_id', $customer_id);
-                    $items = $this->collection->getItems();
-                    if (count($items) > 0) {
-                        $ajax['vip'] = 2;
-                        $entity = $items[array_keys($items)[0]];
-                        $ajax['interests'] = PowerUserHelper::resolveInterestsToArray($entity->getInterests());
-                    } else {
-                        $ajax['vip'] = 1;
-                    }
+                    $ajax['vip'] = 1;
                 } else {
                     $ajax['vip'] = 0;
                 }

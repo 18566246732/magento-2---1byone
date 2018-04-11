@@ -21,7 +21,8 @@
             <div class="input-checkbox-container">
                 <div><input type="checkbox" name="interests[]" value="TV Accessories"> TV Accessories</div>
                 <div><input type="checkbox" name="interests[]" value="Home Decoration"> Home Decoration</div>
-                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting & Effects
+                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting &
+                    Effects
                 </div>
                 <div><input type="checkbox" name="interests[]" value="Home Security"> Home Security</div>
                 <div><input type="checkbox" name="interests[]" value="Accessories"> Accessories</div>
@@ -71,8 +72,8 @@
         require(['jquery'], function ($) {
             var data = <?php echo($block->getAjax())?>;
             var vip = data.vip;
-            var email = data.email || '12321@qq.com';
-            var interests = data.interests || ['USB Hubs and Adapters', 'Cell Phone Batteries'];
+            var email = data.email;
+            var interests = data.interests;
             var powerUserEmail = $("#powerUserEmail");
             var inputCheckBox = $(".input-checkbox-container input");
             var powerUserPwd1Con = $(".form-action-control-container .power-user-pwd1");
@@ -89,9 +90,11 @@
                     click: formSubmitHandler,
                 });
                 powerUserEmail.on("keyup", function () {
-                    vip1 = -1;
-                    powerUserPwd1Con.css("display", "none");
-                    powerUserPwd2Con.css("display", "none");
+                    if (vip == 0) {
+                        vip1 = -1;
+                        powerUserPwd1Con.css("display", "none");
+                        powerUserPwd2Con.css("display", "none");
+                    }
                 });
                 //vip == 2
                 if (vip == 2) {
@@ -115,39 +118,42 @@
                     // powerUserEmail.removeAttrs("disabled");
 
                     powerUserEmail.blur(function () {
-                        if (emailRegExp.test(powerUserEmail.val())) {
-                            if (powerUserEmail.val() != "") {
-                                console.log("email blured");
-                                let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
-                                let param = {
-                                    email: powerUserEmail.val()
-                                };
-                                sendAjax(url, param, function (res) {
-                                    vip1 = res.vip;
-                                    console.log("vip1",vip1);
-                                    //display logic
-                                    if (vip1 == 0) {
-                                        hint.text("You haven't registered yet, quickly sign up and submit your interests");
-                                        powerUserPwd1Con.css("display", "block");
-                                        powerUserPwd2Con.css("display", "block");
-                                        powerUserPwd1.val("");
-                                        powerUserPwd2.val("");
-                                    }
-                                    //vip1 = 1 or 2
-                                    else {
-                                        powerUserPwd1Con.css("display", "block");
-                                        powerUserPwd2Con.css("display", "none");
-                                        powerUserPwd1.val("");
-                                        if (vip1 == 1) {
-                                            hint.text("You have already registered, quickly sign in and submit your interests");
-                                        } else {
-                                            hint.text("You are registered power user, quickly sign in and submit your interests");
+                        if (vip == 0) {
+                            console.log('blur');
+                            if (emailRegExp.test(powerUserEmail.val())) {
+                                if (powerUserEmail.val() != "") {
+                                    console.log("email blured");
+                                    let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
+                                    let param = {
+                                        email: powerUserEmail.val()
+                                    };
+                                    sendAjax(url, param, function (res) {
+                                        vip1 = res.vip;
+                                        console.log("vip1", vip1);
+                                        //display logic
+                                        if (vip1 == 0) {
+                                            hint.text("You haven't registered yet, quickly sign up and submit your interests");
+                                            powerUserPwd1Con.css("display", "block");
+                                            powerUserPwd2Con.css("display", "block");
+                                            powerUserPwd1.val("");
+                                            powerUserPwd2.val("");
                                         }
-                                    }
-                                })
+                                        //vip1 = 1 or 2
+                                        else {
+                                            powerUserPwd1Con.css("display", "block");
+                                            powerUserPwd2Con.css("display", "none");
+                                            powerUserPwd1.val("");
+                                            if (vip1 == 1) {
+                                                hint.text("You have already registered, quickly sign in and submit your interests");
+                                            } else {
+                                                hint.text("You are registered power user, quickly sign in and submit your interests");
+                                            }
+                                        }
+                                    })
+                                }
+                            } else {
+                                hint.text("invalid email format");
                             }
-                        } else {
-                            hint.text("invalid email format");
                         }
                     });
                     powerUserEmail.focus(function () {
@@ -158,23 +164,23 @@
 
                 function formSubmitHandler(e) {
                     if (vip > 0) {
-                        console.log("vip > 0 , ready to submit");
-                        powerUserPwd2.attr("disabled", "disable");
+                        console.log("vip > 0 , ready to submit", vip);
+                        //powerUserPwd2.attr("disabled", "disable");
                         $(".power-user-form").submit();
-                    }
-                    else if (vip == 0 && vip1 != -1) {
+                    } else if (vip == 0 && vip1 != -1) {
                         if (powerUserPwd1.val() != "") {
 
                             if (vip1 == 0) {
-                                console.log("p1:",powerUserPwd1.val() , "p2:", powerUserPwd2.val());
+                                console.log("p1:", powerUserPwd1.val(), "p2:", powerUserPwd2.val());
                                 if (powerUserPwd1.val() == powerUserPwd2.val()) {
                                     let param = {
                                         email: powerUserEmail.val(),
                                         firstname: 'customer',
                                         lastname: 'user',
-                                        password: 'lq1314588'
+                                        password: powerUserPwd1.val()
                                     };
                                     let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
+                                    console.log(url);
                                     sendAjax(url, param, function (res) {
                                         console.log(res);
                                         if (res.status_code == 200) {
