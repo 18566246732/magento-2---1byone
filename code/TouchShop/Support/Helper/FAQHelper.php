@@ -25,17 +25,15 @@ class FAQHelper
                 $results = [];
                 foreach (preg_split(self::DOUBLE_LINE_BREAK_PATTERN, $faq) as $question) {
                     $item = [];
-                    foreach (preg_split(self::LINE_BREAK_PATTERN, $question) as $qa) {
-                        $question_labels = ['Question:', 'question:', 'q:', 'Q:'];
-                        $answer_labels = ['Answer:', 'answer:', 'a:', 'A:'];
-                        $question = self::getContent($qa, $question_labels);
-                        if ($question) {
-                            $item['question'] = $question;
-                            continue;
-                        }
-                        $answer = self::getContent($qa, $answer_labels);
-                        if ($answer) {
-                            $item['answer'] = $answer;
+                    $question_labels = ['Question:', 'question:', 'q:', 'Q：', 'Question：', 'question：', 'q：', 'Q：'];
+                    $answer_labels = ['Answer:', 'answer:', 'a:', 'A:', 'Answer：', 'answer：', 'a：', 'A：'];
+                    foreach (preg_split(self::LINE_BREAK_PATTERN, $question) as $index => $qa) {
+                        if ($index == 0) {
+                            $item['question'] = self::getContent($qa, $question_labels);
+                        } elseif ($index == 1) {
+                            $item['answer'] = self::getContent($qa, $answer_labels);
+                        } else {
+                            $item['answer'] .= "<br/>" . $qa;
                         }
                     }
                     $results[] = $item;
