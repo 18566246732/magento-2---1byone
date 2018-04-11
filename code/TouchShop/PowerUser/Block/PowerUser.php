@@ -56,14 +56,16 @@ class PowerUser extends Template
             $customer_id = $this->session->getCustomerId();
             $customer = $this->customerRepository->getById($customer_id);
             $result['email'] = $customer->getEmail();
+            $result['customerId'] = $customer->getId();
             $this->powerUserCollection->addFieldToFilter('customer_id', $customer_id);
             $size = $this->powerUserCollection->getSize();
             if ($size) {
                 $result['vip'] = 2;
-                $entity = $this->powerUserCollection->getItems()[$customer_id];
+                $items = $this->powerUserCollection->getItems();
+                $entity = $items[array_keys($items)[0]];
                 $interests = $entity->getInterests();
                 if ($interests) {
-                    $result['interests'] = preg_split(',', $interests);
+                    $result['interests'] = explode(',', $interests);
                 }
             } else {
                 $result['vip'] = 1;
