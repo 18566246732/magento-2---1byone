@@ -40,9 +40,10 @@ class SignInPost extends Action
             if (!empty($login['username']) && !empty($login['password'])) {
                 try {
                     $customer = $this->customerAccountManagement->authenticate($login['username'], $login['password']);
+                    $customer_id = $customer->getId();
                     $this->session->setCustomerDataAsLoggedIn($customer);
                     $this->session->regenerateId();
-                    $result->setData(['result' => 'success', 'status_code' => 200]);
+                    $result->setData(['result' => 'success', 'status_code' => 200, 'customerId' => $customer_id]);
                     return $result;
                 } catch (\Exception $e) {
                     $result->setData(['result' => 'fail', 'status_code' => 400, 'error_message' => $e->getMessage()]);

@@ -46,7 +46,6 @@ class Index extends Action
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     public function execute()
     {
