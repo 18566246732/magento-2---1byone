@@ -1,0 +1,87 @@
+
+/*.input-container .input-group label {*/
+    /*width: 45%;*/
+/*}*/
+
+/*.input-container > .input-container {*/
+    /*float: left;*/
+    /*width: 50%;*/
+    /*box-sizing: border-box;*/
+    /*margin-bottom: 0px;*/
+/*}*/
+
+/*.input-container > .input-container.input-container-full {*/
+    /*width: 100%;*/
+    /*float: initial;*/
+/*}*/
+
+/*.input-container .input-container:first-of-type {*/
+    /*padding-right: 5px;*/
+/*}*/
+
+/*.input-container .input-container:last-of-type {*/
+    /*padding-left: 5px;*/
+/*}*/
+
+/*.input-container input {*/
+    /*border-style: none;*/
+    /*border-radius: 25px;*/
+    /*border: solid 1px rgb(240, 240, 240);*/
+    /*padding: 5px 15px;*/
+    /*outline: none;*/
+    /*box-shadow: none*/
+/*}*/
+
+/*.input-container textarea {*/
+    /*outline: none;*/
+    /*box-shadow: none*/
+/*}*/
+
+/*.input-container input:focus,*/
+/*.input-container input:hover,*/
+/*.input-container textarea:focus,*/
+/*.input-container textarea:hover {*/
+    /*outline: none;*/
+    /*box-shadow: none*/
+/*}*/
+
+/*.input-container label.label-b {*/
+    /*font-weight: bold;*/
+/*}*/
+
+/*.input-container label {*/
+    /*padding-left: 10px;*/
+    /*margin-bottom: 5px;*/
+    /*display: block;*/
+/*}*/
+
+/*.input-container button[type='reset'],*/
+/*.input-container button[type='submit'] {*/
+    /*width: 30%;*/
+    /*margin: 0 5px;*/
+    /*border-radius: 25px;*/
+    /*color: white;*/
+    /*border: none;*/
+/*}*/
+
+/*.input-container button[type='reset'] {*/
+    /*background: rgb(102, 102, 102);*/
+/*}*/
+
+/*.input-container button[type='submit'] {*/
+    /*background: rgb(2, 167, 225);*/
+/*}*/
+
+/*.input-container.small-button button {*/
+    /*width: 120px;*/
+/*}*/
+
+/*.input-container label span,*/
+/*.input-container-title span {*/
+    /*color: rgb(238, 64, 81)*/
+/*}*/
+
+.feedback-form-basic-info-container > * {
+    display: inline-block;
+    width: 45%;
+}

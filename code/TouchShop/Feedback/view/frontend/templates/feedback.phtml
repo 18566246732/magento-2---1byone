@@ -1,30 +1,213 @@
-<link rel="stylesheet" type="text/css"
-      href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
-<form action="<?php echo $block->getFormAction() ?>" method="post">
+<?php
+/**@var $block TouchShop\Feedback\Block\Complain*/
+
+?>
+
+<link rel="stylesheet" href="<?php echo $block-> ?>">
+<form action="<?php echo $block->getFormAction() ?>" method="post" class="feedback-form">
     <div class="input-container">
-        <div class="input-container">
-            <label for="email">Email Address <span>*</span></label>
-            <input name="email" id="email" type="text">
+        <div class="form-action-control-container">
+            <div class="feedback-form-basic-info-container">
+
+                <label for="text">Email address <span>*</span>
+                    <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
+                </label>
+
+                <label for="order">Order ID <span>*</span>
+                    <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
+                </label>
+            </div>
+
+            <div class="feedback-hint"></div>
+
+            <div class="feedback-pwd1">
+
+                <label for="password">Password <span>*</span>
+                    <input name="password" id="feedbackPwd1" type="password" required="required" autocomplete="off">
+                </label>
+            </div>
+
+            <div class="feedback-pwd2">
+
+                <label for="password">Please enter your Password again<span>*</span>
+                    <input name="password" id="feedbackPwd2" type="password" required="required" autocomplete="off">
+                </label>
+            </div>
+
+
+            <div class="feedback-detail">
+
+                <label for="detail">Issue Details<span>*</span>
+                    <textarea name="detail" id="feedBackDetail" type="text" required="required" autocomplete="off" cols="30" rows="10"></textarea>
+                </label>
+            </div>
+
+            <div class="form-action-btn">
+                <button type="reset">RESET</button>
+                <button type="submit">SUBMIT</button>
+            </div>
         </div>
-        <div class="input-container">
-            <label for="name">Contact Name <span>*</span></label>
-            <input name="name" id="name" type="text">
-        </div>
     </div>
-    <div class="input-container">
-        <label for="order">Order ID <span>*</span></label>
-        <input name="order" id="order" type="text">
-    </div>
-    <div class="input-container">
-        <label for="detail">Issue Details <span>*</span></label>
-        <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
-    </div>
-    <div class="input-container input-center-container">
-        <button type="reset">RESET</button><button type="submit">SUBMIT</button>
-    </div>
-<!--    <input name="firstname" type="text">-->
-<!--    <input name="lastname" type="text">-->
-<!--    <input name="phone" type="text">-->
-<!--    <input name="bookingTime" type="date">-->
-<!--    <input type="submit" value="Send booking informations">-->
 </form>
+
+
+<script>
+    (function () {
+        var inputEmail = $();
+        require(['jquery'], function ($) {
+            var data = <?php echo($block->getAjax())?>;
+            var vip = data.vip;
+            var feedbackEmail = $("#feedbackEmail");
+            var feedbackPwd1Con = $(".form-action-control-container .feedback-pwd1");
+            var feedbackPwd2Con = $(".form-action-control-container .feedback-pwd2");
+            var feedbackPwd1 = $("#feedbackPwd1");
+            var feedbackPwd2 = $("#feedbackPwd2");
+            var submitBtn = $(".form-action-btn button[type='submit']");
+            var vip1 = -1;
+            var hint = $(".feedback-hint");
+            var emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
+            $(function () {
+                console.log(vip);
+                submitBtn.on({
+                    click: formSubmitHandler,
+                });
+
+                $(document).keypress(function (e) {
+                    if(e.which == 13 && feedbackEmail.is(":focus")) {
+                        feedbackEmail.trigger("blur");
+                    }
+                });
+
+                feedbackEmail.on("keyup", function () {
+                    vip1 = -1;
+                    feedbackPwd1Con.css("display", "none");
+                    feedbackPwd2Con.css("display", "none");
+                });
+                //vip == 2
+                if (vip == 2) {
+                    // interests
+                    // inputCheckBox.each(function (index, e) {
+                    //     if (interests.indexOf($(e).val()) != -1) {
+                    //         $(e).attr("checked", "checked");
+                    //     }
+                    // });
+                    // email
+                    $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
+                }
+                //vip == 1
+                else if (vip == 1) {
+                    // hint.text("you have submit successfully, thanks for your feedback")
+                    $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
+                }
+
+                // vip == 0
+                else {
+                    // feedbackEmail.removeAttrs("disabled");
+                    feedbackEmail.blur(function () {
+                        if (emailRegExp.test(feedbackEmail.val())) {
+                            if (feedbackEmail.val() != "") {
+                                console.log("email blured");
+                                let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
+                                let param = {
+                                    email: feedbackEmail.val()
+                                };
+                                sendAjax(url, param, function (res) {
+                                    vip1 = res.vip;
+                                    console.log("vip1",vip1);
+                                    //display logic
+                                    if (vip1 == 0) {
+                                        hint.text("You haven't registered yet, quickly sign up and submit your interests");
+                                        feedbackPwd1Con.css("display", "block");
+                                        feedbackPwd2Con.css("display", "block");
+                                        feedbackPwd1.val("");
+                                        feedbackPwd2.val("");
+                                    }
+                                    //vip1 = 1 or 2
+                                    else {
+                                        feedbackPwd1Con.css("display", "block");
+                                        feedbackPwd2Con.css("display", "none");
+                                        feedbackPwd1.val("");
+                                        if (vip1 == 1) {
+                                            hint.text("You have already registered, quickly sign in and submit your interests");
+                                        } else {
+                                            hint.text("You are registered power user, quickly sign in and submit your interests");
+                                        }
+                                    }
+                                })
+                            }
+                        } else {
+                            hint.text("invalid email format");
+                        }
+                    });
+                    feedbackEmail.focus(function () {
+                        hint.text(" ");
+                    });
+                }
+
+
+                function formSubmitHandler(e) {
+                    if (vip > 0) {
+                        console.log("vip > 0 , ready to submit");
+                        feedbackPwd2.attr("disabled", "disable");
+                        $(".feedback-form").submit();
+                    }
+                    else if (vip == 0 && vip1 != -1) {
+                        if (feedbackPwd1.val() != "") {
+
+                            if (vip1 == 0) {
+                                console.log("p1:",feedbackPwd1.val() , "p2:", feedbackPwd2.val());
+                                if (feedbackPwd1.val() == feedbackPwd2.val()) {
+                                    let param = {
+                                        email: feedbackEmail.val(),
+                                        firstname: 'customer',
+                                        lastname: 'user',
+                                        password: feedbackPwd1
+                                    };
+                                    let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
+                                    sendAjax(url, param, function (res) {
+                                        console.log(res);
+                                        if (res.status_code == 200) {
+                                            $(".feedback-form").submit();
+                                        } else {
+                                            hint.text(res.error_message);
+                                            return false;
+                                        }
+                                    });
+                                } else {
+                                    console.log("else in");
+                                    hint.text("2 passwords should be equal");
+                                    return false;
+                                }
+                            }
+                            //vip1 = 1 or 2
+                            else {
+                                console.log("vip1:", vip1);
+                                let param = {
+                                    login: {
+                                        username: feedbackEmail.val(),
+                                        password: feedbackPwd1.val()
+                                    }
+                                };
+                                let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
+                                sendAjax(url, param, function (res) {
+                                    console.log(res);
+                                    if (res.status_code == 200) {
+                                        $(".feedback-form").submit();
+                                    } else {
+                                        hint.text(res.error_message);
+                                        return false;
+                                    }
+                                });
+                            }
+                        }
+                        else {
+                            hint.text("password cannot be empty");
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            });
+        })
+    })()
+</script>
