@@ -46,42 +46,42 @@ class Index extends Action
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     public function execute()
     {
         $post = (array)$this->getRequest()->getPost();
         $powerUser = null;
         if (!empty($post)) {
-            if (isset($post['interests'])) {
-                if (isset($post['customerId'])) {
-                    $customer_id = $post['customerId'];
-                    $this->powerUserCollection->addFieldToFilter('customer_id', $customer_id);
-                    $size = $this->powerUserCollection->getSize();
-                    if ($size) {
-                        $items = $this->powerUserCollection->getItems();
-                        $powerUser = $items[array_keys($items)[0]];
+            $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+            try {
+                if (isset($post['interests'])) {
+                    if (isset($post['customerId'])) {
+                        $customer_id = $post['customerId'];
+                        $this->powerUserCollection->addFieldToFilter('customer_id', $customer_id);
+                        $size = $this->powerUserCollection->getSize();
+                        if ($size) {
+                            $items = $this->powerUserCollection->getItems();
+                            $powerUser = $items[array_keys($items)[0]];
+                        }
                     }
+
+
+                    if (!$powerUser) {
+                        $powerUser = $this->powerUserModelFactory->create();
+                    }
+                    $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
+                        ->setEmail($post['email'])
+                        ->setCustomerId($this->session->getCustomerId())
+                        ->setStoreId($this->storeManger->getStore()->getId());
+                    $this->powerUserResourceModel->save($powerUser);
+
+                    // Display the succes form validation message
+                    $this->messageManager->addSuccessMessage('done !');
+
+                    return $result->setData(['result' => 'success', 'status_code' => 200]);
                 }
-
-
-                if (!$powerUser) {
-                    $powerUser = $this->powerUserModelFactory->create();
-                }
-                $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
-                    ->setEmail($post['email'])
-                    ->setCustomerId($this->session->getCustomerId())
-                    ->setStoreId($this->storeManger->getStore()->getId());
-                $this->powerUserResourceModel->save($powerUser);
-
-                // Display the succes form validation message
-                $this->messageManager->addSuccessMessage('done !');
-
-                // Redirect to your form page (or anywhere you want...)
-                $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-                $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-
-                return $resultRedirect;
+            } catch (\Exception $e) {
+                return $result->setData(['result' => 'fail', 'status_code' => 500, 'error_message' => $e->getMessage()]);
             }
 
         }

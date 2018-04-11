@@ -63,10 +63,7 @@ class CategoryNavigator extends Template
             if (strpos($main_root_ids, ',') === false) {
                 $main_root = $this->repository->get($main_root_ids);
                 $resolved = $this->resolve($main_root);
-                $result = [
-                    'text' => $resolved['text'],
-                    'children' => $resolved['children']
-                ];
+                $result = $resolved['children'][0];
                 return json_encode($result);
             }
         } catch (NoSuchEntityException $e) {

@@ -57,16 +57,9 @@ class CreatePost extends Action
             $customer->setLastname($post['lastname']);
             $customer->setPassword($post['password']);
             $this->resourceModel->save($customer);
-
-
-            $customer = $this->customerAccountManagement->authenticate($post['email'], $post['password']);
-            $this->session->setCustomerDataAsLoggedIn($customer);
-            $this->session->regenerateId();
-            $result->setData(['result' => 'success', 'status_code' => 200]);
-            return $result;
+            return $result->setData(['result' => 'success', 'status_code' => 200]);
         } catch (\Exception $e) {
-            $result->setData(['result' => 'fail', 'status_code' => 400, 'error_message' => $e->getMessage()]);
-            return $result;
+            return $result->setData(['result' => 'fail', 'status_code' => 400, 'error_message' => $e->getMessage()]);
         }
     }
 }
