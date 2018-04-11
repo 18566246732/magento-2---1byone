@@ -1,0 +1,65 @@
+
+
+.feedback-form-basic-info-container > * {
+    display: inline-block;
+    width: 48%;
+}
+
+.feedback-form-basic-info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.feedback-form-action-control-container span{
+    color: red;
+}
+
+.feedback-form-basic-info-container input {
+    border-radius: 5px;
+}
+
+.feedback-pwd1, .feedback-pwd2 {
+    display: none;
+}
+
+
+div.form-action-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.form-action-btn button:first-child {
+    background-color: rgb(102, 102, 102);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    margin: 0 5px;
+    width: 120px;
+}
+
+div.form-action-btn button:first-child:hover {
+    background-color: rgb(64, 64, 64);
+}
+
+div.form-action-btn button:last-child {
+    margin: 0 5px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(2, 167, 225);
+    color: white;
+    border: none;
+    width: 120px;
+}
+
+div.form-action-btn button:last-child:hover {
+    background-color: rgb(36, 125, 225);
+}
+
+.form-action-btn {
+    margin-top: 20px;
+}
+
+.feedback-hint {
+    color: red;
+}
