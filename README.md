@@ -10,6 +10,7 @@
 + change theme to Peanut: content->configuration
 + install extension:  
     + mageplaza/magento-2-social-login
+    + mageplaza/module-smtp
     + mageplaza/magento-2-blog-extension
     + beeketing/magento-countdowncart
 + admin configurations:
