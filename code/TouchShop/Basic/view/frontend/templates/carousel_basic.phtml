@@ -5,16 +5,23 @@
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl('TouchShop_Basic::css/owl.carousel.min.css') ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/owl-overwrite.css")?>">
+
 <div class="owl-carousel-container">
     <div class="owl-carousel owl-theme">
         <?php foreach ($block->getImages() as $name => $image): ?>
             <div style="cursor: pointer" class="item" onclick="toView('<?php echo $image["url"] ?>')">
                 <img style="max-height: 998px" src="<?php echo $image["src"]; ?>"/>
                 <span data-color="<?php echo $image["text-color"]?>" style="display: none"></span>
+                <div class="owl-img-addon">`
+                    <h1><?= $image['title']?></h1>
+                    <p><?= $image['subtitle']?></p>
+                    <button>GET NOW</button>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
 <script>
     function toView(params) {
         window.open(params)

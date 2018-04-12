@@ -79,4 +79,22 @@
 
 .owl-item {
     width: 100%;
+    position: relative;
+}
+
+.owl-img-addon {
+    position: absolute;
+    right: 250px;
+    bottom: 150px;
+    color: white;
+}
+
+.owl-img-addon button {
+    width: 185px;
+    height: 40px;
+    background-color: #8d131c;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: initial;
 }
