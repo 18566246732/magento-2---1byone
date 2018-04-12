@@ -46,37 +46,42 @@ class Index extends Action
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|null
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     public function execute()
     {
         $post = (array)$this->getRequest()->getPost();
         if (!empty($post)) {
 
-            /** @var Complaint */
-            $complaint = $this->complaintFactory->create($post);
-            $complaint->setEmail($post['email'])
-                ->setName($post['name'])
-                ->setOrder($post['order'])
-                ->setDetail($post['detail'])
-                ->setStoreId($this->storeManager->getStore()->getId());
+            $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
 
-            if ($this->session->isLoggedIn()) {
-                $complaint->setCustomerId($this->session->getCustomerId());
+            try {
+                if (!$post['categoryId']) {
+                    $post['categoryId'] = null;
+                }
+
+                /** @var Complaint */
+                $complaint = $this->complaintFactory->create($post);
+                $complaint->setEmail($post['email'])
+                    ->setOrder($post['order'])
+                    ->setDetail($post['detail'])
+                    ->setCategoryId($post['categoryId'])
+                    ->setStoreId($this->storeManager->getStore()->getId());
+
+                if ($this->session->isLoggedIn()) {
+                    $complaint->setCustomerId($this->session->getCustomerId());
+                }
+
+                $this->resourceModel->save($complaint);
+
+                // Display the succes form validation message
+                $this->messageManager->addSuccessMessage(
+                    'Thank you for you feedback, we will contact you as soon as possible to solve this problem'
+                );
+
+                return $result->setData(['result' => 'success', 'status_code' => 200]);
+            } catch (\Exception $e) {
+                return $result->setData(['result' => 'fail', 'status_code' => 500, 'error_message' => $e->getMessage()]);
             }
-
-            $this->resourceModel->save($complaint);
-
-            // Display the succes form validation message
-            $this->messageManager->addSuccessMessage(
-                'Thank you for you feedback, we will contact you as soon as possible to solve this problem'
-            );
-
-            // Redirect to your form page (or anywhere you want...)
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-
-            return $resultRedirect;
         }
         // Render the page
         $this->_view->loadLayout();

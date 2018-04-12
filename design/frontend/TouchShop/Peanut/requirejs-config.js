@@ -4,4 +4,4 @@ var config = {
             swiper: 'TouchShop_Peanut/js/swiper.min'
         }
     }
-};+
+};

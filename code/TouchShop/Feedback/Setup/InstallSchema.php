@@ -77,6 +77,12 @@ class InstallSchema implements InstallSchemaInterface
                     ['unsigned' => true, 'nullable' => false, 'default' => 'Pending'],
                     'Status'
                 )->addColumn(
+                    'category_id',
+                    Table:: TYPE_INTEGER,
+                    null,
+                    ['unsigned' => true, 'nullable' => true, 'default' => 0],
+                    'category id'
+                )->addColumn(
                     'detail',
                     Table::TYPE_BLOB,
                     '5K',

@@ -11,6 +11,7 @@ namespace TouchShop\Touch1byone\Block;
 
 use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 
 class CategoryNavigator extends Template
@@ -18,9 +19,11 @@ class CategoryNavigator extends Template
 
     /** @var CategoryRepository */
     private $repository;
+    private $currentCategoryId;
 
 
     public function __construct(
+        Registry $registry,
         CategoryRepository $repository,
         Template\Context $context,
         array $data = []
@@ -28,6 +31,7 @@ class CategoryNavigator extends Template
     {
         parent::__construct($context, $data);
         $this->repository = $repository;
+        $this->currentCategoryId = $this->getCurrentCategoryId($registry);
     }
 
     public function getImgBaseUrl($img_urlName)
@@ -42,6 +46,10 @@ class CategoryNavigator extends Template
             'url' => $category->getUrl()
         ];
 
+        if ($category->getId() == $this->currentCategoryId) {
+            $result['current'] = true;
+        }
+
         $subs = $category->getChildren();
         foreach (explode(',', $subs) as $sub) {
             try {
@@ -50,8 +58,6 @@ class CategoryNavigator extends Template
             } catch (NoSuchEntityException $e) {
             }
         }
-
-
         return $result;
     }
 
@@ -69,6 +75,15 @@ class CategoryNavigator extends Template
         } catch (NoSuchEntityException $e) {
         }
         return [];
+    }
+
+    private function getCurrentCategoryId($registry)
+    {
+        $category = $registry->registry('current_category');
+        if ($category && $category->getId()) {
+            return $category->getId();
+        }
+        return 0;
     }
 
 }
