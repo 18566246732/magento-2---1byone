@@ -50,7 +50,8 @@ class FAQTab extends Template
 
     public function getLoginInfo()
     {
-        return CustomerHelper::getLoginInfo($this->session, $this->repository);
+        $loginInfo = CustomerHelper::getLoginInfo($this->session, $this->repository);
+        return json_encode($loginInfo);
     }
 
 }

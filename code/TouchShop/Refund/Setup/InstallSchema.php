@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: jing
- * Date: 2/26/18
- * Time: 9:41 PM
+ * Date: 4/12/18
+ * Time: 6:03 AM
  */
 
-namespace TouchShop\Support\Setup;
+namespace TouchShop\Refund\Setup;
 
 
 use Magento\Framework\DB\Ddl\Table;
+use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
-use Magento\Framework\Setup\InstallSchemaInterface;
 
 class InstallSchema implements InstallSchemaInterface
 {
-    const TABLE_NAME = 'touchshop_faq';
-    const FAQ_ID = 'faq_id';
+    const TABLE_NAME = 'touchshop_refund';
+    const REFUND_ID = 'refund_id';
 
     /**
      * Installs DB schema for a module
@@ -35,11 +35,11 @@ class InstallSchema implements InstallSchemaInterface
         if (!$installer->tableExists(self::TABLE_NAME)) {
             $table = $installer->getConnection()->newTable($installer->getTable(self::TABLE_NAME))
                 ->addColumn(
-                    self::FAQ_ID,
+                    self::REFUND_ID,
                     Table::TYPE_BIGINT,
                     null,
                     ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
-                    'FAQ Id'
+                    'Refund Id'
                 )->addColumn(
                     'created_at',
                     Table::TYPE_TIMESTAMP,
@@ -47,16 +47,17 @@ class InstallSchema implements InstallSchemaInterface
                     ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
                     'Created At'
                 )->addColumn(
-                    'content',
+                    'issue',
                     Table::TYPE_BLOB,
                     '5K',
                     ['nullable' => true],
-                    'Question content'
+                    'issue content'
                 )->addColumn(
-                    'product_id',
-                    Table::TYPE_INTEGER,
+                    'category_id',
+                    Table:: TYPE_INTEGER,
                     null,
-                    ['unsigned' => true]
+                    ['unsigned' => true, 'nullable' => true, 'default' => 0],
+                    'category id'
                 )->addColumn(
                     'customer_id',
                     Table::TYPE_INTEGER,
@@ -68,39 +69,60 @@ class InstallSchema implements InstallSchemaInterface
                     255,
                     ['nullable' => true]
                 )->addColumn(
-                    'sku',
+                    'status',
                     Table::TYPE_TEXT,
                     255,
-                    ['nullable' => false],
-                    'sku'
+                    ['unsigned' => true, 'nullable' => true, 'default' => 'Pending'],
+                    'Status'
                 )->addColumn(
-                    'categories',
+                    'order',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true],
+                    'Order id'
+                )->addColumn(
+                    'reason',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true],
+                    'reason'
+                )->addColumn(
+                    'address',
                     Table::TYPE_TEXT,
                     2048,
-                    ['nullable' => false]
+                    ['nullable' => true]
+                )->addColumn(
+                    'state',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true]
+                )->addColumn(
+                    'postal_code',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true]
+                )->addColumn(
+                    'phone',
+                    Table::TYPE_TEXT,
+                    32,
+                    ['nullable' => true]
                 )->addColumn(
                     'store_id',
                     Table::TYPE_SMALLINT,
                     null,
                     ['unsigned' => true, 'default' => '0'],
                     'Store id'
+                )->addColumn(
+                    'type',
+                    Table::TYPE_TEXT,
+                    32,
+                    ['nullable' => false]
                 )->addForeignKey(
                     $installer->getFkName(self::TABLE_NAME, 'store_id', 'store', 'store_id'),
                     'store_id',
                     $installer->getTable('store'),
                     'store_id',
                     Table::ACTION_SET_NULL
-                )->addForeignKey(
-                    $installer->getFkName(
-                        'catalog_product_entity',
-                        'entity_id',
-                        self::TABLE_NAME,
-                        'product_id'
-                    ),
-                    'product_id',
-                    $installer->getTable('catalog_product_entity'),
-                    'entity_id',
-                    Table::ACTION_CASCADE
                 )->addForeignKey(
                     $installer->getFkName(
                         'customer_entity',
