@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="feedback-selection">
             <select id="feedbackCategory">
                 <?php foreach ($block->getCategories() as $category): ?>
                     <option value="<?= $category['value'] ?>"><?= $category['label'] ?></option>
@@ -74,7 +74,7 @@
             $(".feedback-form-action-control-container .feedback-pwd2"),
             $("#feedbackPwd1"),
             $("#feedbackPwd2"),
-            $(".form-action-control-container .input"),
+            $(".feedback-form-action-control-container input"),
             $(".form-action-btn button[type='button']"),
             hint,
             submitFormFun,
@@ -87,10 +87,10 @@
                 "<?= $block->getFormAction()?>",
                 {
                     email: email,
-                    customerId: customerId,
-                    order: $("#feedBackOrder").text(),
+                    // customerId: customerId,
+                    order: $("#feedBackOrder").val(),
                     categoryId: $("#feedbackCategory").val(),
-                    detail: $("#feedbackDetail").text()
+                    detail: $("#feedbackDetail").val()
                 },
                 function (res) {
                     console.log("form submit", res);

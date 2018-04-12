@@ -30,7 +30,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
         let vip1 = -1;
         let emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
         var customerId = data.customerId;
-        console.log("vip:", vip);
+        console.log("data:", data, "vip:", vip, "customerId: ", customerId);
         if (vip > 0) {
             email.attr({"value": data.email, "readonly": "readonly"});
         } else {
@@ -50,7 +50,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
                             console.log("vip1", vip1);
                             //display logic
                             if (vip1 == 0) {
-                                hint.text("You haven't registered yet, quickly sign up and submit your interests");
+                                hint.text("You haven't registered yet, quickly sign up and submit your form");
                                 userPwd1Con.css("display", "block");
                                 userPwd2Con.css("display", "block");
                                 userPwd1.val("");
@@ -59,7 +59,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
                                 userPwd1Con.css("display", "block");
                                 userPwd2Con.css("display", "none");
                                 userPwd1.val("");
-                                hint.text("You have already registered, quickly sign in and submit your interests");
+                                hint.text("You have already registered, quickly sign in and submit your form");
                             }
                         }
                     )
