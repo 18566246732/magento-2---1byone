@@ -71,6 +71,7 @@
             let data = <?= $block->getAjax()?>;
             let inputCheckBox = $(".input-checkbox-container input");
             let hint = $(".power-user-hint");
+            hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
             if(data.vip == 2) {
                 // interests
                 inputCheckBox.each(function (index, e) {
