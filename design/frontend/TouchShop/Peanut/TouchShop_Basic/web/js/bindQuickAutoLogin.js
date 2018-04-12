@@ -30,12 +30,12 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
         let vip1 = -1;
         let emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
         var customerId = data.customerId;
-        console.log("vip:", vip);
+        sessionStorage.removeItem("success");
         if (vip > 0) {
             email.attr({"value": data.email, "readonly": "readonly"});
         } else {
             email.blur(function () {
-                    console.log('blur');
+                    hint.css("color", "red");
                     if (!emailRegExp.test(email.val())) {
                         hint.text("invalid email format");
                         return false;
@@ -50,7 +50,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
                             console.log("vip1", vip1);
                             //display logic
                             if (vip1 == 0) {
-                                hint.text("You haven't registered yet, quickly sign up and submit your interests");
+                                hint.text("You haven't registered yet, quickly sign up and submit your form");
                                 userPwd1Con.css("display", "block");
                                 userPwd2Con.css("display", "block");
                                 userPwd1.val("");
@@ -59,7 +59,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
                                 userPwd1Con.css("display", "block");
                                 userPwd2Con.css("display", "none");
                                 userPwd1.val("");
-                                hint.text("You have already registered, quickly sign in and submit your interests");
+                                hint.text("You have already registered, quickly sign in and submit your form");
                             }
                         }
                     )
@@ -117,7 +117,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
             let submitFornRes = submitFormFunc(email.val(), customerId);
             console.log("after submit", submitFornRes);//todo
             if (submitFornRes) {
-                console.log("location:", location);
+                sessionStorage.setItem("success", "submit successful, thanks for your feedback");
                 location.reload();
             }
         }
