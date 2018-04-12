@@ -65,7 +65,7 @@
     require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
         let data = <?= $block->getLoginInfo()?>;
         let hint = $(".feedback-hint");
-
+        hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
         binder.bind(
             data,
             "<?= $block->getBaseUrl()?>",
@@ -103,6 +103,5 @@
             return result;
         }
     });
-
 
 </script>

@@ -30,12 +30,12 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
         let vip1 = -1;
         let emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
         var customerId = data.customerId;
-        console.log("data:", data, "vip:", vip, "customerId: ", customerId);
+        sessionStorage.removeItem("success");
         if (vip > 0) {
             email.attr({"value": data.email, "readonly": "readonly"});
         } else {
             email.blur(function () {
-                    console.log('blur');
+                    hint.css("color", "red");
                     if (!emailRegExp.test(email.val())) {
                         hint.text("invalid email format");
                         return false;
@@ -117,7 +117,7 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
             let submitFornRes = submitFormFunc(email.val(), customerId);
             console.log("after submit", submitFornRes);//todo
             if (submitFornRes) {
-                console.log("location:", location);
+                sessionStorage.setItem("success", "submit successful, thanks for your feedback");
                 location.reload();
             }
         }
