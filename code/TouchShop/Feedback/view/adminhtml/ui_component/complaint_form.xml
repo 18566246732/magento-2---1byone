@@ -80,14 +80,20 @@
                 <label translate="true">Email Address</label>
             </settings>
         </field>
-        <field name="name" formElement="input">
+        <field name="category_id" formElement="select">
             <settings>
-                <disabled>true</disabled>
                 <dataType>text</dataType>
                 <visible>true</visible>
-                <dataScope>name</dataScope>
-                <label translate="true">Contact Name</label>
+                <dataScope>category_id</dataScope>
+                <label translate="true">Category</label>
             </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TouchShop\Feedback\Ui\Component\Listing\Columns\CategorySelect"/>
+                    </settings>
+                </select>
+            </formElements>
         </field>
         <field name="order" formElement="input">
             <settings>

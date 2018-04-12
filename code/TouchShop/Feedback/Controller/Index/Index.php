@@ -55,10 +55,6 @@ class Index extends Action
             $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
 
             try {
-                if (!$post['categoryId']) {
-                    $post['categoryId'] = null;
-                }
-
                 /** @var Complaint */
                 $complaint = $this->complaintFactory->create($post);
                 $complaint->setEmail($post['email'])
