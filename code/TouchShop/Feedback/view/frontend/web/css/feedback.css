@@ -3,6 +3,7 @@
 .feedback-form-basic-info-container > * {
     display: inline-block;
     width: 48%;
+    margin: 20px 0;
 }
 
 .feedback-form-basic-info-container {
@@ -62,4 +63,8 @@ div.form-action-btn button:last-child:hover {
 
 .feedback-hint {
     color: red;
+}
+
+.feedback-form > * {
+    margin: 20px 0;
 }

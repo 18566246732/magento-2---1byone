@@ -4,7 +4,10 @@ var config = {
         'twbsPagination' : "TouchShop_Basic/js/jquery.twbsPagination.min",
         'bootstrap' : "TouchShop_Basic/js/bootstrap.min",
         'simplePagination' : "TouchShop_Basic/js/jquery.simplePagination",
-        'dotdotdot': 'TouchShop_Basic/js/jquery.dotdotdot'
+        'dotdotdot': 'TouchShop_Basic/js/jquery.dotdotdot',
+        'ajax' : 'TouchShop_Basic/js/ajax',
+        'bindQuickAutoLogin' : 'TouchShop_Basic/js/bindQuickAutoLogin'
+
     },
     shim: {
         'owlcarousel': {
@@ -21,6 +24,12 @@ var config = {
         },
         'dotdotdot' : {
             deps: ['jquery']
+        },
+        'ajax' : {
+            deps: ['jquery']
+        },
+        'bindQuickAutoLogin' : {
+            deps: ['jquery', 'ajax']
         }
     }
 };

@@ -5,7 +5,7 @@
         <referenceContainer name="sidebar.additional" remove="true"/>
         <referenceContainer name="content">
             <block class="TouchShop\PowerUser\Block\PowerUser" name="power_user"
-                   template="TouchShop_PowerUser::power_user.phtml"/>
+                   template="TouchShop_PowerUser::power_user.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>

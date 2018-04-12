@@ -4,11 +4,11 @@
 ?>
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Feedback::css/feedback.css") ?>">
-<form action="<?php echo $block->getFormAction()?>>" method="post" class="feedback-form">
+<form action="<?php echo $block->getFormAction() ?>>" method="post" class="feedback-form">
     <div class="feedback-form-action-control-container">
-        <br class="feedback-form-basic-info-container">
+        <div class="feedback-form-basic-info-container">
 
-            < for="text">Email </br> address <span>*</span>
+            <label for="text">Email address <span>*</span>
                 <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
             </label>
 
@@ -21,26 +21,26 @@
 
         <div class="feedback-form-basic-info-container">
 
-        <div class="feedback-pwd1">
+            <div class="feedback-pwd1">
 
-            <label for="password">Password <span>*</span>
-                <input name="password" id="feedbackPwd1" type="password" required="required" autocomplete="off">
-            </label>
-        </div>
+                <label for="password">Password <span>*</span>
+                    <input name="password" id="feedbackPwd1" type="password" required="required" autocomplete="off">
+                </label>
+            </div>
 
-        <div class="feedback-pwd2">
+            <div class="feedback-pwd2">
 
-            <label for="password">Please enter your Password again<span>*</span>
-                <input name="password" id="feedbackPwd2" type="password" required="required" autocomplete="off">
-            </label>
-        </div>
+                <label for="password">Please enter your Password again<span>*</span>
+                    <input name="password" id="feedbackPwd2" type="password" required="required" autocomplete="off">
+                </label>
+            </div>
         </div>
 
 
         <div class="feedback-detail">
 
             <label for="detail">Issue Details<span>*</span>
-                <textarea name="detail" id="feedBackDetail" type="text" required="required" autocomplete="off" cols="30"
+                <textarea name="detail" id="feedbackDetail" type="text" required="required" autocomplete="off" cols="30"
                           rows="10"></textarea>
             </label>
         </div>
@@ -54,70 +54,86 @@
 
 
 <script>
-    (function () {
-        require(['jquery'], function ($) {
-            var data = <?php echo($block->getLoginInfo())?>;
-            var vip = data.vip;
-            var feedbackEmail = $("#feedbackEmail");
-            var feedbackPwd1Con = $(".form-action-control-container .feedback-pwd1");
-            var feedbackPwd2Con = $(".form-action-control-container .feedback-pwd2");
-            var feedbackPwd1 = $("#feedbackPwd1");
-            var feedbackPwd2 = $("#feedbackPwd2");
-            var submitBtn = $(".form-action-btn button[type='submit']");
-            var vip1 = -1;
-            var hint = $(".feedback-hint");
-            var emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
-            $(function () {
-                console.log(vip);
-                submitBtn.on({
-                    click: formSubmitHandler,
-                });
+    require(['jquery'], function ($) {
 
-                $(document).keypress(function (e) {
-                    if (e.which == 13 && feedbackEmail.is(":focus")) {
+        var vip = -1;
+        var data = <?php echo($block->getLoginInfo())?>;
+        vip = data.vip;
+        var email = data.email;
+        var interests = data.interests;
+        var feedbackEmail = $("#feedbackEmail");
+        var inputCheckBox = $(".input-checkbox-container input");
+        var feedbackPwd1Con = $(".feedback-form .feedback-pwd1");
+        var feedbackPwd2Con = $(".feedback-form .feedback-pwd2");
+        var feedbackPwd1 = $("#feedbackPwd1");
+        var feedbackPwd2 = $("#feedbackPwd2");
+        var submitBtn = $(".feedback-form-action-control-container .form-action-btn button[type='button']");
+        var vip1 = -1;
+        var hint = $(".feedback-hint");
+        var emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
+        var customerId = data.customerId;
+        var formActionContainerInput = $(".feedback-form-action-control-container input");
+
+        $(function () {
+            console.log("vip:", vip);
+            submitBtn.on({
+                click: formSubmitHandler,
+            });
+
+            $(document).keypress(function (e) {
+                if (e.which == 13 && formActionContainerInput.is(":focus")) {
+                    if (e.target == feedbackEmail[0]) {
                         feedbackEmail.trigger("blur");
+                    } else {
+                        formSubmitHandler();
                     }
-                });
+                }
+            });
 
-                feedbackEmail.on("keyup", function () {
+            feedbackEmail.on("keyup", function () {
+                if (vip == 0) {
                     vip1 = -1;
                     feedbackPwd1Con.css("display", "none");
                     feedbackPwd2Con.css("display", "none");
+                }
+            });
+            //vip == 2
+            if (vip == 2) {
+                // interests
+                inputCheckBox.each(function (index, e) {
+                    if (interests.indexOf($(e).val()) != -1) {
+                        $(e).attr("checked", "checked");
+                    }
                 });
-                //vip == 2
-                if (vip == 2) {
-                    // interests
-                    // inputCheckBox.each(function (index, e) {
-                    //     if (interests.indexOf($(e).val()) != -1) {
-                    //         $(e).attr("checked", "checked");
-                    //     }
-                    // });
-                    // email
-                    $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
-                }
-                //vip == 1
-                else if (vip == 1) {
-                    // hint.text("you have submit successfully, thanks for your feedback")
-                    $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
-                }
+                // email
+                $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
+            }
+            //vip == 1
+            else if (vip == 1) {
+                // hint.text("you have submit successfully, thanks for your feedback")
+                $("#feedbackEmail").attr({"value": email, "readonly": "readonly"});
+            }
 
-                // vip == 0
-                else {
-                    // feedbackEmail.removeAttrs("disabled");
-                    feedbackEmail.blur(function () {
+            // vip == 0
+            else {
+                // feedbackEmail.removeAttrs("disabled");
+
+                feedbackEmail.blur(function () {
+                    if (vip == 0) {
+                        console.log('blur');
                         if (emailRegExp.test(feedbackEmail.val())) {
                             if (feedbackEmail.val() != "") {
                                 console.log("email blured");
-                                let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
+                                let url = "<?php echo $block->getBaseUrl() . 'basic/account/hasSignUp'?>";
                                 let param = {
                                     email: feedbackEmail.val()
                                 };
-                                sendAjax(url, param, function (res) {
+                                sendAjax(false, url, param, function (res) {
                                     vip1 = res.vip;
                                     console.log("vip1", vip1);
                                     //display logic
                                     if (vip1 == 0) {
-                                        hint.text("You haven't registered yet, quickly sign up and submit your interests");
+                                        hint.text("You haven't registered yet, quickly sign up and submit your info ");
                                         feedbackPwd1Con.css("display", "block");
                                         feedbackPwd2Con.css("display", "block");
                                         feedbackPwd1.val("");
@@ -139,95 +155,139 @@
                         } else {
                             hint.text("invalid email format");
                         }
-                    });
-                    feedbackEmail.focus(function () {
-                        hint.text(" ");
-                    });
-                }
-
-
-                function formSubmitHandler(e) {
-                    if (vip > 0) {
-                        console.log("vip > 0 , ready to submit");
-                        feedbackPwd2.attr("disabled", "disable");
-                        $(".feedback-form").submit();
                     }
-                    else if (vip == 0 && vip1 != -1) {
-                        if (feedbackPwd1.val() != "") {
+                });
+                feedbackEmail.focus(function () {
+                    hint.text(" ");
+                });
+            }
 
-                            if (vip1 == 0) {
-                                console.log("p1:", feedbackPwd1.val(), "p2:", feedbackPwd2.val());
-                                if (feedbackPwd1.val() == feedbackPwd2.val()) {
-                                    let param = {
-                                        email: feedbackEmail.val(),
-                                        firstname: 'customer',
-                                        lastname: 'user',
-                                        password: feedbackPwd1
-                                    };
-                                    let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
-                                    sendAjax(url, param, function (res) {
-                                        console.log(res);
-                                        if (res.status_code == 200) {
-                                            $(".feedback-form").submit();
-                                        } else {
-                                            hint.text(res.error_message);
-                                            return false;
-                                        }
-                                    });
-                                } else {
-                                    console.log("else in");
-                                    hint.text("2 passwords should be equal");
-                                    return false;
-                                }
-                            }
-                            //vip1 = 1 or 2
-                            else {
-                                console.log("vip1:", vip1);
-                                let param = {
-                                    login: {
-                                        username: feedbackEmail.val(),
-                                        password: feedbackPwd1.val()
-                                    }
-                                };
-                                let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
-                                sendAjax(url, param, function (res) {
-                                    console.log(res);
-                                    if (res.status_code == 200) {
-                                        $(".feedback-form").submit();
-                                    } else {
-                                        hint.text(res.error_message);
-                                        return false;
-                                    }
-                                });
-                            }
+            function formSubmitHandler(e) {
+                if (vip == -1) {
+                    return false;
+                }
+                if (vip == 0) {
+                    if (vip1 == 0) {
+                        //register
+                        console.log("vip1:", vip1);//todo
+                        if (!register()) {
+                            return false;
                         }
-                        else {
-                            hint.text("password cannot be empty");
-                        }
-                    } else {
+                        console.log("register success");//todo
+                    }
+                    //login
+                    //vip1 = 1 or 2
+                    console.log("vip1:", vip1);//todo
+                    if (!login()) {
                         return false;
                     }
+                    console.log("login success");//todo
                 }
+                console.log("before submit");//todo
+                //sendajax submit form
+                let interestsArr = [];
+                let inputCheckedContainer = $(".input-checkbox-container input:checked");
+                inputCheckedContainer.each(function (index, e) {
+                    interestsArr.push(e.value);
+                });
+                console.log("interestsArr:", interestsArr);
+                let param = {
+                    order: interestsArr,
+                    email: feedbackEmail.val(),
+                    customerId: customerId
+                };
+                console.log("customerId:", customerId);
+                let url = "<?php echo $block->getFormAction() ?>";
+                let submitFornRes = submitForm(url, param);
+                console.log("after submit", submitFornRes);//todo
+                if (submitFornRes) {
+                    location.reload();
+                }
+            }
 
-                function sendAjax(url, param, ajaxHandler) {
-                    console.log("sendAjax in");
-                    var responseText = $.ajax({
-                        url: url,
-                        type: "POST",
-                        // dataType: "json",
-                        data: param,
-                        success: function (res) {
-                            console.log("ajax ok");
-                            console.log("res", res);
-                            ajaxHandler(res);
-                        },
-                        error: function (jqXHR, textstatus, errorThrown) {
-                            console.log(jqXHR, textstatus, errorThrown);
-                            console.log("ajax error");
-                        }
-                    });
+
+            function sendAjax(isAsync, url, param, ajaxHandler) {
+                console.log("sendAjax in");
+                var responseText = $.ajax({
+                    url: url,
+                    type: "POST",
+                    // dataType: "json",
+                    data: param,
+                    async: isAsync,
+                    success: function (res) {
+                        console.log("ajax ok");
+                        console.log("res", res);
+                        ajaxHandler(res);
+                    },
+                    error: function (jqXHR, textstatus, errorThrown) {
+                        console.log(jqXHR, textstatus, errorThrown);
+                        console.log("ajax error");
+                    }
+                });
+            }
+
+            function register() {
+                let result = false;
+                let param = {
+                    email: feedbackEmail.val(),
+                    firstname: 'customer',
+                    lastname: 'user',
+                    password: feedbackPwd1.val()
+                };
+                let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
+
+                console.log("p1:", feedbackPwd1.val(), "p2:", feedbackPwd2.val());
+                if (feedbackPwd1.val() != feedbackPwd2.val()) {
+                    hint.text("2 passwords should be equal");
+                    return false;
                 }
-            });
+                sendAjax(false, url, param, function (res) {
+                    console.log(res);
+                    if (res.status_code == 200) {
+                        result = true
+                    }
+                    hint.text(res.error_message);
+                });
+                return result;
+            }
+
+            function login() {
+                let result = false;
+                let param = {
+                    login: {
+                        username: feedbackEmail.val(),
+                        password: feedbackPwd1.val()
+                    }
+                };
+                let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
+                sendAjax(false, url, param, function (res) {
+                    console.log(res);
+                    if (res.status_code == 200) {
+                        console.log("3", res.customerId);
+                        customerId = res.customerId;
+                        console.log("4");
+                        result = true;
+                        // $(".feedback-form").submit();
+                    } else {
+                        hint.text(res.error_message);
+                    }
+                });
+                return result;
+            }
+
+            function submitForm(url, param) {
+                let result = false;
+                sendAjax(false, url, param, function (res) {
+                    console.log("form submit", res);
+                    if (res.status_code == 200) {
+                        result = true;
+                    } else {
+                        hint.text(res.error_message);
+                    }
+                    console.log("reloaded");
+                });
+                return result;
+            }
         })
-    })()
+    })
 </script>
