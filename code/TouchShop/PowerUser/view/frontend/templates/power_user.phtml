@@ -21,9 +21,7 @@
             <div class="input-checkbox-container">
                 <div><input type="checkbox" name="interests[]" value="TV Accessories"> TV Accessories</div>
                 <div><input type="checkbox" name="interests[]" value="Home Decoration"> Home Decoration</div>
-                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting &
-                    Effects
-                </div>
+                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting & Effects</div>
                 <div><input type="checkbox" name="interests[]" value="Home Security"> Home Security</div>
                 <div><input type="checkbox" name="interests[]" value="Accessories"> Accessories</div>
                 <div><input type="checkbox" name="interests[]" value="Power"> Power</div>
@@ -71,11 +69,10 @@
     (function () {
         require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, bindQuickAutoLogin) {
             let data = <?= $block->getAjax()?>;
-            let inputCheckBox = $(".input-checkbox-container > input");
+            let inputCheckBox = $(".input-checkbox-container input");
             let hint = $(".power-user-hint");
             if(data.vip == 2) {
                 // interests
-                console.log("interests:", data.interests);
                 inputCheckBox.each(function (index, e) {
                     if (data.interests.indexOf($(e).val()) != -1) {
                         $(e).attr("checked", "checked");
