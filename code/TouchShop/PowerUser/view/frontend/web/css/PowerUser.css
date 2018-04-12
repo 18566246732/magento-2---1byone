@@ -60,6 +60,7 @@ div.input-checkbox-container div {
 
 .form-action-control-container {
     width: 50%;
+    padding-left: 5px;
 }
 
 .form-action-control-container > div {
@@ -85,4 +86,12 @@ div.input-checkbox-container div {
 
 .form-action-control-container label {
     padding-left: 4px;
+}
+
+.form-action-control-container input {
+    border-radius: 5px;
+}
+
+.power-user-form span {
+    color: red;
 }

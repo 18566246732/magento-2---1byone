@@ -39,7 +39,6 @@
     <div class="input-container">
         <div class="form-action-control-container">
             <div class="control1">
-
                 <label for="text">Email address <span>*</span>
                     <input name="email" id="powerUserEmail" type="email" required="required" autocomplete="off">
                 </label>
@@ -62,7 +61,6 @@
             <div class="form-action-btn">
                 <button type="reset">RESET</button>
                 <button type="button">SUBMIT</button>
-<!--                <input type="submit" value="submit" />-->
             </div>
         </div>
     </div>
@@ -71,8 +69,9 @@
 <script>
     (function () {
         require(['jquery'], function ($) {
+            var vip = -1;
             var data = <?php echo($block->getAjax())?>;
-            var vip = data.vip;
+            vip = data.vip;
             var email = data.email;
             var interests = data.interests;
             var powerUserEmail = $("#powerUserEmail");
@@ -85,11 +84,14 @@
             var vip1 = -1;
             var hint = $(".power-user-hint");
             var emailRegExp = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$');
+            var customerId = data.customerId;
+
             $(function () {
                 console.log(vip);
                 submitBtn.on({
                     click: formSubmitHandler,
                 });
+
                 powerUserEmail.on("keyup", function () {
                     if (vip == 0) {
                         vip1 = -1;
@@ -124,11 +126,11 @@
                             if (emailRegExp.test(powerUserEmail.val())) {
                                 if (powerUserEmail.val() != "") {
                                     console.log("email blured");
-                                    let url = "<?php echo $block->getBaseUrl() . 'power-user/hasSignUp/index'?>";
+                                    let url = "<?php echo $block->getBaseUrl() . 'basic/account/hasSignUp'?>";
                                     let param = {
                                         email: powerUserEmail.val()
                                     };
-                                    sendAjax(url, param, function (res) {
+                                    sendAjax(false, url, param, function (res) {
                                         vip1 = res.vip;
                                         console.log("vip1", vip1);
                                         //display logic
@@ -162,80 +164,70 @@
                     });
                 }
 
-
                 function formSubmitHandler(e) {
-                    if (vip > 0) {
-                        console.log("vip > 0 , ready to submit", vip);
-                        //powerUserPwd2.attr("disabled", "disable");
-                        $(".power-user-form").submit();
-                    } else if (vip == 0 && vip1 != -1) {
-                        if (powerUserPwd1.val() != "") {
-
-                            if (vip1 == 0) {
-                                console.log("p1:", powerUserPwd1.val(), "p2:", powerUserPwd2.val());
-                                if (powerUserPwd1.val() == powerUserPwd2.val()) {
-                                    let param = {
-                                        email: powerUserEmail.val(),
-                                        firstname: 'customer',
-                                        lastname: 'user',
-                                        password: powerUserPwd1.val()
-                                    };
-                                    let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
-                                    console.log(url);
-                                    sendAjax(url, param, function (res) {
-                                        console.log(res);
-                                        if (res.status_code == 200) {
-                                            $(".power-user-form").submit();
-                                        } else {
-                                            hint.text(res.error_message);
-                                            return false;
-                                        }
-                                    });
-                                } else {
-                                    console.log("else in");
-                                    hint.text("2 passwords should be equal");
-                                    return false;
-                                }
-                            }
-                            //vip1 = 1 or 2
-                            else {
-                                console.log("vip1:", vip1);
-
-                                let param = {
-                                    login: {
-                                        username: powerUserEmail.val(),
-                                        password: powerUserPwd1.val()
-                                    }
-                                };
-                                let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
-
-                                sendAjax(url, param, function (res) {
-                                    console.log(res);
-                                    if (res.status_code == 200) {
-                                        $(".power-user-form").submit();
-                                    } else {
-                                        hint.text(res.error_message);
-                                        return false;
-                                    }
-                                });
-                            }
-                        }
-                        else {
-                            hint.text("password cannot be empty");
-                        }
-                    } else {
+                    if (vip == -1) {
                         return false;
                     }
+                    if (vip == 0) {
+                        if (vip1 == 0) {
+                            //register
+                            let param = {
+                                email: powerUserEmail.val(),
+                                firstname: 'customer',
+                                lastname: 'user',
+                                password: powerUserPwd1.val()
+                            };
+                            let url = "<?php echo $block->getBaseUrl() . 'basic/account/createPost'?>";
+                            let registerResult = register(url, param);
+                            if (!register_result) {
+                                return false;
+                            }
+                        }
+                        //login
+                        //vip1 = 1 or 2
+                        let param = {
+                            login: {
+                                username: powerUserEmail.val(),
+                                password: powerUserPwd1.val()
+                            }
+                        };
+                        let url = "<?php echo $block->getBaseUrl() . 'basic/account/signInPost'?>"
+                        let loginRes = login(url, param);
+                        if (!loginRes) {
+                            return false;
+                        }
+
+                    }
+                    //sendajax submit form
+                    let interestsArr = [];
+                    let inputCheckedContainer = $(".input-checkbox-container input:checked");
+                    inputCheckedContainer.each(function (index, e) {
+                        interestsArr.push(e.value);
+                    });
+                    console.log("interestsArr:", interestsArr);
+                    let param = {
+                        interests: interestsArr,
+                        email: powerUserEmail.val(),
+                        customerId: customerId
+                    };
+                    let url = "<?php echo $block->getFormAction() ?>";
+                    submitForm(url, param);
+                    let submitFornRes = login(url, param);
+                    if (!submitFornRes) {
+                        return false;
+                    }
+
                 }
 
 
-                function sendAjax(url, param, ajaxHandler) {
+                function sendAjax(isAsync, url, param, ajaxHandler) {
                     console.log("sendAjax in");
                     var responseText = $.ajax({
                         url: url,
                         type: "POST",
                         // dataType: "json",
                         data: param,
+                        async: isAsync,
                         success: function (res) {
                             console.log("ajax ok");
                             console.log("res", res);
@@ -245,6 +237,51 @@
                             console.log(jqXHR, textstatus, errorThrown);
                             console.log("ajax error");
                         }
+                    });
+                }
+
+                function register(url, param) {
+                    console.log("p1:", powerUserPwd1.val(), "p2:", powerUserPwd2.val());
+                    if (powerUserPwd1.val() != powerUserPwd2.val()) {
+                        hint.text("2 passwords should be equal");
+                        return false;
+                    }
+                    ;
+                    sendAjax(false, url, param, function (res) {
+                        console.log(res);
+                        if (res.status_code != 200) {
+                            // $(".power-user-form").submit();
+                            hint.text(res.error_message);
+                            return false;
+                        }
+                        return true;
+                    });
+                }
+
+                function login(url, param) {
+                    sendAjax(false, url, param, function (res) {
+                        console.log(res);
+                        if (res.status_code != 200) {
+                            // $(".power-user-form").submit();
+                            hint.text(res.error_message);
+                            return false;
+                        }
+                        customerId = res.customerId;
+                        return true;
+                    });
+                }
+
+                function submitForm(url, param) {
+                    sendAjax(false, url, param, function (res) {
+                        console.log(res);
+                        if (res.status_code != 200) {
+                            // $(".power-user-form").submit();
+                            hint.text(res.error_message);
+                            return false;
+                        }
+                        location.reload();
+                        console.log("reloaded");
+                        return true;
                     });
                 }
             })

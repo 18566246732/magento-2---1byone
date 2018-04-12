@@ -1,52 +1,53 @@
 <?php
-/**@var $block TouchShop\Feedback\Block\Complain*/
+/**@var $block TouchShop\Feedback\Block\Complain */
 
 ?>
 
-<link rel="stylesheet" href="<?php echo $block-> ?>">
-<form action="<?php echo $block->getFormAction() ?>" method="post" class="feedback-form">
-    <div class="input-container">
-        <div class="form-action-control-container">
-            <div class="feedback-form-basic-info-container">
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Feedback::css/feedback.css") ?>">
+<form action="<?php echo $block->getFormAction()?>>" method="post" class="feedback-form">
+    <div class="feedback-form-action-control-container">
+        <br class="feedback-form-basic-info-container">
 
-                <label for="text">Email address <span>*</span>
-                    <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
-                </label>
+            < for="text">Email </br> address <span>*</span>
+                <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
+            </label>
 
-                <label for="order">Order ID <span>*</span>
-                    <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
-                </label>
-            </div>
+            <label for="order">Order ID <span>*</span>
+                <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
+            </label>
+        </div>
 
-            <div class="feedback-hint"></div>
+        <div class="feedback-hint"></div>
 
-            <div class="feedback-pwd1">
+        <div class="feedback-form-basic-info-container">
 
-                <label for="password">Password <span>*</span>
-                    <input name="password" id="feedbackPwd1" type="password" required="required" autocomplete="off">
-                </label>
-            </div>
+        <div class="feedback-pwd1">
 
-            <div class="feedback-pwd2">
+            <label for="password">Password <span>*</span>
+                <input name="password" id="feedbackPwd1" type="password" required="required" autocomplete="off">
+            </label>
+        </div>
 
-                <label for="password">Please enter your Password again<span>*</span>
-                    <input name="password" id="feedbackPwd2" type="password" required="required" autocomplete="off">
-                </label>
-            </div>
+        <div class="feedback-pwd2">
+
+            <label for="password">Please enter your Password again<span>*</span>
+                <input name="password" id="feedbackPwd2" type="password" required="required" autocomplete="off">
+            </label>
+        </div>
+        </div>
 
 
-            <div class="feedback-detail">
+        <div class="feedback-detail">
 
-                <label for="detail">Issue Details<span>*</span>
-                    <textarea name="detail" id="feedBackDetail" type="text" required="required" autocomplete="off" cols="30" rows="10"></textarea>
-                </label>
-            </div>
+            <label for="detail">Issue Details<span>*</span>
+                <textarea name="detail" id="feedBackDetail" type="text" required="required" autocomplete="off" cols="30"
+                          rows="10"></textarea>
+            </label>
+        </div>
 
-            <div class="form-action-btn">
-                <button type="reset">RESET</button>
-                <button type="submit">SUBMIT</button>
-                <input type="submit" value="submit" />
-            </div>
+        <div class="form-action-btn">
+            <button type="reset">RESET</button>
+            <button type="button">SUBMIT</button>
         </div>
     </div>
 </form>
@@ -54,9 +55,8 @@
 
 <script>
     (function () {
-        var inputEmail = $();
         require(['jquery'], function ($) {
-            var data = <?php echo($block->getAjax())?>;
+            var data = <?php echo($block->getLoginInfo())?>;
             var vip = data.vip;
             var feedbackEmail = $("#feedbackEmail");
             var feedbackPwd1Con = $(".form-action-control-container .feedback-pwd1");
@@ -74,7 +74,7 @@
                 });
 
                 $(document).keypress(function (e) {
-                    if(e.which == 13 && feedbackEmail.is(":focus")) {
+                    if (e.which == 13 && feedbackEmail.is(":focus")) {
                         feedbackEmail.trigger("blur");
                     }
                 });
@@ -114,7 +114,7 @@
                                 };
                                 sendAjax(url, param, function (res) {
                                     vip1 = res.vip;
-                                    console.log("vip1",vip1);
+                                    console.log("vip1", vip1);
                                     //display logic
                                     if (vip1 == 0) {
                                         hint.text("You haven't registered yet, quickly sign up and submit your interests");
@@ -156,7 +156,7 @@
                         if (feedbackPwd1.val() != "") {
 
                             if (vip1 == 0) {
-                                console.log("p1:",feedbackPwd1.val() , "p2:", feedbackPwd2.val());
+                                console.log("p1:", feedbackPwd1.val(), "p2:", feedbackPwd2.val());
                                 if (feedbackPwd1.val() == feedbackPwd2.val()) {
                                     let param = {
                                         email: feedbackEmail.val(),
@@ -207,6 +207,25 @@
                     } else {
                         return false;
                     }
+                }
+
+                function sendAjax(url, param, ajaxHandler) {
+                    console.log("sendAjax in");
+                    var responseText = $.ajax({
+                        url: url,
+                        type: "POST",
+                        // dataType: "json",
+                        data: param,
+                        success: function (res) {
+                            console.log("ajax ok");
+                            console.log("res", res);
+                            ajaxHandler(res);
+                        },
+                        error: function (jqXHR, textstatus, errorThrown) {
+                            console.log(jqXHR, textstatus, errorThrown);
+                            console.log("ajax error");
+                        }
+                    });
                 }
             });
         })
