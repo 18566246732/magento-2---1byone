@@ -72,7 +72,7 @@ main.page-main {
     width: 100%;
 }
 
-.page-h-cards ul {
+.page-h-cards {
     /*in order to show shadow-bottom , add 10px to height , less 10px to margin-bottom*/
     padding: 0;
     /*height: 210px;*/
@@ -82,42 +82,125 @@ main.page-main {
     margin-bottom: 50px;
 }
 
-.page-h-cards ul li {
+.page-h-cards > div {
     /*background-color: grey;*/
     /*width: 400px;*/
     /*box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.1);*/
     cursor: pointer;
 }
 
-.page-h-cards ul li:hover {
+.page-h-cards > div:hover {
     box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
-.page-h-cards > div {
-    font-size: 28px;
-    text-align: center;
-    /*border-bottom: 2px solid red;*/
-    margin-bottom: 50px;
-    `
-    text-decoration: red ;
+.page-cards-container div.page-cards-title {
+    display: flex;
+    justify-content: center;
 }
 
-.page-v-cards ul {
-    padding: 0;
-    min-height: 930px;
+div.page-cards-title h1 {
+    margin: 20px 0 70px 0;
+    border-bottom: 2px solid red;
+}
+
+.page-h-card {
+    width: 384px;
+    height: 378px;
+    background-color: white;
+    position: relative;
+
+}
+
+.page-h-card > div {
+    height: 70%;
+    background-color: #f2f2f2;
+}
+
+.page-h-card h1 {
+    font-size: 18px;
+    color: red;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.page-h-card p {
+    font-size: 12px;
+    width: 80%;
+}
+
+.page-h-card button {
+    position: absolute;
+    background-color: red;
+    box-shadow: none;
+    height: 50px;
+    width: 60px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    right: 0;
+    font-size: 20px;
+    color: white;
+    border: none;
+    bottom: 50px;
+}
+
+.page-v-cards {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    list-style: none;
+    flex-direction: column;
+    height: 800px;
+    margin: 0 auto;
 }
 
-.page-v-cards ul li {
+.v-cards {
+    width: 100%;
+    height: 48%;
+}
+
+.v-cards:last-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.v-card, .v-card-bulk {
+    background-size: cover;
     background-color: grey;
-    width: 600px;
+    height: 100%;
+}
+
+.page-v-cards .v-cards .v-card:first-child {
+    width: 34%;
+}
+
+.page-v-cards .v-cards .v-card:last-child {
+    width: 64%;
+}
+
+.imgs-gallery {
+    height: 200px;
+    margin-top: 30px;
+}
+
+.imgs-gallery ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgs-gallery li {
+    display: inline-block;
+    width: 230px;
+    height: 200px;
+    background-color: grey;
+}
+
+.imgs-gallery li:not(:last-child) {
+    margin-left: 1px;
 }
 
 /*campaign page*/
-div.columns {
 
+.columns .column.main {
+    padding-bottom: 0;
 }
 
 .widget.block.block-static-block {
@@ -140,7 +223,6 @@ div.columns {
 .product-item .swatch-option {
     display: none;
 }
-
 
 /*grid continue*/
 /*.block.widget .products-grid .product-item {*/

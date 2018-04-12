@@ -63,8 +63,8 @@
                 function resizeCarouselContainer() {
                     var WINDOW_WIDTH = document.body.offsetWidth
                     var TARGET_WIDTH = $('.page-main').width()
-                    $('.owl-carousel-container').width(WINDOW_WIDTH)
-                    $('.owl-carousel-container').css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
+                    $('.owl-carousel-container, .imgs-gallery').width(WINDOW_WIDTH)
+                    $('.owl-carousel-container, .imgs-gallery').css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
                 }
 
                 resizeCarouselContainer()
