@@ -52,18 +52,21 @@ class Index extends Action
 
             try {
                 $refund = $this->refundFactory->create();
+                $type = $post['type'];
                 $refund->setEmail($post['email'])
                     ->setReason($post['reason'])
                     ->setCategoryId($post['categoryId'])
                     ->setOrder($post['order'])
                     ->setIssue($post['issue'])
-                    ->setAddress($post['address'])
-                    ->setState($post['state'])
-                    ->setPostalCode($post['postalCode'])
-                    ->setCountry($post['country'])
-                    ->setPhone($post['phone'])
-                    ->setType($post['type'])
-                    ->setStoreId($this->storeManager->getStore()->getId());
+                    ->setStoreId($this->storeManager->getStore()->getId())
+                    ->setType($type);
+                if ($type == 'Exchange') {
+                    $refund->setAddress($post['address'])
+                        ->setState($post['state'])
+                        ->setPostalCode($post['postalCode'])
+                        ->setCountry($post['country'])
+                        ->setPhone($post['phone']);
+                }
 
                 if ($this->session->isLoggedIn()) {
                     $refund->setCustomerId($this->session->getCustomerId());
