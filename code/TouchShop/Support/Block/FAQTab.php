@@ -48,10 +48,14 @@ class FAQTab extends Template
         return $this->getBaseUrl() . 'support/add/faq';
     }
 
-    public function getLoginInfo()
+    public function getInfo()
     {
-        $loginInfo = CustomerHelper::getLoginInfo($this->session, $this->repository);
-        return json_encode($loginInfo);
+        $info = CustomerHelper::getLoginInfo($this->session, $this->repository);
+        $product = $this->_registry->registry('current_product');
+        if ($product && $product->getId()) {
+            $info['productId'] = $product->getId();
+        }
+        return json_encode($info);
     }
 
 }

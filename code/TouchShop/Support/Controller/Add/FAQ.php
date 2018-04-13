@@ -9,6 +9,8 @@
 namespace TouchShop\Support\Controller\Add;
 
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\CategoryRepository;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -28,13 +30,17 @@ class FAQ extends Action
     private $faqResourceModel;
     private $storeManager;
     private $session;
+    private $productRepository;
+    private $categoryRepository;
 
     public function __construct(
         Context $context,
         Session $session,
         StoreManagerInterface $storeManager,
         FAQModelFactory $modelFactory,
-        FAQResourceModel $resourceModel
+        FAQResourceModel $resourceModel,
+        ProductRepositoryInterface $productRepository,
+        CategoryRepository $categoryRepository
     )
     {
         parent::__construct($context);
@@ -42,6 +48,8 @@ class FAQ extends Action
         $this->faqResourceModel = $resourceModel;
         $this->session = $session;
         $this->storeManager = $storeManager;
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
 
     }
 
@@ -49,32 +57,41 @@ class FAQ extends Action
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      * @throws \Exception
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     public function execute()
     {
         $post = (array)$this->getRequest()->getPost();
         if (!empty($post)) {
-            /** @var FAQModel */
-            $faqModel = $this->faqModelFactory->create();
-            $faqModel->setContent($post['content'])
-                ->setProductId($post['productId'])
-                ->setCustomerId($this->session->getCustomerId())
-                ->setEmail($post['email'])
-                ->setStoreId($this->storeManager->getStore()->getId());
+            $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
 
-            $this->faqResourceModel->save($faqModel);
+            try {
+                /** @var FAQModel */
+                $faqModel = $this->faqModelFactory->create();
+                $faqModel->setContent($post['content'])
+                    ->setProductId($post['productId'])
+                    ->setCustomerId($this->session->getCustomerId())
+                    ->setEmail($post['email'])
+                    ->setStoreId($this->storeManager->getStore()->getId());
+                $product = $this->productRepository->getById($post['productId']);
+                $categoryIds = $product->getCategoryIds();
+                $categoryNames = [];
+                foreach ($categoryIds as $categoryId) {
+                    $category = $this->categoryRepository->get($categoryId);
+                    $categoryNames[] = $category->getName();
+                }
+                $faqModel->setCategories(join(',', $categoryNames));
 
-            // Display the succes form validation message
-            $this->messageManager->addSuccessMessage(
-                'Success! we will contact you as soon as possible to solve this problem'
-            );
+                $this->faqResourceModel->save($faqModel);
 
-            // Redirect to your form page (or anywhere you want...)
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+                // Display the succes form validation message
+                $this->messageManager->addSuccessMessage(
+                    'Success! we will contact you as soon as possible to solve this problem'
+                );
 
-            return $resultRedirect;
+                return $result->setData(['result' => 'success', 'status_code' => 200]);
+            } catch (\Exception $e) {
+                return $result->setData(['result' => 'fail', 'status_code' => 500, 'error_message' => $e->getMessage()]);
+            }
         }
     }
 }
