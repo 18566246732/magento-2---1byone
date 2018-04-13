@@ -18,7 +18,7 @@ $data = $block->getInfo()
                 </div>
             </div>
         <?php endforeach ?>
-        <form action="<?php echo $block->getFaqAction() ?>" method="post" class="faq-form-action-control-container">
+        <div  class="faq-form-action-control-container">
             <div class="faq-form-basic-info-container">
 
                 <label>Ask a question <input type="text" name="content" required="required"/></label>
@@ -48,7 +48,7 @@ $data = $block->getInfo()
                 <button type="reset">RESET</button>
                 <button type="button">SUBMIT</button>
             </div>
-        </form>
+        </div>
     </div>
 
     <script>
@@ -93,7 +93,7 @@ $data = $block->getInfo()
                 submitFormFun,
             );
 
-            function submitFormFun(email, customerId) {
+            function submitFormFun(email) {
                 let result = false;
                 ajax.sendAjax(
                     false,
