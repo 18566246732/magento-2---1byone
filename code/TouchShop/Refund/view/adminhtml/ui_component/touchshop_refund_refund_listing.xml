@@ -182,6 +182,9 @@
                 <label>Phone</label>
             </settings>
         </column>
+        <actionsColumn name="actions" class="TouchShop\Refund\Ui\Component\Listing\Columns\RefundActions"
+                       sortOrder="100">
+        </actionsColumn>
     </columns>
 </listing>
 
