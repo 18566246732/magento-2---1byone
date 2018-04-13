@@ -96,3 +96,7 @@
 .address.active {
     display: block
 }
+
+.form-address {
+    display: none;
+}

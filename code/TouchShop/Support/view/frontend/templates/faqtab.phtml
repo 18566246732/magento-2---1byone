@@ -77,23 +77,24 @@ $data = $block->getInfo()
         require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
             let data = <?= $block->getInfo()?>;
             let hint = $(".faq-hint");
-            let content = $(".faq-form-basic-info-container input[type='text']").val();
+
             hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
             binder.bind(
-                data,
-                "<?= $block->getBaseUrl()?>",
-                $("#faqEmail"),
-                $(".faq-form-action-control-container .faq-pwd1"),
-                $(".faq-form-action-control-container .faq-pwd2"),
-                $("#faqPwd1"),
-                $("#faqPwd2"),
-                $(".faq-form-action-control-container input"),
-                $(".form-action-btn button[type='button']"),
-                hint,
-                submitFormFun,
-            );
+            data,
+            "<?= $block->getBaseUrl()?>",
+            $("#faqEmail"),
+            $(".faq-form-action-control-container .faq-pwd1"),
+            $(".faq-form-action-control-container .faq-pwd2"),
+            $("#faqPwd1"),
+            $("#faqPwd2"),
+            $(".faq-form-action-control-container input"),
+            $(".form-action-btn button[type='button']"),
+            hint,
+            submitFormFun,
+        );
 
             function submitFormFun(email) {
+                let content = $(".faq-form-basic-info-container input[type='text']").val();
                 let result = false;
                 ajax.sendAjax(
                     false,

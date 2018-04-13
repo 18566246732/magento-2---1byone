@@ -101,6 +101,7 @@
 div.form-action-btn {
     display: flex;
     justify-content: flex-start;
+    margin: 20px 0;
 }
 
 div.form-action-btn button:first-child {

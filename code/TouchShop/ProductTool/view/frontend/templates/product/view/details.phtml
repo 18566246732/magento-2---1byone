@@ -43,10 +43,11 @@ $currentProductId = $block->getCurrentProductId();
                     $label = $block->getChildData($alias, 'title');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
-                    substr($label, 0, strpos($label, ' ')) ?>">
+                    $index ?>">
                         <a class="details-tab" href="#<?= /* @escapeNotVerified */
                         $alias ?>"
-                           id="tab-label-<?= $index ?>">
+                           id="tab-label-<?= $index ?>"
+                        >
                             <?= $label ?>
                         </a>
                     </div>
@@ -101,16 +102,15 @@ $currentProductId = $block->getCurrentProductId();
 
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#8d131c");
-                location.href = "#tab-label-" + $(this).text();
+                location.href = "#tab-label-" + $(this).index();
 
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
 
                 //bottom situation,
                 if (docHeight - windowHeight + 200 < contentTopArr[$(this).index()]) {
-
+                    console.log("last one");
                 } else {
-
                     $("body,html").animate({'scrollTop': ac - 140}, 0);
                 }
             });
