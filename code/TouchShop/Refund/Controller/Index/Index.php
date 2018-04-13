@@ -62,6 +62,7 @@ class Index extends Action
                     ->setPostalCode($post['postalCode'])
                     ->setCountry($post['country'])
                     ->setPhone($post['phone'])
+                    ->setType($post['type'])
                     ->setStoreId($this->storeManager->getStore()->getId());
 
                 if ($this->session->isLoggedIn()) {
