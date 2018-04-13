@@ -56,11 +56,6 @@
     margin-bottom: 20px;
 }
 
-.block.newsletter .follow {
-    display: block;
-    font-size: 14px;
-}
-
 #newsletter-validate-detail {
     width: 80%;
     font-size: 14px;
@@ -129,7 +124,14 @@
     width: 100%;
 }
 
-.block.newsletter .title {
-    font-size: 20px;
-    font-weight: bold;
+.newsletter-title {
+    font-size: 16px;
+}
+
+.block.newsletter p {
+    font-size: 12px;
+}
+
+.block.newsletter form {
+    margin: 15px 0;
 }
