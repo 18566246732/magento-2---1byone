@@ -43,11 +43,10 @@ $currentProductId = $block->getCurrentProductId();
                     $label = $block->getChildData($alias, 'title');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
-                    $label ?>">
+                    substr($label, 0, strpos($label, ' ')) ?>">
                         <a class="details-tab" href="#<?= /* @escapeNotVerified */
                         $alias ?>"
-                           id="tab-label-<?= $index ?>"
-                        >
+                           id="tab-label-<?= $index ?>">
                             <?= $label ?>
                         </a>
                     </div>
