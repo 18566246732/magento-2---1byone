@@ -92,3 +92,7 @@
     padding-top: 30px;
     border-top: 1px solid #e0dede;
 }
+
+.faq-pwd1 , .faq-pwd2 {
+    display: none;
+}

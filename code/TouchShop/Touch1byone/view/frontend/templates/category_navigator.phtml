@@ -19,83 +19,88 @@
 
     (function () {
         require(['jquery'], function ($) {
-        function toggle(tag, fn) {
-            var status;
-            if (tag.classList.contains('active')) {
-                tag.classList.remove('active');
-                status = false
-            } else {
-                tag.classList.add('active');
-                status = true
-            }
-            if (fn) status ? (fn.open ? fn.open(tag) : '') : (fn.close ? fn.close(tag) : '')
-        }
-
-        function init() {
-            // init tree
-            var TREE_DATA = <?php echo $block->getCategoryTree()?>;
-            console.log("tree_data: ",TREE_DATA);
-            var TEMPLATE = document.querySelector('template');
-
-            function createLeaf(dom, data, fater) {
-                var div = TEMPLATE.innerHTML;
-                var leaf = document.createElement('div');
-                leaf.classList.add('leaf-contianer');
-                leaf.setAttribute('data-fater', fater)
-                // data
-                //remove number
-                // data.text = data.text.slice();
-
-                if (!data.children) leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/,  data.text).replace(/icon/, 'icon hide');
-                else leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text);
-                leaf.querySelector('.icon').setAttribute('data-fater', data.text)
-                if (data.url) {
-                    leaf.querySelector('.tag-name').classList.add('a')
-                    leaf.querySelector('.tag-name').onclick = function () {
-                        location.href = data.url;
-                    }
+            function toggle(tag, fn) {
+                var status;
+                if (tag.classList.contains('active')) {
+                    tag.classList.remove('active');
+                    status = false
+                } else {
+                    tag.classList.add('active');
+                    status = true
                 }
-                dom.appendChild(leaf);
-
-                if (data.children && data.children.length != 0) {
-                    for (var j = 0; j < data.children.length; j++) {
-                        createLeaf(leaf, data.children[j], data.text)
-                    }
-                }
+                if (fn) status ? (fn.open ? fn.open(tag) : '') : (fn.close ? fn.close(tag) : '')
             }
 
-            createLeaf(document.querySelector('#tree-container'), TREE_DATA, 'first')
+            function init() {
+                // init tree
+                var TREE_DATA = <?php echo $block->getCategoryTree()?>;
+                console.log("tree_data: ", TREE_DATA);
+                var TEMPLATE = document.querySelector('template');
 
-            // add icon click
-            var icon = document.querySelectorAll('.tree-container .leaf-content .icon')
-            for (var k = 0; k < icon.length; k++) {
-                icon[k].onclick = function () {
-                    toggle(this, {
-                        open: function (params) {
-                            var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
-                            var fater = params.getAttribute('data-fater')
-                            for (var a = 0; a < dom.length; a++) {
-                                if (dom[a].getAttribute('data-fater') == fater)
-                                    dom[a].classList.add('active');
-                            }
-                        },
-                        close: function (params) {
-                            var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
-                            var fater = params.getAttribute('data-fater')
-                            for (var a = 0; a < dom.length; a++) {
-                                if (dom[a].getAttribute('data-fater') == fater)
-                                    dom[a].classList.remove('active');
-                            }
+                function createLeaf(dom, data, fater) {
+                    var div = TEMPLATE.innerHTML;
+                    var leaf = document.createElement('div');
+                    leaf.classList.add('leaf-contianer');
+                    leaf.setAttribute('data-fater', fater)
+                    // data
+                    //remove number
+                    // data.text = data.text.slice();
+
+                    if (!data.children) leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text).replace(/icon/, 'icon hide');
+                    else leaf.innerHTML = div.replace(/-tag-title-/, data.text).replace(/-tag-/, data.text);
+                    leaf.querySelector('.icon').setAttribute('data-fater', data.text)
+                    if (data.url) {
+                        leaf.querySelector('.tag-name').classList.add('a')
+                        leaf.querySelector('.tag-name').onclick = function () {
+                            location.href = data.url;
                         }
-                    })
-                }
-            }
-            icon.forEach(function (e) {
-                $(e).trigger("click");
-            });
-        }
+                    }
+                    dom.appendChild(leaf);
 
-        init()
+                    console.log(data.current);
+
+                    if (data.children && data.children.length != 0) {
+                        for (var j = 0; j < data.children.length; j++) {
+                            createLeaf(leaf, data.children[j], data.text)
+                        }
+                    }
+
+                    if (data.current) {
+                        $(leaf.querySelector('.tag-name')).css({"color": "black", "font-weight": "bold"});
+                    }
+                }
+                createLeaf(document.querySelector('#tree-container'), TREE_DATA, 'first')
+
+                // add icon click
+                var icon = document.querySelectorAll('.tree-container .leaf-content .icon')
+                for (var k = 0; k < icon.length; k++) {
+                    icon[k].onclick = function () {
+                        toggle(this, {
+                            open: function (params) {
+                                var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
+                                var fater = params.getAttribute('data-fater')
+                                for (var a = 0; a < dom.length; a++) {
+                                    if (dom[a].getAttribute('data-fater') == fater)
+                                        dom[a].classList.add('active');
+                                }
+                            },
+                            close: function (params) {
+                                var dom = params.parentNode.parentNode.querySelectorAll('.leaf-contianer')
+                                var fater = params.getAttribute('data-fater')
+                                for (var a = 0; a < dom.length; a++) {
+                                    if (dom[a].getAttribute('data-fater') == fater)
+                                        dom[a].classList.remove('active');
+                                }
+                            }
+                        })
+                    }
+                }
+                icon.forEach(function (e) {
+                    $(e).trigger("click");
+                });
+            }
+
+            init()
         })
     })()
 </script>

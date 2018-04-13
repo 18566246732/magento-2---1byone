@@ -87,7 +87,6 @@ class FAQ extends Action
                 $this->messageManager->addSuccessMessage(
                     'Success! we will contact you as soon as possible to solve this problem'
                 );
-
                 return $result->setData(['result' => 'success', 'status_code' => 200]);
             } catch (\Exception $e) {
                 return $result->setData(['result' => 'fail', 'status_code' => 500, 'error_message' => $e->getMessage()]);
