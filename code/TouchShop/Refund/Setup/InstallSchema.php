@@ -102,6 +102,11 @@ class InstallSchema implements InstallSchemaInterface
                     255,
                     ['nullable' => true]
                 )->addColumn(
+                    'country',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => true]
+                )->addColumn(
                     'phone',
                     Table::TYPE_TEXT,
                     32,

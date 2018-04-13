@@ -9,6 +9,8 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="TouchShop\ReviewTool\Api\Data\ReviewAdvancedInterface"
                 type="TouchShop\ReviewTool\Model\ReviewAdvanced"/>
+    <preference for="Magento\Review\Block\Product\Review"
+                type="TouchShop\ReviewTool\Model\Preference\ReviewPreference"/>
     <preference for="TouchShop\ReviewTool\Api\ReviewAdvancedProviderInterface"
                 type="TouchShop\ReviewTool\Model\ReviewAdvanced\Provider"/>
     <type name="Magento\Theme\Model\View\Design">
