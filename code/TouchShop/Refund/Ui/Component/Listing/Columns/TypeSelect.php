@@ -11,6 +11,7 @@ namespace TouchShop\Refund\Ui\Component\Listing\Columns;
 
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
+use TouchShop\Refund\Helper\Options;
 
 class TypeSelect extends Column implements OptionSourceInterface
 {
@@ -20,16 +21,6 @@ class TypeSelect extends Column implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        $result = [];
-        foreach ($this->getStatus() as $item) {
-            $result[] = ['value' => $item, 'label' => $item];
-        }
-
-        return $result;
-    }
-
-    private function getStatus()
-    {
-        return ['Refund', 'Exchange'];
+        return Options::getTypes();
     }
 }

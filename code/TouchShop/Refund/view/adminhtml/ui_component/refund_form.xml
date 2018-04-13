@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">refund_form.refund_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Refund Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="TouchShop\Refund\Block\Adminhtml\Refund\Edit\SaveButton"/>
+            <button name="back" class="TouchShop\Refund\Block\Adminhtml\Refund\Edit\BackButton"/>
+        </buttons>
+        <namespace>refund_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>refund_form.refund_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="refund_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="refund/refund/save"/>
+        </settings>
+        <dataProvider class="TouchShop\Feedback\Model\DataProvider" name="refund_form_data_source">
+            <settings>
+                <requestFieldName>refund_id</requestFieldName>
+                <primaryFieldName>refund_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="refund_id" formElement="input">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>refund_id</dataScope>
+                <label translate="true">refund id</label>
+            </settings>
+        </field>
+        <field name="created_at" formElement="date">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>date</dataType>
+                <visible>true</visible>
+                <dataScope>created_at</dataScope>
+                <label translate="true">Created At</label>
+            </settings>
+        </field>
+        <field name="status" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>status</dataScope>
+                <label translate="true">Status</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TouchShop\Refund\Ui\Component\Listing\Columns\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="email" formElement="email">
+            <settings>
+                <dataType>email</dataType>
+                <visible>true</visible>
+                <dataScope>email</dataScope>
+                <label translate="true">Email Address</label>
+            </settings>
+        </field>
+        <field name="category_id" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>category_id</dataScope>
+                <label translate="true">Category</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TouchShop\Refund\Ui\Component\Listing\Columns\CategorySelect"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="order" formElement="input">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>order</dataScope>
+                <label translate="true">Order ID</label>
+            </settings>
+        </field>
+        <field name="content" formElement="textarea">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>string</dataType>
+                <visible>true</visible>
+                <label translate="true">Issue Details</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>
