@@ -48,7 +48,7 @@ class Index extends Action
         $post = (array)$this->getRequest()->getPost();
 
         if (!empty($post)) {
-            $result = $this->refundFactory->create(ResultFactory::TYPE_JSON);
+            $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
 
             try {
                 $refund = $this->refundFactory->create();
