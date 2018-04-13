@@ -14,6 +14,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Template;
 use TouchShop\Basic\Helper\CustomerHelper;
 use TouchShop\ProductTool\Helper\CategoryHelper;
+use TouchShop\Refund\Helper\Options;
 
 class Refund extends Template
 {
@@ -60,4 +61,21 @@ class Refund extends Template
     {
         return CategoryHelper::getCategories($this->categoryRepository);
     }
+
+    public function getReasons()
+    {
+        return Options::getReasons();
+    }
+
+
+    public function getStates()
+    {
+        return Options::getStates();
+    }
+
+    public function getCountries()
+    {
+        return Options::getCountries();
+    }
+
 }
