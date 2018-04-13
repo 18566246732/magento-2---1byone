@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TouchShop_Refund::refund" title="Refund and Exchange" module="TouchShop_Refund" sortOrder="10"
+             action="refund/refund" resource="TouchShop_Refund::refund"
+             parent="TouchShop_Basic::basic"/>
+    </menu>
+</config>

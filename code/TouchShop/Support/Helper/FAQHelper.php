@@ -25,7 +25,7 @@ class FAQHelper
                 $results = [];
                 foreach (preg_split(self::DOUBLE_LINE_BREAK_PATTERN, $faq) as $question) {
                     $item = [];
-                    $question_labels = ['Question:', 'question:', 'q:', 'Q：', 'Question：', 'question：', 'q：', 'Q：'];
+                    $question_labels = ['Question:', 'question:', 'q:', 'Q:', 'Question：', 'question：', 'q：', 'Q：'];
                     $answer_labels = ['Answer:', 'answer:', 'a:', 'A:', 'Answer：', 'answer：', 'a：', 'A：'];
                     foreach (preg_split(self::LINE_BREAK_PATTERN, $question) as $index => $qa) {
                         if ($index == 0) {
