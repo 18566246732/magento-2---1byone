@@ -113,6 +113,7 @@
                 <filter>select</filter>
                 <options class="TouchShop\Feedback\Ui\Component\Listing\Columns\CategorySelect"/>
                 <label translate="true">Category</label>
+                <dataType>select</dataType>
                 <editor>
                     <editorType>select</editorType>
                 </editor>
