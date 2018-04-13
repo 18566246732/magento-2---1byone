@@ -8,11 +8,36 @@
 
 namespace TouchShop\Refund\Controller\Index;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\Refund\Model\RefundFactory;
+use TouchShop\Refund\Model\ResourceModel\RefundResourceModel;
 
 class Index extends Action
 {
+    private $storeManager;
+    private $refundFactory;
+    private $session;
+    private $refundResourceModel;
+
+    public function __construct(
+        RefundFactory $refundFactory,
+        RefundResourceModel $resourceModel,
+        StoreManagerInterface $storeManager,
+        Session $session,
+        Context $context
+    )
+    {
+        parent::__construct($context);
+        $this->storeManager = $storeManager;
+        $this->refundFactory = $refundFactory;
+        $this->session = $session;
+        $this->refundResourceModel = $resourceModel;
+    }
+
 
     /**
      * Contact action
@@ -23,22 +48,32 @@ class Index extends Action
         $post = (array)$this->getRequest()->getPost();
 
         if (!empty($post)) {
-            // Retrieve your form data
-            $email = $post['email'];
-            $lastname = $post['name'];
-            $phone = $post['orderId'];
-            $bookingTime = $post['Complaints'];
+            $result = $this->refundFactory->create(ResultFactory::TYPE_JSON);
 
-            // Doing-something with...
+            try {
+                $refund = $this->refundFactory->create();
+                $refund->setEmail($post['email'])
+                    ->setReason($post['reason'])
+                    ->setCategoryId($post['categoryId'])
+                    ->setOrder($post['order'])
+                    ->setIssue($post['issue'])
+                    ->setAddress($post['address'])
+                    ->setState($post['state'])
+                    ->setPostalCode($post['postalCode'])
+                    ->setCountry($post['country'])
+                    ->setPhone($post['phone'])
+                    ->setStoreId($this->storeManager->getStore()->getId());
 
-            // Display the succes form validation message
-            $this->messageManager->addSuccessMessage('Booking done !');
+                if ($this->session->isLoggedIn()) {
+                    $refund->setCustomerId($this->session->getCustomerId());
+                }
 
-            // Redirect to your form page (or anywhere you want...)
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl('/');
+                $this->refundResourceModel->save($refund);
 
-            return $resultRedirect;
+                return $result->setData(['result' => 'success', 'status_code' => 200]);
+            } catch (\Exception $e) {
+                return $result->setData(['result' => 'fail', 'status_code' => 500, 'error_message' => $e->getMessage()]);
+            }
         }
         // Render the page
         $this->_view->loadLayout();

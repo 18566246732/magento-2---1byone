@@ -97,6 +97,12 @@
                 <label translate="true">Created</label>
             </settings>
         </column>
+        <column name="categories">
+            <settings>
+                <filter>text</filter>
+                <label>Categories</label>
+            </settings>
+        </column>
         <column name="content">
             <settings>
                 <filter>text</filter>
