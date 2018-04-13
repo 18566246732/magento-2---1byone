@@ -3,14 +3,13 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 /** @var \TouchShop\ReviewTool\Model\Preference\ReviewPreference $block */
 $currentProductId = $block->getCurrentProductId();
 ?>
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Review::css/review.css") ?>">
 <div id="product-review-container"></div>
 <?= $block->getChildHtml() ?>
-<input id="productIdValue" value="null" type="hidden"/>
+
 
 <script>
     (function () {
@@ -18,12 +17,9 @@ $currentProductId = $block->getCurrentProductId();
             $(function () {
                 var proContainer = $("#product-review-container");
                 console.log("dom ready, ajax test start");
-
-                $("#productIdValue").val(<?=$currentProductId?>);
-                //console.log(<?//=$currentProductId?>//);
                 $.post('<?php echo $block->getBaseUrl() . "reviews/ajax/reviewList"?>',
                     {
-                        id: <?= $currentProductId?>,
+                        id: <?= $currentProductId ?>,
                         page_num: 1,
                         page_size: 10
                     }

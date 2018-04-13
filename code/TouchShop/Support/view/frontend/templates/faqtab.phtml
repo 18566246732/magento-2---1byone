@@ -1,47 +1,120 @@
-<?php /** @var $block TouchShop\Support\Block\FAQTab */ ?>
+<?php /** @var $block TouchShop\Support\Block\FAQTab */
+$data = $block->getInfo()
+?>
 
-<?php $FAQ = $block->getFAQ();?>
-<?php if (count($FAQ)):?>
-<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
+<?php $FAQ = $block->getFAQ(); ?>
+<?php if (count($FAQ)): ?>
+    <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
 
-<div class="product-details-faq">
-    <?php foreach ($block->getFAQ() as $item): ?>
-        <div class="faq-assembling">
+    <div class="product-details-faq">
+        <?php foreach ($block->getFAQ() as $item): ?>
+            <div class="faq-assembling">
+
                 <span class="faq-toggle triangle-facing-down">
                 </span>
-            <div class="faq-item-panel">
-                <h1><?php echo $item['question'] ?></h1>
-                <p><?php echo $item['answer'] ?></p>
+                <div class="faq-item-panel">
+                    <h1><?php echo $item['question'] ?></h1>
+                    <p><?php echo $item['answer'] ?></p>
+                </div>
             </div>
-        </div>
-    <?php endforeach ?>
-    <form action="<?php echo $block->getFaqAction()?>" method="post">
-        <label>Ask a question <input type="text" name="content" required="required"/></label>
-        <label>Email address <input type="email" name="email" required="required"/></label>
-        <input type="reset" value="reset">
-        <input type="submit" value="submit">
-    </form>
-</div>
+        <?php endforeach ?>
+        <form action="<?php echo $block->getFaqAction() ?>" method="post" class="faq-form-action-control-container">
+            <div class="faq-form-basic-info-container">
 
-<script>
-    (function () {
-        require(['jquery', 'jquery/ui'], function ($) {
-            $(document).ready(function () {
-                $("p").slideToggle(0);
-                $(".faq-toggle").on("click", function () {
-                    $(this).toggleClass("triangle-facing-up");
-                    // console.log($(this).parent(".faq-assembling").find("p"));
-                    $(this).parent(".faq-assembling").find("p").slideToggle(0);
-                    // $(this).parent(".faq-assembling").toggleClass("back-color-grey");
-                    $(document).trigger("Hchanged");
-                });
-                $(".faq-item-panel > h1").click(function () {
-                    $(this).parent().prev().toggleClass("triangle-facing-up");
-                    $(this).next().slideToggle(0);
-                    $(document).trigger("Hchanged");
+                <label>Ask a question <input type="text" name="content" required="required"/></label>
+                <label>Email address <input type="email" name="email" id="faqEmail" required="required"/></label>
+            </div>
+
+
+            <div class="faq-hint"></div>
+
+            <div>
+
+                <div class="faq-pwd1">
+
+                    <label for="password">Password <span>*</span>
+                        <input name="password" id="faqPwd1" type="password" required="required" autocomplete="off">
+                    </label>
+                </div>
+
+                <div class="faq-pwd2">
+
+                    <label for="password">Please enter your Password again<span>*</span>
+                        <input name="password" id="faqPwd2" type="password" required="required" autocomplete="off">
+                    </label>
+                </div>
+            </div>
+            <div class="form-action-btn">
+                <button type="reset">RESET</button>
+                <button type="button">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        (function () {
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    $("p").slideToggle(0);
+                    $(".faq-toggle").on("click", function () {
+                        $(this).toggleClass("triangle-facing-up");
+                        // console.log($(this).parent(".faq-assembling").find("p"));
+                        $(this).parent(".faq-assembling").find("p").slideToggle(0);
+                        // $(this).parent(".faq-assembling").toggleClass("back-color-grey");
+                        $(document).trigger("Hchanged");
+                    });
+                    $(".faq-item-panel > h1").click(function () {
+                        $(this).parent().prev().toggleClass("triangle-facing-up");
+                        $(this).next().slideToggle(0);
+                        $(document).trigger("Hchanged");
+                    })
                 })
             })
-        })
-    })()
-</script>
-<?php endif?>
+        })()
+    </script>
+
+    <script>
+        require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
+            let data = <?= $block->getInfo()?>;
+            let hint = $(".faq-hint");
+            let content = $(".faq-form-basic-info-container input[type='text']").val();
+            hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
+            binder.bind(
+                data,
+                "<?= $block->getBaseUrl()?>",
+                $("#faqEmail"),
+                $(".faq-form-action-control-container .faq-pwd1"),
+                $(".faq-form-action-control-container .faq-pwd2"),
+                $("#faqPwd1"),
+                $("#faqPwd2"),
+                $(".faq-form-action-control-container input"),
+                $(".form-action-btn button[type='button']"),
+                hint,
+                submitFormFun,
+            );
+
+            function submitFormFun(email, customerId) {
+                let result = false;
+                ajax.sendAjax(
+                    false,
+                    "<?= $block->getFormAction()?>",
+                    {
+                        email: email,
+                        content: content,
+                        productId: data.productId
+                    },
+                    function (res) {
+                        console.log("form submit", res);
+                        if (res.status_code == 200) {
+                            result = true;
+                        } else {
+                            hint.text(res.error_message);
+                        }
+                    });
+                return result;
+            }
+        });
+
+    </script>
+
+<?php endif ?>

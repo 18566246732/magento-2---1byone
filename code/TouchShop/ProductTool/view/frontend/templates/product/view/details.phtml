@@ -6,6 +6,7 @@
 
 // @codingStandardsIgnoreFile
 /** @var Magento\Catalog\Block\Product\View\Description $block */
+$currentProductId = $block->getCurrentProductId();
 ?>
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_ProductTool::css/details.css") ?>">
@@ -42,11 +43,10 @@
                     $label = $block->getChildData($alias, 'title');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
-                    $label ?>">
+                    substr($label, 0, strpos($label, ' ')) ?>">
                         <a class="details-tab" href="#<?= /* @escapeNotVerified */
                         $alias ?>"
-                           id="tab-label-<?= $index ?>"
-                        >
+                           id="tab-label-<?= $index ?>">
                             <?= $label ?>
                         </a>
                     </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
 <?php endif; ?>
-
+<input id="productIdValue" value="null" type="hidden"/>
 
 <script>
     (function () {
@@ -86,6 +86,7 @@
             var docHeight = doc.height();
             var windowHeight = $(window).height();
 
+            $("#productIdValue").val(<?=$currentProductId?>);
             $(document).trigger("Hchanged");
             $(document).resize(function () {
                 console.log("body height:", $(this).height());

@@ -13,10 +13,9 @@
       href="<?php echo $block->getViewFileUrl("Magento_Newsletter::css/subscribe.css") ?>">
 
 <div class="block newsletter" >
-    <h1><strong><a href="<?php echo $block->getBaseUrl() . 'contact-us'?>">Contact us</a></strong></h1>
     <div class="content">
-       <div class="title">SUBSCRIBE TO OUR NEWSLETTER <br>
-           For all the news you want:special promotions,new product informationand exclusive content.</div>
+       <div class="newsletter-title">SUBSCRIBE TO OUR NEWSLETTER </div>
+           <p>For all the news you want special promotions,new product informationand exclusive content.</p>
         <form class="form subscribe"
             novalidate
             action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
@@ -38,8 +37,8 @@
             </div>
         </form>
         <div class="follow">
-            <div>By clicking 'SUBSCRIBE' ,you agree to the Terms of Use and Privacy Policy.br
-            We take your privacy seriously and never share your information.</div>
+            <p>By clicking 'SUBSCRIBE' ,you agree to the Terms of Use and Privacy Policy <br />
+            We take your privacy seriously and never share your information.</p>
         </div>
     </div>
 </div>
