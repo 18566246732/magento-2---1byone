@@ -224,42 +224,36 @@
                 let country = $("#msg_country").val();
                 let phone = $("#msg_tel").val();
                 let type = $(".refund-form-action-control-container input[name = 'type']:checked").val();
-                let param = {};
 
                 console.log("type:", type);
-                if(type == "Refund") {
-                    console.log("refund submit");
-                    if(!reason || !categoruId || !order || !issue ) {
+                if (!reason || !categoruId || !order || !issue) {
+                    hint.text("the require field marked * cannot be empty !").css("color", "red");
+                    return result;
+                }
+                let param1 = {
+                    email: email,
+                    reason: reason,
+                    categoryId: categoruId,
+                    order: order,
+                    issue: issue,
+                    type: type
+                };
+                let param2 = {};
+                if (type == 'Exchange') {
+                    if (!address || !state || !postalCode || !country || !phone) {
                         hint.text("the require field marked * cannot be empty !").css("color", "red");
                         return result;
                     }
-                    param = {
-                        email: email,
-                        reason:reason,
-                        categoryId:categoruId,
-                        order: order,
-                        issue: issue,
-                        type: type
-                    }
-                } else {
-                    if(!reason || !categoruId || !order || !issue || !address || !state || !postalCode || !country || !phone) {
-                        hint.text("the require field marked * cannot be empty !").css("color", "red");
-                        return result;
-                    }
-                    param = {
-                        email: email,
-                        reason:reason,
-                        categoryId:categoruId,
-                        order: order,
-                        issue: issue,
+                    param2 = {
                         address: address,
                         state: state,
                         postalCode: postalCode,
                         country: country,
-                        phone: phone,
-                        type: type
+                        phone: phone
                     }
                 }
+                let param = $.extend(param1, param2);
+                console.log("param:", param);
                 ajax.sendAjax(
                     false,
                     "<?= $block->getFormAction()?>",

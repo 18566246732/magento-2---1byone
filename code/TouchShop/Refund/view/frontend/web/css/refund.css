@@ -141,3 +141,11 @@ div.form-action-btn button:last-child:hover {
 .refund-form-action-control-container span {
     color: red;
 }
+
+.form-group {
+    margin: 15px 0;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    border-radius: 5px;
+}
