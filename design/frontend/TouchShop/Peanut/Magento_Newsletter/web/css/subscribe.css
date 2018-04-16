@@ -130,6 +130,7 @@
 
 .block.newsletter p {
     font-size: 12px;
+    display: block !important;
 }
 
 .block.newsletter form {
