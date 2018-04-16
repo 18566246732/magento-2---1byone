@@ -78,7 +78,7 @@ class FAQ extends Action
                 foreach ($categoryIds as $categoryId) {
                     $category = $this->categoryRepository->get($categoryId);
                     $categoryNames[] = $category->getName();
-                }
+                }//todo add sku
                 $faqModel->setCategories(join(',', $categoryNames));
 
                 $this->faqResourceModel->save($faqModel);
