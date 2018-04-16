@@ -130,8 +130,27 @@
 
 .block.newsletter p {
     font-size: 12px;
+    display: block !important;
 }
 
 .block.newsletter form {
     margin: 15px 0;
+}
+
+.socials a {
+    display: inline-block;
+}
+
+.socials {
+    list-style: none;
+}
+
+.socials .iconfont {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-size: cover;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
 }
