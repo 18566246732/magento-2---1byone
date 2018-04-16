@@ -6,8 +6,8 @@ $data = $block->getInfo()
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
 <div class="product-details-faq">
     <?php if (count($FAQ)): ?>
-        <?php foreach ($block->getFAQ() as $item): ?>
-            <div class="faq-assembling">
+        <?php foreach ($block->getFAQ() as $index => $item): ?>
+            <div class="faq-assembling <?= ($index < 10 ? '' : 'faq-assembling-more') ?> ">
 
                 <span class="faq-toggle triangle-facing-down">
                 </span>
@@ -17,6 +17,7 @@ $data = $block->getInfo()
                 </div>
             </div>
         <?php endforeach ?>
+        <div class="faq-more-btn">more >></div>
     <?php endif ?>
     <div class="faq-form-action-control-container">
         <div class="faq-form-basic-info-container">
@@ -31,14 +32,12 @@ $data = $block->getInfo()
         <div>
 
             <div class="faq-pwd1">
-
                 <label for="password">Password <span>*</span>
                     <input name="password" id="faqPwd1" type="password" required="required" autocomplete="off">
                 </label>
             </div>
 
             <div class="faq-pwd2">
-
                 <label for="password">Please enter your Password again<span>*</span>
                     <input name="password" id="faqPwd2" type="password" required="required" autocomplete="off">
                 </label>
@@ -55,6 +54,8 @@ $data = $block->getInfo()
     (function () {
         require(['jquery'], function ($) {
             $(document).ready(function () {
+                var faqMoreBtn = $(".faq-more-btn");
+                var faqAssemblingMore = $(".faq-assembling-more");
                 $("p").slideToggle(0);
                 $(".faq-toggle").on("click", function () {
                     $(this).toggleClass("triangle-facing-up");
@@ -67,6 +68,10 @@ $data = $block->getInfo()
                     $(this).parent().prev().toggleClass("triangle-facing-up");
                     $(this).next().slideToggle(0);
                     $(document).trigger("Hchanged");
+                });
+                faqMoreBtn.click(function () {
+                    $(this).hide();
+                    faqAssemblingMore.css("display", "flex");
                 })
             })
         })

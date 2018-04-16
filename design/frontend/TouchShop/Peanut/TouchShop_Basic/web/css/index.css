@@ -43,6 +43,7 @@ div.panel.header {
     align-items: center;
     height: 50px;
     color: white;
+    justify-content: flex-end;
 }
 
 .page-header {
@@ -50,7 +51,77 @@ div.panel.header {
     width: 100%;
     background-color: #8d131c;
     z-index: 4;
+    top: 0;
 }
+
+@media screen and (max-width: 767px) {
+    .block.block-search {
+        margin-top: 0;
+    }
+
+    #search_mini_form #searchInput {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .block-search .label {
+        order: 2;
+    }
+
+    .block-search .label::before {
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .block-search .control {
+        border-top: none;
+        margin: 5px;
+    }
+    .page-header {
+        border-bottom: none;
+    }
+    .small-menu {
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+        cursor: pointer;
+        position: absolute;
+        left: 20px;
+    }
+
+    /*strong.logo {*/
+        /*display: none;*/
+    /*}*/
+
+    /*#store.links {*/
+        /*display: none;*/
+    /*}*/
+
+    .nav-sections-item-content {
+        width: 0;
+    }
+
+
+    .nav-sections {
+        overflow: initial;
+        /*left: initial;*/
+    }
+
+    .section-item-title.nav-sections-item-title.active {
+        display: none;
+    }
+
+    .section-item-title .nav-sections-item-title {
+        display: none;
+    }
+
+}
+
+
+/*.block-search .label::before {*/
+    /*color: initial;*/
+/*}*/
 
 /*main content*/
 
@@ -104,7 +175,7 @@ div.page-cards-title h1 {
 }
 
 .page-h-card {
-    width: 384px;
+    width: 32%;
     height: 378px;
     background-color: white;
     position: relative;
@@ -249,7 +320,7 @@ div.swatch-option.text {
 }
 
 strong.product.name.product-item-name {
-    padding-bottom: 25px;
+    padding-bottom: 0 !important;
 }
 
 /*review */

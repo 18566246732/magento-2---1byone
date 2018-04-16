@@ -49,3 +49,7 @@ li.product-item .product-item-inner {
     box-shadow: initial;
     position: initial;
 }
+
+.actions-primary .action.tocart.primary {
+    display: none;
+}

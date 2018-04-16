@@ -1,0 +1,24 @@
+<?php
+/** @var TouchShop\Touch1byone\Block\User $block */
+//?>
+<div class="small-menu">
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            var menu = $(".small-menu");
+            var baseUrl = '<?= $block->getBaseUrl()?>' + 'pub/media/wysiwyg/menu/',
+                urlArr = [
+                    'close.svg',
+                    'menu.svg'
+                ];
+            menu.css("background-image", 'url('+ baseUrl + urlArr[1] +')');
+
+            menu.toggle(function () {
+                menu.css("background-image", 'url('+ baseUrl + urlArr[0] +')');
+            }, function () {
+                menu.css("background-image", 'url('+ baseUrl + urlArr[1] +')');
+            });
+        })
+    })
+</script>
