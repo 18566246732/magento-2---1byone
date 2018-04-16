@@ -28,7 +28,7 @@
         <settings>
             <submitUrl path="refund/refund/save"/>
         </settings>
-        <dataProvider class="TouchShop\Feedback\Model\DataProvider" name="refund_form_data_source">
+        <dataProvider class="TouchShop\Refund\Model\DataProvider" name="refund_form_data_source">
             <settings>
                 <requestFieldName>refund_id</requestFieldName>
                 <primaryFieldName>refund_id</primaryFieldName>

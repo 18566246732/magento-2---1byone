@@ -78,10 +78,10 @@ class Edit extends Action
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
-            $id ? __('Edit Complaint') : __('New Refund'),
-            $id ? __('Edit Complaint') : __('New Refund')
+            $id ? __('Edit Refund') : __('New Refund'),
+            $id ? __('Edit Refund') : __('New Refund')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Complaints'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Refund'));
         $resultPage->getConfig()->getTitle()
             ->prepend($model->getId() ? $model->getTitle() : __('Refund'));
 
