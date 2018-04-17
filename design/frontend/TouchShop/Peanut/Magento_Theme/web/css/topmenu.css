@@ -33,9 +33,11 @@ ul.top-menu{
     white-space: nowrap;
 }
 
-.top-menu li a:hover {
-    color: #8d131c !important;
-}
+/*@media screen and (min-width: 767px){*/
+    .top-menu li a:hover {
+        color: #8d131c !important;
+    }
+/*}*/
 
 .top-menu-wrapper {
     margin-right: 50px;
