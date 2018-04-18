@@ -130,3 +130,13 @@ div.form-action-btn button:last-child {
 div.form-action-btn button:last-child:hover {
     background-color: rgb(36, 125, 225);
 }
+
+.faq-assembling-more {
+    display: none;
+}
+
+.faq-more-btn {
+    color: #8d131c;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

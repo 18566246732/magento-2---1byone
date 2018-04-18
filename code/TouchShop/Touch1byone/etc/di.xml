@@ -14,4 +14,5 @@
     <preference for="Mageplaza\Blog\Model\ResourceModel\Author" type="TouchShop\Touch1byone\Plugin\Block\Author"/>
     <preference for="Magento\Customer\Block\Form\Login" type="TouchShop\Touch1byone\Block\Login"/>
     <preference for="Magento\Customer\Block\Form\Register" type="TouchShop\Touch1byone\Block\Register"/>
+    <preference for="Mageplaza\Blog\Block\Post\Listpost" type="TouchShop\Touch1byone\Block\Listpost"/>
 </config>

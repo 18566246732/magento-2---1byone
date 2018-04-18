@@ -1,0 +1,50 @@
+<?php
+/** @var TouchShop\Touch1byone\Block\User $block */
+//?>
+<div class="small-menu">
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            var menu = $(".small-menu");
+            var baseUrl = '<?= $block->getBaseUrl()?>' + 'pub/media/wysiwyg/menu/',
+                urlArr = [
+                    'close.svg',
+                    'menu.svg'
+                ];
+
+            menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
+
+
+            var nav = $("nav.navigation");
+            console.log("screen:", $(window).width());
+            if ($(window).width() < 766) {
+                nav.hide();
+            }
+            $(window).resize(function () {
+                if ($(window).width() < 766) {
+                    nav.hide();
+                    $(".sections.nav-sections").css("display", "none");
+                    $(".page-header").css("border-bottom", "none");
+
+                } else {
+                    nav.show();
+                    $(".sections.nav-sections").css("display", "block");
+                    $(".page-header").css("border-bottom", "1px solid white");
+
+                }
+            });
+            menu.toggle(function () {
+                menu.css("background-image", 'url(' + baseUrl + urlArr[0] + ')');
+                $(".sections.nav-sections").css("display", "block");
+                $(".page-header").css("border-bottom", "1px solid white");
+                nav.show()
+            }, function () {
+                menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
+                $(".sections.nav-sections").css("display", "none");
+                $(".page-header").css("border-bottom", "none");
+                nav.hide();
+            });
+        })
+    })
+</script>
