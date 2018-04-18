@@ -19,8 +19,6 @@
         + general -> disable topmenu
     + Customer
         + disable
-    + PlumRocket
-        + enable
 + cms
     + content->configuration->edit
         +Html Head

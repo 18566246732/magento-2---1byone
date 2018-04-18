@@ -30,7 +30,7 @@ class UploadFiles extends Action
     public function execute()
     {
         try {
-            $result = $this->uploader->saveFileToTmpDir('icon');
+            $result = $this->uploader->saveFileToTmpDir('download_files');
             $result['cookie'] = [
                 'name' => $this->_getSession()->getName(),
                 'value' => $this->_getSession()->getSessionId(),
