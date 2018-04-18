@@ -48,8 +48,7 @@
             + products:insert widget Product List 2 columns with left bar
             + testimony:insert widget- block:1BYONE-testimony, layout update:1 column
         + edit pages
-            + Home Page -> Design ->  Layout Update XML -> see cms page--Home Page
-            
+            + Home Page -> Design ->  Layout Update XML -> see cms page--Home Page 
 + cron jobs
     <pre><code>
     * * * * * /usr/bin/php /var/www/html/bin/magento cron:run | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
