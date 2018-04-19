@@ -8,7 +8,6 @@
 
 namespace TouchShop\Refund\Block;
 
-use Magento\Catalog\Model\CategoryRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Template;
@@ -20,19 +19,19 @@ class Refund extends Template
 {
     private $session;
     private $customerRepository;
-    private $categoryRepository;
+    private $helper;
 
     public function __construct(
         Session $session,
         CustomerRepository $customerRepository,
-        CategoryRepository $categoryRepository,
+        CategoryHelper $helper,
         Template\Context $context,
         array $data = [])
     {
         parent::__construct($context, $data);
         $this->session = $session;
         $this->customerRepository = $customerRepository;
-        $this->categoryRepository = $categoryRepository;
+        $this->helper = $helper;
     }
 
 
@@ -59,7 +58,7 @@ class Refund extends Template
 
     public function getCategories()
     {
-        return CategoryHelper::getCategories($this->categoryRepository);
+        return $this->helper->getCategories();
     }
 
     public function getReasons()

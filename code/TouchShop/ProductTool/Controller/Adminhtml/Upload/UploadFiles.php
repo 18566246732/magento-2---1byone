@@ -16,6 +16,7 @@ use TouchShop\ProductTool\Model\FileUploader;
 class UploadFiles extends Action
 {
     private $uploader;
+    private $context;
 
     public function __construct(
         FileUploader $uploader,
@@ -24,20 +25,22 @@ class UploadFiles extends Action
     {
         parent::__construct($context);
         $this->uploader = $uploader;
+        $this->context = $context;
     }
 
 
     public function execute()
     {
         try {
-            $result = $this->uploader->saveFileToTmpDir('download_files');
-            $result['cookie'] = [
-                'name' => $this->_getSession()->getName(),
-                'value' => $this->_getSession()->getSessionId(),
-                'lifetime' => $this->_getSession()->getCookieLifetime(),
-                'path' => $this->_getSession()->getCookiePath(),
-                'domain' => $this->_getSession()->getCookieDomain(),
-            ];
+            $post = (array)$this->getRequest()->getpost();
+            $form_key = $post['form_key'];
+            $fileId = $post['param_name'];
+            $result = $this->uploader->saveFileToTmpDir($fileId, $form_key);
+            $result['baseTempPath'] = $this->uploader->getFolderPath(
+                $this->uploader->getBaseTempPath(),
+                $form_key
+            );
+            $result['basePath'] = $this->uploader->getBasePath();
         } catch (\Exception $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }

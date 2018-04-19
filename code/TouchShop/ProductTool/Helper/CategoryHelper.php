@@ -11,23 +11,34 @@ namespace TouchShop\ProductTool\Helper;
 
 use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Store\Model\StoreManagerInterface;
 
 class CategoryHelper
 {
-    /**
-     * @param $repository CategoryRepository
-     * @return array
-     */
-    public static function getCategories($repository)
+
+    /**@var CategoryRepository */
+    private $repository;
+    private $storeManager;
+
+    public function __construct(
+        StoreManagerInterface $storeManager,
+        CategoryRepository $categoryRepository
+    )
+    {
+        $this->repository = $categoryRepository;
+        $this->storeManager = $storeManager;
+    }
+
+
+    public function getCategories()
     {
         $result = [];
         try {
-            $root = $repository->get(1);
-            $all_products_id = explode(',', $root->getChildren())[0];
-            $products_id = explode(',', $repository->get($all_products_id)->getChildren())[0];
-            $sub_ids = $repository->get($products_id)->getChildren();
+            $all_products_id = $this->storeManager->getStore()->getRootCategoryId();
+            $products_id = explode(',', $this->repository->get($all_products_id)->getChildren())[0];
+            $sub_ids = $this->repository->get($products_id)->getChildren();
             foreach (explode(',', $sub_ids) as $sub_id) {
-                $sub = $repository->get($sub_id);
+                $sub = $this->repository->get($sub_id);
                 $result[] = [
                     'value' => $sub->getId(),
                     'label' => $sub->getName()

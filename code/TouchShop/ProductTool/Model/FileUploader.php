@@ -88,31 +88,37 @@ class FileUploader
         $this->basePath = $basePath;
     }
 
-    private function getFilePath($base, $name)
+    public function getFilePath($base, $name)
     {
         return rtrim($base, '/') . '/' . ltrim($name, '/');
     }
 
+    public function getFolderPath($base, $subFolder)
+    {
+        return rtrim($base, '/') . '/' . ltrim($subFolder, '/') . '/';
+    }
+
     /**
+     * @param $baseTmpPath
+     * @param $basePath
      * @param $file_name
      * @return mixed
      * @throws LocalizedException
      */
-    public function moveFileFromTemp($file_name)
+    public function moveFileFromTemp($baseTmpPath, $basePath, $file_name)
     {
-        $baseTmpPath = $this->getBaseTempPath();
-        $basePath = $this->getBasePath();
         $baseFilePath = $this->getFilePath($basePath, $file_name);
         $baseTmpFilePath = $this->getFilePath($baseTmpPath, $file_name);
         try {
             $this->database->copyFile(
-                $baseTmpPath,
-                $basePath
+                $baseTmpFilePath,
+                $baseFilePath
             );
             $this->mediaDirectory->renameFile(
                 $baseTmpFilePath,
                 $baseFilePath
             );
+            $this->database->deleteFile($baseTmpFilePath);
         } catch (\Exception $e) {
             throw new LocalizedException(
                 __('Something went wrong while saving the file(s).')
@@ -123,13 +129,14 @@ class FileUploader
 
     /**
      * @param $fileId
+     * @param $form_key
      * @return array
      * @throws LocalizedException
      * @throws \Exception
      */
-    public function saveFileToTmpDir($fileId)
+    public function saveFileToTmpDir($fileId, $form_key)
     {
-        $baseTmpPath = $this->getBaseTempPath();
+        $baseTmpPath = $this->getFolderPath($this->getBaseTempPath(), $form_key);
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
 //        $uploader->setAllowedExtensions($this->getAllowedExtensions());
         $uploader->setAllowRenameFiles(true);
@@ -161,6 +168,4 @@ class FileUploader
         }
         return $result;
     }
-
-
 }

@@ -374,7 +374,7 @@ div.swatch-option.text {
     padding: 0 8px;
 }
 
-.product-reviews-summary.short {
+.product-reviews-summary {
     height: 25px;
     margin-bottom: 0;
     display: inline-block;
@@ -382,10 +382,10 @@ div.swatch-option.text {
 
 .product-item .price-box {
     margin: 0;
-    padding: 10px 0 10px;
+    /*padding: 10px 0 10px;*/
     display: inline-block;
     vertical-align: sub;
-    margin-right: 20px;
+    /*margin-right: 20px;*/
 }
 
 strong.product.name.product-item-name {
@@ -399,6 +399,10 @@ strong.product.name.product-item-name {
 
 a.product-item-link {
     height: 40px;
+}
+
+.product-item-actions .actions-primary {
+    display: none;
 }
 
 /*.product-item-name {*/
@@ -445,66 +449,6 @@ ul.footer.links {
     margin-top: 64px;
 }
 
-/*.follow {*/
-/*float: right;*/
-/*position: relative;*/
-/*width: 34%;*/
-/*right: -34%;*/
-/*top: 45px;*/
-/*}*/
-
-/*.follow p {*/
-/*color: #cfcfcf;*/
-/*margin-bottom: 0;*/
-/*font-size: 12px;*/
-/*}*/
-
-/*.follow a {*/
-/*background: #cfcfcf;*/
-/*!* padding: 5px; *!*/
-/*margin-right: 10px;*/
-/*border-radius: 50%;*/
-/*display: inline-block;*/
-/*width: 30px;*/
-/*height: 30px;*/
-/*line-height: 30px;*/
-/*text-align: center;*/
-/*}*/
-
-/*.follow a.facebook:hover {*/
-/*background: #4267b2*/
-/*}*/
-
-/*.follow a.twitter:hover {*/
-/*background: #50a5e6*/
-/*}*/
-
-/*.follow a.youtube:hover {*/
-/*background: #e6231a;*/
-/*}*/
-
-/*.follow .link {*/
-/*margin-top: 30px;*/
-/*}*/
-
-/*@media screen and (max-width: 767px) {*/
-/*.follow {*/
-/*position: static;*/
-/*float: initial;*/
-/*}    */
-/*}*/
-
-/*animation*/
-
-/** {*/
-/*transition: all 0.1s ease-out;*/
-/*}*/
-
-/*scrollBar*/
-/*::-webkit-scrollbar {*/
-/*width: 5px;*/
-/*height: 5px;*/
-/*}*/
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -531,4 +475,9 @@ ul.footer.links {
 /*after get a link by email to reset password*/
 .login-container .fieldset > .field > .control {
     width: 100% !important;
+}
+
+/*product list page*/
+.product-item-details {
+    text-align: center;
 }

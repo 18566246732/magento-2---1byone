@@ -15,12 +15,12 @@
             var navIsShowed = true;
 
             menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
-
-
             var nav = $("nav.navigation");
             console.log("screen:", $(window).width());
             if ($(window).width() < 766) {
                 nav.hide();
+                $(".sections.nav-sections").css("display", "none");
+                $(".page-header").css("border-bottom", "none");
                 navIsShowed = false;
             }
             $(window).resize(function () {

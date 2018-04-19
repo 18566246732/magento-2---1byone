@@ -10,14 +10,35 @@ namespace TouchShop\Support\Helper;
 
 
 use Magento\Catalog\Model\Product;
+use Magento\Framework\UrlInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\ProductTool\Model\FileUploader;
 
 class DownloadFilesHelper
 {
-    const LINE_BREAK_PATTERN = '/\r\n|\r|\n/';
+    const LINE_BREAK_PATTERN = '/\r\n|\r|\n|;/';
     const SEPARATOR = '/:/';
-    const DOWNLOAD_FILES_LOCATION = 'pub/media/download_files/';
+    private $storeManager;
+    private $uploader;
 
-    public static function getDownloadFiles(Product $product)
+    public function __construct(
+        StoreManagerInterface $storeManager,
+        FileUploader $uploader
+    )
+    {
+        $this->storeManager = $storeManager;
+        $this->uploader = $uploader;
+    }
+
+
+    public function getMediaUrl()
+    {
+        $mediaUrl = $this->storeManager->getStore()
+                ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . $this->uploader->getBasePath() . '/';
+        return $mediaUrl;
+    }
+
+    public function getDownloadFiles(Product $product)
     {
         $download_files = $product->getCustomAttribute('download_files');
         if ($download_files) {
@@ -27,8 +48,8 @@ class DownloadFilesHelper
                 foreach (preg_split(self::LINE_BREAK_PATTERN, $files) as $file) {
                     $data = preg_split(self::SEPARATOR, $file);
                     $result[] = [
-                        'label' => $data[0],
-                        'src' => self::DOWNLOAD_FILES_LOCATION . $data[1]
+                        'name' => $data[0],
+                        'src' => $this->getMediaUrl() . $data[1]
                     ];
                 }
                 return $result;

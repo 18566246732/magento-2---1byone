@@ -1,0 +1,1 @@
+copy banner.jpg to pub/media/wysiwyg/ directory

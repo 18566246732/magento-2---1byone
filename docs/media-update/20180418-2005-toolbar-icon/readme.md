@@ -1,0 +1,1 @@
+copy the menu directory to the pub/media/wysiwyg 

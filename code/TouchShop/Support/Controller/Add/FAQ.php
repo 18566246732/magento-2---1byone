@@ -73,12 +73,13 @@ class FAQ extends Action
                     ->setEmail($post['email'])
                     ->setStoreId($this->storeManager->getStore()->getId());
                 $product = $this->productRepository->getById($post['productId']);
+                $faqModel->setSku($product->getSku());
                 $categoryIds = $product->getCategoryIds();
                 $categoryNames = [];
                 foreach ($categoryIds as $categoryId) {
                     $category = $this->categoryRepository->get($categoryId);
                     $categoryNames[] = $category->getName();
-                }//todo add sku
+                }
                 $faqModel->setCategories(join(',', $categoryNames));
 
                 $this->faqResourceModel->save($faqModel);

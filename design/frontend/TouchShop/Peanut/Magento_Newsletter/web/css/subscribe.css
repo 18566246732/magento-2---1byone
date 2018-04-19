@@ -16,6 +16,10 @@
     content: none;
 }
 
+.field.newsletter #newsletter:hover {
+    box-shadow: none;
+}
+
 .field.newsletter #newsletter {
     border-radius: 16px;
     background: none;
@@ -43,9 +47,10 @@
     border-radius: 16px;
     background: #e70012;
     color: white;
-    padding: 6px 15px;
+    /*padding: 6px 15px;*/
     font-size: 14px;
     border: none;
+    height: 32px;
 }
 
 .form.subscribe .subscribe.primary:hover {
@@ -70,9 +75,9 @@
 }
 
 #newsletter-validate-detail {
-    width: 80%;
+    /*width: 80%;*/
     font-size: 14px;
-    display: flex;
+    /*display: flex;*/
     align-items: center;
 }
 
@@ -82,7 +87,7 @@
 }
 
 .block.newsletter .field {
-    margin-right: 20px;
+    margin-right: -30px;
 }
 
 .faq-cover {

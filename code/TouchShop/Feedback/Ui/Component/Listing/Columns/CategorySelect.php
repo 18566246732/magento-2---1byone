@@ -9,7 +9,6 @@
 namespace TouchShop\Feedback\Ui\Component\Listing\Columns;
 
 
-use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -18,17 +17,17 @@ use TouchShop\ProductTool\Helper\CategoryHelper;
 
 class CategorySelect extends Column implements OptionSourceInterface
 {
-    private $repository;
+    private $helper;
 
     public function __construct(
-        CategoryRepository $repository,
+        CategoryHelper $helper,
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = [])
     {
         parent::__construct($context, $uiComponentFactory, $components, $data);
-        $this->repository = $repository;
+        $this->helper = $helper;
     }
 
 
@@ -37,6 +36,6 @@ class CategorySelect extends Column implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        return CategoryHelper::getCategories($this->repository);
+        return $this->helper->getCategories();
     }
 }

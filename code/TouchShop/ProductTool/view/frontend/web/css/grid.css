@@ -16,13 +16,15 @@
     right: 0px;
     z-index: 2;
     width: 80px;
-    height: 20px;
+    height: 32px;
     /*border-radius: 20px;*/
-    background-color: #9e1b1e;
+    background-color: #e70012;
     color: white;
     text-align: center;
-    font-size: 10px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 32px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
 }
 
 li.product-item .hover-prevent:hover {
