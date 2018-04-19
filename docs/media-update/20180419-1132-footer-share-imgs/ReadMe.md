@@ -1,0 +1,1 @@
+copy imgs to pub/media/wysiwyg/ directory

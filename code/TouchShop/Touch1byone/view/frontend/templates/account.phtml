@@ -1,0 +1,29 @@
+<div class="login-back">
+    <div class="sign-panel sign-in">
+        <!--        <span class="close-btn">x</span>-->
+        <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("TouchShop_Touch1byone::login.phtml")->toHtml(); ?>
+    </div>
+    <div class="sign-panel sign-up">
+        <!--        <span class="close-btn">x</span>-->
+        <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("TouchShop_Touch1byone::register.phtml")->toHtml(); ?>
+    </div>
+    <div class="sign-panel retrieve-pwd">
+        <?= $block->getChildHtml('forgotpassword') ?>
+    </div>
+</div>
+
+<div class="blank"></div>
+
+<script>
+    (function () {
+        require(['jquery'], function ($) {
+            $(function () {
+
+                $(".sign-panel.sign-up #firstname").val("Customer").attr("hidden", "hidden");
+                $(".sign-panel.sign-up #lastname").val("Liu").attr("hidden", "hidden");
+                $(".login-back").css("display", "block");
+                // $(".sign-panel.sign-up #firstname").val("Ivan");
+            })
+        })
+    })()
+</script>

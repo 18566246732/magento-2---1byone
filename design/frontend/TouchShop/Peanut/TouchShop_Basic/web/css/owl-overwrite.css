@@ -84,15 +84,15 @@
 
 .owl-img-addon {
     position: absolute;
-    right: 250px;
-    bottom: 150px;
+    left: 250px;
+    top: 350px;
     color: white;
 }
 
 .owl-img-addon button {
     width: 185px;
     height: 40px;
-    background-color: #8d131c;
+    background-color: #e70012;
     color: white;
     border: none;
     border-radius: 20px;

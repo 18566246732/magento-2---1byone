@@ -29,6 +29,12 @@
     </div>
 </div>
 
+<!--    add login and sign up panel here-->
+<!--login popup-->
+
+
+
+
 
 <script>
     require(['jquery'], function ($) {
@@ -37,7 +43,11 @@
                 signIn = $("#signIn"),
                 signUpPanel = $(".sign-up"),
                 signInPanel = $(".sign-in"),
-                socialLoginIcon = $(".third-party-login .btn-social");
+                retrivePwdPanel = $(".retrieve-pwd");
+                socialLoginIcon = $(".third-party-login .btn-social"),
+                forgotPwdBtn = $(".forgot-pwd"),
+                nav = $("nav.navigation");
+            var cancel = $(".actions-toolbar .secondary .cancel");
             console.log("socialLoginIcon text trim start");
             socialLoginIcon.each(function (index, e) {
                 let txtArr = $(e).text().trim().split(" ");
@@ -63,23 +73,40 @@
             <?php else:?>
 
             $(".user-icon").on("click", function () {
-                $(".login-back").css("display", "block");
-                $(document).scrollTop(0);
+                // $(".login-back").css("display", "block");
+                // $(document).scrollTop(0);
+                location.href = "<?= $block->getBaseUrl() . '/touch1byone/account'?>";
             });
 
-            $(".close-btn").on("click", function () {
-                $(".login-back").css("display", "none");
-            });
+            // $(".close-btn").on("click", function () {
+            //     $(".login-back").css("display", "none");
+            // });
 
-            signIn.on("click", function () {
+            retrivePwdPanel.css("display", "none");
+
+            signIn.on("click", function (e) {
                 signUpPanel.css("display", "none");
+                signInPanel.css("display", "flex");
+                e.preventDefault();
+            });
+
+            signUp.on("click", function (e) {
+                signInPanel.css("display", "none");
+                signUpPanel.css("display", "flex");
+                e.preventDefault();
+            });
+
+
+            forgotPwdBtn.on("click", function () {
+                signInPanel.css("display", "none");
+                retrivePwdPanel.css("display", "flex");
+            });
+            
+            cancel.on("click", function () {
+                retrivePwdPanel.css("display", "none");
                 signInPanel.css("display", "flex");
             });
 
-            signUp.on("click", function () {
-                signInPanel.css("display", "none");
-                signUpPanel.css("display", "flex");
-            });
             <?php endif;?>
         });
     })

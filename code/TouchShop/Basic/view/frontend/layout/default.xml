@@ -5,12 +5,12 @@
         <referenceContainer name="header.container">
             <container name="header.panel.wrapper" htmlClass="header-wrapper" htmlTag="div" before="-">
                 <!--here is main div-->
-                    <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
-                        <block class="TouchShop\Touch1byone\Block\User" name="small-menu"
-                               template="TouchShop_Touch1byone::menu.phtml">
-                        </block>
-                        <block class="TouchShop\Touch1byone\Block\User" name="user-icon"
-                               template="TouchShop_Touch1byone::user.phtml">
+                <container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
+                    <block class="TouchShop\Touch1byone\Block\User" name="small-menu"
+                           template="TouchShop_Touch1byone::menu.phtml">
+                    </block>
+                    <block class="TouchShop\Touch1byone\Block\User" name="user-icon"
+                           template="TouchShop_Touch1byone::user.phtml">
                     </block>
                 </container>
             </container>
@@ -28,7 +28,7 @@
         <!--find footer_links' father to fix-->
         <referenceBlock name="footer">
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="footer_links"
-                    template="TouchShop_Touch1byone::footLinks.phtml">
+                   template="TouchShop_Touch1byone::footLinks.phtml">
                 <arguments>
                     <argument name="label" xsi:type="string">Custom Links</argument>
                     <argument name="path" xsi:type="string">page-url</argument>
@@ -45,7 +45,7 @@
         <referenceBlock name="view.addto.compare" remove="true"/>
         <referenceBlock name="category.product.addto.compare" remove="true"/>
         <referenceBlock name="authorization-link-login" remove="true"/>
-        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true"/>
         <move element="form.subscribe" destination="footer_right" before="-"/>
 
     </body>
@@ -54,6 +54,6 @@
         <css src="TouchShop_Basic::css/index.css"/>
         <!--<css src="TouchShop_Support::css/bootstrap.min.css"/>-->
         <!--including jquery-->
-        <script type="text/javascript" src="TouchShop_Basic::js/index.js" />
+        <script type="text/javascript" src="TouchShop_Basic::js/index.js"/>
     </head>
 </page>

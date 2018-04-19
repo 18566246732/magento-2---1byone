@@ -55,11 +55,20 @@
     require(['Magento_Newsletter/js/subscribe'], function (basic) {
         var baseUrl = '<?= $block->getBaseUrl()?>' + 'pub/media/wysiwyg/socials/',
             urlArr = [
-                'facebook.png',
-                'twitter.png',
-                'google_plus.png',
-                'icon_YouTube.png'
+                'home_share_fb1.svg',
+                'home_share_tw1.svg',
+                'home_share_yt1.svg',
+                'home_share_ins1.svg',
+
+
+
+            ],
+            hoverUrlArr = [
+                'home_share_fb2.svg',
+                'home_share_tw2.svg',
+                'home_share_yt2.svg',
+                'home_share_ins2.svg',
             ];
-        basic(baseUrl, urlArr);
+        basic(baseUrl, urlArr, hoverUrlArr);
     })
 </script>

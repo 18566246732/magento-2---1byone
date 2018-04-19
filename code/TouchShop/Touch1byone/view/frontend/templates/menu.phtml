@@ -12,6 +12,7 @@
                     'close.svg',
                     'menu.svg'
                 ];
+            var navIsShowed = true;
 
             menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
 
@@ -20,30 +21,32 @@
             console.log("screen:", $(window).width());
             if ($(window).width() < 766) {
                 nav.hide();
+                navIsShowed = false;
             }
             $(window).resize(function () {
                 if ($(window).width() < 766) {
                     nav.hide();
                     $(".sections.nav-sections").css("display", "none");
-                    $(".page-header").css("border-bottom", "none");
-
+                    // $(".page-header").css("border-bottom", "1px solid white");
                 } else {
                     nav.show();
                     $(".sections.nav-sections").css("display", "block");
-                    $(".page-header").css("border-bottom", "1px solid white");
-
                 }
             });
-            menu.toggle(function () {
-                menu.css("background-image", 'url(' + baseUrl + urlArr[0] + ')');
-                $(".sections.nav-sections").css("display", "block");
-                $(".page-header").css("border-bottom", "1px solid white");
-                nav.show()
-            }, function () {
-                menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
-                $(".sections.nav-sections").css("display", "none");
-                $(".page-header").css("border-bottom", "none");
-                nav.hide();
+            menu.click(function () {
+                if(navIsShowed == false) {
+                    menu.css("background-image", 'url(' + baseUrl + urlArr[0] + ')');
+                    $(".sections.nav-sections").css("display", "block");
+                    $(".page-header").css("border-bottom", "1px solid white");
+                    nav.show();
+                    navIsShowed = true;
+                } else {
+                    menu.css("background-image", 'url(' + baseUrl + urlArr[1] + ')');
+                    $(".sections.nav-sections").css("display", "none");
+                    $(".page-header").css("border-bottom", "none");
+                    nav.hide();
+                    navIsShowed = false;
+                }
             });
         })
     })

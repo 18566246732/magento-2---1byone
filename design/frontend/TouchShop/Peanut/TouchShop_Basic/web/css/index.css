@@ -23,7 +23,7 @@ body {
 div.sections.nav-sections {
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 0;
-    z-index: 3;
+    z-index: 4;
 }
 
 div.section-items.nav-sections-items {
@@ -169,7 +169,7 @@ div.panel.header {
     }
 
     .page-h-cards .page-h-card {
-        width: 80%;
+        width: 384px;
         margin:10px auto;
     }
     .page-footer {
@@ -237,7 +237,7 @@ div.page-cards-title h1 {
 }
 
 .page-h-card {
-    width: 32%;
+    width: 384px;
     height: 378px;
     background-color: white;
     position: relative;
@@ -310,25 +310,32 @@ div.page-cards-title h1 {
 }
 
 .imgs-gallery {
-    height: 200px;
+    /*height: 200px;*/
     margin-top: 30px;
+    margin-bottom: -55px;
 }
 
 .imgs-gallery ul {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0;
 }
 
 .imgs-gallery li {
     display: inline-block;
-    width: 230px;
-    height: 200px;
-    background-color: grey;
+    /*width: 240px;*/
+    /*height: 200px;*/
+    /*background-color: grey;*/
 }
 
-.imgs-gallery li:not(:last-child) {
-    margin-left: 1px;
+.imgs-gallery li img {
+    /*height: 200px;*/
+    cursor: pointer;
 }
+
+/*.imgs-gallery li:not(:last-child) {*/
+    /*margin-left: 1px;*/
+/*}*/
 
 /*campaign page*/
 
@@ -521,3 +528,7 @@ ul.footer.links {
     text-transform: capitalize;
 }
 
+/*after get a link by email to reset password*/
+.login-container .fieldset > .field > .control {
+    width: 100% !important;
+}
