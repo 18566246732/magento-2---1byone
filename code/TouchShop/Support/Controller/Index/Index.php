@@ -10,6 +10,7 @@ namespace TouchShop\Support\Controller\Index;
 
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Block\Product\ImageBuilder;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -24,16 +25,22 @@ class Index extends Action
 
     private $repository;
     private $connection;
+    private $helper;
+    private $imageBuilder;
 
     public function __construct(
         Context $context,
         ProductRepositoryInterface $repository,
+        DownloadFilesHelper $helper,
+        ImageBuilder $imageBuilder,
         ResourceConnection $connection
     )
     {
 
         parent::__construct($context);
         $this->repository = $repository;
+        $this->helper = $helper;
+        $this->imageBuilder = $imageBuilder;
         $this->connection = $connection->getConnection(ResourceConnection::DEFAULT_CONNECTION);
     }
 
@@ -77,9 +84,9 @@ class Index extends Action
                     /**@var $item Product */
                     $products[] = [
                         'product_name' => $item->getName(),
-                        'image' => '/pub/media/catalog/product' . $item->getImage(),
+                        'image' => $this->getImage($item, 'category_page_list')->getImageUrl(),
                         'faq' => FAQHelper::getFAQ($item),
-                        'download_files' => DownloadFilesHelper::getDownloadFiles($item),
+                        'download_files' => $this->helper->getDownloadFiles($item),
                         'url' => $item->getProductUrl()
                     ];
                 } catch (\Exception $exception) {
@@ -91,6 +98,14 @@ class Index extends Action
         }
         return null;
     }
+
+    public function getImage($product, $imageId)
+    {
+        return $this->imageBuilder->setProduct($product)
+            ->setImageId($imageId)
+            ->create();
+    }
+
 
     private function getCount($template)
     {

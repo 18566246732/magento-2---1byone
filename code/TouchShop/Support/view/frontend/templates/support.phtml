@@ -3,7 +3,8 @@
 ?>
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePagination.css") ?>">
-<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePaginationOverwrite.css") ?>">
+<link rel="stylesheet"
+      href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePaginationOverwrite.css") ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css") ?>">
 <div class="catalog-panel">
     <div class="catalog-header">
@@ -19,21 +20,21 @@
         <div class="flex-container">
             <?php $index = 8; ?>
             <?php while ($index-- > 0): ?>
-            <div class="flex-item">
-                <div class="post">
-                    <img src="" alt="" draggable="false">
-                    <h3></h3>
+                <div class="flex-item">
+                    <div class="post">
+                        <img src="" alt="" draggable="false">
+                        <h3></h3>
+                    </div>
+                    <div class="post-cover">
+                        <a href="">FAQ</a>
+                        <a href="#" class="product-details">Products Details</a>
+                        <span>x</span>
+                        <h3>Download List</h3>
+                        <ul>
+                        </ul>
+                    </div>
                 </div>
-                <div class="post-cover">
-                    <a href="">FAQ</a>
-                    <a href="#" class="product-details">Products Details</a>
-                    <span>x</span>
-                    <h3>Download List</h3>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <?php endwhile;?>
+            <?php endwhile; ?>
         </div>
     </div>
     <div class="footer">
@@ -65,53 +66,52 @@
                 faqA = $(".faq-info .answer"),
                 paginationItem = $(".pagination-demo ul"),
                 searchInput = $(".catalog-header .input-group input:first-child");
-                currentPage = 1,
+            currentPage = 1,
                 isSearching = false,
                 isPageIni = false,
 
-            $(document).ready(function () {
-                console.log("require working....");
+                $(document).ready(function () {
+                    console.log("require working....");
 
 
-                faqCloseBtn.on("click", function () {
-                    faqCover.css("display", "none");
+                    faqCloseBtn.on("click", function () {
+                        faqCover.css("display", "none");
+                    });
+
+                    closeBtn.on("click", function () {
+                        let postCover = $(this).parent();
+                        postCover.css("display", "none");
+                    });
+
+                    post.on("click", function () {
+                        post.next().css("display", "none");
+                        let postCover = $(this).next();
+                        postCover.css("display", "flex");
+                    });
+
+
+                    //1. page first loaded , send ajax, display result
+
+                    sendAjax(currentPage);
+                    isPageIni = true;
+                    //2. click pagination item, send ajax,  finished on pagenationIni callback
+
+
+                    //3. click search button , send ajax
+                    $("#supportSearch").on("click", function (e) {
+                        isSearching = true;
+                        sendAjax(1);
+                    });
+
+                    $(document).keypress(function (e) {
+                        if (e.which == 13 && searchInput.is(":focus")) {
+                            e.preventDefault();
+                            $("#supportSearch").click();
+                        }
+                    })
+
+
                 });
-
-                closeBtn.on("click", function () {
-                    let postCover = $(this).parent();
-                    postCover.css("display", "none");
-                });
-
-                post.on("click", function () {
-                    post.next().css("display", "none");
-                    let postCover = $(this).next();
-                    postCover.css("display", "flex");
-                });
-
-
-                //1. page first loaded , send ajax, display result
-
-                sendAjax(currentPage);
-                isPageIni = true;
-                //2. click pagination item, send ajax,  finished on pagenationIni callback
-
-
-
-                //3. click search button , send ajax
-                $("#supportSearch").on("click", function (e) {
-                    isSearching = true;
-                    sendAjax(1);
-                });
-
-                $(document).keypress(function (e) {
-                    if(e.which == 13 && searchInput.is(":focus")) {
-                        e.preventDefault();
-                        $("#supportSearch").click();
-                    }
-                })
-
-
-            });
 
             function paginatinoIni(total) {
                 $("#pagination-demo").pagination({
@@ -123,7 +123,7 @@
                     nextText: '<span>&raquo;</span>',
                     onPageClick: function (page, e) {
                         //2. click pagination , send ajax
-                            sendAjax(page);
+                        sendAjax(page);
                     },
                 })
             }
@@ -162,7 +162,7 @@
                 } else {
                     let productsArr = res.products;
                     let productsArrLen = productsArr.length;
-                    if(isSearching || isPageIni ) {
+                    if (isSearching || isPageIni) {
                         // twbsPagination totalPage refresh
                         //1. remove target element
                         // $("#pagination-demo").remove();
@@ -179,9 +179,9 @@
 
                     imgArr.each(function (index, ele) {
 
-                        if(index < productsArrLen) {
+                        if (index < productsArrLen) {
                             $(post[index]).css("visibility", "visible");
-                            $(ele).css("background-image", 'url(..' + productsArr[index].image + ')');
+                            $(ele).css("background-image", 'url(' + productsArr[index].image + ')');
                             let resHtml = "";
                             let dFiles = productsArr[index].download_files;
                             let dataPName = productsArr[index].product_name;
@@ -193,12 +193,12 @@
                                 $(faq[index]).css("display", "none");
                             }
 
-                            if(dFiles.length == 0) {
+                            if (dFiles.length == 0) {
                                 $(".flex-item .post-cover h3").css("display", "none");
                             } else {
                                 dFiles.forEach(function (ele) {
                                     // console.log(ele);
-                                    resHtml += "<li><a href= ../" + ele.src + ">" + ele.label + " </a></li>";
+                                    resHtml += "<li><a href= \"" + ele.src + "\">" + ele.name + " </a></li>";
                                 });
                             }
 

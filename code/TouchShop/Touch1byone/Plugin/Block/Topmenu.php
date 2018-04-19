@@ -153,7 +153,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'image_url' => $this->getMediaUrl('support_top.png'),
                 'submenus' => [
                     [
-                        "label" => 'FAQ & Download',
+                        "label" => 'FAQ & Downloads',
                         'url' => $this->getUrl('support'),
                         'image_url' => $this->getMediaUrl('support_top.png'),
                     ], [

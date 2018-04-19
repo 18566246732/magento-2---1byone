@@ -35,8 +35,8 @@
 }
 
 .form.subscribe .subscribe.primary:hover {
-    background-color: #b4b4b4;
-    color: grey;
+    background-color: #ddd6d6;
+    color: #2c2727;
 }
 
 .block.newsletter > h1 a {

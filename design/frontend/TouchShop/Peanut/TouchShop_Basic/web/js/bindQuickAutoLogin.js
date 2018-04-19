@@ -98,24 +98,18 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
             if (vip == 0) {
                 if (vip1 == 0) {
                     //register
-                    console.log("vip1:", vip1);//todo
                     if (!register()) {
                         return false;
                     }
-                    console.log("register success");//todo
                 }
                 //login
                 //vip1 = 1 or 2
-                console.log("vip1:", vip1);//todo
                 if (!login()) {
                     return false;
                 }
-                console.log("login success");//todo
             }
-            console.log("before submit");//todo
             //sendajax submit form
             let submitFornRes = submitFormFunc(email.val(), customerId);
-            console.log("after submit", submitFornRes);//todo
             if (submitFornRes) {
                 sessionStorage.setItem("success", "submit successful, thanks for your feedback");
                 location.reload();

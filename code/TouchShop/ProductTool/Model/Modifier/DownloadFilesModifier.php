@@ -12,25 +12,40 @@ namespace TouchShop\ProductTool\Model\Modifier;
 use Magento\Catalog\Model\Locator\LocatorInterface;
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
 use Magento\Framework\UrlInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\ProductTool\Model\FileUploader;
+use TouchShop\Support\Helper\DownloadFilesHelper;
 
 class DownloadFilesModifier extends AbstractModifier
 {
     private $locator;
     private $urlBuilder;
+    private $storeManager;
+    private $uploader;
+    private $helper;
 
 
     /**
      * DownloadFilesModifier constructor.
      * @param LocatorInterface $locator
+     * @param StoreManagerInterface $storeManager
+     * @param FileUploader $uploader
+     * @param DownloadFilesHelper $helper
      * @param UrlInterface $urlBuilder
      */
     public function __construct(
         LocatorInterface $locator,
+        StoreManagerInterface $storeManager,
+        FileUploader $uploader,
+        DownloadFilesHelper $helper,
         UrlInterface $urlBuilder
     )
     {
         $this->locator = $locator;
         $this->urlBuilder = $urlBuilder;
+        $this->uploader = $uploader;
+        $this->storeManager = $storeManager;
+        $this->helper = $helper;
     }
 
     public function modifyMeta(array $meta)
@@ -54,6 +69,9 @@ class DownloadFilesModifier extends AbstractModifier
      */
     public function modifyData(array $data)
     {
+        $product = $this->locator->getProduct();
+        $data[$product->getId()]['product']['download_files'] = $this->helper->getDownloadFiles($product);
         return $data;
     }
+
 }

@@ -19,12 +19,12 @@ class Complain extends Template
 {
     private $session;
     private $customerRepository;
-    private $categoryRepository;
+    private $categoryHelper;
 
     public function __construct(
         Session $session,
         CustomerRepository $customerRepository,
-        CategoryRepository $categoryRepository,
+        CategoryHelper $categoryHelper,
         Template\Context $context,
         array $data = [])
     {
@@ -32,7 +32,7 @@ class Complain extends Template
         parent::__construct($context, $data);
         $this->session = $session;
         $this->customerRepository = $customerRepository;
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryHelper = $categoryHelper;
     }
 
 
@@ -54,6 +54,6 @@ class Complain extends Template
 
     public function getCategories()
     {
-        return CategoryHelper::getCategories($this->categoryRepository);
+        return $this->categoryHelper->getCategories();
     }
 }
