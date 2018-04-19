@@ -37,7 +37,9 @@
         </div>
 
         <div class="feedback-selection">
+            <label for="feedbackCategory">Category <span>*</span></label>
             <select id="feedbackCategory">
+                <option value="">--select--</option>
                 <?php foreach ($block->getCategories() as $category): ?>
                     <option value="<?= $category['value'] ?>"><?= $category['label'] ?></option>
                 <?php endforeach; ?>
@@ -64,6 +66,7 @@
     require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
         let data = <?= $block->getLoginInfo()?>;
         let hint = $(".feedback-hint");
+        let category = $("#feedbackCategory");
         hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
         binder.bind(
             data,
@@ -81,6 +84,8 @@
 
         function submitFormFun(email, customerId) {
             let result = false;
+            if(category.val() == "")
+                return result;
             ajax.sendAjax(
                 false,
                 "<?= $block->getFormAction()?>",
@@ -88,7 +93,7 @@
                     email: email,
                     // customerId: customerId,
                     order: $("#feedBackOrder").val(),
-                    categoryId: $("#feedbackCategory").val(),
+                    categoryId: category.val(),
                     detail: $("#feedbackDetail").val()
                 },
                 function (res) {
