@@ -18,21 +18,24 @@ class DownloadFiles extends Template
 {
 
     protected $_registry;
+    private $helper;
 
     public function __construct(
         Context $context,
         Registry $registry,
+        DownloadFilesHelper $helper,
         array $data = []
     )
     {
         $this->_registry = $registry;
+        $this->helper = $helper;
         parent::__construct($context, $data);
     }
 
     public function getDownloadFiles()
     {
         $product = $this->_registry->registry('current_product');
-        return DownloadFilesHelper::getDownloadFiles($product);
+        return $this->helper->getDownloadFiles($product);
     }
 
 }

@@ -103,6 +103,12 @@
                 <label>Categories</label>
             </settings>
         </column>
+        <column name="sku">
+            <settings>
+                <filter>text</filter>
+                <label>Sku</label>
+            </settings>
+        </column>
         <column name="content">
             <settings>
                 <filter>text</filter>
