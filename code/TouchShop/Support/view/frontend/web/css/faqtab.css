@@ -62,10 +62,23 @@
 
 .product-details-faq label input {
     margin: 10px 0;
+    display: block;
+    border-radius: 16px;
+}
+
+.product-details-faq label textarea {
     width: 40%;
     display: block;
 }
 
+.product-details-faq label span {
+    color: red;
+}
+
+.product-details-faq label {
+    margin: 20px 0;
+    display: block;
+}
 
 .product-details-faq form > input {
     padding: 5px 20px;
@@ -75,7 +88,6 @@
     width: 200px;
     margin-top: 20px;
     text-transform: uppercase;
-
     background-color: #595959;
     color: white;
     margin-right: 20px;
@@ -95,6 +107,8 @@
 
 .faq-pwd1 , .faq-pwd2 {
     display: none;
+    width: 40%;
+    margin: 0 auto;
 }
 
 
@@ -104,31 +118,42 @@ div.form-action-btn {
     margin: 20px 0;
 }
 
-div.form-action-btn button:first-child {
-    background-color: rgb(102, 102, 102);
+/*div.form-action-btn button {*/
+    /*width: 40%;*/
+    /*border-radius: 16px;*/
+    /*background-color: #e70012;*/
+/*}*/
+
+/*div.form-action-btn button:hover {*/
+    /*background-color: #8d131c;*/
+/*}*/
+
+/*div.form-action-btn button:first-child {*/
+    /*background-color: rgb(102, 102, 102);*/
+    /*border: none;*/
+    /*border-radius: 25px;*/
+    /*color: white;*/
+    /*margin: 0 5px;*/
+    /*width: 120px;*/
+/*}*/
+
+/*div.form-action-btn button:first-child:hover {*/
+    /*background-color: rgb(64, 64, 64);*/
+/*}*/
+
+div.form-action-btn button {
+    /*margin: 0 5px;*/
     border: none;
-    border-radius: 25px;
+    border-radius: 16px;
+    background-color: #e70012;
     color: white;
-    margin: 0 5px;
-    width: 120px;
+    width: 40%;
+    margin: 0 auto;
+
 }
 
-div.form-action-btn button:first-child:hover {
-    background-color: rgb(64, 64, 64);
-}
-
-div.form-action-btn button:last-child {
-    margin: 0 5px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgb(2, 167, 225);
-    color: white;
-    border: none;
-    width: 120px;
-}
-
-div.form-action-btn button:last-child:hover {
-    background-color: rgb(36, 125, 225);
+div.form-action-btn button:hover {
+    background-color: #8d131c;
 }
 
 .faq-assembling-more {
@@ -139,4 +164,29 @@ div.form-action-btn button:last-child:hover {
     color: #8d131c;
     cursor: pointer;
     margin-bottom: 20px;
+    display: inline-block;
 }
+
+.faq-ask-btn {
+    color: #8d131c;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.faq-form-basic-info-container input {
+    border-radius: 16px;
+}
+
+.faq-form-basic-info-container {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.faq-hint {
+    width: 40%;
+    margin: 0 auto;
+}
+
+

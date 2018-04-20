@@ -56,6 +56,11 @@
     box-shadow: none;
 }
 
+.input-group input[type="button"]:hover {
+    background-color: #8d131c;
+    border: 2px solid #8d131c;
+}
+
 .catalog-panel .main {
     margin-top: 20px;
     height: 70%;

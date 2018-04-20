@@ -17,13 +17,16 @@ $data = $block->getInfo()
                 </div>
             </div>
         <?php endforeach ?>
-        <div class="faq-more-btn">more >></div>
+        <div class="faq-more-btn">More >> </div>
+        <div class="faq-ask-btn">   Ask A Question >> </div>
     <?php endif ?>
     <div class="faq-form-action-control-container">
         <div class="faq-form-basic-info-container">
 
-            <label>Ask a question <input type="text" name="content" required="required"/></label>
-            <label>Email address <input type="email" name="email" id="faqEmail" required="required"/></label>
+            <label>Question <span>*</span></label>
+            <textarea type="text" name="content" required="required" cols="30" rows="10"></textarea>
+            <label>Email <span>*</span></label>
+            <input type="email" name="email" id="faqEmail" required="required"/>
         </div>
 
 
@@ -44,7 +47,6 @@ $data = $block->getInfo()
             </div>
         </div>
         <div class="form-action-btn">
-            <button type="reset">RESET</button>
             <button type="button">SUBMIT</button>
         </div>
     </div>
@@ -55,8 +57,11 @@ $data = $block->getInfo()
         require(['jquery'], function ($) {
             $(document).ready(function () {
                 var faqMoreBtn = $(".faq-more-btn");
+                var faqAskQuestionBtn = $(".faq-ask-btn");
                 var faqAssemblingMore = $(".faq-assembling-more");
+                var faqForm = $(".faq-form-action-control-container");
                 $("p").slideToggle(0);
+                faqForm.hide();
                 $(".faq-toggle").on("click", function () {
                     $(this).toggleClass("triangle-facing-up");
                     // console.log($(this).parent(".faq-assembling").find("p"));
@@ -72,6 +77,10 @@ $data = $block->getInfo()
                 faqMoreBtn.click(function () {
                     $(this).hide();
                     faqAssemblingMore.css("display", "flex");
+                })
+                faqAskQuestionBtn.click(function () {
+                    $(this).hide();
+                    faqForm.show();
                 })
             })
         })

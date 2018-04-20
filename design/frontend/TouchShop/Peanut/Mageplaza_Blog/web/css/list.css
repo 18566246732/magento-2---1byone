@@ -1,3 +1,11 @@
 .mp-post-title {
     height: 60px;
 }
+
+.mp-blog-rss {
+    display: none;
+}
+
+.col-mp {
+    padding: 0;
+}

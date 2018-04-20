@@ -392,7 +392,39 @@ strong.product.name.product-item-name {
     padding-bottom: 0 !important;
 }
 
-/*review */
+.product-options-bottom button {
+    background-color: #e70012 !important;
+    color: white !important;
+    border-radius: 23px !important;
+}
+
+.product-options-bottom button:hover {
+    background-color: #8d131c !important;
+}
+
+.product-info-price .price {
+    color: #e70012 !important;
+}
+
+.swatch-option.color {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    min-width: initial;
+}
+
+body .swatch-option.color {
+    padding: 0;
+    border: none;
+}
+
+body .swatch-option.color:not(:disabled):hover {
+    outline: none;
+    /*-moz-outline-radius: 10px;*/
+    border: none !important;
+}
+
+    /*review */
 .product-item .product-reviews-summary .reviews-actions {
     display: none;
 }
