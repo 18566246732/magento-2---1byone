@@ -39,6 +39,7 @@
 .input-group input[type="text"] {
     height: inherit;
     border-radius: 16px;
+    padding-left: 12px;
 }
 .input-group input[type="button"] {
     width: 30%;
@@ -47,7 +48,7 @@
     background-color: #e70012;
     color: white;
     height: inherit;
-    font-size: 20px;
+    font-size: 14px;
     margin-left: -50px;
     border: 2px solid #e70012;
 }
@@ -110,23 +111,24 @@ div.flex-item .post img {
 div.flex-item .post h3 {
     font-size: 15px;
     height: 40px;
+    text-align: center;
 }
 
 div.flex-item .post-cover {
     position: absolute;
     z-index: 2;
-    background-color: rgba(22, 51, 160, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     top: 0;
     left: 0;
     height: 100%;
-    display: flex;
     align-items: left;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     padding: 10px;
-    color: white;
+    color: #e70012;
     display: none;
+    border: 1px solid #e70012;
 }
 
 div.flex-item .post-cover span {
@@ -134,11 +136,12 @@ div.flex-item .post-cover span {
     top: 5px;
     right: 6px;
     cursor: pointer;
+    color: grey;
 }
 
 div.flex-item .post-cover a {
     font-size: 15px;
-    color: white;
+    color: #e70012;
     margin-bottom: 15px;
 }
 
@@ -178,6 +181,17 @@ div.flex-item .post-cover li a {
 
 #pagination-demo a {
     border: none;
+    color: grey;
+}
+
+.catalog-panel-blank {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top: 50px;
+    background-color: white;
+    left: 0;
+    z-index: -1;
 }
 
 .catalog-panel-background {

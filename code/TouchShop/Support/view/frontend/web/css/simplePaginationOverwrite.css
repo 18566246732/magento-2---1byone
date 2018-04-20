@@ -5,4 +5,5 @@
 
 #pagination-demo li.active span{
     margin: 0 10px;
+    color: #e70012;
 }

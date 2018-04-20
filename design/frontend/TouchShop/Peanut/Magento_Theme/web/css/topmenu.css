@@ -10,6 +10,9 @@ nav.navigation {
     /*color: #ff4964;*/
 /*}*/
 
+.navigation ul {
+    padding: 0;
+}
 
 .navigation .level0 > .level-top:hover {
     color: #8d131c;
@@ -71,7 +74,7 @@ ul.top-menu{
     top: 130px;
     width: 100%;
     left: 0;
-    background-color: rgba(255,255,255, 0.8);
+    background-color: rgba(255,255,255, 0.95);
     /*display: none;*/
 }
 

@@ -1,0 +1,1 @@
+cp -r account/ /var/www/html/magento2/pub/media/wysiwyg/

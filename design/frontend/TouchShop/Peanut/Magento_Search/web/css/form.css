@@ -21,7 +21,7 @@
 }
 
 #searchBtn::before {
-    color: white;
+    color: grey;
     cursor: pointer;
 }
 
@@ -30,7 +30,7 @@
 }
 
 #search {
-    border: none;
+    border-radius: 16px;
     box-shadow: initial;
 }
 

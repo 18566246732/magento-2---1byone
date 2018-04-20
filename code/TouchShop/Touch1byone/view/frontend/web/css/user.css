@@ -1,9 +1,10 @@
 .user {
     position: relative;
+    margin-left: 10px;
 }
 
 .user-icon {
-    width: 30px;
+    width: 20px;
     cursor: pointer;
     margin-top: 5px;
 }
@@ -18,7 +19,6 @@ div.login-back {
     z-index: 1;
     display: none;
     background-size: cover;
-    background-image: url("");
 }
 
 .login-back .sign-panel {

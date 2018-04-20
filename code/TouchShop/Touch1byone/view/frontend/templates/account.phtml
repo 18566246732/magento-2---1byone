@@ -1,3 +1,6 @@
+
+
+
 <div class="login-back">
     <div class="sign-panel sign-in">
         <!--        <span class="close-btn">x</span>-->
@@ -21,8 +24,8 @@
 
                 $(".sign-panel.sign-up #firstname").val("Customer").attr("hidden", "hidden");
                 $(".sign-panel.sign-up #lastname").val("Liu").attr("hidden", "hidden");
-                $(".login-back").css("display", "block");
-                // $(".sign-panel.sign-up #firstname").val("Ivan");
+                $(".login-back").css({"display": "block", "background-image": "url("+ "<?= $block->getBaseUrl() . 'pub/media/wysiwyg/account/account_back.jpg'?>" + ")"});
+
             })
         })
     })()

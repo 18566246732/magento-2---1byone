@@ -11,7 +11,7 @@
         <form method="post">
             <lable>Search by Product Name / SKU</lable>
             <div class="input-group">
-                <input type="text" placeholder="Find what you what ...">
+                <input type="text" placeholder="Search">
                 <input type="button" id="supportSearch" value="Search"/>
             </div>
         </form>
@@ -43,6 +43,7 @@
         </div>
     </div>
 
+    <div class="catalog-panel-blank"></div>
     <div class="catalog-panel-background">
         <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/support/support_banner.jpg'?> " alt="" />
     </div>
@@ -77,8 +78,6 @@
 
                 $(document).ready(function () {
                     console.log("require working....");
-
-
                     faqCloseBtn.on("click", function () {
                         faqCover.css("display", "none");
                     });
