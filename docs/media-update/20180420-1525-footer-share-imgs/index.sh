@@ -1,0 +1,1 @@
+cp -r socials/ /var/www/html/magento2/pub/media/wysiwyg/
