@@ -13,6 +13,8 @@
 .data.item.title {
     font-size: 20px;
     align-self: center;
+    position: absolute;
+    top: -31px;
 }
 
 .data.item.content {
@@ -25,6 +27,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    /*position: relative;*/
 }
 
 

@@ -23,8 +23,8 @@ body {
 div.sections.nav-sections {
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 0;
-    z-index: 4;
-    border-top: 1px solid rgba(231,0,18, 0.6);
+    z-index: 3;
+    border-top: 1px solid rgba(231,0,18, 0.3);
 }
 
 div.section-items.nav-sections-items {
@@ -392,6 +392,10 @@ div.swatch-option.text {
     display: inline-block;
     vertical-align: sub;
     /*margin-right: 20px;*/
+}
+
+.product-reviews-summary {
+    display: none;
 }
 
 strong.product.name.product-item-name {
