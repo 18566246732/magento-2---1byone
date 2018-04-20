@@ -16,6 +16,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Controller\ResultFactory;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\iterator;
 use TouchShop\Support\Helper\DownloadFilesHelper;
 use TouchShop\Support\Helper\FAQHelper;
 
@@ -68,7 +69,18 @@ class Index extends Action
     {
         if (isset($data['key']) && isset($data['page_num']) && isset($data['page_size'])) {
 
-            $template = $this->getSqlTemplate($data['key']);
+            $key = $data['key'];
+            # avoid SQL Injection
+            $sql_keys = [
+                'and', 'exec', 'union', 'create', 'insert', 'select', 'delete',
+                'update', 'count', '*', '%', 'master', 'truncate', 'char',
+                'or', '--', "'", '"', '+'
+            ];
+            foreach ($sql_keys as $sql_key) {
+                $key = str_replace($sql_key, '', $key);
+            }
+
+            $template = $this->getSqlTemplate($key);
             $page_num = $data['page_num'] - 1;
             $page_size = $data['page_size'];
             $start = $page_num * $page_size;
@@ -126,7 +138,6 @@ class Index extends Action
             . $this->getLikeStatement('name', $key) . ' or '
             . $this->getLikeStatement('amazon_asin', $key) . ' or '
             . '(e.sku like \'%' . $key . '%\'))';
-
 
     }
 
