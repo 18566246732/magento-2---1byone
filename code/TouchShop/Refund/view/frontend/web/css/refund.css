@@ -1,3 +1,7 @@
+body {
+    background-color: #f3f2f0;
+}
+
 .banner {
     background: url(http://pic.qiantucdn.com/58pic/27/12/70/03358PICdUp_1024.jpg!/fw/780/watermark/url/L3dhdGVybWFyay12MS4zLnBuZw==/align/center/crop/0x1009a0a0) no-repeat 0 0;
     background-size: cover;
@@ -14,6 +18,26 @@
     float: left;
     text-align: center;
     margin-bottom: 60px;
+}
+
+.refund-blank {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    z-index: -1;
+    left: 0;
+    height: 80px;
+}
+
+.refund-back {
+    width: 100%;
+    position: absolute;
+    top: 130px;
+    background-color: #f3eeea;
+    z-index: -1;
+    left: 0;
+    height: 270px;
 }
 
 .banner > div:nth-of-type(2n) {
@@ -107,35 +131,36 @@ div.form-action-btn {
     margin: 20px 0;
 }
 
-div.form-action-btn button:first-child {
-    background-color: rgb(102, 102, 102);
+
+div.form-action-btn button {
     border: none;
-    border-radius: 25px;
+    border-radius: 16px;
+    background-color:  #e70012;
     color: white;
-    margin: 0 5px;
-    width: 120px;
+    width: 100%;
 }
 
-div.form-action-btn button:first-child:hover {
-    background-color: rgb(64, 64, 64);
-}
-
-div.form-action-btn button:last-child {
-    margin: 0 5px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgb(2, 167, 225);
-    color: white;
-    border: none;
-    width: 120px;
-}
-
-div.form-action-btn button:last-child:hover {
-    background-color: rgb(36, 125, 225);
+div.form-action-btn button:hover {
+    background-color: #8d131c;
 }
 
 .refund-pwd1 , .refund-pwd2 {
     display: none;
+}
+
+.refund-container {
+    background-color: white;
+    width: 1149px;
+    margin: 10px auto;
+    padding: 20px;
+    color: grey;
+    margin-top: 240px;
+    margin-bottom: -40px;
+    padding-bottom: 60px;
+}
+
+.refund-form {
+    width: 50%;
 }
 
 .refund-form-action-control-container span {
@@ -146,6 +171,6 @@ div.form-action-btn button:last-child:hover {
     margin: 15px 0;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    border-radius: 5px;
+.form-group input, .form-group select {
+    border-radius: 16px;
 }

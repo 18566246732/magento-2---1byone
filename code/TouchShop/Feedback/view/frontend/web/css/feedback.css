@@ -1,14 +1,57 @@
+body {
+    background-color: #f3f2f0;
+}
 
+
+.feedback-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.feedback-container {
+    background-color: white;
+    width: 1149px;
+    margin: 10px auto;
+    padding: 20px;
+    color: grey;
+    margin-top: 240px;
+    margin-bottom: -40px;
+    padding-bottom: 60px;
+}
+
+.feedback-blank {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    z-index: -1;
+    left: 0;
+    height: 80px;
+}
+
+.feedback-back {
+    width: 100%;
+    position: absolute;
+    top: 130px;
+    background-color: #f3eeea;
+    z-index: -1;
+    left: 0;
+    height: 270px;
+}
 
 .feedback-form-basic-info-container > * {
     display: inline-block;
-    width: 48%;
+    width: 100%;
     margin: 20px 0;
 }
 
 .feedback-form-basic-info-container {
     display: flex;
     justify-content: space-between;
+}
+
+.feedback-form-action-control-container {
+    margin-top: ;
 }
 
 .feedback-form-action-control-container span{
@@ -26,36 +69,17 @@
 }
 
 
-div.form-action-btn {
-    display: flex;
-    justify-content: flex-end;
-}
-
-div.form-action-btn button:first-child {
-    background-color: rgb(102, 102, 102);
+div.form-action-btn button {
     border: none;
-    border-radius: 25px;
-    color: white;
-    margin: 0 5px;
-    width: 120px;
-}
-
-div.form-action-btn button:first-child:hover {
-    background-color: rgb(64, 64, 64);
-}
-
-div.form-action-btn button:last-child {
-    margin: 0 5px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgb(2, 167, 225);
+    border-radius: 16px;
+    background-color: #e70012;
     color: white;
     border: none;
-    width: 120px;
+    width: 100%;
 }
 
-div.form-action-btn button:last-child:hover {
-    background-color: rgb(36, 125, 225);
+div.form-action-btn button:hover {
+    background-color:  #8d131c;
 }
 
 .form-action-btn {
@@ -67,7 +91,7 @@ div.form-action-btn button:last-child:hover {
 }
 
 .feedback-form > * {
-    margin: 20px 0;
+    /*margin: 20px 0;*/
 }
 
 .feedback-selection {

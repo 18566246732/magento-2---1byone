@@ -44,9 +44,15 @@
                 var allSpan = $(".owl-carousel.owl-theme span"),
                     spanArr = allSpan.slice(2,6),
                     navText = $(".top-menu li a"),
-                    owlImgNum = allSpan.length - 8 ;
+                    owlImgNum = allSpan.length - 7 ,
+                    owlAddOn = $(".owl-img-addon");
+
+                owlAddOn.each(function (index, e) {
+                    $(e).css("color", spanArr[(index+2) % owlImgNum].getAttribute("data-color"));
+                })
 
                     // change color every switch
+                console.log("owlImgNum:", owlImgNum);
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
                     var index = e.relatedTarget.current();
 

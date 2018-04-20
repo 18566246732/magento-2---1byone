@@ -5,174 +5,176 @@
       href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/common.css") ?>">
 <link rel="stylesheet" type="text/css"
       href="<?php echo $block->getViewFileUrl("TouchShop_Refund::css/refund.css") ?>">
-<form class="refund-form-action-control-container">
-    <div class="banner">
-        <div>
-            <img src="<?php echo $block->getBaseImgUrl('monthlyview.png') ?>" alt="">
-            <p>30-Day Return</p>
-            <p>for Any Reason</p>
+<div class="refund-container">
+    <form class="refund-form-action-control-container">
+        <div class="refund-blank"></div>
+        <div class="refund-back">
+            <img src="" alt="">
         </div>
         <div>
-            <img src="<?php echo $block->getBaseImgUrl('anquan.png') ?>" alt="">
-            <p>18-Month</p>
-            <p>Warranty</p>
+            <p>Thank you for visiting our after-sales self-service web page. Here, we hope that you will be able to
+                resolve
+                whatever problems you are experiencing. We're very sorry for whatever inconvenience your purchase may
+                have
+                caused you.</p>
+            <p>Please kindly be advised that all of our Anker products come with a hassle-free warranty. You can find
+                your
+                precise warranty period on the literature inside the box or verify with our customer service team. If
+                your
+                product does not meet your needs during this period, please contact us via the refund form below and let
+                us
+                know what we can do to help you.</p>
+            <p>Moreover, as a reminder, if you are having trouble using one of our products, you can always refer to the
+                FAQ
+                or Instruction Manuals section on our website, where you may be able to resolve the issue yourself.</p>
+            <p>Thank you in advance for all of the information you are providing.</p>
+            <h4>Warranty Information Tips</h4>
+            <p>Order ID: You can find this in your Amazon account's order history.</p>
+            <p>Product Name: You can find this in your Amazon account's order history, as well as on the packaging or
+                manual
+                of the product. Some products come with a watermark showing the model number and/or name of the
+                product.</p>
+            <p>Refund or Exchange: Please enter your preference, and we will do our best to accommodate your needs.</p>
+            <p>Reason for Request: Enter a short description of the problem here, e.g. "defective".</p>
+            <p>Series No.: Depending on the product, the Series No. can be found on the main body of the product or on a
+                charging cable that came with the product.</p>
         </div>
-        <div>
-            <img src="<?php echo $block->getBaseImgUrl('editor2.png') ?>" alt="">
-            <p>Lifetime</p>
-            <p>Technical Support</p>
-        </div>
-    </div>
-    <div>
-        <p>Thank you for visiting our after-sales self-service web page. Here, we hope that you will be able to resolve
-            whatever problems you are experiencing. We're very sorry for whatever inconvenience your purchase may have
-            caused you.</p>
-        <p>Please kindly be advised that all of our Anker products come with a hassle-free warranty. You can find your
-            precise warranty period on the literature inside the box or verify with our customer service team. If your
-            product does not meet your needs during this period, please contact us via the refund form below and let us
-            know what we can do to help you.</p>
-        <p>Moreover, as a reminder, if you are having trouble using one of our products, you can always refer to the FAQ
-            or Instruction Manuals section on our website, where you may be able to resolve the issue yourself.</p>
-        <p>Thank you in advance for all of the information you are providing.</p>
-        <h4>Warranty Information Tips</h4>
-        <p>Order ID: You can find this in your Amazon account's order history.</p>
-        <p>Product Name: You can find this in your Amazon account's order history, as well as on the packaging or manual
-            of the product. Some products come with a watermark showing the model number and/or name of the product.</p>
-        <p>Refund or Exchange: Please enter your preference, and we will do our best to accommodate your needs.</p>
-        <p>Reason for Request: Enter a short description of the problem here, e.g. "defective".</p>
-        <p>Series No.: Depending on the product, the Series No. can be found on the main body of the product or on a
-            charging cable that came with the product.</p>
-    </div>
-    <!--    <div class="refund-nav">-->
-    <!--        <div class="active">Amazon</div>-->
-    <!--    </div>-->
-    <div class="input-container-title">Contact Information</div>
-    <div class="form-group">
-        <label for="email">Email Address <span> *</span></label>
-        <input name="email" id="refundEmail" placeholder="example@site.com" type="text">
-    </div>
+        <!--    <div class="refund-nav">-->
+        <!--        <div class="active">Amazon</div>-->
+        <!--    </div>-->
+        <div class="refund-form">
+            <div class="input-container-title">Contact Information</div>
 
-    <div class="refund-hint"></div>
+            <div class="form-group" id="msg_reasonf">
+                <label class="col-sm-2 control-label">Reason for Request<span> *</span></label>
+                <div class="col-sm-9">
+                    <select name="reason" id="msg_reason" class="form-control" required="required">
+                        <option value="">--select--</option>
+                        <?php foreach ($block->getReasons() as $item): ?>
+                            <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
 
-    <div class="refund-form-basic-info-container">
+            <div class="form-group">
+                <label for="msg_goods" class="col-sm-2 control-label">category<span> *</span></label>
+                <div class="col-sm-9">
+                    <select name="goods" id="msg_goods" class="form-control" required="required">
+                        <option value="">--select--</option>
+                        <?php foreach ($block->getCategories() as $item): ?>
+                            <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
 
-        <div class="refund-pwd1">
+            <div class="form-group">
+                <label for="msg_order_number" class="col-sm-2 control-label">Order Number<span> *</span></label>
+                <div class="col-sm-9"><input name="order_number" id="msg_order_number" class="form-control"
+                                             placeholder="Order Number" required="required" type="text">
+                    <p id="msg_order_notice" class="red" style="display:none;">To better assist your case,please provide
+                        the
+                        correct Order Number. <span id="msg_order_detail"
+                                                    style="cursor:pointer;color:blue;">Learn More...</span></p>
+                </div>
+            </div>
 
-            <label for="password">Password <span> *</span>
-                <input name="password" id="refundPwd1" type="password" required="required" autocomplete="off">
-            </label>
-        </div>
+            <div class="form-group">
+                <label for="email">Email Address <span> *</span></label>
+                <input name="email" id="refundEmail" placeholder="example@site.com" type="text">
+            </div>
 
-        <div class="refund-pwd2">
+            <div class="refund-hint"></div>
 
-            <label for="password">Please enter your Password again<span> *</span>
-                <input name="password" id="refundPwd2" type="password" required="required" autocomplete="off">
-            </label>
-        </div>
-    </div>
+            <div class="refund-form-basic-info-container">
 
-    <div class="form-group" id="msg_reasonf">
-        <label class="col-sm-2 control-label">Reason for Request<span> *</span></label>
-        <div class="col-sm-9">
-            <select name="reason" id="msg_reason" class="form-control" required="required">
-                <option value="">--select--</option>
-                <?php foreach ($block->getReasons() as $item): ?>
-                    <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-    </div>
+                <div class="refund-pwd1">
 
-    <div class="form-group">
-        <label for="msg_goods" class="col-sm-2 control-label">category<span> *</span></label>
-        <div class="col-sm-9">
-            <select name="goods" id="msg_goods" class="form-control" required="required">
-                <option value="">--select--</option>
-                <?php foreach ($block->getCategories() as $item): ?>
-                    <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-    </div>
+                    <label for="password">Password <span> *</span>
+                        <input name="password" id="refundPwd1" type="password" required="required" autocomplete="off">
+                    </label>
+                </div>
 
-    <div class="form-group">
-        <label for="msg_order_number" class="col-sm-2 control-label">Order Number<span> *</span></label>
-        <div class="col-sm-9"><input name="order_number" id="msg_order_number" class="form-control"
-                                     placeholder="Order Number" required="required" type="text">
-            <p id="msg_order_notice" class="red" style="display:none;">To better assist your case,please provide the
-                correct Order Number. <span id="msg_order_detail"
-                                            style="cursor:pointer;color:blue;">Learn More...</span></p>
-        </div>
-    </div>
+                <div class="refund-pwd2">
 
-    <div class="input-container">
-        <input type="radio" name="type" value="Exchange" class="exchange"> Exchange
-        <input type="radio" checked="checked" name="type" value="Refund" class="refund"> Refund
-    </div>
+                    <label for="password">Please enter your Password again<span> *</span>
+                        <input name="password" id="refundPwd2" type="password" required="required" autocomplete="off">
+                    </label>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label for="msg_message" class="col-sm-2 control-label">Issue Details<span> *</span></label>
-        <div class="col-sm-9"><textarea name="message" id="msg_message" class="form-control"></textarea></div>
-    </div>
+            <div class="input-container">
+                <input type="radio" name="type" value="Exchange" class="exchange"> Exchange
+                <input type="radio" checked="checked" name="type" value="Refund" class="refund"> Refund
+            </div>
 
-    <div class="form-address">
+            <div class="form-group">
+                <label for="msg_message" class="col-sm-2 control-label">Issue Details<span> *</span></label>
+                <div class="col-sm-9"><textarea name="message" id="msg_message" class="form-control"></textarea></div>
+            </div>
 
-        <h1>Your Address</h1>
+            <div class="form-address">
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Address<span> *</span></label>
-            <div class="col-sm-9">
-                <input name="address_string" id="msg_address_string" class="form-control" value="" required="required"
-                       type="text">
+                <h1>Your Address</h1>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Address<span> *</span></label>
+                    <div class="col-sm-9">
+                        <input name="address_string" id="msg_address_string" class="form-control" value=""
+                               required="required"
+                               type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">State/Province<span> *</span></label>
+                    <div class="col-sm-9" id="input-province">
+                        <select name="province_string" id="msg_province_string" class="form-control"
+                                required="required">
+                            <option value="">--select--</option>
+                            <?php foreach ($block->getStates() as $item): ?>
+                                <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Postalcode</label>
+                    <div class="col-sm-5">
+                        <input name="zipcode" id="msg_zipcode" class="form-control" value="" required="required"
+                               type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Country/Province <span> *</span></label>
+                    <div class="col-sm-9">
+                        <select name="country" id="msg_country" class="form-control">
+                            <option value="">--select--</option>
+                            <?php foreach ($block->getCountries() as $item): ?>
+                                <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Phone<span> *</span></label>
+                    <div class="col-sm-5">
+                        <input name="tel" id="msg_tel" class="form-control" value="" required="required" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-action-btn">
+                <button type="button">SUBMIT</button>
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">State/Province<span> *</span></label>
-            <div class="col-sm-9" id="input-province">
-                <select name="province_string" id="msg_province_string" class="form-control" required="required">
-                    <option value="">--select--</option>
-                    <?php foreach ($block->getStates() as $item): ?>
-                        <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Postalcode</label>
-            <div class="col-sm-5">
-                <input name="zipcode" id="msg_zipcode" class="form-control" value="" required="required" type="text">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Country/Province <span> *</span></label>
-            <div class="col-sm-9">
-                <select name="country" id="msg_country" class="form-control">
-                    <option value="">--select--</option>
-                    <?php foreach ($block->getCountries() as $item): ?>
-                        <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Phone<span> *</span></label>
-            <div class="col-sm-5">
-                <input name="tel" id="msg_tel" class="form-control" value="" required="required" type="text">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-action-btn">
-        <button type="reset">RESET</button>
-        <button type="button">SUBMIT</button>
-    </div>
-</form>
-
+    </form>
+</div>
 <script>
     (function () {
         require(['jquery'], function ($) {

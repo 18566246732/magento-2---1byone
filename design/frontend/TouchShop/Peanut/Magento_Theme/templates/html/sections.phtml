@@ -53,7 +53,7 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                     $html ?></div>
             <?php endforeach; ?>
         </div>
-        <div class="back-top"></div>
+        <div class="back-top"><img src="<?php $block->getBaseUrl() . 'pub/media/wysiwyg/back-top.svg'?>" alt=""></div>
     </div>
 <?php endif; ?>
 
@@ -66,6 +66,7 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             var menubar = $(".sections.nav-sections");
             var topmenu = $(".top-menu li a");
             var backTop = $(".back-top");
+
 
 
             $(window).scroll(function (e) {
