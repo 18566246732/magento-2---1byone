@@ -1,0 +1,1 @@
+cp -r page-back-img-top/ /var/www/html/magento2/pub/media/wysiwyg/
