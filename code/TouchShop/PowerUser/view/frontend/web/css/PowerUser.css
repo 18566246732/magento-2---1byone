@@ -22,31 +22,17 @@ div.form-action-btn {
     justify-content: flex-end;
 }
 
-div.form-action-btn button:first-child {
-    background-color: rgb(102, 102, 102);
+
+div.form-action-btn button {
     border: none;
-    border-radius: 25px;
+    border-radius: 16px;
+    background-color: #e70012;
     color: white;
-    margin: 0 5px;
-    width: 120px;
+    width: 100%;
 }
 
-div.form-action-btn button:first-child:hover {
-    background-color: rgb(64, 64, 64);
-}
-
-div.form-action-btn button:last-child {
-    margin: 0 5px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgb(2, 167, 225);
-    color: white;
-    border: none;
-    width: 120px;
-}
-
-div.form-action-btn button:last-child:hover {
-    background-color: rgb(36, 125, 225);
+div.form-action-btn button:hover {
+    background-color: #8d131c;
 }
 
 div.input-checkbox-container div {
@@ -78,6 +64,7 @@ div.input-checkbox-container div {
 
 .form-action-control-container div.control input {
     margin-left: 0;
+    border-radius: 16px;
 }
 
 .power-user-hint {
@@ -89,7 +76,7 @@ div.input-checkbox-container div {
 }
 
 .form-action-control-container input {
-    border-radius: 5px;
+    border-radius: 16px;
 }
 
 .power-user-form span {
