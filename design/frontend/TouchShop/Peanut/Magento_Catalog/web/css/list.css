@@ -50,6 +50,6 @@ li.product-item .product-item-inner {
     position: initial;
 }
 
-.actions-primary .action.tocart.primary {
+.actions-primary {
     display: none;
 }

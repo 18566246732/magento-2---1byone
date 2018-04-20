@@ -12,7 +12,7 @@
 <!--<link rel="stylesheet" href="--><?php //echo $block->getViewFileUrl("")?><!--">-->
 <div class="block block-customer-login">
     <div class="block-title" style="text-align: center; font-size: 25px; padding: 20px">
-        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Sign In')) ?></strong>
     </div>
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
@@ -22,16 +22,9 @@
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
 
-            <!--                add third party login plugin-->
-            <div class="third-party-login">
-                <small class="copyright">
-                    <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml(); ?>
-                    <span><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></span>
-                </small>
-            </div>
+
 
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                <div class="field note"><?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                     <div class="control">
@@ -43,15 +36,31 @@
                     <div class="control">
                         <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                     </div>
-                    <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
+                    <div class="secondary">
+                        <div class="forgot-pwd"><a href="###">Forget your password ?</a></div>
+                        <div class="remember-me"><input type="checkbox" />Remember me</div>
+                    </div>
+
                 </div>
                 <?= $block->getChildHtml('form_additional_info') ?>
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button></div>
-                    <div id="signUp"><a href="#">sign up</a></div>
                 </div>
-
+                <div class="divider">
+                    <hr />
+                    <p>or</p>
+                </div>
+                <div><button id="signUp"><span><?= $block->escapeHtml(__('Create an account')) ?></span></button></div>
             </fieldset>
+
+            <!--                add third party login plugin-->
+            <div class="third-party-login">
+                <p>For faster checkout, login or register using your social account</p>
+                <small class="copyright">
+                    <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml(); ?>
+                    <span><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></span>
+                </small>
+            </div>
 
         </form>
     </div>

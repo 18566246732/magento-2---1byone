@@ -1,0 +1,1 @@
+copy the support directory to the pub/media/wysiwyg 

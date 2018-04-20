@@ -43,7 +43,11 @@
         </div>
     </div>
 
-    <div class="catalog-panel-background"></div>
+    <div class="catalog-panel-background">
+        <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/support/support_banner.jpg'?> " alt="" />
+    </div>
+
+    <div class="catalog-panel-hint"> Oops, we didn't find anything... <br/>Haven't find your answer yet? <a href="<?= $block->getBaseUrl() . 'feedback'?>">Ask us<span> ></span></a></div>
 </div>
 
 <script>
@@ -65,10 +69,11 @@
                 faqQ = $(".faq-info .question"),
                 faqA = $(".faq-info .answer"),
                 paginationItem = $(".pagination-demo ul"),
-                searchInput = $(".catalog-header .input-group input:first-child");
-            currentPage = 1,
+                searchInput = $(".catalog-header .input-group input:first-child"),
+                currentPage = 1,
                 isSearching = false,
                 isPageIni = false,
+                catalogPanelHint = $(".catalog-panel-hint");
 
                 $(document).ready(function () {
                     console.log("require working....");
@@ -112,7 +117,7 @@
 
 
                 });
-
+            catalogPanelHint.css("display", "none");
             function paginatinoIni(total) {
                 $("#pagination-demo").pagination({
                     items: total,
@@ -154,11 +159,15 @@
 
             function display(res, currentPage) {
                 // hide all posts
-                post.css("visibility", "hidden");
+                post.css("display", "none");
                 let total = res.total_count;
 
                 if (total == 0) {
                     console.log("data is zero");
+                    catalogPanelHint.css("display", "block");
+                    $("#pagination-demo").css("display", "none");
+                    $(".flex-container").css("display", "none");
+
                 } else {
                     let productsArr = res.products;
                     let productsArrLen = productsArr.length;
@@ -180,7 +189,7 @@
                     imgArr.each(function (index, ele) {
 
                         if (index < productsArrLen) {
-                            $(post[index]).css("visibility", "visible");
+                            $(post[index]).css("display", "flex");
                             $(ele).css("background-image", 'url(' + productsArr[index].image + ')');
                             let resHtml = "";
                             let dFiles = productsArr[index].download_files;

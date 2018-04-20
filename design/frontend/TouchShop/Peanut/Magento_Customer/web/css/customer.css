@@ -1,0 +1,23 @@
+.account.page-layout-2columns-left .column.main {
+    width: 100% !important;
+}
+
+.page-title {
+    width: 100%;
+    text-align: center;
+}
+
+.form.form-edit-account input {
+    border-radius: 16px;
+}
+
+.form.form-edit-account .actions-toolbar > .primary {
+    width: 100%;
+}
+
+.form.form-edit-account .actions-toolbar .action.save.primary {
+    width: 48%;
+    border-radius: 16px;
+    background-color: #e70012;
+    border: 1px solid #e70012;
+}

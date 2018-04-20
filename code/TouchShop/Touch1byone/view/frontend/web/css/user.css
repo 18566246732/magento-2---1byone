@@ -9,23 +9,25 @@
 }
 
 div.login-back {
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0, 0, 0, 0.5);*/
     position: absolute;
-    top: 0;
+    top: 130px;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: 5;
+    height: 680px;
+    z-index: 1;
     display: none;
+    background-size: cover;
+    background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524114683760&di=b3f386f896973f8968626b125a47ec2a&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F40%2F82%2Fe029168239e737a9866e3528cc1620c4.jpg");
 }
 
 .login-back .sign-panel {
     position: relative;
     background-color: white;
     height: 600px;
-    max-width: 600px;
+    width: 600px;
     margin: 0 auto;
-    margin-top: 200px;
+    margin-top: 50px;
     color: grey;
     /*padding: 40px;*/
     display: flex;
@@ -85,8 +87,9 @@ div.controller a:last-child {
 .login-back .sign-panel.sign-up {
     display: none;
     height: 600px;
-    margin-top: 200px;
-    padding: 20px;
+    width: 600px;
+    margin-top: 50px;
+    /*padding: 20px;*/
 }
 
 .sign-up .user-name {
@@ -100,10 +103,6 @@ div.controller a:last-child {
 /*justify-content: space-around;*/
 /*width: 50%;*/
 /*}*/
-
-.sign-up input {
-    height: 25px;
-}
 
 .sign-up .user-name input {
     width: 150px;
@@ -126,6 +125,10 @@ div.controller a:last-child {
     height: 50%;
 }
 
+.blank {
+    height: 600px;
+}
+
 /*login panel content style*/
 
 .block-title {
@@ -145,6 +148,56 @@ div.controller a:last-child {
 .fieldset.login .secondary {
 
 }
+
+.field.password.required .secondary {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider {
+    position: relative;
+}
+
+.divider p {
+    position: absolute;
+    top: -10px;
+    left: 47%;
+    background-color: white;
+    padding: 0 10px;
+}
+
+.block.block-customer-login .control input {
+    border-radius: 16px;
+}
+
+.block.block-customer-login .actions-toolbar button{
+    border: 1px solid #e70012;
+    border-radius: 16px;
+    background-color: #e70012;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.block.block-customer-login #signUp{
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+    border-radius: 16px;
+    width: 100%;
+    cursor: pointer;
+    height: 32px;
+}
+
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+/*.actions-toolbar p::before{*/
+    /*content: "<hr/>";*/
+/*}*/
+
 
 .login .actions-toolbar {
     display: flex;
@@ -197,11 +250,11 @@ small.copyright {
     flex-wrap: wrap;
 }
 
-.field-name-firstname, .field-name-lastname {
+.sign-panel .field-name-firstname,.sign-panel .field-name-lastname {
     width: 45%;
 }
 
-.field-name-firstname {
+.sign-panel .field-name-firstname {
     padding-right: 10%;
 }
 
@@ -251,4 +304,95 @@ small.copyright {
 
 .user-submenu > ul li a:hover {
     color: #2e99ff;
+}
+
+.fieldset.create.info label{
+    display: none;
+}
+
+.form.create.account {
+    min-width: initial;
+    width: 457px;
+    margin-bottom: 40px;
+}
+
+
+.form.create.account.form-create-account .actions-toolbar .primary {
+    width: 100%;
+}
+
+.form.create.account.form-create-account .actions-toolbar button {
+    height: 32px;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid #e70012;
+    background-color: #e70012;
+    color: white;
+}
+
+.form.create.account.form-create-account button#signIn {
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+
+}
+
+.fieldset.create.info {
+    margin-bottom: 0;
+}
+
+.sign-panel .fieldset.create.account {
+    margin-bottom: 20px;
+}
+
+.sign-panel .fieldset.create.account input {
+    border-radius: 16px;
+}
+
+.sign-panel.sign-up .text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.block-title.sign-up-title {
+    font-size: 25px;
+}
+
+.sign-panel.sign-up .field.field-name-firstname.required,.sign-panel.sign-up .field.field-name-lastname.required {
+    height: 0;
+    margin: 0;
+}
+
+/*forget password*/
+.form.password.forget {
+    width: 457px;
+    min-width: initial;
+}
+
+.sign-panel .form.password.forget .actions-toolbar .primary {
+    width: 100%;
+}
+
+.sign-panel.retrieve-pwd input {
+    border-radius: 16px;
+}
+
+.sign-panel .form.password.forget .actions-toolbar button {
+    width: 100%;
+    border-radius: 16px;
+    background-color: #e70012;
+    border-color: #e70012;
+}
+
+.sign-panel .form.password.forget .actions-toolbar .secondary {
+    width: 100%;
+    margin-top: 15px
+}
+
+.sign-panel .form.password.forget .actions-toolbar .secondary .cancel {
+    color: grey;
+    text-decoration: grey;
+    margin: 0 auto;
+    cursor: pointer;
 }

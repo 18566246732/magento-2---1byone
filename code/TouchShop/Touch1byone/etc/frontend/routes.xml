@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="1byone" frontName="1byone">
+        <route id="touch1byone" frontName="touch1byone">
             <module name="TouchShop_Touch1byone"/>
         </route>
     </router>

@@ -1,0 +1,1 @@
+copy the new_release directory to the pub/media/wysiwyg 

@@ -27,20 +27,3 @@
     </div>
 </div>
 
-<!--    add login and sign up panel here-->
-<!--login popup-->
-
-
-<div class="login-back">
-
-    <div class="sign-panel sign-in">
-        <span class="close-btn">x</span>
-        <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("TouchShop_Touch1byone::login.phtml")->toHtml(); ?>
-    </div>
-
-    <div class="sign-panel sign-up">
-        <span class="close-btn">x</span>
-        <?php echo $block->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("TouchShop_Touch1byone::register.phtml")->toHtml(); ?>
-    </div>
-
-</div>
