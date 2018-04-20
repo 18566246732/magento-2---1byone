@@ -4,16 +4,38 @@
 ?>
 
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Feedback::css/feedback.css") ?>">
+
+<div class="feedback-container">
 <form action="<?php echo $block->getFormAction() ?>>" method="post" class="feedback-form">
+    <div class="feedback-blank"></div>
+    <div class="feedback-back"><img src="" alt=""></div>
     <div class="feedback-form-action-control-container">
+
+
+        <div class="feedback-selection">
+            <label for="feedbackCategory">Category <span>*</span></label>
+            <select id="feedbackCategory">
+                <option value="">--select--</option>
+                <?php foreach ($block->getCategories() as $category): ?>
+                    <option value="<?= $category['value'] ?>"><?= $category['label'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <label for="order">Order ID <span>*</span><small> ( If you don't have one, please contact us at <a href="mailto:ushelp@1byone.com">ushelp@1byone.com )</a> </small>
+            <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
+        </label>
+        <div class="feedback-detail">
+
+            <label for="detail">Issue Details<span>*</span>
+                <textarea name="detail" id="feedbackDetail" type="text" required="required" autocomplete="off" cols="30"
+                          rows="10"></textarea>
+            </label>
+        </div>
         <div class="feedback-form-basic-info-container">
 
             <label for="text">Email address <span>*</span>
                 <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
-            </label>
-
-            <label for="order">Order ID <span>*</span><small> ( If you don't have one, please contact us at <a href="mailto:ushelp@1byone.com">ushelp@1byone.com )</a> </small>
-                <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
             </label>
         </div>
 
@@ -36,32 +58,12 @@
             </div>
         </div>
 
-        <div class="feedback-selection">
-            <label for="feedbackCategory">Category <span>*</span></label>
-            <select id="feedbackCategory">
-                <option value="">--select--</option>
-                <?php foreach ($block->getCategories() as $category): ?>
-                    <option value="<?= $category['value'] ?>"><?= $category['label'] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
-
-        <div class="feedback-detail">
-
-            <label for="detail">Issue Details<span>*</span>
-                <textarea name="detail" id="feedbackDetail" type="text" required="required" autocomplete="off" cols="30"
-                          rows="10"></textarea>
-            </label>
-        </div>
-
         <div class="form-action-btn">
-            <button type="reset">RESET</button>
             <button type="button">SUBMIT</button>
         </div>
     </div>
 </form>
-
+</div>
 <script>
     require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
         let data = <?= $block->getLoginInfo()?>;

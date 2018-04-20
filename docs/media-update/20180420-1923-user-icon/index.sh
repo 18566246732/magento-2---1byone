@@ -1,0 +1,1 @@
+cp -r user.svg /var/www/html/magento2/pub/media/wysiwyg/

@@ -32,8 +32,8 @@
 .owl-dots .owl-dot span {
     cursor: pointer;
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     margin: 5px 7px;
     background: none;
     display: block;
@@ -44,9 +44,9 @@
     /* -ms-transition: opacity 200ms ease; */
     -o-transition: opacity 200ms ease;
     transition: opacity 200ms ease;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    border-radius: 30px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
     border: 2px solid white;
     text-align: center;
     background-size: cover;
@@ -85,7 +85,7 @@
 .owl-img-addon {
     position: absolute;
     left: 250px;
-    top: 350px;
+    top: 330px;
     color: white;
 }
 
