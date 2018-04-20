@@ -17,9 +17,11 @@ $data = $block->getInfo()
                 </div>
             </div>
         <?php endforeach ?>
-        <div class="faq-more-btn">More >> </div>
-        <div class="faq-ask-btn">   Ask A Question >> </div>
+        <?php if (count($FAQ) > 10):?>
+        <div class="faq-more-btn">See More >> </div>
+        <?php endif;?>
     <?php endif ?>
+    <div class="faq-ask-btn"> Ask A Question >> </div>
     <div class="faq-form-action-control-container">
         <div class="faq-form-basic-info-container">
 
@@ -60,6 +62,8 @@ $data = $block->getInfo()
                 var faqAskQuestionBtn = $(".faq-ask-btn");
                 var faqAssemblingMore = $(".faq-assembling-more");
                 var faqForm = $(".faq-form-action-control-container");
+                var isFaqFormShowed = false;
+                var isMoreShowed = false;
                 $("p").slideToggle(0);
                 faqForm.hide();
                 $(".faq-toggle").on("click", function () {
@@ -75,13 +79,28 @@ $data = $block->getInfo()
                     $(document).trigger("Hchanged");
                 });
                 faqMoreBtn.click(function () {
-                    $(this).hide();
-                    faqAssemblingMore.css("display", "flex");
-                })
+
+                    if (isMoreShowed == false) {
+                        faqAssemblingMore.css("display", "flex");
+                        $(this).text("See More <<");
+                        isMoreShowed = true;
+                    } else {
+                        faqAssemblingMore.css("display", "none");
+                        $(this).text("See More >>");
+                        isMoreShowed = false;
+                    }
+                });
                 faqAskQuestionBtn.click(function () {
-                    $(this).hide();
-                    faqForm.show();
-                })
+                    if (isFaqFormShowed == false) {
+                        faqForm.show();
+                        $(this).text("Ask A Question <<");
+                        isFaqFormShowed = true;
+                    } else {
+                        faqForm.hide();
+                        $(this).text("Ask A Question >>");
+                        isFaqFormShowed = false;
+                    }
+                });
             })
         })
     })()

@@ -503,11 +503,11 @@ ul.footer.links {
 }
 
 .page-wrapper small.copyright {
-    background-color: grey;
+    background-color: #333; 
 }
 
 .fieldset.login #signUp > a {
-    text-transform: capitalize;
+    text-transf orm: capitalize;
 }
 
 /*after get a link by email to reset password*/
