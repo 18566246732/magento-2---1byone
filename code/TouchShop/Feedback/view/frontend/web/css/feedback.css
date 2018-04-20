@@ -33,10 +33,23 @@ body {
     width: 100%;
     position: absolute;
     top: 130px;
-    background-color: #f3eeea;
+    background-color: #f9f8f4;
     z-index: -1;
     left: 0;
     height: 270px;
+}
+
+.feedback-back img {
+    margin: 0 auto;
+    display: block;
+    width: 1189px ;
+}
+
+.feedback-back h2 {
+    position: absolute;
+    font-size: 30px;
+    top: 70px;
+    left: 600px;
 }
 
 .feedback-form-basic-info-container > * {

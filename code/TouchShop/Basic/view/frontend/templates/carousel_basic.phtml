@@ -48,7 +48,7 @@
                     owlAddOn = $(".owl-img-addon");
 
                 owlAddOn.each(function (index, e) {
-                    $(e).css("color", spanArr[(index+2) % owlImgNum].getAttribute("data-color"));
+                    $(e).css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
                 })
 
                     // change color every switch

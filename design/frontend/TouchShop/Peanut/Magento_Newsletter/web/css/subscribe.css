@@ -26,6 +26,10 @@
     color: white;
 }
 
+.field.newsletter .follow a {
+    color: #e70012;
+}
+
 .field.newsletter #newsletter::-webkit-input-placeholder{
     color:white;
 }

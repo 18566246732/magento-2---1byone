@@ -27,8 +27,21 @@ body {
     width: 100%;
     position: absolute;
     top: 130px;
-    background-color: #f3eeea;
+    background-color: #f3e9df;
     z-index: -1;
     left: 0;
     height: 270px;
+}
+
+.warranty-back img {
+    display: block;
+    margin: 0 auto;
+    width: 1189px;
+}
+
+.warranty-back h2 {
+    font-size: 30px;
+    position: absolute;
+    top: 60px;
+    right: 400px;
 }

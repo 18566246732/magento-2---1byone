@@ -100,6 +100,8 @@ div.flex-item .post {
     height: 100%;
     flex-direction: column;
     cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.11);
+    margin: 10px 0;
 }
 
 div.flex-item .post img {
@@ -198,7 +200,7 @@ div.flex-item .post-cover li a {
     position: absolute;
     width: 100%;
     height: 270px;
-    background-color: #f3eeea;
+    background-color: #fefaf7;
     top: 130px;
     left: 0;
     z-index: -1;
@@ -207,6 +209,14 @@ div.flex-item .post-cover li a {
 .catalog-panel-background img {
     display: block;
     margin: 0 auto;
+    width: 1189px;
+}
+
+.catalog-panel-background h2 {
+    position: absolute;
+    top: 50px;
+    right: 500px;
+    font-size: 30px;
 }
 
 .flex-item img {
