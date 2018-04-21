@@ -85,7 +85,8 @@ ul.top-menu{
 }
 
 .menu-info .submenu ul {
-    margin-right: 60px
+    margin-right: 60px;
+    width: 100px;
 }
 
 .menu-image {
@@ -109,11 +110,14 @@ ul.top-menu{
 }
 
 .Brand-container .Brand-content {
-    display: flex;
-    justify-content: space-between;
+    overflow: hidden;
 }
 
 .Brand-container .Brand-content a{
     color: red;
+    display: block;
+    float: left;
     font-size: 12px;
+    width: 100px;
+    margin-right: 60px;
 }
