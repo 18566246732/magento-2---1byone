@@ -110,7 +110,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'url' => $this->getProductsUrl(),
                 'image_url' => '',
                 'submenus' => [
-                    [
+                    [[
                         'label' => 'subProduct',
                         'url' => '',
                         'image_url' => ''
@@ -130,7 +130,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'label' => 'subProduct',
                         'url' => '',
                         'image_url' => ''
-                    ], [
+                    ]], [[
                         'label' => 'subProduct',
                         'url' => '',
                         'image_url' => ''
@@ -146,27 +146,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'label' => 'subProduct',
                         'url' => '',
                         'image_url' => ''
-                    ], [
-                        'label' => 'subProduct',
-                        'url' => '',
-                        'image_url' => ''
-                    ], [
-                        'label' => 'subProduct',
-                        'url' => '',
-                        'image_url' => ''
-                    ], [
-                        'label' => 'subProduct',
-                        'url' => '',
-                        'image_url' => ''
-                    ], [
-                        'label' => 'subProduct',
-                        'url' => '',
-                        'image_url' => ''
-                    ], [
-                        'label' => 'subProduct',
-                        'url' => '',
-                        'image_url' => ''
-                    ]
+                    ]],
                 ],
                 'additions' => [
                     [
@@ -184,13 +164,13 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 "label" => 'Deals',
                 'url' => $this->getUrl('sales'),
                 'image_url' => $this->getMediaUrl('deals_top.png'),
-                'submenus' => []
+                'submenus' => [[]]
             ], [
                 'label' => 'Community',
                 'url' => $this->getUrl('blog.html'),
                 'image_url' => $this->getMediaUrl('brand_top.png'),
                 'submenus' => [
-                    [
+                    [[
                         "label" => 'Blog',
                         'url' => $this->getUrl('blog.html'),
                         'image_url' => $this->getMediaUrl('blog_top.png'),
@@ -203,14 +183,14 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         "label" => 'Super User',
                         'url' => $this->getUrl('poweruser'),
                         'image_url' => $this->getMediaUrl('power_user_top.png'),
-                    ]
+                    ]]
                 ]
             ], [
                 "label" => 'Support',
                 'url' => $this->getUrl('support'),
                 'image_url' => $this->getMediaUrl('support_top.png'),
                 'submenus' => [
-                    [
+                    [[
                         "label" => 'FAQ & Downloads',
                         'url' => $this->getUrl('support'),
                         'image_url' => $this->getMediaUrl('support_top.png'),
@@ -227,7 +207,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         "label" => 'Feedback',
                         'url' => $this->getUrl('feedback'),
                         'image_url' => $this->getMediaUrl('feedback_top.png'),
-                    ]
+                    ]]
                 ]
             ]];
         return array_merge($result, $to_merge);
