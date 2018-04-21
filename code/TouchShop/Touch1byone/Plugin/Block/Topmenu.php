@@ -111,53 +111,53 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'image_url' => '',
                 'submenus' => [
                     [[
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'TV Accessories',
+                        'url' => $this->getUrl('all-products/1byone.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Audio',
+                        'url' => $this->getUrl('all-products/audio-sounds.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Health',
+                        'url' => $this->getUrl('all-products/chargers.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Home Security',
+                        'url' => $this->getUrl('all-products/home-security.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Kitchen',
+                        'url' => $this->getUrl('all-products/kitchen.html'),
                         'image_url' => ''
                     ]], [[
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Beauty',
+                        'url' => $this->getUrl('all-products/beauty.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => '3c & Accessories',
+                        'url' => $this->getUrl('all-products/3c-accessories.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Outdoors',
+                        'url' => $this->getUrl('all-products/outdoors.html'),
                         'image_url' => ''
                     ], [
-                        'label' => 'subProduct',
-                        'url' => '',
+                        'label' => 'Household',
+                        'url' => $this->getUrl('all-products/household.html'),
                         'image_url' => ''
                     ]],
                 ],
                 'additions' => [
                     [
                         'label' => '1byone',
-                        'url' => $this->getRepositoryUrl('1byone'),
+                        'url' => $this->getUrl('1byone-brand'),
                     ], [
                         'label' => 'Naturalife',
-                        'url' => $this->getRepositoryUrl('Naturalife'),
+                        'url' => $this->getUrl('naturelife'),
                     ], [
-                        'label' => 'Simple state',
-                        'url' => $this->getRepositoryUrl('Simple taste')
+                        'label' => 'Simple Taste',
+                        'url' => $this->getRepositoryUrl('simple-taste')
                     ]
                 ]
             ], [

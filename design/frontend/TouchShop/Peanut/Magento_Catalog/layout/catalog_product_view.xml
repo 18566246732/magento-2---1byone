@@ -21,6 +21,13 @@
                    template="TouchShop_ProductTool::amazon_asin.phtml"/>
         </referenceContainer>
 
+        <referenceBlock name="product.info.description">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Overview</argument>
+            </arguments>
+
+        </referenceBlock>
+
         <referenceBlock name="product.info.details">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">TouchShop_ProductTool::product/view/details.phtml</argument>
