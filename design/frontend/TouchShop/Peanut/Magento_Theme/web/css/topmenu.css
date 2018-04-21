@@ -70,7 +70,7 @@ ul.top-menu{
 
 .menu-info-cover {
     position: fixed;
-    height: 320px;
+    min-height: 320px;
     top: 130px;
     width: 100%;
     left: 0;
@@ -80,9 +80,40 @@ ul.top-menu{
 
 .menu-info  .submenu {
     margin-right: 100px;
+    display: flex;
+    justify-content: space-around;
 }
+
+.menu-info .submenu ul {
+    margin-right: 60px
+}
+
 .menu-image {
     background-size: cover;
     width: 300px;
     height: 180px;
+}
+
+.Brand-container {
+    position: absolute;
+    bottom: -26px;
+    left: 0;
+    width: 100%;
+}
+
+.Brand-container .Brand-title{
+    color: rgb(157,157,157);
+    font-size: 12px;
+    border-top: solid 1px #ccc;
+    padding: 5px 0;
+}
+
+.Brand-container .Brand-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Brand-container .Brand-content a{
+    color: red;
+    font-size: 12px;
 }

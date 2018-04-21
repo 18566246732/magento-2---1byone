@@ -177,6 +177,7 @@ div.panel.header {
     .page-h-cards .page-h-card {
         width: 384px;
         margin:10px auto;
+        margin-top: 18px;
     }
     .page-footer {
         background-color: black;

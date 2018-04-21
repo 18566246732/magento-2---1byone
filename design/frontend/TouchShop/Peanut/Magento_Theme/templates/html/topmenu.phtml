@@ -40,17 +40,19 @@ $topmenus = $block->getTopMenus();
                         <?php endforeach; ?>
                     </div>
 
-                    <div>
-                        <?php if (isset($menu['additions'])): ?>
-                            <?php foreach ($menu['additions'] as $brand): ?>
-                                <a href="<?= $brand['url'] ?>"><?= $brand['label'] ?></a>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </div>
-
                     <div class="menu-image" style="background-image: url('<?= $menu['image_url'] ?>')">
                     </div>
 
+                    <?php if (isset($menu['additions'])): ?>
+                    <div class="Brand-container">
+                        <div class="Brand-title">Brand</div>
+                        <div class="Brand-content">
+                                <?php foreach ($menu['additions'] as $brand): ?>
+                                    <a href="<?= $brand['url'] ?>"><?= $brand['label'] ?></a>
+                                <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
