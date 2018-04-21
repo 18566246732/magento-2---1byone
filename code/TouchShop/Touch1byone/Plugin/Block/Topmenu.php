@@ -151,13 +151,13 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'additions' => [
                     [
                         'label' => '1byone',
-                        'url' => $this->getUrl('1byone-brand'),
+                        'url' => $this->getUrl('1byone-brand.html'),
                     ], [
                         'label' => 'Naturalife',
-                        'url' => $this->getUrl('naturelife'),
+                        'url' => $this->getUrl('naturelife.html'),
                     ], [
                         'label' => 'Simple Taste',
-                        'url' => $this->getRepositoryUrl('simple-taste')
+                        'url' => $this->getRepositoryUrl('simple-taste.html')
                     ]
                 ]
             ], [
