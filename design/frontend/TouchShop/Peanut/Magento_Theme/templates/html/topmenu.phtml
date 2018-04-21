@@ -30,15 +30,18 @@ $topmenus = $block->getTopMenus();
                 <li><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>
                 <div class="menu-info">
                     <div class="submenu">
-                        <ul>
-                            <?php foreach ($menu['submenus'] as $submenu): ?>
-                                <li data-src="<?= $submenu['image_url'] ?>"><a
-                                            href="<?= $submenu['url'] ?>"><?= $submenu['label'] ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <?php foreach ($menu['submenus'] as $submenuGroup): ?>
+                            <ul>
+                                <?php foreach ($submenuGroup as $submenu): ?>
+                                    <li data-src="<?= $submenu['image_url'] ?>"><a
+                                                href="<?= $submenu['url'] ?>"><?= $submenu['label'] ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endforeach; ?>
                     </div>
                     <div class="menu-image" style="background-image: url('<?= $menu['image_url'] ?>')">
                     </div>
+
                 </div>
             </div>
         <?php endforeach; ?>
