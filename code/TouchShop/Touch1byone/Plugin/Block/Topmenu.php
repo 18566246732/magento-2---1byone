@@ -106,7 +106,87 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         $result = [];
         $to_merge = [
             [
-                "label" => 'Brand',
+                'label' => 'Product',
+                'url' => $this->getProductsUrl(),
+                'image_url' => '',
+                'submenus' => [
+                    [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ], [
+                        'label' => 'subProduct',
+                        'url' => '',
+                        'image_url' => ''
+                    ]
+                ],
+                'additions' => [
+                    [
+                        'label' => '1byone',
+                        'url' => $this->getRepositoryUrl('1byone'),
+                    ], [
+                        'label' => 'Naturalife',
+                        'url' => $this->getRepositoryUrl('Naturalife'),
+                    ], [
+                        'label' => 'Simple state',
+                        'url' => $this->getRepositoryUrl('Simple taste')
+                    ]
+                ]
+            ], [
+                "label" => 'Deals',
+                'url' => $this->getUrl('sales'),
+                'image_url' => $this->getMediaUrl('deals_top.png'),
+                'submenus' => []
+            ], [
+                'label' => 'Community',
                 'url' => $this->getUrl('blog.html'),
                 'image_url' => $this->getMediaUrl('brand_top.png'),
                 'submenus' => [
@@ -115,39 +195,17 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'url' => $this->getUrl('blog.html'),
                         'image_url' => $this->getMediaUrl('blog_top.png'),
                     ], [
-                        "label" => 'Testimony',
+                        "label" => 'Customer Story',
                         'url' => $this->getUrl('testimony'),
                         'image_url' => $this->getMediaUrl('testimony_top.png'),
 
                     ], [
-                        "label" => 'Products',
-                        'url' => $this->getProductsUrl(),
-                        'image_url' => $this->getMediaUrl('products_top.png'),
-                    ]
-                ]
-            ],
-            [
-                "label" => 'Deals',
-                'url' => $this->getUrl('sales'),
-                'image_url' => $this->getMediaUrl('deals_top.png'),
-                'submenus' => [
-                    [
-                        "label" => 'Sales',
-                        'url' => $this->getUrl('sales'),
-                        'image_url' => $this->getMediaUrl('sales_top.png'),
-                    ], [
-                        "label" => 'Campaign & Lucky Draw',
-                        'url' => $this->getUrl('campaign'),
-                        'image_url' => $this->getMediaUrl('campaign_top.png'),
-
-                    ], [
-                        "label" => 'Power User',
+                        "label" => 'Super User',
                         'url' => $this->getUrl('poweruser'),
                         'image_url' => $this->getMediaUrl('power_user_top.png'),
                     ]
                 ]
-            ],
-            [
+            ], [
                 "label" => 'Support',
                 'url' => $this->getUrl('support'),
                 'image_url' => $this->getMediaUrl('support_top.png'),
@@ -156,6 +214,10 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         "label" => 'FAQ & Downloads',
                         'url' => $this->getUrl('support'),
                         'image_url' => $this->getMediaUrl('support_top.png'),
+                    ], [
+                        "label" => 'Product Warranty',
+                        'url' => $this->getUrl('warranty'),
+                        'image_url' => $this->getMediaUrl('warranty_top.png'),
                     ], [
                         "label" => 'Refund & Exchange',
                         'url' => $this->getUrl('refund'),
@@ -167,8 +229,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'image_url' => $this->getMediaUrl('feedback_top.png'),
                     ]
                 ]
-            ]
-        ];
+            ]];
         return array_merge($result, $to_merge);
     }
 
@@ -186,5 +247,10 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         if (isset($mapper[$name])) {
             return $this->getMediaUrl($mapper[$name]);
         }
+    }
+
+    private function get1byoneUrl()
+    {
+        return '';
     }
 }
