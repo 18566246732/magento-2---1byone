@@ -39,6 +39,15 @@ $topmenus = $block->getTopMenus();
                             </ul>
                         <?php endforeach; ?>
                     </div>
+
+                    <div>
+                        <?php if (isset($menu['additions'])): ?>
+                            <?php foreach ($menu['additions'] as $brand): ?>
+                                <a href="<?= $brand['url'] ?>"><?= $brand['label'] ?></a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
                     <div class="menu-image" style="background-image: url('<?= $menu['image_url'] ?>')">
                     </div>
 
