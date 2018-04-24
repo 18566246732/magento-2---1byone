@@ -31,10 +31,11 @@
 }
 
 
-.data.item.title a {
+.data.item.title a.details-tab {
     color: #bababa;
     pointer-events: none;
     border-bottom: 3px solid #e70012;
+    top: 2px;
 }
 
 .details-menu ul {

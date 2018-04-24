@@ -81,6 +81,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         <?php
                         $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                         ?>
+
                         <strong class="product name product-item-name">
                             <a class="product-item-link"
                                href="<?= /* @escapeNotVerified */
@@ -89,6 +90,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                 $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
+
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
 
