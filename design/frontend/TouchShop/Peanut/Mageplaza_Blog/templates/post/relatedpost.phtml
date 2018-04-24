@@ -1,0 +1,58 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) 2018 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Model\ResourceModel\Post\Collection $posts */
+$posts = $block->getRelatedPostList();
+?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Mageplaza_Blog::css/relatedpost.css") ?>">
+<?php echo $block->getLayout()->createBlock("Magento\Catalog\Block\Product\ProductList\Related")->setTemplate("Magento_Catalog::product/list/items.phtml")->setType("related")->toHtml(); ?>
+
+<?php if ($posts): ?>
+    <ul>
+        <?php foreach ($posts as $post): ?>
+
+            <li class="related-post-item">
+                <?php if ($post->getImage()):?>
+                <img src="<?= $block->getBaseUrl() . 'pub/media/mageplaza/blog/post/resize/400x/' . $post->getImage() ?>" alt="">
+                <?php endif;?>
+                <span class="related-post-text">
+                    <a href="<?php echo $post->getUrl() ?>">
+                        <?php echo $post->getName(); ?>
+                    </a>
+                <span>
+                    <?= $post->getShortDescription() ?>
+                </span>
+                <button>Read More <span> ></span></button>
+                </span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<script>
+    (require(['jquery' ,'dotdotdot'], function ($) {
+        var shortDescription = $(".related-post-text > span");
+        shortDescription.each(function (index, e) {
+            $(e).dotdotdot();
+        })
+    }))
+</script>

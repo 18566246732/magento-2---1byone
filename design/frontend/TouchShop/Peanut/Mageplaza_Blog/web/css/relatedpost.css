@@ -1,0 +1,39 @@
+.related-post-item {
+    display: flex;
+    margin: 20px 0;
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+}
+
+.related-post-item img {
+    margin-right: 20px;
+}
+
+.related-post-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.related-post-text a {
+    margin-bottom: 15px;
+    color: black;
+    font-size: 20px;
+}
+
+.related-post-text > span {
+    margin-bottom: 15px;
+    height: 80px;
+}
+
+.related-post-text button {
+    width: 120px;
+    height: 32px;
+    border-radius: 16px;
+    font-size: 12px;
+    border: 1px solid #e70012;
+    background: none;
+}
+
+.related-post-text button span {
+    color: #e70012;
+}

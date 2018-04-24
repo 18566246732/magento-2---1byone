@@ -24,7 +24,6 @@ div.sections.nav-sections {
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 0;
     z-index: 3;
-    border-top: 1px solid rgba(231, 0, 18, 0.3);
 }
 
 div.section-items.nav-sections-items {
@@ -51,13 +50,13 @@ div.panel.header {
     position: fixed;
     width: 100%;
     /*background-color: #8d131c;*/
-    background-color: white;
+    background-color: #333;
     z-index: 4;
     top: 0;
 }
 
 .greet.welcome span {
-    color: grey;
+    color: white;
 }
 
 @media screen and (max-width: 767px) {

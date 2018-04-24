@@ -69,11 +69,38 @@
 /*}*/
 
 
+.details-main .price-box.price-final_price {
+    display: none;
+}
+
+.page-main .column.main .details-main .products-grid li.product-item {
+    margin-left: calc((100% - 4 * 24.7%) / 3);
+}
+
+.page-main .column.main .details-main .block.related .products-grid li.product-item:nth-child(4n+1) {
+    margin-left: calc((100% - 4 * 24.7%) / 3);
+}
+
+.page-main .column.main .details-main .block.related .products-grid li.product-item:nth-child(3n+1) {
+    margin-left: initial;
+}
 
 .sections.back-normal-flow {
     position: absolute;
 }
 
+.page-layout-1column .details-main .products-grid .product-item {
+    width: 24.5%;
+}
+
+.details-main .product-item-info.related-available {
+    margin: 0 auto;
+    padding: 9px 35px;
+}
+
+.details-main .product-item-info {
+    border: 1px solid #eaeaea;
+}
 
 .details-menu.fix-top {
     position: fixed;

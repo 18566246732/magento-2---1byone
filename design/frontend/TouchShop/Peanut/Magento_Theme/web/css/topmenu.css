@@ -31,14 +31,18 @@ ul.top-menu {
 
 .top-menu li a {
     color: grey;
-    font-size: 13.5px;
+    font-size: 15px;
     font-weight: initial;
     white-space: nowrap;
 }
 
+.top-menu .menu-info li a {
+    font-size: 13.5px;
+}
+
 /*@media screen and (min-width: 767px){*/
 .top-menu li a:hover {
-    color: #8d131c !important;
+    color: #e70012 !important;
 }
 
 /*}*/

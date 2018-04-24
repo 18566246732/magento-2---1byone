@@ -48,5 +48,6 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceBlock name="catalog.product.related" remove="true" />
     </body>
 </page>

@@ -21,7 +21,7 @@
 }
 
 #searchBtn::before {
-    color: grey;
+    color: #fff9db;
     cursor: pointer;
 }
 
