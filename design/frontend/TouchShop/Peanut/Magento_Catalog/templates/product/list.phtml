@@ -77,6 +77,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         <?= $productImage->toHtml() ?>
                     </a>
                     <div class="product details product-item-details">
+                        <?= $block->getProductDetailsHtml($_product) ?>
                         <?php
                         $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                         ?>
@@ -89,9 +90,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             </a>
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
-                        <?= /* @escapeNotVerified */
-                        $block->getProductPrice($_product) ?>
-                        <?= $block->getProductDetailsHtml($_product) ?>
+                        <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
 
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
