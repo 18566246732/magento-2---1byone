@@ -86,3 +86,8 @@
 .product.info.detailed .product.attribute.description p {
     display: block !important;
 }
+
+
+.page-main .column.main .block.related .products-grid li.product-item:nth-child(3n+1) {
+    margin-left: calc((100% - 3 * 24.7%) / 2);
+}
