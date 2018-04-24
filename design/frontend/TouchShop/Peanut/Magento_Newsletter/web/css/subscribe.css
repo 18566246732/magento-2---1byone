@@ -30,17 +30,20 @@
     color: #e70012;
 }
 
-.field.newsletter #newsletter::-webkit-input-placeholder{
-    color:white;
+.field.newsletter #newsletter::-webkit-input-placeholder {
+    color: white;
 }
-.field.newsletter #newsletter::-moz-placeholder{   /* Mozilla Firefox 19+ */
-    color:white;
+
+.field.newsletter #newsletter::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: white;
 }
-.field.newsletter #newsletter:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
-    color:white;
+
+.field.newsletter #newsletter:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: white;
 }
-.field.newsletter #newsletter:-ms-input-placeholder{  /* Internet Explorer 10-11 */
-    color:white;
+
+.field.newsletter #newsletter:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
 }
 
 /*.field.newsletter #newsletter:hover {*/
@@ -88,6 +91,7 @@
 #newsletter {
     padding-left: 10px;
     margin-right: 20px;
+    opacity: 0.5;
 }
 
 .block.newsletter .field {
@@ -131,8 +135,7 @@
     color: grey;
 }
 
-
-.faq-info .question{
+.faq-info .question {
     font-weight: bold;
     font-size: 16px;
     margin: 20px 0;

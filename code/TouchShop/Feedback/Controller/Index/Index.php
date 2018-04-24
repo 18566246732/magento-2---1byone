@@ -13,6 +13,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\CategoryManager\Helper\FeedbackSendEmailHelper;
 use TouchShop\Feedback\Model\Complaint;
 use TouchShop\Feedback\Model\ComplaintFactory;
 
@@ -25,6 +26,7 @@ class Index extends Action
     private $resourceModel;
     private $storeManager;
     private $session;
+    private $helper;
 
 
     public function __construct(
@@ -32,6 +34,7 @@ class Index extends Action
         ComplaintFactory $complaintFactory,
         Session $session,
         StoreManagerInterface $storeManager,
+        FeedbackSendEmailHelper $helper,
         \TouchShop\Feedback\Model\ResourceModel\Complaint $resourceModel
     )
     {
@@ -39,6 +42,7 @@ class Index extends Action
         $this->complaintFactory = $complaintFactory;
         $this->resourceModel = $resourceModel;
         $this->session = $session;
+        $this->helper = $helper;
         $this->storeManager = $storeManager;
     }
 
@@ -73,6 +77,8 @@ class Index extends Action
                 $this->messageManager->addSuccessMessage(
                     'Thank you for you feedback, we will contact you as soon as possible to solve this problem'
                 );
+
+                $this->helper->sendEmail($complaint);
 
                 return $result->setData(['result' => 'success', 'status_code' => 200]);
             } catch (\Exception $e) {

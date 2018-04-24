@@ -4,28 +4,38 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">
-                touchshop_refund_refund_listing.touchshop_refund_refund_listing_data_source
+                touchshop_category_manager_listing.touchshop_category_manager_listing_data_source
             </item>
             <item name="deps" xsi:type="string">
-                touchshop_refund_refund_listing.touchshop_refund_refund_listing_data_source
+                touchshop_category_manager_listing.touchshop_category_manager_listing_data_source
             </item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
     </argument>
+    <settings>
+        <buttons>
+            <button name="refresh">
+                <url path="category_manager/manager/refresh"/>
+                <class>primary</class>
+                <label translate="true">Refresh To Reload Categories</label>
+            </button>
+        </buttons>
+    </settings>
+
     <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">
                 Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
             </argument>
-            <argument name="name" xsi:type="string">touchshop_refund_refund_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">refund_id</argument>
+            <argument name="name" xsi:type="string">touchshop_category_manager_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">manager_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">refund_id</item>
+                        <item name="indexField" xsi:type="string">manager_id</item>
                     </item>
                 </item>
             </argument>
@@ -68,7 +78,7 @@
                     </confirm>
                     <type>delete</type>
                     <label translate="true">Delete</label>
-                    <url path="refund/refund/massDelete"/>
+                    <url path="category_manager/manager/massDelete"/>
                 </settings>
             </action>
         </massaction>
@@ -79,36 +89,14 @@
             <settings>
                 <resizeEnabled>false</resizeEnabled>
                 <resizeDefaultWidth>55</resizeDefaultWidth>
-                <indexField>refund_id</indexField>
+                <indexField>manager_id</indexField>
             </settings>
         </selectionsColumn>
-        <column name="refund_id">
+        <column name="manager_id">
             <settings>
                 <filter>textRange</filter>
                 <sorting>asc</sorting>
                 <label translate="true">ID</label>
-            </settings>
-        </column>
-        <column name="type">
-            <settings>
-                <filter>select</filter>
-                <options class="TouchShop\Refund\Ui\Component\Listing\Columns\TypeSelect"/>
-                <dataType>select</dataType>
-                <label translate="true">Type</label>
-                <editor>
-                    <editorType>select</editorType>
-                </editor>
-            </settings>
-        </column>
-        <column name="status">
-            <settings>
-                <filter>select</filter>
-                <options class="TouchShop\Refund\Ui\Component\Listing\Columns\Status"/>
-                <dataType>select</dataType>
-                <label translate="true">Status</label>
-                <editor>
-                    <editorType>select</editorType>
-                </editor>
             </settings>
         </column>
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date"
@@ -122,7 +110,7 @@
         <column name="category_id" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <filter>select</filter>
-                <options class="TouchShop\Refund\Ui\Component\Listing\Columns\CategorySelect"/>
+                <options class="TouchShop\CategoryManager\Ui\Component\Listing\Columns\CategorySelect"/>
                 <label translate="true">Category</label>
                 <dataType>select</dataType>
                 <editor>
@@ -130,59 +118,13 @@
                 </editor>
             </settings>
         </column>
-        <column name="reason">
-            <settings>
-                <filter>select</filter>
-                <options class="TouchShop\Refund\Ui\Component\Listing\Columns\ReasonSelect"/>
-                <dataType>select</dataType>
-                <label translate="true">Reason</label>
-                <editor>
-                    <editorType>select</editorType>
-                </editor>
-            </settings>
-        </column>
-        <column name="order">
+        <column name="email">
             <settings>
                 <filter>text</filter>
-                <label>Order</label>
+                <label>Email</label>
             </settings>
         </column>
-        <column name="address">
-            <settings>
-                <filter>text</filter>
-                <label>Address</label>
-            </settings>
-        </column>
-        <column name="state">
-            <settings>
-                <filter>select</filter>
-                <options class="TouchShop\Refund\Ui\Component\Listing\Columns\StateSelect"/>
-                <label translate="true">State</label>
-                <dataType>select</dataType>
-                <editor>
-                    <editorType>select</editorType>
-                </editor>
-            </settings>
-        </column>
-        <column name="postal_code">
-            <settings>
-                <filter>text</filter>
-                <label>Postal Code</label>
-            </settings>
-        </column>
-        <column name="country">
-            <settings>
-                <filter>text</filter>
-                <label>Country</label>
-            </settings>
-        </column>
-        <column name="phone">
-            <settings>
-                <filter>text</filter>
-                <label>Phone</label>
-            </settings>
-        </column>
-        <actionsColumn name="actions" class="TouchShop\Refund\Ui\Component\Listing\Columns\RefundActions"
+        <actionsColumn name="actions" class="TouchShop\CategoryManager\Ui\Component\Listing\Columns\Actions"
                        sortOrder="100">
         </actionsColumn>
     </columns>

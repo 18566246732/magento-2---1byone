@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TouchShop_CategoryManager::manager" title="Category Manager" module="TouchShop_CategoryManager"
+             sortOrder="10"
+             action="category_manager" resource="TouchShop_CategoryManager::manager"
+             parent="TouchShop_Basic::basic"/>
+    </menu>
+</config>

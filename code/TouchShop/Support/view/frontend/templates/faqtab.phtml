@@ -17,11 +17,11 @@ $data = $block->getInfo()
                 </div>
             </div>
         <?php endforeach ?>
-        <?php if (count($FAQ) > 10):?>
-        <div class="faq-more-btn">See More >> </div>
-        <?php endif;?>
+        <?php if (count($FAQ) > 10): ?>
+            <div class="faq-more-btn">See More >></div>
+        <?php endif; ?>
     <?php endif ?>
-    <div class="faq-ask-btn"> Ask A Question >> </div>
+    <div class="faq-ask-btn"> Ask A Question >></div>
     <div class="faq-form-action-control-container">
         <div class="faq-form-basic-info-container">
 
@@ -126,7 +126,7 @@ $data = $block->getInfo()
         );
 
         function submitFormFun(email) {
-            let content = $(".faq-form-basic-info-container input[type='text']").val();
+            let content = $(".faq-form-basic-info-container textarea").val();
             let result = false;
             ajax.sendAjax(
                 false,

@@ -17,6 +17,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\CategoryManager\Helper\FaqSendEmailHelper;
 use TouchShop\Support\Model\FAQModel;
 use TouchShop\Support\Model\FAQModelFactory;
 use TouchShop\Support\Model\ResourceModel\FAQResourceModel;
@@ -32,6 +33,7 @@ class FAQ extends Action
     private $session;
     private $productRepository;
     private $categoryRepository;
+    private $helper;
 
     public function __construct(
         Context $context,
@@ -40,6 +42,7 @@ class FAQ extends Action
         FAQModelFactory $modelFactory,
         FAQResourceModel $resourceModel,
         ProductRepositoryInterface $productRepository,
+        FaqSendEmailHelper $helper,
         CategoryRepository $categoryRepository
     )
     {
@@ -50,6 +53,7 @@ class FAQ extends Action
         $this->storeManager = $storeManager;
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->helper = $helper;
 
     }
 
@@ -83,6 +87,8 @@ class FAQ extends Action
                 $faqModel->setCategories(join(',', $categoryNames));
 
                 $this->faqResourceModel->save($faqModel);
+
+                $this->helper->sendEmail($faqModel);
 
                 // Display the succes form validation message
                 $this->messageManager->addSuccessMessage(

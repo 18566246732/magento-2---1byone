@@ -112,7 +112,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 'submenus' => [
                     [[
                         'label' => 'TV Accessories',
-                        'url' => $this->getUrl('all-products/1byone.html'),
+                        'url' => $this->getUrl('all-products/tv-accessories.html'),
                         'image_url' => ''
                     ], [
                         'label' => 'Audio',
@@ -154,10 +154,10 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'url' => $this->getUrl('1byone-brand.html'),
                     ], [
                         'label' => 'Naturalife',
-                        'url' => $this->getUrl('naturelife.html'),
+                        'url' => $this->getUrl('naturalife.html'),
                     ], [
                         'label' => 'Simple Taste',
-                        'url' => $this->getRepositoryUrl('simple-taste.html')
+                        'url' => $this->getUrl('simple-taste.html')
                     ]
                 ]
             ], [
@@ -218,19 +218,4 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         return $this->media_base_url . 'home_page/' . $filename;
     }
 
-    private function getImageUrl($category)
-    {
-        $mapper = [
-
-        ];
-        $name = $category->getName();
-        if (isset($mapper[$name])) {
-            return $this->getMediaUrl($mapper[$name]);
-        }
-    }
-
-    private function get1byoneUrl()
-    {
-        return '';
-    }
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">category_manager_form.category_manager_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Complaint Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="TouchShop\CategoryManager\Block\Adminhtml\Manager\Edit\SaveButton"/>
+            <button name="back" class="TouchShop\CategoryManager\Block\Adminhtml\Manager\Edit\BackButton"/>
+        </buttons>
+        <namespace>category_manager_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>category_manager_form.category_manager_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="category_manager_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="category_manager/manager/save"/>
+        </settings>
+        <dataProvider class="TouchShop\CategoryManager\Model\DataProvider" name="category_manager_form_data_source">
+            <settings>
+                <requestFieldName>manager_id</requestFieldName>
+                <primaryFieldName>manager_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="manager_id" formElement="input">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>manager_id</dataScope>
+                <label translate="true">id</label>
+            </settings>
+        </field>
+        <field name="created_at" formElement="date">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>date</dataType>
+                <visible>true</visible>
+                <dataScope>created_at</dataScope>
+                <label translate="true">Created At</label>
+            </settings>
+        </field>
+        <field name="email" formElement="email">
+            <settings>
+                <dataType>email</dataType>
+                <visible>true</visible>
+                <dataScope>email</dataScope>
+                <label translate="true">Email Address</label>
+            </settings>
+        </field>
+        <field name="category_id" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <disabled>true</disabled>
+                <visible>true</visible>
+                <dataScope>category_id</dataScope>
+                <label translate="true">Category</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TouchShop\CategoryManager\Ui\Component\Listing\Columns\CategorySelect"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_name" formElement="input">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <dataScope>store_name</dataScope>
+                <label translate="true">Store Name</label>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>

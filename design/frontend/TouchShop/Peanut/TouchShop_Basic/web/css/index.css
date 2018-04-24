@@ -24,7 +24,7 @@ div.sections.nav-sections {
     background-color: rgba(255, 255, 255, 0);
     margin-bottom: 0;
     z-index: 3;
-    border-top: 1px solid rgba(231,0,18, 0.3);
+    border-top: 1px solid rgba(231, 0, 18, 0.3);
 }
 
 div.section-items.nav-sections-items {
@@ -80,13 +80,16 @@ div.panel.header {
         font-size: 16px;
         cursor: pointer;
     }
+
     .block-search .control {
         border-top: none;
         margin: 5px;
     }
+
     .page-header {
         border-bottom: none;
     }
+
     .small-menu {
         width: 20px;
         height: 20px;
@@ -97,22 +100,18 @@ div.panel.header {
     }
 
     /*strong.logo {*/
-        /*display: none;*/
+    /*display: none;*/
     /*}*/
-
     /*#store.links {*/
-        /*display: none;*/
+    /*display: none;*/
     /*}*/
-
     .sections.nav-sections {
         display: none;
     }
 
-
     .nav-sections-item-content {
         width: 0;
     }
-
 
     .nav-sections {
         overflow: initial;
@@ -142,14 +141,16 @@ div.panel.header {
 
     }
 
-    nav.navigation *{
+    nav.navigation * {
         transition: all ease 1s;
     }
+
     .top-menu-wrapper {
         background-color: #8d131c;
         display: flex;
         flex-direction: row;
     }
+
     .top-menu li a {
         color: white !important;
         padding-right: 15px;
@@ -176,20 +177,18 @@ div.panel.header {
 
     .page-h-cards .page-h-card {
         width: 384px;
-        margin:10px auto;
+        margin: 10px auto;
         margin-top: 18px;
     }
+
     .page-footer {
         background-color: black;
     }
 
-
-
 }
 
-
 /*.block-search .label::before {*/
-    /*color: initial;*/
+/*color: initial;*/
 /*}*/
 
 /*main content*/
@@ -341,17 +340,17 @@ div.page-cards-title h1 {
 }
 
 /*.imgs-gallery li:not(:last-child) {*/
-    /*margin-left: 1px;*/
+/*margin-left: 1px;*/
 /*}*/
 
 /*campaign page*/
 
 /*.columns .column.main {*/
-    /*padding-bottom: 0;*/
+/*padding-bottom: 0;*/
 /*}*/
 
 /*.widget.block.block-static-block {*/
-    /*margin-top: 70px;*/
+/*margin-top: 70px;*/
 /*}*/
 
 /*product item*/
@@ -454,7 +453,7 @@ body .swatch-option.color:not(:disabled):hover {
     border: none !important;
 }
 
-    /*review */
+/*review */
 .product-item .product-reviews-summary .reviews-actions {
     display: none;
 }
@@ -527,11 +526,11 @@ ul.footer.links {
 }
 
 .page-wrapper small.copyright {
-    background-color: #333; 
+    background-color: #333;
 }
 
 .fieldset.login #signUp > a {
-    text-transf orm: capitalize;
+    text-transform: capitalize;
 }
 
 /*after get a link by email to reset password*/
