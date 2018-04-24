@@ -13,6 +13,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use TouchShop\CategoryManager\Helper\RefundSendEmailHelper;
 use TouchShop\Refund\Model\RefundFactory;
 use TouchShop\Refund\Model\ResourceModel\RefundResourceModel;
 
@@ -22,12 +23,14 @@ class Index extends Action
     private $refundFactory;
     private $session;
     private $refundResourceModel;
+    private $helper;
 
     public function __construct(
         RefundFactory $refundFactory,
         RefundResourceModel $resourceModel,
         StoreManagerInterface $storeManager,
         Session $session,
+        RefundSendEmailHelper $helper,
         Context $context
     )
     {
@@ -35,6 +38,7 @@ class Index extends Action
         $this->storeManager = $storeManager;
         $this->refundFactory = $refundFactory;
         $this->session = $session;
+        $this->helper = $helper;
         $this->refundResourceModel = $resourceModel;
     }
 
@@ -73,6 +77,8 @@ class Index extends Action
                 }
 
                 $this->refundResourceModel->save($refund);
+
+                $this->helper->sendEmail($refund);
 
                 return $result->setData(['result' => 'success', 'status_code' => 200]);
             } catch (\Exception $e) {

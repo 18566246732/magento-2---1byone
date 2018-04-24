@@ -1,5 +1,5 @@
 nav.navigation {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 /*nav.navigation ul li {*/
@@ -7,7 +7,7 @@ nav.navigation {
 /*}*/
 
 /*nav.navigation ul li a:hover {*/
-    /*color: #ff4964;*/
+/*color: #ff4964;*/
 /*}*/
 
 .navigation ul {
@@ -17,19 +17,19 @@ nav.navigation {
 .navigation .level0 > .level-top:hover {
     color: #8d131c;
 }
+
 /*.navigation img{*/
-    /*height: 20px;*/
+/*height: 20px;*/
 /*}*/
 
-
-ul.top-menu{
+ul.top-menu {
     list-style: none;
     display: flex;
     /*margin-top: 10px;*/
     margin-left: 15px;
 }
 
-.top-menu li a{
+.top-menu li a {
     color: grey;
     font-size: 13.5px;
     font-weight: initial;
@@ -37,16 +37,16 @@ ul.top-menu{
 }
 
 /*@media screen and (min-width: 767px){*/
-    .top-menu li a:hover {
-        color: #8d131c !important;
-    }
+.top-menu li a:hover {
+    color: #8d131c !important;
+}
+
 /*}*/
 
 .top-menu-wrapper {
     margin-right: 50px;
     position: relative;
 }
-
 
 .menu-info.active {
     display: flex;
@@ -62,23 +62,22 @@ ul.top-menu{
 }
 
 /*.menu-info::before {*/
-    /*content: "";*/
-    /*width: 100%;*/
-    /*background-color: yellow;*/
+/*content: "";*/
+/*width: 100%;*/
+/*background-color: yellow;*/
 /*}*/
-
 
 .menu-info-cover {
     position: fixed;
-    min-height: 320px;
+    min-height: 270px;
     top: 130px;
     width: 100%;
     left: 0;
-    background-color: rgba(255,255,255, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     /*display: none;*/
 }
 
-.menu-info  .submenu {
+.menu-info .submenu {
     margin-right: 100px;
     display: flex;
     justify-content: space-around;
@@ -102,8 +101,8 @@ ul.top-menu{
     width: 100%;
 }
 
-.Brand-container .Brand-title{
-    color: rgb(157,157,157);
+.Brand-container .Brand-title {
+    color: rgb(157, 157, 157);
     font-size: 12px;
     border-top: solid 1px #ccc;
     padding: 5px 0;
@@ -113,7 +112,7 @@ ul.top-menu{
     overflow: hidden;
 }
 
-.Brand-container .Brand-content a{
+.Brand-container .Brand-content a {
     color: red;
     display: block;
     float: left;
