@@ -38,6 +38,7 @@
                    group="detailed_info">
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">FAQ</argument>
+                    <argument name="anchor" xsi:type="string">faq</argument>
                 </arguments>
             </block>
             <block class="TouchShop\Support\Block\DownloadFiles" name="download.files"
@@ -45,6 +46,7 @@
                    group="detailed_info">
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">Download Files</argument>
+                    <argument name="anchor" xsi:type="string">download_files</argument>
                 </arguments>
             </block>
         </referenceBlock>

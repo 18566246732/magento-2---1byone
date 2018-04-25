@@ -41,6 +41,7 @@ $currentProductId = $block->getCurrentProductId();
                     }
                     $alias = $layout->getElementAlias($name);
                     $label = $block->getChildData($alias, 'title');
+                    $anchor = $block->getChildData($alias, 'anchor');
                     ?>
                     <div class="data item title" id="tab-label-<?= /* @escapeNotVerified */
                     $index ?>">
@@ -50,6 +51,10 @@ $currentProductId = $block->getCurrentProductId();
                         >
                             <?= $label ?>
                         </a>
+                        <?php if ($anchor): ?>
+                            <a id="<?= $anchor ?>">
+                            </a>
+                        <?php endif; ?>
                     </div>
                     <div class="details-content" id="<?= /* @escapeNotVerified */
                     $alias ?>">

@@ -28,8 +28,8 @@
                         </div>
                         <div class="des-group">
                             <h3></h3>
-                            <a href="">FAQ</a>
-                            <a href="">Manual</a>
+                            <a href="" class="catalog-faq">FAQ</a>
+                            <a href="" class="catalog-manual">Manual</a>
                         </div>
 
                     </div>
@@ -57,8 +57,8 @@
                 closeBtn = $(".flex-item .post-cover span"),
                 post = $(".flex-item .post"),
                 postCover = $(".flex-item .post-cover"),
-                faq = $(".flex-item .des-group a:first-child"),
-                manual = $(".flex-item .des-group a:last-child"),
+                faq = $(".flex-item .catalog-faq"),
+                manual = $(".flex-item .catalog-manual"),
                 prodDetails = $(".flex-item"),
                 faqCover = $(".faq-cover"),
                 faqInfo = $(".faq-info"),
@@ -109,8 +109,6 @@
                             $("#supportSearch").click();
                         }
                     })
-
-
                 });
             catalogPanelHint.css("display", "none");
             function paginatinoIni(total) {
@@ -213,8 +211,13 @@
                             //     $(this).attr("href", dataUrl + "#tab-label-FAQ");
                             // });
                             console.log("faq[index]:", faq[index]);
-                            $(faq[index]).attr("href", dataUrl + "#tab-label-FAQ");
-                            $(prodDetails[index]).attr("href", dataUrl);
+                            $(faq[index]).attr("href", dataUrl + "#faq");
+                            $(manual[index]).attr("href", dataUrl + "#download_files");
+                            // $(prodDetails[index]).attr("href", dataUrl);
+                            $(prodDetails[index]).click(function () {
+                                console.log("dataUrl: ", dataUrl);
+                                location.href = dataUrl;
+                            });
                         } else {
                             return false;
                         }

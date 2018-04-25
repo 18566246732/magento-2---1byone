@@ -4,6 +4,7 @@ $data = $block->getInfo()
 
 <?php $FAQ = $block->getFAQ(); ?>
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/faqtab.css") ?>">
+<!--<a href="" id="faq"></a>-->
 <div class="product-details-faq">
     <?php if (count($FAQ)): ?>
         <?php foreach ($block->getFAQ() as $index => $item): ?>
