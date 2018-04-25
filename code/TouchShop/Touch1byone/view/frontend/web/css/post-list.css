@@ -1,11 +1,19 @@
 .blog-gallery {
     height: 300px;
     width: 100%;
-    background-size: cover;
-    background-image: url("https://bpic.588ku.com/element_banner/20/18/04/f45606ec4edc5de2febadb606feaf50b.jpg");
     margin-bottom: 40px;
+    position: absolute;
+    left: 0;
 }
 
 .post-short-description p {
     height: 40px;
+}
+
+.post-list-content {
+    margin-top: 270px;
+}
+
+.mpblog-post-index.page-layout-2columns-right .sidebar-main {
+    margin-top: 270px;
 }

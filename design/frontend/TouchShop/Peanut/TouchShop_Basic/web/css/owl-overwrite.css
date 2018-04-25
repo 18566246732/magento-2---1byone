@@ -82,6 +82,10 @@
     position: relative;
 }
 
+.owl-item .item {
+    cursor: initial !important;
+}
+
 .owl-img-addon {
     position: absolute;
     left: 250px;

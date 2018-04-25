@@ -35,13 +35,13 @@ div.section-items.nav-sections-items {
 
 div.section-item-content.nav-sections-item-content {
     display: flex !important;
-    align-items: center;
+    align-items: initial;
 }
 
 div.panel.header {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 34px;
     color: white;
     justify-content: flex-end;
 }
@@ -57,6 +57,7 @@ div.panel.header {
 
 .greet.welcome span {
     color: white;
+    font-size: 12px;
 }
 
 @media screen and (max-width: 767px) {
@@ -193,7 +194,7 @@ div.panel.header {
 /*main content*/
 
 main.page-main {
-    margin-top: 160px;
+    margin-top: 114px;
     /*max-width: 1920px;*/
     padding: 0;
 }
@@ -257,13 +258,15 @@ div.page-cards-title h1 {
 .page-h-card h1 {
     font-size: 18px;
     color: red;
-    margin: 5px 0;
+    margin: 8px;
+    margin-top: 14px;
     font-weight: bold;
 }
 
 .page-h-card p {
     font-size: 12px;
     width: 80%;
+    margin: 8px;
 }
 
 .page-h-card button {
@@ -286,7 +289,6 @@ div.page-cards-title h1 {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 800px;
     margin: 0 auto;
 }
 
@@ -302,16 +304,28 @@ div.page-cards-title h1 {
 
 .v-card, .v-card-bulk {
     background-size: cover;
-    background-color: grey;
     height: 100%;
+    margin-bottom: 20px;
 }
 
 .page-v-cards .v-cards .v-card:first-child {
     width: 34%;
+    overflow: hidden;
+}
+
+.page-v-cards .v-cards .v-card:first-child img {
+    width: auto;
+    height: 100%;
 }
 
 .page-v-cards .v-cards .v-card:last-child {
     width: 64%;
+    overflow: hidden;
+}
+
+.page-v-cards .v-cards .v-card:last-child img {
+    width: auto;
+    height: 100%;
 }
 
 .imgs-gallery {

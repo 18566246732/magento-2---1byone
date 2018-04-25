@@ -7,14 +7,15 @@
       href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/simplePaginationOverwrite.css") ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Support::css/support.css") ?>">
 <div class="catalog-panel">
-    <div class="catalog-header">
-        <form method="post">
-            <lable>Search by Product Name / SKU</lable>
-            <div class="input-group">
-                <input type="text" placeholder="Search">
-                <input type="button" id="supportSearch" value="Search"/>
-            </div>
-        </form>
+
+    <div class="catalog-panel-blank"></div>
+    <div class="catalog-panel-background">
+        <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/page-back-img-top/banner_FAQ.jpg'?>" alt="" />
+        <h2>FAQ <br>Manual & Drivers</h2>
+    </div>
+    <div class="input-group">
+        <input type="text" placeholder="Search by Product Name / SKU">
+        <input type="button" id="supportSearch" value="Search"/>
     </div>
     <div class="main">
         <div class="flex-container">
@@ -22,16 +23,15 @@
             <?php while ($index-- > 0): ?>
                 <div class="flex-item">
                     <div class="post">
-                        <img src="" alt="" draggable="false">
-                        <h3></h3>
-                    </div>
-                    <div class="post-cover">
-                        <a href="">FAQ</a>
-                        <a href="#" class="product-details">Products Details</a>
-                        <span>x</span>
-                        <h3>Download List</h3>
-                        <ul>
-                        </ul>
+                        <div class="img-container">
+                            <img src="" alt="" draggable="false">
+                        </div>
+                        <div class="des-group">
+                            <h3></h3>
+                            <a href="" class="catalog-faq">FAQ</a>
+                            <a href="" class="catalog-manual">Manual</a>
+                        </div>
+
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -41,12 +41,6 @@
         <div class="pagination">
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
-    </div>
-
-    <div class="catalog-panel-blank"></div>
-    <div class="catalog-panel-background">
-        <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/page-back-img-top/back4.jpg'?>" alt="" />
-        <h2>FAQ <br>Manual & Drivers</h2>
     </div>
 
     <div class="catalog-panel-hint"> Oops, we didn't find anything... <br/>Haven't find your answer yet? <a href="<?= $block->getBaseUrl() . 'feedback'?>">Ask us<span> ></span></a></div>
@@ -63,8 +57,9 @@
                 closeBtn = $(".flex-item .post-cover span"),
                 post = $(".flex-item .post"),
                 postCover = $(".flex-item .post-cover"),
-                faq = $(".flex-item .post-cover a:first-child"),
-                prodDetails = $(".flex-item .post-cover .product-details"),
+                faq = $(".flex-item .catalog-faq"),
+                manual = $(".flex-item .catalog-manual"),
+                prodDetails = $(".flex-item"),
                 faqCover = $(".faq-cover"),
                 faqInfo = $(".faq-info"),
                 faqCloseBtn = $(".faq-info > span"),
@@ -114,14 +109,12 @@
                             $("#supportSearch").click();
                         }
                     })
-
-
                 });
             catalogPanelHint.css("display", "none");
             function paginatinoIni(total) {
                 $("#pagination-demo").pagination({
                     items: total,
-                    itemsOnPage: 8,
+                    itemsOnPage: 6,
                     currentPage: 1,
                     cssStyle: '',
                     prevText: '<span>&laquo;</span>',
@@ -142,7 +135,7 @@
                     data: {
                         key: $(".input-group input[type='text']").val(),
                         page_num: page,
-                        page_size: 8
+                        page_size: 6
                     },
                     success: function (res) {
                         console.log("ajax ok");
@@ -190,7 +183,7 @@
 
                         if (index < productsArrLen) {
                             $(post[index]).css("display", "flex");
-                            $(ele).css("background-image", 'url(' + productsArr[index].image + ')');
+                            $(ele).attr("src", productsArr[index].image);
                             let resHtml = "";
                             let dFiles = productsArr[index].download_files;
                             let dataPName = productsArr[index].product_name;
@@ -202,23 +195,29 @@
                                 $(faq[index]).css("display", "none");
                             }
 
-                            if (dFiles.length == 0) {
-                                $(".flex-item .post-cover h3").css("display", "none");
-                            } else {
-                                dFiles.forEach(function (ele) {
-                                    // console.log(ele);
-                                    resHtml += "<li><a href= \"" + ele.src + "\">" + ele.name + " </a></li>";
-                                });
-                            }
+                            // if (dFiles.length == 0) {
+                            //     $(".flex-item .post-cover h3").css("display", "none");
+                            // } else {
+                            //     dFiles.forEach(function (ele) {
+                            //         // console.log(ele);
+                            //         resHtml += "<li><a href= \"" + ele.src + "\">" + ele.name + " </a></li>";
+                            //     });
+                            // }
 
                             $(fileContainer[index]).html(resHtml);
                             $(prodName[index]).text(dataPName);
                             $(prodName[index]).dotdotdot();
-                            $(faq[index]).on("click", function () {
-                                $(this).attr("href", dataUrl + "#tab-label-FAQ");
-
+                            // $(faq[index]).on("click", function () {
+                            //     $(this).attr("href", dataUrl + "#tab-label-FAQ");
+                            // });
+                            console.log("faq[index]:", faq[index]);
+                            $(faq[index]).attr("href", dataUrl + "#faq");
+                            $(manual[index]).attr("href", dataUrl + "#download_files");
+                            // $(prodDetails[index]).attr("href", dataUrl);
+                            $(prodDetails[index]).click(function () {
+                                console.log("dataUrl: ", dataUrl);
+                                location.href = dataUrl;
                             });
-                            $(prodDetails[index]).attr("href", dataUrl);
                         } else {
                             return false;
                         }

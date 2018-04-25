@@ -82,7 +82,7 @@
 }
 
 .page-main .column.main .details-main .block.related .products-grid li.product-item:nth-child(3n+1) {
-    margin-left: initial;
+    margin-left: calc((100% - 4 * 24.7%) / 3);
 }
 
 .sections.back-normal-flow {
@@ -104,7 +104,7 @@
 
 .details-menu.fix-top {
     position: fixed;
-    top: 50px;
+    top: 34px;
     font-weight: bold;
     width: 100%;
     margin: 0 auto;

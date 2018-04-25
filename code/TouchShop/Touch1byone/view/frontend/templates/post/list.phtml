@@ -25,11 +25,7 @@
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Touch1byone::css/post-list.css")?>">
 
 <div class="blog-gallery" >
-</div>
-<div class="mp-blog-rss">
-    <a href="<?php echo $block->getRssUrl('post/rss') ?>" class="bb-rss-icon">
-        <img src="<?php echo $this->getViewFileUrl('Mageplaza_Blog::media/images/rss.png') ?>" width="16px">
-    </a>
+    <img src="<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/page-back-img-top/banner_blogs.jpg' ?>" alt="">
 </div>
 <div class="post-list-content" id="mpblog-list-container">
     <?php $postCollection = $block->getPostCollection(); ?>
