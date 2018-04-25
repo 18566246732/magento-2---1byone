@@ -9,6 +9,11 @@
     margin-top: 5px;
 }
 
+.user-icon img {
+    color: white;
+    font-size: 14px;
+}
+
 div.login-back {
     /*background-color: rgba(0, 0, 0, 0.5);*/
     position: absolute;

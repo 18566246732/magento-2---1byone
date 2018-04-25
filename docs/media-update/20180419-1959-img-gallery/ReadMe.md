@@ -1,1 +1,0 @@
-copy the img_gallery directory to pub/media/wysiwyg/

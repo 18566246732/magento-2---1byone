@@ -24,7 +24,7 @@
     margin: 10px auto;
     padding: 20px;
     color: grey;
-    margin-top: 220px;
+    margin-top: 250px;
     margin-bottom: -40px;
 }
 
@@ -34,7 +34,10 @@
     align-items: center;
     justify-content: space-between;
     height: 32px;
-    width: 50%;
+    width: 20%;
+    position: absolute;
+    right: 350px;
+    top: 300px;
 }
 .input-group input[type="text"] {
     height: inherit;
@@ -62,6 +65,10 @@
     border: 2px solid #8d131c;
 }
 
+.input-group input[type="button"]:focus {
+    box-shadow: none;
+}
+
 .catalog-panel .main {
     margin-top: 20px;
     height: 70%;
@@ -85,8 +92,8 @@ div.flex-container {
 div.flex-item {
     flex-grow: 0;
     flex-shrink: 0;
-    width: 23%;
-    height: 45%;
+    width: 32%;
+    height: 40%;
     background-color: white;
     position: relative;
 }
@@ -94,26 +101,31 @@ div.flex-item {
 div.flex-item .post {
     display: flex;
     color: grey;
-    justify-content: center;
     align-items: center;
     position: relative;
     height: 100%;
-    flex-direction: column;
     cursor: pointer;
     border: 1px solid rgba(0,0,0,0.11);
     margin: 10px 0;
 }
 
+div.flex-item .post .img-container {
+    width: 130px;
+    height: 100px;
+    margin-right: 20px;
+}
+
 div.flex-item .post img {
     height: 100px;
-    width: 100px;
-    margin: 20px;
+    width: auto;
+    margin: 0 10px;
 }
 
 div.flex-item .post h3 {
-    font-size: 15px;
-    height: 40px;
-    text-align: center;
+    font-size: 12px;
+    height: 30px;
+    margin-top: 0;
+    width: 250px;
 }
 
 div.flex-item .post-cover {
@@ -190,7 +202,7 @@ div.flex-item .post-cover li a {
     position: absolute;
     width: 100%;
     height: 80px;
-    top: 50px;
+    top: 34px;
     background-color: white;
     left: 0;
     z-index: -1;
@@ -201,7 +213,7 @@ div.flex-item .post-cover li a {
     width: 100%;
     height: 270px;
     background-color: #fefaf7;
-    top: 130px;
+    top: 114px;
     left: 0;
     z-index: -1;
 }
@@ -209,14 +221,14 @@ div.flex-item .post-cover li a {
 .catalog-panel-background img {
     display: block;
     margin: 0 auto;
-    width: 1189px;
+    height: 270px;
 }
 
 .catalog-panel-background h2 {
     position: absolute;
-    top: 50px;
-    right: 500px;
-    font-size: 30px;
+    top: 90px;
+    right: 450px;
+    font-size: 35px;
 }
 
 .flex-item img {
@@ -224,11 +236,6 @@ div.flex-item .post-cover li a {
     width: 100%;
 }
 
-
-/*global color*/
-body {
-    background-color: #f3f2f0;
-}
 
 /*404*/
 
@@ -241,4 +248,20 @@ body {
     color: #e70012;
     font-size: 16px;
     font-weight: bold;
+}
+
+.des-group a{
+    background: none;
+    border: 1px solid #e70012;
+    border-radius: 16px;
+    padding: 3px 12px;
+    color: #333;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.des-group a:hover {
+    background-color: #e70012;
+    color: white;
+    text-decoration: none;
 }

@@ -18,11 +18,14 @@
     opacity: 1;
     margin-right: 10px;
     margin-left: 10px;
+
 }
 
 #searchBtn::before {
     color: #fff9db;
     cursor: pointer;
+    height: 26px;
+    line-height: 26px;
 }
 
 #searchBtn.changeBefore::before {
@@ -32,6 +35,8 @@
 #search {
     border-radius: 16px;
     box-shadow: initial;
+    height: 26px;
+    line-height: 26px;
 }
 
 #search:focus {

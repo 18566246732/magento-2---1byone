@@ -54,7 +54,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
         <ol class="products list items product-items">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
-                <?= /* @escapeNotVerified */
+                <?= /* @escapeNoftVerified */
                 ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
                 <div class="product-item-info hover-prevent" data-container="product-grid">
 
@@ -77,6 +77,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         <?= $productImage->toHtml() ?>
                     </a>
                     <div class="product details product-item-details">
+<!--                        put swatch-image up the description-->
                         <?= $block->getProductDetailsHtml($_product) ?>
                         <?php
                         $_productNameStripped = $block->stripTags($_product->getName(), null, true);
@@ -171,5 +172,13 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
     function toView(url) {
         window.open(url)
     }
+</script>
+
+<script>
+    require(['jquery','Magento_Catalog/js/index'], function ($,i) {
+        $(function () {
+            i();
+        })
+    })
 </script>
 

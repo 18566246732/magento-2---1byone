@@ -1,0 +1,1 @@
+cp -r img_gallery/ /var/www/html/magento2/pub/media/wysiwyg/

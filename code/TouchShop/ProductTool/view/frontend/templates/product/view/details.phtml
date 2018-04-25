@@ -67,7 +67,8 @@ $currentProductId = $block->getCurrentProductId();
     (function () {
         require(['jquery', 'jquery/ui'], function ($) {
 
-
+            const TOPMENU_HEIGHT = 80;
+            const NAV_HEIGHT = 34;
             var productInfo = $(".product.info.detailed");
             var detailsMenu = $(".details-menu");
             var detailsMenuItem = $(".details-menu li");
@@ -82,10 +83,12 @@ $currentProductId = $block->getCurrentProductId();
             var contentTopArr = [];
             var detailsMenuAItem = $(".details-menu li a");
             var body = $("body");
-            var isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
-            var sectionTop = productInfo.offset().top - 80;
+            var isOverNum = productInfo.offset().top - doc.scrollTop() - (NAV_HEIGHT + TOPMENU_HEIGHT);
+            var sectionTop = productInfo.offset().top - TOPMENU_HEIGHT;
             var docHeight = doc.height();
             var windowHeight = $(window).height();
+            var detailsMenuAll = $(".details-main .details-tab, .details-menu li a");
+            var regexp = new RegExp(/\d+$/);
 
             $("#productIdValue").val(<?=$currentProductId?>);
             $(document).trigger("Hchanged");
@@ -98,10 +101,8 @@ $currentProductId = $block->getCurrentProductId();
             var len = contentTopArr.length;
             var detailsMenuItemLen = detailsMenuAItem.length;
             detailsMenuItem.on("click", function (e) {
-
-
                 detailsMenuAItem.css("color", "grey");
-                $(e.target).css("color", "#8d131c");
+                $(e.target).css("color", "#e70012");
                 location.href = "#tab-label-" + $(this).index();
 
                 // add 200px offset scroll distance
@@ -115,6 +116,7 @@ $currentProductId = $block->getCurrentProductId();
                 }
             });
 
+
             $(document).on("Hchanged", function () {
                 console.log("Hchanged !");
                 contentTopArr = [];
@@ -126,13 +128,26 @@ $currentProductId = $block->getCurrentProductId();
 
             // page first loaded
             if (currentStates === 'A') {
-                if ((isOverNum <= -80)) {
+                if ((isOverNum <= -TOPMENU_HEIGHT)) {
                     section.addClass("back-normal-flow").css("top", sectionTop);
                     detailsMenu.addClass("fix-top");
                     detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                     currentStates = 'C';
                 }
             }
+
+
+            detailsMenuAll.each(function (index, e) {
+                $(e).text().trim();
+                console.log($(e).text(), $(e).text().trim().match(regexp));
+                if ($(e).text().trim().match(regexp)) {
+                    let arr = $(e).text().trim().split(" ");
+                    console.log(arr);
+                    let arrr = arr.slice(0, arr.length - 1);
+                    $(e).text(arrr.join(" "));
+                }
+            });
+
 
             doc.scroll(function () {
 
@@ -143,30 +158,30 @@ $currentProductId = $block->getCurrentProductId();
 
                 for (let i = len; i > 0; i--) {
                     if (now > (contentTopArr[i - 1] - 140)) {
-                        $(detailsMenuAItem[i - 1]).css("color", "#8d131c");
+                        $(detailsMenuAItem[i - 1]).css("color", "#e70012");
                         // cannot use return null; will exit callback function
                         break;
                     }
                 }
 
-                isOverNum = productInfo.offset().top - doc.scrollTop() - 130;
-                sectionTop = productInfo.offset().top - 80;
+                isOverNum = productInfo.offset().top - doc.scrollTop() - (NAV_HEIGHT + TOPMENU_HEIGHT);
+                sectionTop = productInfo.offset().top - TOPMENU_HEIGHT;
                 if (currentStates === 'A') {
                     if (isOverNum <= 0 && isUp) {
                         section.addClass("back-normal-flow").css("top", sectionTop);
                         currentStates = 'B';
                     }
                 } else if (currentStates === 'B') {
-                    if (isUp && (isOverNum <= -80)) {
+                    if (isUp && (isOverNum <= -TOPMENU_HEIGHT)) {
                         detailsMenu.addClass("fix-top");
                         detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
                         currentStates = 'C';
                     } else if (!isUp && (isOverNum >= 0)) {
-                        section.removeClass("back-normal-flow").css("top", 50);
+                        section.removeClass("back-normal-flow").css("top", NAV_HEIGHT);
                         currentStates = 'A';
                     }
                 } else { // 'C' => 'B'
-                    if (!isUp && (isOverNum >= -80)) {
+                    if (!isUp && (isOverNum >= -TOPMENU_HEIGHT)) {
                         detailsMenu.removeClass("fix-top");
                         detailsMain.css("margin-top", 90);
                         currentStates = 'B';
@@ -190,7 +205,7 @@ $currentProductId = $block->getCurrentProductId();
                 // 'C' => 'A'
                 $(".back-top").click(function () {
                     if (currentStates === 'C') {
-                        section.removeClass("back-normal-flow").css("top", 50);
+                        section.removeClass("back-normal-flow").css("top", NAV_HEIGHT);
                         detailsMain.css("margin-top", 90);
                         detailsMenu.removeClass("fix-top");
                         currentStates = 'A';
