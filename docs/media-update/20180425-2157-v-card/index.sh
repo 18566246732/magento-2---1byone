@@ -1,0 +1,1 @@
+cp -r home-v-cards/ /var/www/html/magento2/pub/media/
