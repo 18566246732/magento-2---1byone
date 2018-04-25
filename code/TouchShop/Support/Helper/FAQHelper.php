@@ -36,7 +36,10 @@ class FAQHelper
                             $item['answer'] .= "<br/>" . $qa;
                         }
                     }
-                    $results[] = $item;
+
+                    if (isset($item['answer']) && isset($item['question'])) {
+                        $results[] = $item;
+                    }
                 }
                 return $results;
             }
