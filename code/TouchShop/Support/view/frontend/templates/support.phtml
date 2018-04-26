@@ -162,6 +162,9 @@
                     $(".flex-container").css("display", "none");
 
                 } else {
+                    catalogPanelHint.css("display", "none");
+                    $("#pagination-demo").css("display", "flex");
+                    $(".flex-container").css("display", "flex");
                     let productsArr = res.products;
                     let productsArrLen = productsArr.length;
                     if (isSearching || isPageIni) {

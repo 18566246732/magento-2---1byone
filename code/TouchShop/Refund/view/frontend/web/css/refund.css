@@ -155,8 +155,23 @@ div.form-action-btn button:hover {
     padding-bottom: 60px;
 }
 
+.refund-container input {
+    border-radius: 16px;
+}
+
+.refund-pwd1, .refund-pwd2 {
+    margin: 15px 0;
+}
+
 .refund-container img {
     height: 270px;
+}
+
+.refund-container h2 {
+    position: absolute;
+    top: 90px;
+    right: 400px;
+    font-size: 35px;
 }
 
 .refund-form {

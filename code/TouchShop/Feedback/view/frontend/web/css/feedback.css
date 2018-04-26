@@ -47,10 +47,21 @@
 
 .feedback-back h2 {
     position: absolute;
-    font-size: 30px;
+    font-size: 35px;
     top: 70px;
     left: 400px;
 }
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.feedback-selection label {
+    margin-bottom: 3px;
+    display: block;
+}
+
 
 .feedback-form-basic-info-container > * {
     display: inline-block;
@@ -61,6 +72,7 @@
 .feedback-form-basic-info-container {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 .feedback-form-action-control-container {

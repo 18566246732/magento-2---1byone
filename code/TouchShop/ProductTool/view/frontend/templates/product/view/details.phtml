@@ -18,7 +18,7 @@ $currentProductId = $block->getCurrentProductId();
         <div class="product data items">
             <div class="details-menu">
                 <ul>
-                    <?php foreach ($detailedInfoGroup as $name): ?>
+                    <?php foreach ($detailedInfoGroup as $index => $name): ?>
                         <?php
                         $html = $layout->renderElement($name);
                         if (!trim($html)) {
@@ -27,7 +27,7 @@ $currentProductId = $block->getCurrentProductId();
                         $alias = $layout->getElementAlias($name);
                         $label = $block->getChildData($alias, 'title');
                         ?>
-                        <li><a><?= $label ?></a></li>
+                        <li data-index="<?= $index?>"><a><?= $label ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -74,6 +74,7 @@ $currentProductId = $block->getCurrentProductId();
 
             const TOPMENU_HEIGHT = 80;
             const NAV_HEIGHT = 34;
+            const DETAILS_MENU_HEIGHT = 95;
             var productInfo = $(".product.info.detailed");
             var detailsMenu = $(".details-menu");
             var detailsMenuItem = $(".details-menu li");
@@ -94,6 +95,7 @@ $currentProductId = $block->getCurrentProductId();
             var windowHeight = $(window).height();
             var detailsMenuAll = $(".details-main .details-tab, .details-menu li a");
             var regexp = new RegExp(/\d+$/);
+            var ankorJumpOffset = 110;
 
             $("#productIdValue").val(<?=$currentProductId?>);
             $(document).trigger("Hchanged");
@@ -108,8 +110,7 @@ $currentProductId = $block->getCurrentProductId();
             detailsMenuItem.on("click", function (e) {
                 detailsMenuAItem.css("color", "grey");
                 $(e.target).css("color", "#e70012");
-                location.href = "#tab-label-" + $(this).index();
-
+                location.href = "#tab-label-" + $(this).attr("data-index");
                 // add 200px offset scroll distance
                 var ac = $(window).scrollTop();
 
@@ -117,7 +118,7 @@ $currentProductId = $block->getCurrentProductId();
                 if (docHeight - windowHeight + 200 < contentTopArr[$(this).index()]) {
                     console.log("last one");
                 } else {
-                    $("body,html").animate({'scrollTop': ac - 140}, 0);
+                    $("body,html").animate({'scrollTop': ac - ankorJumpOffset}, 0);
                 }
             });
 
@@ -136,7 +137,7 @@ $currentProductId = $block->getCurrentProductId();
                 if ((isOverNum <= -TOPMENU_HEIGHT)) {
                     section.addClass("back-normal-flow").css("top", sectionTop);
                     detailsMenu.addClass("fix-top");
-                    detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
+                    detailsMain.css("margin-top", DETAILS_MENU_HEIGHT + detailsMenu.outerHeight(true));
                     currentStates = 'C';
                 }
             }
@@ -155,14 +156,14 @@ $currentProductId = $block->getCurrentProductId();
 
 
             doc.scroll(function () {
-
+                console.log("scrolled");
                 $(detailsMenuAItem).css("color", "grey");
                 var now = doc.scrollTop();
                 isUp = (now > last);
                 last = now;
 
                 for (let i = len; i > 0; i--) {
-                    if (now > (contentTopArr[i - 1] - 140)) {
+                    if (now > (contentTopArr[i - 1] - ankorJumpOffset)) {
                         $(detailsMenuAItem[i - 1]).css("color", "#e70012");
                         // cannot use return null; will exit callback function
                         break;
@@ -179,7 +180,7 @@ $currentProductId = $block->getCurrentProductId();
                 } else if (currentStates === 'B') {
                     if (isUp && (isOverNum <= -TOPMENU_HEIGHT)) {
                         detailsMenu.addClass("fix-top");
-                        detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
+                        detailsMain.css("margin-top", DETAILS_MENU_HEIGHT + detailsMenu.outerHeight(true));
                         currentStates = 'C';
                     } else if (!isUp && (isOverNum >= 0)) {
                         section.removeClass("back-normal-flow").css("top", NAV_HEIGHT);
@@ -188,19 +189,19 @@ $currentProductId = $block->getCurrentProductId();
                 } else { // 'C' => 'B'
                     if (!isUp && (isOverNum >= -TOPMENU_HEIGHT)) {
                         detailsMenu.removeClass("fix-top");
-                        detailsMain.css("margin-top", 90);
+                        detailsMain.css("margin-top", DETAILS_MENU_HEIGHT);
                         currentStates = 'B';
                     }
                 }
 
 
-                //'A' => 'C'
+                // 'A' => 'C'
                 $(".product.data.items li").on({
                     click: function () {
                         if (currentStates === 'A') {
                             section.addClass("back-normal-flow").css("top", sectionTop);
                             detailsMenu.addClass("fix-top");
-                            detailsMain.css("margin-top", 90 + detailsMenu.outerHeight(true));
+                            detailsMain.css("margin-top", DETAILS_MENU_HEIGHT + detailsMenu.outerHeight(true));
                             currentStates = 'C';
                         }
                     }
@@ -211,7 +212,7 @@ $currentProductId = $block->getCurrentProductId();
                 $(".back-top").click(function () {
                     if (currentStates === 'C') {
                         section.removeClass("back-normal-flow").css("top", NAV_HEIGHT);
-                        detailsMain.css("margin-top", 90);
+                        detailsMain.css("margin-top", DETAILS_MENU_HEIGHT);
                         detailsMenu.removeClass("fix-top");
                         currentStates = 'A';
                     }

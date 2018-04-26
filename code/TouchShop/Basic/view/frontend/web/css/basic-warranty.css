@@ -39,8 +39,8 @@
 }
 
 .warranty-back h2 {
-    font-size: 30px;
     position: absolute;
-    top: 80px;
-    right: 600px;
+    top: 90px;
+    right: 480px;
+    font-size: 35px;
 }
