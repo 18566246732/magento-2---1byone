@@ -8,7 +8,7 @@
     z-index: -1;
 }
 
-form {
+form.power-user-form {
     color: grey;
     margin-top: 270px;
 }
@@ -27,8 +27,6 @@ form {
 .input-container-title {
     margin-top: 20px;
 }
-
-
 
 div.form-action-btn {
     display: flex;

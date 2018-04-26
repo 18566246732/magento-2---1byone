@@ -55,6 +55,7 @@
                             <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <div class="hint">the required field cannot be empty</div>
                 </div>
             </div>
 
@@ -67,6 +68,7 @@
                             <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <div class="hint">the required field cannot be empty</div>
                 </div>
             </div>
 
@@ -74,16 +76,17 @@
                 <label for="msg_order_number" class="col-sm-2 control-label">Order Number<span> *</span></label>
                 <div class="col-sm-9"><input name="order_number" id="msg_order_number" class="form-control"
                                              placeholder="Order Number" required="required" type="text">
-                    <p id="msg_order_notice" class="red" style="display:none;">To better assist your case,please provide
-                        the
-                        correct Order Number. <span id="msg_order_detail"
-                                                    style="cursor:pointer;color:blue;">Learn More...</span></p>
+                    <div class="hint">the required field cannot be empty</div>
+<!--                    <p id="msg_order_notice" class="red" style="display:none;">To better assist your case,please provide the-->
+<!--                        correct Order Number. <span id="msg_order_detail" style="cursor:pointer;color:blue;">Learn More...</span></p>-->
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address <span> *</span></label>
                 <input name="email" id="refundEmail" placeholder="example@site.com" type="text">
+                <div class="hint">the required field cannot be empty</div>
+
             </div>
 
             <div class="refund-hint"></div>
@@ -112,7 +115,10 @@
 
             <div class="form-group">
                 <label for="msg_message" class="col-sm-2 control-label">Issue Details<span> *</span></label>
-                <div class="col-sm-9"><textarea name="message" id="msg_message" class="form-control"></textarea></div>
+                <div class="col-sm-9">
+                    <textarea name="message" id="msg_message" class="form-control" required="required"></textarea>
+                    <div class="hint">the required field cannot be empty</div>
+                </div>
             </div>
 
             <div class="form-address">
@@ -125,6 +131,8 @@
                         <input name="address_string" id="msg_address_string" class="form-control" value=""
                                required="required"
                                type="text">
+                        <div class="hint">the required field cannot be empty</div>
+
                     </div>
                 </div>
 
@@ -138,6 +146,8 @@
                                 <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <div class="hint">the required field cannot be empty</div>
+
                     </div>
                 </div>
 
@@ -145,20 +155,22 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Postalcode</label>
                     <div class="col-sm-5">
-                        <input name="zipcode" id="msg_zipcode" class="form-control" value="" required="required"
-                               type="text">
+                        <input name="zipcode" id="msg_zipcode" class="form-control" value="" type="text">
+
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Country/Province <span> *</span></label>
                     <div class="col-sm-9">
-                        <select name="country" id="msg_country" class="form-control">
+                        <select name="country" id="msg_country" class="form-control" required="required">
                             <option value="">--select--</option>
                             <?php foreach ($block->getCountries() as $item): ?>
                                 <option value="<?= $item['value'] ?>"><?= $item['label'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <div class="hint">the required field cannot be empty</div>
+
                     </div>
                 </div>
 
@@ -166,6 +178,8 @@
                     <label class="col-sm-2 control-label">Phone<span> *</span></label>
                     <div class="col-sm-5">
                         <input name="tel" id="msg_tel" class="form-control" value="" required="required" type="text">
+                        <div class="hint">the required field cannot be empty</div>
+
                     </div>
                 </div>
             </div>
@@ -179,26 +193,22 @@
 <script>
     (function () {
         require(['jquery'], function ($) {
-            var formAddress = $(".form-address");
 
-            $(".refund").click(function () {
-                console.log("refund clicked");
-                formAddress.css("display", "none");
-            })
 
-            $(".exchange").click(function () {
-                console.log("refund clicked");
-                formAddress.css("display", "block")
-            })
+
         })
     })()
 </script>
 
 <script>
     (function () {
-        require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
+        require(['jquery', 'ajax', 'bindQuickAutoLogin', 'TouchShop_Touch1byone/js/formValidate'], function ($, ajax, binder, formValidater) {
+            var form = $(".refund-form-action-control-container");
+            var commonHint = $(".hint");
             let data = <?= $block->getLoginInfo()?>;
             let hint = $(".refund-hint");
+            var formAddress = $(".form-address");
+
             hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
             binder.bind(
                 data,
@@ -213,10 +223,22 @@
                 hint,
                 submitFormFun,
             );
+            // commonHint.hide();
+
+            $(".refund").click(function () {
+                console.log("refund clicked");
+                formAddress.css("display", "none");
+            })
+
+            $(".exchange").click(function () {
+                console.log("refund clicked");
+                formAddress.css("display", "block");
+                formValidater.resetAreaForm(formAddress);
+            })
 
             function submitFormFun(email, customerId) {
+                formValidater.validateForm(form);
                 let result = false;
-                // let email = $("#refundEmail").val();
                 let reason = $("#msg_reason").val();
                 let categoruId = $("#msg_goods").val();
                 let order = $("#msg_order_number").val();
@@ -230,7 +252,7 @@
 
                 console.log("type:", type);
                 if (!reason || !categoruId || !order || !issue) {
-                    hint.text("the require field marked * cannot be empty !").css("color", "red");
+                    hint.css("color", "red");
                     return result;
                 }
                 let param1 = {
@@ -244,7 +266,7 @@
                 let param2 = {};
                 if (type == 'Exchange') {
                     if (!address || !state || !postalCode || !country || !phone) {
-                        hint.text("the require field marked * cannot be empty !").css("color", "red");
+                        hint.css("color", "red");
                         return result;
                     }
                     param2 = {
@@ -266,7 +288,7 @@
                         if (res.status_code == 200) {
                             result = true;
                         } else {
-                            hint.text(res.error_message);
+                            hint.text(res.error_message).css("color", "red");
                         }
                     });
                 return result;

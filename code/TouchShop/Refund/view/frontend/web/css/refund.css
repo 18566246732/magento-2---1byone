@@ -189,3 +189,8 @@ div.form-action-btn button:hover {
 .form-group input, .form-group select {
     border-radius: 16px;
 }
+
+.hint {
+    color: red;
+    display: none;
+}

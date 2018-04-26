@@ -17,27 +17,35 @@
 
         <div class="feedback-selection">
             <label for="feedbackCategory">Category <span>*</span></label>
-            <select id="feedbackCategory">
+            <select id="feedbackCategory" required="required">
                 <option value="">--select--</option>
                 <?php foreach ($block->getCategories() as $category): ?>
                     <option value="<?= $category['value'] ?>"><?= $category['label'] ?></option>
                 <?php endforeach; ?>
             </select>
+            <div class="hint">the required field cannot be empty</div>
+
         </div>
 
         <label for="order">Order ID <span>*</span><small> ( If you don't have one, please contact us at <a href="mailto:ushelp@1byone.com">ushelp@1byone.com )</a> </small>
             <input name="order" id="feedBackOrder" type="text" required="required" autocomplete="off">
+            <div class="hint">the required field cannot be empty</div>
+
         </label>
         <div class="feedback-detail">
 
             <label for="detail">Issue Details<span>*</span>
                 <textarea name="detail" id="feedbackDetail" type="text" required="required" autocomplete="off" cols="30"
                           rows="10"></textarea>
+                <div class="hint">the required field cannot be empty</div>
+
             </label>
         </div>
         <div class="feedback-form-basic-info-container">
             <label for="text">Email address <span>*</span>
                 <input name="email" id="feedbackEmail" type="email" required="required" autocomplete="off">
+                <div class="hint">the required field cannot be empty</div>
+
             </label>
         </div>
 
@@ -67,10 +75,11 @@
 </form>
 </div>
 <script>
-    require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
+    require(['jquery', 'ajax', 'bindQuickAutoLogin', 'TouchShop_Touch1byone/js/formValidate'], function ($, ajax, binder, formValidater) {
         let data = <?= $block->getLoginInfo()?>;
         let hint = $(".feedback-hint");
         let category = $("#feedbackCategory");
+        let form = $(".feedback-form");
         hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
         binder.bind(
             data,
@@ -87,6 +96,7 @@
         );
 
         function submitFormFun(email, customerId) {
+            formValidater.validateForm(form);
             let result = false;
             if(category.val() == "")
                 return result;
@@ -105,7 +115,7 @@
                     if (res.status_code == 200) {
                         result = true;
                     } else {
-                        hint.text(res.error_message);
+                        hint.text(res.error_message).css("color", "red");
                     }
                 });
             return result;

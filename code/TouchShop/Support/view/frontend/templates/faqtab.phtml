@@ -28,8 +28,12 @@ $data = $block->getInfo()
 
             <label>Question <span>*</span></label>
             <textarea type="text" name="content" required="required" cols="30" rows="10"></textarea>
+            <div class="hint">the required field cannot be empty</div>
+
             <label>Email <span>*</span></label>
             <input type="email" name="email" id="faqEmail" required="required"/>
+            <div class="hint">the required field cannot be empty</div>
+
         </div>
 
 
@@ -57,7 +61,7 @@ $data = $block->getInfo()
 
 <script>
     (function () {
-        require(['jquery'], function ($) {
+        require(['jquery', 'TouchShop_Touch1byone/js/formValidate'], function ($, formValidater) {
             $(document).ready(function () {
                 var faqMoreBtn = $(".faq-more-btn");
                 var faqAskQuestionBtn = $(".faq-ask-btn");
@@ -85,6 +89,7 @@ $data = $block->getInfo()
                         faqAssemblingMore.css("display", "flex");
                         $(this).text("See More <<");
                         isMoreShowed = true;
+                        formValidater.resetAreaForm(form);
                     } else {
                         faqAssemblingMore.css("display", "none");
                         $(this).text("See More >>");
@@ -107,9 +112,10 @@ $data = $block->getInfo()
     })()
 </script>
 <script>
-    require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, binder) {
+    require(['jquery', 'ajax', 'bindQuickAutoLogin', 'TouchShop_Touch1byone/js/formValidate'], function ($, ajax, binder, formValidater) {
         let data = <?= $block->getInfo()?>;
         let hint = $(".faq-hint");
+        let form = $(".product-details-faq");
 
         hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
         binder.bind(
@@ -127,6 +133,7 @@ $data = $block->getInfo()
         );
 
         function submitFormFun(email) {
+            formValidater.validateForm(form);
             let content = $(".faq-form-basic-info-container textarea").val();
             let result = false;
             ajax.sendAjax(
@@ -142,7 +149,7 @@ $data = $block->getInfo()
                     if (res.status_code == 200) {
                         result = true;
                     } else {
-                        hint.text(res.error_message);
+                        hint.text(res.error_message).css("color", "red");
                     }
                 });
             return result;

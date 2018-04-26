@@ -189,4 +189,6 @@ div.form-action-btn button:hover {
     margin: 0 auto;
 }
 
-
+.hint {
+    color: red;
+}

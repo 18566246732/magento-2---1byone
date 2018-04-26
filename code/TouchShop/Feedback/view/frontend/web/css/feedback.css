@@ -122,3 +122,8 @@ div.form-action-btn button:hover {
 .feedback-selection {
     margin: 20px 0;
 }
+
+.hint {
+    display: none;
+    color: red;
+}
