@@ -17,4 +17,7 @@
     <preference for="Magento\Customer\Block\Form\Login" type="TouchShop\Touch1byone\Block\Login"/>
     <preference for="Magento\Customer\Block\Form\Register" type="TouchShop\Touch1byone\Block\Register"/>
     <preference for="Mageplaza\Blog\Block\Post\Listpost" type="TouchShop\Touch1byone\Block\Listpost"/>
+    <type name="Mageplaza\Blog\Block\Post\RelatedPost">
+        <plugin name="modify_title_to_related" type="TouchShop\Touch1byone\Plugin\Block\ModifyRelatedTitle" sortOrder="30"/>
+    </type>
 </config>
