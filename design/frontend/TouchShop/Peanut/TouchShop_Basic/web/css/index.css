@@ -290,6 +290,10 @@ div.page-cards-title h1 {
     justify-content: space-between;
     flex-direction: column;
     margin: 0 auto;
+    /**
+    set image maximum
+    */
+    max-height: 822px;
 }
 
 .v-cards {
@@ -304,7 +308,10 @@ div.page-cards-title h1 {
 
 .v-card, .v-card-bulk {
     background-size: cover;
-    height: 100%;
+    /**
+    give image freedom
+    */
+    /*height: 100%;*/
     margin-bottom: 20px;
 }
 
@@ -554,4 +561,8 @@ ul.footer.links {
 /*product list page*/
 .product-item-details {
     text-align: center;
+}
+
+.product-info-main .action.add {
+    display: none;
 }

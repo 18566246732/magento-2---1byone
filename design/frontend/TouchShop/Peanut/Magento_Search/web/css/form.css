@@ -58,3 +58,6 @@ div.block.block-search {
     margin-left: 10px;
 }
 
+.search-autocomplete ul:not(:empty) {
+    color: #333;
+}
