@@ -45,11 +45,12 @@
                 });
 
                 var allSpan = $(".owl-carousel.owl-theme span"),
-                    spanArr = allSpan.slice(2,6),
+                    spanArr = allSpan.slice(2, 5),
                     navText = $(".top-menu li a"),
                     owlImgNum = allSpan.length - 7 ,
                     owlAddOn = $(".owl-img-addon");
 
+                console.log("spanArr:", spanArr);
                 owlAddOn.each(function (index, e) {
                     $(e).css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
                 })
@@ -58,11 +59,8 @@
                 console.log("owlImgNum:", owlImgNum);
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
                     var index = e.relatedTarget.current();
-                    // navText.each(function (ep, e) {
-                    //     e.style.color = spanArr[(index-2) % owlImgNum].getAttribute("data-color");
-                    // })
-
-                    navText.css("color", spanArr[(index-2) % owlImgNum].getAttribute("data-color"));
+                    // use + 1 to replace -2 in order to avoid negative
+                    navText.css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
                     $(".owl-dot > span").css("background-image", "none");
                     $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')");
                 });

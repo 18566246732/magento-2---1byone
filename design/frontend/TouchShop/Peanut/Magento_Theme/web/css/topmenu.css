@@ -82,6 +82,10 @@ ul.top-menu {
     /*display: none;*/
 }
 
+.menu-info-cover hr {
+    margin-top: 0;
+}
+
 .menu-info .submenu {
     margin-right: 100px;
     display: flex;
