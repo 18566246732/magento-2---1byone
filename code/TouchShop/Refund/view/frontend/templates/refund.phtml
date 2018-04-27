@@ -84,7 +84,7 @@
 
             <div class="form-group">
                 <label for="email">Email Address <span> *</span></label>
-                <input name="email" id="refundEmail" placeholder="example@site.com" type="text">
+                <input name="email" id="refundEmail" placeholder="example@site.com" type="text" required="required">
                 <div class="hint">the required field cannot be empty</div>
 
             </div>
@@ -225,6 +225,10 @@
             );
             // commonHint.hide();
 
+            $(".form-action-btn button[type='button']").click(function () {
+                formValidater.validateForm(form);
+            })
+
             $(".refund").click(function () {
                 console.log("refund clicked");
                 formAddress.css("display", "none");
@@ -237,7 +241,7 @@
             })
 
             function submitFormFun(email, customerId) {
-                formValidater.validateForm(form);
+                console.log("1");
                 let result = false;
                 let reason = $("#msg_reason").val();
                 let categoruId = $("#msg_goods").val();

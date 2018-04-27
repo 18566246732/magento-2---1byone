@@ -79,7 +79,10 @@ $topmenus = $block->getTopMenus();
                     var topmenu = $(".top-menu li a");
                     li.on({
                         mouseover: function (e) {
-                            $(this).children("ul").css("display", "block");
+                            if ($(this).children("ul").length != 0) {
+                                $(this).children("ul").css("display", "block");
+                                console.log("child ul:", $(this).children("ul").length);
+                            }
                         },
                         mouseout: function (e) {
                             $(this).children("ul").css("display", "none");
@@ -92,15 +95,26 @@ $topmenus = $block->getTopMenus();
                     topMenuItem.on({
                         mouseover: function (e) {
                             // $(this).css("color", "#8d131c");
-                            topMenuIsHoverd = true;
-                            topmenu.addClass("nav-background-grey");
-                            sections.css({
-                                "background-color": "rgba(255, 255, 255, 0.95)",
-                                "border-bottom": "1px solid grey"
-                            });
-                            menuInfo.removeClass("active");
-                            menuInfoCover.css("display", "block");
-                            $(this).next().addClass("active");
+                            if ($(this).parent().find(".submenu ul").children().length) {
+                                topMenuIsHoverd = true;
+                                topmenu.addClass("nav-background-grey");
+                                sections.css({
+                                    "background-color": "rgba(255, 255, 255, 0.95)",
+                                    "border-bottom": "1px solid grey"
+                                });
+                                menuInfo.removeClass("active");
+                                menuInfoCover.css("display", "block");
+                                $(this).next().addClass("active");
+                            } else {
+                                topMenuIsHoverd = false;
+                                sections.css("border-bottom", "none");
+                                if ($(document).scrollTop() <= 30) {
+                                    topmenu.removeClass("nav-background-grey");
+                                    sections.css("background-color", "rgba(255,255,255, 0)");
+                                }
+                                menuInfoCover.css("display", "none");
+                                menuInfo.removeClass("active");
+                            }
                         }
                     });
                     // B-->A

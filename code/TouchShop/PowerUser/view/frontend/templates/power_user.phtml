@@ -38,6 +38,7 @@
             <div class="control1">
                 <label for="text">Email address <span>*</span>
                     <input name="email" id="powerUserEmail" type="email" required="required" autocomplete="off">
+                    <div class="hint">the required field cannot be empty</div>
                 </label>
             </div>
             <div class="power-user-hint"></div>
@@ -64,10 +65,12 @@
 
 <script>
     (function () {
-        require(['jquery', 'ajax', 'bindQuickAutoLogin'], function ($, ajax, bindQuickAutoLogin) {
+        require(['jquery', 'ajax', 'bindQuickAutoLogin', 'TouchShop_Touch1byone/js/formValidate'], function ($, ajax, bindQuickAutoLogin, formValidater) {
             let data = <?= $block->getAjax()?>;
             let inputCheckBox = $(".input-checkbox-container input");
             let hint = $(".power-user-hint");
+            let form = $(".power-user-form");
+            let btn = $(".form-action-btn button[type='button']");
             hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
             if(data.vip == 2) {
                 // interests
@@ -77,6 +80,11 @@
                     }
                 });
             }
+
+            btn.click(function () {
+                formValidater.validateForm(form);
+            })
+
             bindQuickAutoLogin.bind(
                 data,    //data
                 "<?= $block->getBaseUrl()?>", //baseUrl
@@ -86,7 +94,7 @@
                 $("#powerUserPwd1"),    //userPwd1
                 $("#powerUserPwd2"),    //userPwd2
                 $(".form-action-control-container input"),  //formActionInput
-                $(".form-action-btn button[type='button']"),    //submitBtn
+                btn,    //submitBtn
                 hint,  //hint
                 submitForm  //submitFormFunc
             );

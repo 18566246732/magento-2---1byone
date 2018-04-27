@@ -80,6 +80,7 @@
         let hint = $(".feedback-hint");
         let category = $("#feedbackCategory");
         let form = $(".feedback-form");
+        let btn = $(".form-action-btn button[type='button']");
         hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
         binder.bind(
             data,
@@ -90,13 +91,16 @@
             $("#feedbackPwd1"),
             $("#feedbackPwd2"),
             $(".feedback-form-action-control-container input"),
-            $(".form-action-btn button[type='button']"),
+            btn,
             hint,
             submitFormFun,
         );
 
-        function submitFormFun(email, customerId) {
+        btn.click(function () {
             formValidater.validateForm(form);
+        })
+
+        function submitFormFun(email, customerId) {
             let result = false;
             if(category.val() == "")
                 return result;

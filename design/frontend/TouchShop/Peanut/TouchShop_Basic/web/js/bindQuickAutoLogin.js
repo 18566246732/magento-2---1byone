@@ -36,6 +36,8 @@ define('bindQuickAutoLogin', ['jquery', 'ajax'], function ($, ajax) {
         } else {
             email.blur(function () {
                     hint.css("color", "red");
+                    email.css("border", "1px solid #c2c2c2")
+                    email.next().hide();
                     if (!emailRegExp.test(email.val())) {
                         hint.text("invalid email format");
                         return false;

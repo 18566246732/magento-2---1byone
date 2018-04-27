@@ -93,3 +93,8 @@ div.input-checkbox-container div {
 .power-user-form span {
     color: red;
 }
+
+.hint {
+    color: red;
+    display: none;
+}

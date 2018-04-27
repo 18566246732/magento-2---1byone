@@ -113,39 +113,39 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     [[
                         'label' => 'TV Accessories',
                         'url' => $this->getUrl('all-products/tv-accessories.html'),
-                        'image_url' => 'tv_accessories_top.png'
+                        'image_url' => $this->getMediaUrl('tv_accessories_top.png'),
                     ], [
                         'label' => 'Audio',
                         'url' => $this->getUrl('all-products/audio-sounds.html'),
-                        'image_url' => 'audio_top.png'
+                        'image_url' => $this->getMediaUrl('audio_top.png'),
                     ], [
                         'label' => 'Health',
                         'url' => $this->getUrl('all-products/chargers.html'),
-                        'image_url' => 'health_top.png'
+                        'image_url' => $this->getMediaUrl('health_top.png'),
                     ], [
                         'label' => 'Home Security',
                         'url' => $this->getUrl('all-products/home-security.html'),
-                        'image_url' => 'home_security_top.png'
+                        'image_url' => $this->getMediaUrl('home_security_top.png'),
                     ], [
                         'label' => 'Kitchen',
                         'url' => $this->getUrl('all-products/kitchen.html'),
-                        'image_url' => 'kitchen_top.png'
+                        'image_url' => $this->getMediaUrl('kitchen_top.png'),
                     ]], [[
                         'label' => 'Beauty',
                         'url' => $this->getUrl('all-products/beauty.html'),
-                        'image_url' => 'beauty_top.png'
+                        'image_url' => $this->getMediaUrl('beauty_top.png'),
                     ], [
                         'label' => '3c & Accessories',
                         'url' => $this->getUrl('all-products/3c-accessories.html'),
-                        'image_url' => '3c_accessories_top.png'
+                        'image_url' => $this->getMediaUrl('3c_accessories_top.png'),
                     ], [
                         'label' => 'Outdoors',
                         'url' => $this->getUrl('all-products/outdoors.html'),
-                        'image_url' => 'outdoors_top.png'
+                        'image_url' => $this->getMediaUrl('outdoors_top.png'),
                     ], [
                         'label' => 'Household',
                         'url' => $this->getUrl('all-products/household.html'),
-                        'image_url' => 'household_top.png'
+                        'image_url' => $this->getMediaUrl('household_top.png'),
                     ]],
                 ],
                 'additions' => [
@@ -158,6 +158,9 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     ], [
                         'label' => 'Simple Taste',
                         'url' => $this->getUrl('simple-taste.html')
+                    ], [
+                        'label' => 'Beautural',
+                        'url' => $this->getUrl('beautural.html')
                     ]
                 ]
             ], [

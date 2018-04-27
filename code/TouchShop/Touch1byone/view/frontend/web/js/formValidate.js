@@ -5,7 +5,7 @@
  * */
 
 define(['jquery'], function ($) {
-    return formValidater = {
+    return {
         resetAreaForm: function (node) {
             var areaFormEle = node.find("input, textarea, select");
             areaFormEle.css("border", "1px solid #c2c2c2");
@@ -17,7 +17,7 @@ define(['jquery'], function ($) {
             formEle.each(function (index, e) {
                 console.log(e, "required:", $(e).attr("required"));
                 if ($(e).attr("required")) {
-                    if (!$(e).val() && $(e).val() != " ") {
+                    if ( !$(e).val() ) {
                         $(e).css("border", "1px solid red");
                         $(e).next().show();
                     } else {
