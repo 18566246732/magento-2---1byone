@@ -6,13 +6,15 @@
       href="<?php echo $block->getViewFileUrl('TouchShop_Basic::css/owl.carousel.min.css') ?>">
 <link rel="stylesheet" href="<?php echo $block->getViewFileUrl("TouchShop_Basic::css/owl-overwrite.css")?>">
 
+<div class="before-load-cover"></div>
+
 <div class="owl-carousel-container">
     <div class="owl-carousel owl-theme">
         <?php foreach ($block->getImages() as $name => $image): ?>
             <div style="cursor: pointer" class="item">
                 <img style="max-height: 998px" src="<?php echo $image["src"]; ?>"/>
                 <span data-color="<?php echo $image["text-color"]?>" style="display: none"></span>
-                <div class="owl-img-addon">`
+                <div class="owl-img-addon">
                     <h1><?= $image['title']?></h1>
                     <p><?= $image['subtitle']?></p>
                     <button onclick="toView('<?php echo $image["url"] ?>')"><?= $image['btn-text']?></button>
@@ -28,6 +30,7 @@
     }
     (function () {
         require(["jquery", "owlcarousel"], function ($) {
+            var beforeLoadCover = $(".before-load-cover");
             $(document).ready(function () {
                 $(".owl-carousel").css("visibility", "hidden");
                 var owl = $('.owl-carousel').owlCarousel({
@@ -55,7 +58,6 @@
                 console.log("owlImgNum:", owlImgNum);
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
                     var index = e.relatedTarget.current();
-
                     // navText.each(function (ep, e) {
                     //     e.style.color = spanArr[(index-2) % owlImgNum].getAttribute("data-color");
                     // })
@@ -64,6 +66,14 @@
                     $(".owl-dot > span").css("background-image", "none");
                     $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')");
                 });
+
+                // owl.one("changed.owl.carousel", function () {
+                //     console.log("owl changed");
+                //     beforeLoadCover.hide();
+                // })
+
+                $()
+
 
                 <?php if ($block->isFullScreen()): ?>
                 function resizeCarouselContainer() {
@@ -90,6 +100,10 @@
 
                 $(".owl-dot > span").css("background-image", "none");
                 $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')")
+                $(".owl-carousel-container img:first-child").load(function () {
+                    console.log("img loaded");
+                    beforeLoadCover.hide();
+                })
             });
         });
     })();
