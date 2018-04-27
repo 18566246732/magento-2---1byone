@@ -103,7 +103,7 @@ $topmenus = $block->getTopMenus();
                                 });
                                 menuInfo.removeClass("active");
                                 menuInfoCover.css("display", "block");
-                                // menuInfoCover.animate({"display": "block","height": "270px"}, 500);
+                                // menuInfoCover.animate({height: "270px"}, 500);
                                 $(this).next().addClass("active");
                             } else {
                                 topMenuIsHoverd = false;
@@ -112,9 +112,9 @@ $topmenus = $block->getTopMenus();
                                     topmenu.removeClass("nav-background-grey");
                                     sections.css("background-color", "rgba(255,255,255, 0)");
                                 }
-                                menuInfoCover.css("display", "none");
 
-                                // menuInfoCover.animate({"display": "none","height": "0"}, 500);
+                                menuInfoCover.css("display", "none");
+                                // menuInfoCover.animate({height: "0"}, 500);
                                 menuInfo.removeClass("active");
                             }
                         }
@@ -132,6 +132,7 @@ $topmenus = $block->getTopMenus();
                                         sections.css("background-color", "rgba(255,255,255, 0)");
                                     }
                                     menuInfoCover.css("display", "none");
+                                    // menuInfoCover.animate({height: "0"}, 500);
                                     menuInfo.removeClass("active");
                                 }
                             }, 1);
