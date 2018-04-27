@@ -80,8 +80,7 @@ $topmenus = $block->getTopMenus();
                     li.on({
                         mouseover: function (e) {
                             if ($(this).children("ul").length != 0) {
-                                $(this).children("ul").css("display", "block");
-                                console.log("child ul:", $(this).children("ul").length);
+                                $(this).children("ul").css({"display": "block"});
                             }
                         },
                         mouseout: function (e) {
@@ -104,6 +103,7 @@ $topmenus = $block->getTopMenus();
                                 });
                                 menuInfo.removeClass("active");
                                 menuInfoCover.css("display", "block");
+                                // menuInfoCover.animate({"display": "block","height": "270px"}, 500);
                                 $(this).next().addClass("active");
                             } else {
                                 topMenuIsHoverd = false;
@@ -113,6 +113,8 @@ $topmenus = $block->getTopMenus();
                                     sections.css("background-color", "rgba(255,255,255, 0)");
                                 }
                                 menuInfoCover.css("display", "none");
+
+                                // menuInfoCover.animate({"display": "none","height": "0"}, 500);
                                 menuInfo.removeClass("active");
                             }
                         }
