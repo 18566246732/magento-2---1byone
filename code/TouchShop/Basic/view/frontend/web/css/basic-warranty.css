@@ -23,24 +23,24 @@
     width: 100%;
     position: absolute;
     top: 114px;
-    background-color: #f3e9df;
+    /*background-color: #f3e9df;*/
     z-index: -1;
     left: 0;
-    height: 270px;
+    /*height: 270px;*/
 }
 
 .warranty-back img {
     display: block;
     margin: 0 auto;
-    width: 1189px;
+    /*width: 1189px;*/
     position: absolute;
     left: 0;
-    height: 270px;
+    /*height: 270px;*/
 }
 
 .warranty-back h2 {
     position: absolute;
-    top: 90px;
-    right: 480px;
-    font-size: 35px;
+    top: 5vw;
+    right: 22vw;
+    font-size: 2vw;
 }

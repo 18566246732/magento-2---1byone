@@ -6,7 +6,6 @@
 
 .feedback-container {
     background-color: white;
-    width: 1149px;
     margin: 10px auto;
     padding: 20px;
     color: grey;
@@ -33,23 +32,24 @@
     width: 100%;
     position: absolute;
     top: 114px;
-    background-color: #f9f8f4;
+    /*background-color: #f9f8f4;*/
     z-index: -1;
     left: 0;
-    height: 270px;
+    /*height: 270px;*/
 }
 
 .feedback-back img {
     margin: 0 auto;
     display: block;
-    height: 270px;
+    height: auto;
+    width: 100%;
 }
 
 .feedback-back h2 {
     position: absolute;
-    font-size: 35px;
-    top: 70px;
-    left: 400px;
+    font-size: 2vw;
+    top: 4vw;
+    left: 20vw;
 }
 
 label {

@@ -30,7 +30,7 @@
     width: 100%;
     position: absolute;
     top: 114px;
-    background-color: #f3eeea;
+    /*background-color: #f3eeea;*/
     z-index: -1;
     left: 0;
     height: 270px;
@@ -164,14 +164,14 @@ div.form-action-btn button:hover {
 }
 
 .refund-container img {
-    height: 270px;
+    /*height: 270px;*/
 }
 
 .refund-container h2 {
     position: absolute;
-    top: 90px;
-    right: 400px;
-    font-size: 35px;
+    top: 4vw;
+    right: 16vw;
+    font-size: 2vw;
 }
 
 .refund-form {
