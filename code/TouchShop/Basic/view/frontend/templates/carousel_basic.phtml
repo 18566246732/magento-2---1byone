@@ -92,6 +92,10 @@
                 window.addEventListener('resize', function () {
                     resizeCarouselContainer()
                 });
+
+                $(window).one('resize', function () {
+                    $(".owl-carousel-container").css("height", "auto");
+                })
                 <?php endif; ?>
 
                 $(".owl-dot > span").css("background-image", "none");

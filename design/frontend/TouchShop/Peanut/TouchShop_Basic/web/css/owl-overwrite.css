@@ -66,6 +66,8 @@
     position: relative;
     /*width: 1920px !important;*/
     margin-top: -130px;
+    height: 45vw;
+    background-color: white;
 }
 
 .owl-dots {
@@ -91,19 +93,25 @@
 
 .owl-img-addon {
     position: absolute;
-    left: 250px;
-    top: 330px;
+    left: 13vw;
+    top: 19vw;
     color: white;
 }
 
+.owl-img-addon p {
+    font-size: .8vw;
+}
+
 .owl-img-addon button {
-    width: 185px;
-    height: 40px;
+    width: 10vw;
+    height: 2vw;
     background-color: #e70012;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 1vw;
     box-shadow: initial;
+    font-size: .8vw;
+    padding: 0;
 }
 
 .owl-img-addon button:hover {

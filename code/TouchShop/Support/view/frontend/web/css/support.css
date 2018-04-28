@@ -24,7 +24,7 @@
     margin: 10px auto;
     padding: 20px;
     color: grey;
-    margin-top: 250px;
+    margin-top: 13vw;
     margin-bottom: -40px;
 }
 
@@ -37,7 +37,7 @@
     width: 25%;
     position: absolute;
     left: 19vw;
-    top: 9vw;
+    top: 8.5vw;
 }
 .input-group input[type="text"] {
     height: inherit;
@@ -267,4 +267,9 @@ div.flex-item .post-cover li a {
     background-color: #e70012;
     color: white;
     text-decoration: none;
+}
+
+
+@media screen {
+
 }
