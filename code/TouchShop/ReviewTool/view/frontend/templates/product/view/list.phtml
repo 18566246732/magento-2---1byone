@@ -14,21 +14,21 @@ $reviews = $block->getReviewData();
                 <li class="reviews-item">
                     <div class="reviews-heading">
                         <div class="reviews-rating">
-
-                            <div class="rating-result rating-background">
-                                <ul>
-                                    <li class="star-five"></li>
-                                    <li class="star-five"></li>
-                                    <li class="star-five"></li>
-                                    <li class="star-five"></li>
-                                    <li class="star-five"></li>
-                                </ul>
-                            </div>
                             <div class="rating-result">
                                 <ul>
-                                    <?php while ($item['star']-- > 0): ?>
+                                    <?php $itemCounter = $item['star'];?>
+                                    <?php while ($itemCounter-- > 0): ?>
                                         <li class="star-five"></li>
                                     <?php endwhile; ?>
+                                </ul>
+                            </div>
+                            <div class="rating-result rating-background">
+                                <ul data-num="<?= $item['star'] ?>.0">
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
+                                    <li class="star-five"></li>
                                 </ul>
                             </div>
                         </div>
@@ -76,6 +76,8 @@ $reviews = $block->getReviewData();
 <script>
     (function () {
         require(['jquery', 'simplePagination'], function ($) {
+            console.log($(".rating-background ul::after").css("content"));
+
             $(function () {
                 paginatinoIni(<?= $reviews['total']?>);
             });

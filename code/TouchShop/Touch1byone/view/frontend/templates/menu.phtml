@@ -34,6 +34,7 @@
                 }
             });
             menu.click(function () {
+                console.log("menu clicked", navIsShowed);
                 if(navIsShowed == false) {
                     menu.css("background-image", 'url(' + baseUrl + urlArr[0] + ')');
                     $(".sections.nav-sections").css("display", "block");

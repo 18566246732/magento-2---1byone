@@ -1,12 +1,19 @@
 define(['jquery'], function ($) {
     return function (baseUrl, urlArr, hoverUrlArr) {
-        $('.iconfont').each(function (index, e) {
-            $(e).css("background-image", 'url('+ baseUrl + urlArr[index]+')');
+
+        $('.iconfont1').each(function (index, e) {
+            $(e).css("background-image", 'url(' + baseUrl + urlArr[index] + ')');
             $(e).hover(function () {
-                $(this).css("background-image", 'url('+ baseUrl + hoverUrlArr[index] + ')');
+                $(this).css("background-image", 'url(' + baseUrl + hoverUrlArr[index] + ')');
             }, function () {
-                $(this).css("background-image", 'url('+ baseUrl + urlArr[index] + ')');
+                $(this).css("background-image", 'url(' + baseUrl + urlArr[index] + ')');
             });
         });
+
+        $(function () {
+            $('.iconfont2').each(function (index, e) {
+                $(e).css("background-image", 'url(' + baseUrl + hoverUrlArr[index] + ')');
+            })
+        })
     }
-})
+});
