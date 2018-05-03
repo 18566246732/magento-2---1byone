@@ -170,7 +170,7 @@
     list-style: none;
 }
 
-.socials .iconfont {
+.socials .iconfont1 {
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -178,4 +178,8 @@
     margin-right: 10px;
     margin-top: 10px;
     cursor: pointer;
+}
+
+.socials .iconfont2 {
+    /*display: none;*/
 }

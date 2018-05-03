@@ -20,7 +20,7 @@
 
 .catalog-panel {
     background-color: white;
-    width: 1149px;
+    max-width: 1149px;
     margin: 10px auto;
     padding: 20px;
     color: grey;
@@ -37,7 +37,7 @@
     width: 25%;
     position: absolute;
     left: 19vw;
-    top: 8.5vw;
+    top: 8vw;
 }
 .input-group input[type="text"] {
     height: inherit;
@@ -87,16 +87,18 @@ div.flex-container {
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 div.flex-item {
     flex-grow: 0;
     flex-shrink: 0;
-    width: 32%;
+    /*width: 32%;*/
     height: 40%;
     background-color: white;
     position: relative;
+    min-width: 370px;
+    margin: 5px;
 }
 
 div.flex-item .post {
@@ -112,13 +114,14 @@ div.flex-item .post {
 }
 
 div.flex-item .post .img-container {
-    width: 130px;
-    height: 100px;
+    /*width: 130px;*/
+    /*height: 100px;*/
     margin-right: 20px;
+    flex-shrink: 0;
 }
 
 div.flex-item .post img {
-    height: 100px;
+    height: 150px;
     width: auto;
     margin: 0 10px;
 }
@@ -127,7 +130,7 @@ div.flex-item .post h3 {
     font-size: 12px;
     height: 30px;
     margin-top: 0;
-    width: 250px;
+    width: 200px;
 }
 
 div.flex-item .post-cover {
@@ -229,7 +232,7 @@ div.flex-item .post-cover li a {
 
 .catalog-panel-background h2 {
     position: absolute;
-    top: 3vw;
+    top: 2vw;
     left: 19vw;
     font-size: 2vw;
 }

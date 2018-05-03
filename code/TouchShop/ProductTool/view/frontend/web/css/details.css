@@ -33,10 +33,10 @@
 
 
 .data.item.title a.details-tab {
-    color: #bababa;
+    color: black;
     pointer-events: none;
-    border-bottom: 3px solid #e70012;
-    top: 2px;
+    border-bottom: 1px solid #e70012;
+    top: 1px;
 }
 
 .details-menu {

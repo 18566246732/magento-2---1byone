@@ -44,14 +44,14 @@ $topmenus = $block->getTopMenus();
                     </div>
 
                     <?php if (isset($menu['additions'])): ?>
-                    <div class="Brand-container">
-                        <div class="Brand-title">Brand</div>
-                        <div class="Brand-content">
+                        <div class="Brand-container">
+                            <div class="Brand-title">Brand</div>
+                            <div class="Brand-content">
                                 <?php foreach ($menu['additions'] as $brand): ?>
                                     <a href="<?= $brand['url'] ?>"><?= $brand['label'] ?></a>
                                 <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -90,35 +90,52 @@ $topmenus = $block->getTopMenus();
 
                     // console.log($(".navigation ul li"));
                     menuInfoCover.hide();
+                    topMenuItem.click(function (e) {
+
+                        let topMenuItemSubMenu = $(e.target).parent().parent().find(".submenu > ul");
+                        let hasSubmenu = topMenuItemSubMenu.children().length > 0 ? true : false;
+                        // console.log("$(e):",$(e.target), $(e.target).parent(),  topMenuItemSubMenu, topMenuItemSubMenu.children(), hasSubmenu);
+                        if ($(window).width() < 525 && hasSubmenu) {
+                            e.preventDefault();
+                            $(e.target).parent().next().toggleClass("force-active");
+                        }
+
+                    });
+
+
                     // A-->B
                     topMenuItem.on({
-                        mouseover: function (e) {
-                            // $(this).css("color", "#8d131c");
-                            if ($(this).parent().find(".submenu ul").children().length) {
-                                topMenuIsHoverd = true;
-                                topmenu.addClass("nav-background-grey");
-                                sections.css({
-                                    "background-color": "rgba(255, 255, 255, 0.95)",
-                                    "border-bottom": "1px solid grey"
-                                });
-                                menuInfo.removeClass("active");
-                                menuInfoCover.css("display", "block");
-                                // menuInfoCover.animate({height: "270px"}, 500);
-                                $(this).next().addClass("active");
-                            } else {
-                                topMenuIsHoverd = false;
-                                sections.css("border-bottom", "none");
-                                if ($(document).scrollTop() <= 30) {
-                                    topmenu.removeClass("nav-background-grey");
-                                    sections.css("background-color", "rgba(255,255,255, 0)");
-                                }
 
-                                menuInfoCover.css("display", "none");
-                                // menuInfoCover.animate({height: "0"}, 500);
-                                menuInfo.removeClass("active");
+                        mouseover: function (e) {
+                            if ($(window).width() > 525) {
+                                // $(this).css("color", "#8d131c");
+                                if ($(this).parent().find(".submenu ul").children().length) {
+                                    topMenuIsHoverd = true;
+                                    topmenu.addClass("nav-background-grey");
+                                    sections.css({
+                                        "background-color": "rgba(255, 255, 255, 0.95)",
+                                        "border-bottom": "1px solid grey"
+                                    });
+                                    menuInfo.removeClass("active");
+                                    menuInfoCover.css("display", "block");
+                                    // menuInfoCover.animate({height: "270px"}, 500);
+                                    $(this).next().addClass("active");
+                                } else {
+                                    topMenuIsHoverd = false;
+                                    sections.css("border-bottom", "none");
+                                    if ($(document).scrollTop() <= 30) {
+                                        topmenu.removeClass("nav-background-grey");
+                                        sections.css("background-color", "rgba(255,255,255, 0)");
+                                    }
+
+                                    menuInfoCover.css("display", "none");
+                                    // menuInfoCover.animate({height: "0"}, 500);
+                                    menuInfo.removeClass("active");
+                                }
                             }
                         }
-                    });
+                    })
+                    ;
                     // B-->A
                     menuInfoCover.on({
                         mouseleave: function (e) {

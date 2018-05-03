@@ -138,7 +138,7 @@
                     },
                     success: function (res) {
                         console.log("ajax ok");
-                        console.log(res, page);
+                        // console.log(res, page);
                         display(res, page);
                     },
                     error: function (jqXHR, textstatus, errorThrown) {
@@ -201,13 +201,14 @@
                             }
                             $(fileContainer[index]).html(resHtml);
                             $(prodName[index]).text(dataPName);
+                            console.log("dot excuted");
                             $(prodName[index]).dotdotdot();
-                            console.log("faq[index]:", faq[index]);
+                            // console.log("faq[index]:", faq[index]);
                             $(faq[index]).attr("href", dataUrl + "#faq");
                             $(manual[index]).attr("href", dataUrl + "#download_files");
                             // $(prodDetails[index]).attr("href", dataUrl);
                             $(prodDetails[index]).click(function () {
-                                console.log("dataUrl: ", dataUrl);
+                                // console.log("dataUrl: ", dataUrl);
                                 location.href = dataUrl;
                             });
                         } else {
