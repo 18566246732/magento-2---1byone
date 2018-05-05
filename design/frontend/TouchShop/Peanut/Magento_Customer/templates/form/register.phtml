@@ -303,12 +303,13 @@
         $(function () {
             var mainCon = $("main#maincontent"),
                 nameInputs = $(".fieldset.create.info input"),
-                firstname = $("#firstname"),
-                lastname = $("#lastname");
+                firstname = $(".control #firstname"),
+                lastname = $(".control #lastname");
 
 
-            firstname.val("Customer").attr("hidden", "hidden");
-            lastname.val("touch1byone").attr("hidden", "hidden");
+            firstname.val("Customer");
+            lastname.val("touch1byone");
+            console.log(firstname.val(), lastname.val());
             mainCon.css("background-image", "url("+ "<?= $block->getBaseUrl() . 'pub/media/wysiwyg/account/account_back.jpg'?>" + ")");
             nameInputs.attr("hidden", "hidden");
         })
