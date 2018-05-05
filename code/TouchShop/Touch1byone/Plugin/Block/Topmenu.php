@@ -108,7 +108,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
             [
                 'label' => 'Product',
                 'url' => $this->getProductsUrl(),
-                'image_url' => '',
+                'image_url' => $this->getMediaUrl('product_top.png'),
                 'submenus' => [
                     [[
                         'label' => 'TV Accessories',
@@ -179,8 +179,8 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                         'image_url' => $this->getMediaUrl('blog_top.png'),
                     ], [
                         "label" => 'Customer Story',
-                        'url' => $this->getUrl('testimony'),
-                        'image_url' => $this->getMediaUrl('testimony_top.png'),
+                        'url' => $this->getUrl('customer-story'),
+                        'image_url' => $this->getMediaUrl('customer_story_top.png'),
 
                     ], [
                         "label" => 'Super User',
@@ -196,7 +196,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     [[
                         "label" => 'FAQ & Downloads',
                         'url' => $this->getUrl('support'),
-                        'image_url' => $this->getMediaUrl('support_top.png'),
+                        'image_url' => $this->getMediaUrl('downloads_top.png'),
                     ], [
                         "label" => 'Product Warranty',
                         'url' => $this->getUrl('warranty'),
