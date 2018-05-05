@@ -59,11 +59,21 @@
             <?php if ($block->hasLogin()):?>
             $(".user").on({
                 mouseover: function () {
-                    $(".user-submenu").css("display", "block");
-                    $("#searchBtn pseudo").css("color", "#817a7a");
+                    if ($(window).width() > 525) {
+                        $(".user-submenu").css("display", "block");
+                        $("#searchBtn pseudo").css("color", "#817a7a");
+                    }
                 },
                 mouseout: function () {
-                    $(".user-submenu").css("display", "none");
+                    if ($(window).width() > 525) {
+                        $(".user-submenu").css("display", "none");
+                    }
+                },
+                click: function () {
+                    if ($(window).width() <= 525) {
+                        $(".user-submenu").css("display", "block");
+                        $("#searchBtn pseudo").css("color", "#817a7a");
+                    }
                 }
             });
             <?php else:?>

@@ -37,6 +37,14 @@ main#maincontent {
     margin-top: 40px;
 }
 
+.account-container .field-name-firstname,.sign-panel .field-name-lastname {
+    width: 45%;
+}
+
+.account-container .field-name-firstname {
+    padding-right: 10%;
+}
+
 @media screen and (max-width: 525px){
     #maincontent {
         background-image: none !important;

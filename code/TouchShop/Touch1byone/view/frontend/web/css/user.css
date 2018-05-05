@@ -282,13 +282,7 @@ small.copyright {
     flex-wrap: wrap;
 }
 
- .field-name-firstname,.sign-panel .field-name-lastname {
-    width: 45%;
-}
 
- .field-name-firstname {
-    padding-right: 10%;
-}
 
  .actions-toolbar::before {
     content: none;
@@ -338,7 +332,7 @@ small.copyright {
     color: #2e99ff;
 }
 
-.fieldset.create.info label{
+.fieldset.create.info label {
     display: none;
 }
 
@@ -391,7 +385,7 @@ small.copyright {
     font-size: 25px;
 }
 
-.field.field-name-firstname.required, .field.field-name-lastname.required {
+.account-container .field.field-name-firstname.required,.account-container .field.field-name-lastname.required {
     height: 0;
     margin: 0;
 }
@@ -465,6 +459,10 @@ small.copyright {
 
     .blank {
         height: 530px;
+    }
+
+    .user-submenu {
+        right: 0;
     }
 
 }
