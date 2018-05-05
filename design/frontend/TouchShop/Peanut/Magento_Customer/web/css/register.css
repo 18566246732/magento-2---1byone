@@ -6,7 +6,6 @@ main#maincontent {
 .account-container {
     position: relative;
     background-color: white;
-    height: 600px;
     width: 600px;
     margin: 0 auto;
     margin-top: 50px;
@@ -16,7 +15,6 @@ main#maincontent {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 0px 10px 3px #fff;
 }
 
 #signIn a:hover {
@@ -27,8 +25,16 @@ main#maincontent {
     color: grey;
 }
 
+.page.messages {
+    margin-top: 30px;
+}
+
 .block-title.sign-up-title strong {
     font-weight: 500;
+}
+
+.block-title.sign-up-title {
+    margin-top: 40px;
 }
 
 @media screen and (max-width: 525px){

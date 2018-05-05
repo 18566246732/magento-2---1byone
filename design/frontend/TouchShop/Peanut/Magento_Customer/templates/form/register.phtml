@@ -19,6 +19,7 @@
       method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */
     $block->getBlockHtml('formkey'); ?>
+    <?= $block->getChildHtml('page.messages.container') ?>
     <div class="block-title sign-up-title"><strong>Sign Up</strong></div>
 
     <!--                add third party login plugin-->

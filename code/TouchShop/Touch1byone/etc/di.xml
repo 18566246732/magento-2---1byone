@@ -18,7 +18,6 @@
     <preference for="Magento\Customer\Block\Form\Register" type="TouchShop\Touch1byone\Block\Register"/>
     <preference for="Magento\Customer\Block\Account\Forgotpassword" type="TouchShop\Touch1byone\Block\Forgotpassword"/>
     <preference for="Mageplaza\Blog\Block\Post\Listpost" type="TouchShop\Touch1byone\Block\Listpost"/>
-    <preference for="Magento\Customer\Controller\Account\LoginPost" type="TouchShop\Touch1byone\Block\LoginPost"/>
 
     <type name="Mageplaza\Blog\Block\Post\RelatedPost">
         <plugin name="modify_title_to_related" type="TouchShop\Touch1byone\Plugin\Block\ModifyRelatedTitle" sortOrder="30"/>
