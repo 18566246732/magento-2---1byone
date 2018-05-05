@@ -9,6 +9,5 @@
     <body>
         <referenceContainer name="sidebar.additional" remove="true"/>
         <referenceContainer name="sidebar.main" remove="true"/>
-        <update handle="1column"/>
     </body>
 </page>

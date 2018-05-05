@@ -11,6 +11,10 @@
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
+
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Customer::css/register.css")?>">
+<div class="account-container">
+
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
       method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */
@@ -222,10 +226,12 @@
     </div>
     <div class="actions-toolbar">
         <div class="primary">
-            <button id="signIn"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button>
+            <a href="<?= $block->escapeUrl($block->getLoginUrl()) ?>"><button id="signIn" type="button"><?= $block->escapeHtml(__('Sign In')) ?></button></a>
         </div>
     </div>
 </form>
+
+</div>
 <script>
     require([
         'jquery',
@@ -289,4 +295,21 @@
         }
     }
 
+</script>
+
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            var mainCon = $("main#maincontent"),
+                nameInputs = $(".fieldset.create.info input"),
+                firstname = $("#firstname"),
+                lastname = $("#lastname");
+
+
+            firstname.val("Customer").attr("hidden", "hidden");
+            lastname.val("touch1byone").attr("hidden", "hidden");
+            mainCon.css("background-image", "url("+ "<?= $block->getBaseUrl() . 'pub/media/wysiwyg/account/account_back.jpg'?>" + ")");
+            nameInputs.attr("hidden", "hidden");
+        })
+    })
 </script>

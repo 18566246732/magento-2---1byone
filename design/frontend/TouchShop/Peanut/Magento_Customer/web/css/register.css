@@ -1,0 +1,52 @@
+main#maincontent {
+    max-width: 1920px;
+    background-size: cover;
+}
+
+.account-container {
+    position: relative;
+    background-color: white;
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    color: grey;
+    /*padding: 40px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 3px #fff;
+}
+
+#signIn a:hover {
+    text-decoration: none;
+}
+
+#signIn a {
+    color: grey;
+}
+
+.block-title.sign-up-title strong {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 525px){
+    #maincontent {
+        background-image: none !important;
+        padding: 10px;
+    }
+
+    .account-container {
+        width: initial;
+        display: block;
+        margin-top: 10px;
+        height: 500px;
+    }
+
+    .form.password.forget, .form.create.account {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+}

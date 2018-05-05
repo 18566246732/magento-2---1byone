@@ -17,3 +17,41 @@
 .mpblog-post-index.page-layout-2columns-right .sidebar-main {
     margin-top: 270px;
 }
+
+@media screen and (max-width: 525px) {
+    .blog-gallery {
+        position: initial;
+        height: initial;
+        /*transform: scale(2);*/
+        /*transform-origin: top;*/
+        margin-bottom: 20px ;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    .columns .post-list-content {
+        margin-top: 0;
+    }
+
+    .blog-gallery img {
+        height: 150px;
+        max-width: initial;
+        transform: translateX(-30%);
+    }
+
+    .mpblog-post-index.page-layout-2columns-right .sidebar-main {
+        margin-top: 0;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .post-item-wraper {
+        margin: 0 10px;
+    }
+
+    .product.data.items {
+        margin: 20px 0;
+    }
+
+}

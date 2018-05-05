@@ -272,6 +272,10 @@
     list-style: none;
 }
 
+.product-category li {
+    margin: 10px;
+}
+
 @media screen and (max-width: 1170px) {
     .product-category .hr {
         display: none;

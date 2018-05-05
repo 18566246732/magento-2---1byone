@@ -194,3 +194,48 @@ div.form-action-btn button:hover {
     color: red;
     display: none;
 }
+
+@media screen and (max-width: 525px){
+
+    .refund-container {
+        width: initial;
+        margin-top: 0;
+    }
+
+    .refund-container img {
+        transform: scale(2);
+    }
+
+    .refund-container h2 {
+        position: initial;
+        margin: 15px auto;
+        font-size: 12px;
+    }
+
+    .refund-container .refund-blank {
+        display: none;
+    }
+
+    .refund-container .refund-back {
+        top: 34px;
+        height: initial;
+        position: initial;
+    }
+
+
+    .refund-container .refund-back > div:nth-child(3){
+        /*margin-top: 300px;*/
+    }
+
+    .refund-container .refund-back h2 {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 0;
+        padding: 20px 0;
+        font-weight: bold;
+    }
+
+    .refund-container .refund-form {
+        width: 100%;
+    }
+}

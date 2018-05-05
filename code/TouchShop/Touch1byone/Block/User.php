@@ -17,13 +17,20 @@ class User extends Template
     /** @var SessionFactory */
     private $sessionFactory;
 
+    /**
+     * @var \Magento\Customer\Model\Url
+     */
+    private $_customerUrl;
+
 
     public function __construct(
         SessionFactory $session,
         Template\Context $context,
+        \Magento\Customer\Model\Url $customerUrl,
         array $data = [])
     {
         $this->sessionFactory = $session;
+        $this->_customerUrl = $customerUrl;
         parent::__construct($context, $data);
     }
 
@@ -37,5 +44,11 @@ class User extends Template
     {
         return $this->sessionFactory->create()->isLoggedIn();
     }
+
+    public function getLoginUrl()
+    {
+        return $this->_customerUrl->getLoginUrl();
+    }
+
 
 }

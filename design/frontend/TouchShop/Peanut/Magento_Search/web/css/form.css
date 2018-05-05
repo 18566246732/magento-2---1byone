@@ -61,3 +61,17 @@ div.block.block-search {
 .search-autocomplete ul:not(:empty) {
     color: #333;
 }
+
+@media screen and (max-width: 525px){
+    .block-search .label:hover:before {
+        color: white !important;
+    }
+
+    .control #search {
+        width: 190px;
+    }
+
+    .block-search .label.active {
+        display: none;
+    }
+}

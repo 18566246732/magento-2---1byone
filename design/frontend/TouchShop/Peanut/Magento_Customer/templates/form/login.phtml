@@ -9,7 +9,8 @@
 /** @var \Magento\Customer\Block\Form\Login $block */
 ?>
 
-<!--<link rel="stylesheet" href="--><?php //echo $block->getViewFileUrl("")?><!--">-->
+<link rel="stylesheet" href="<?php echo $block->getViewFileUrl("Magento_Customer::css/login.css")?>">
+
 <div class="block block-customer-login">
     <div class="block-title" style="text-align: center; font-size: 25px; padding: 20px">
         <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Sign In')) ?></strong>
@@ -37,7 +38,7 @@
                         <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                     </div>
                     <div class="secondary">
-                        <div class="forgot-pwd"><a href="###">Forget your password ?</a></div>
+                        <div class="forgot-pwd"><a href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>">Forget your password ?</a></div>
                         <div class="remember-me"><input type="checkbox" />Remember me</div>
                     </div>
 
@@ -50,7 +51,7 @@
                     <hr />
                     <p>or</p>
                 </div>
-                <div><button id="signUp"><span><?= $block->escapeHtml(__('Create an account')) ?></span></button></div>
+                <div><a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>"><button id="signUp" type="button"><?= $block->escapeHtml(__('Create an account')) ?></button></a></div>
             </fieldset>
 
             <!--                add third party login plugin-->
@@ -65,3 +66,13 @@
         </form>
     </div>
 </div>
+
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            var mainCon = $("main#maincontent");
+
+            mainCon.css("background-image", "url("+ "<?= $block->getBaseUrl() . 'pub/media/wysiwyg/account/account_back.jpg'?>" + ")");
+        })
+    })
+</script>

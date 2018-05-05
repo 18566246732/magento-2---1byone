@@ -2,7 +2,7 @@
     background-color: white;
     width: 1149px;
     margin: 10px auto;
-    padding: 20px;
+    padding: 10px;
     color: grey;
     margin-top: 15vw;
     margin-bottom: -40px;
@@ -43,4 +43,16 @@
     top: 5vw;
     right: 22vw;
     font-size: 2vw;
+}
+
+@media screen and (max-width: 525px){
+    .warranty .news_detail > p:first-child {
+        text-align: center;
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
+
+    .warranty .news_detail > p:first-child strong span{
+        font-size: 16px !important;
+    }
 }

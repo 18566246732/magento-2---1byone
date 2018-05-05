@@ -15,4 +15,11 @@ class Login extends \Magento\Customer\Block\Form\Login
     {
         return $this;
     }
+
+    public function getCreateAccountUrl()
+    {
+
+        return $this->_customerUrl->getRegisterUrl();
+
+    }
 }

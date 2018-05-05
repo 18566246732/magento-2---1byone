@@ -7,7 +7,7 @@
 .feedback-container {
     background-color: white;
     margin: 10px auto;
-    padding: 20px;
+    padding: 10px;
     color: grey;
     margin-top: 15vw;
     margin-bottom: -40px;
@@ -52,7 +52,7 @@
     left: 20vw;
 }
 
-label {
+.feedback-container label {
     display: block;
     margin-bottom: 8px;
 }
@@ -126,4 +126,37 @@ div.form-action-btn button:hover {
 .hint {
     display: none;
     color: red;
+}
+
+@media screen and (max-width: 525px) {
+    .feedback-container {
+        margin-top: 0;
+        /*padding: 0;*/
+    }
+
+    .feedback-container .feedback-form {
+        width: 100%;
+    }
+
+    .feedback-container .feedback-blank {
+        display: none;
+    }
+
+    .feedback-container .feedback-back {
+        position: initial;
+    }
+
+    .feedback-back h2 {
+        position: initial;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 0;
+        padding: 20px 0;
+    }
+
+    .feedback-back img {
+        transform: scale(2);
+    }
+
 }

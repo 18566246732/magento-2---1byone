@@ -33,7 +33,6 @@ div.form-action-btn {
     justify-content: flex-end;
 }
 
-
 div.form-action-btn button {
     border: none;
     border-radius: 16px;
@@ -69,7 +68,7 @@ div.input-checkbox-container div {
     display: none;
 }
 
-#powerUserEmail:focus ,#powerUserPwd1:focus ,#powerUserPwd2:focus {
+#powerUserEmail:focus, #powerUserPwd1:focus, #powerUserPwd2:focus {
     box-shadow: 0 0 3px 1px #0a6c9f;
 }
 
@@ -97,4 +96,31 @@ div.input-checkbox-container div {
 .hint {
     color: red;
     display: none;
+}
+
+@media screen and (max-width: 525px) {
+    .main .blank {
+        display: none;
+    }
+
+    .main .power-user-banner {
+        position: initial;
+    }
+
+    .main .power-user-banner img {
+        max-width: initial;
+        height: 150px;
+        width: auto;
+    }
+
+    .main form.power-user-form {
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .main .form-action-control-container {
+        width: 100%;
+        padding-left: 0;
+    }
 }

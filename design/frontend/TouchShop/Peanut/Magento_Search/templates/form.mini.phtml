@@ -71,17 +71,29 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
         require(['jquery', 'jquery/ui'], function ($) {
             var btn = $("#searchBtn"),
                 search = $("div.block.block-search"),
-                input = $("#search");
+                input = $("#search"),
+                searchBtn = $("#searchBtn .label.active");
             search.on({
                 mouseover: function (e) {
-                    search.css({"width": "250px", "padding-left": "15px"});
-                    input.css("visibility", "visible");
-                    input.focus();
-                    $("#searchBtn").addClass("changeBefore").removeAttr("disabled");
+                    if ($(window).width() > 525) {
+                        search.css({"width": "250px", "padding-left": "15px"});
+                        input.css("visibility", "visible");
+                        input.focus();
+                        $("#searchBtn").addClass("changeBefore").removeAttr("disabled");
+                    }
+                },
+                click: function (e) {
+                    if ($(window).width() <= 525) {
+                        search.css({"width": "250px", "padding-left": "15px"});
+                        input.off("blur");
+                        input.css("visibility", "visible");
+                        input.focus();
+                        $("#searchBtn").addClass("changeBefore").removeAttr("disabled");
+                    }
                 }
             });
-            input.keyup(function(e){
-                    $("#searchBtn").addClass("changeBefore").removeAttr("disabled");
+            input.keyup(function (e) {
+                $("#searchBtn").addClass("changeBefore").removeAttr("disabled");
             });
         })
     })()

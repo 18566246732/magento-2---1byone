@@ -273,6 +273,21 @@ div.flex-item .post-cover li a {
 }
 
 
-@media screen {
+@media screen and (max-width: 525px){
+    .columns div.flex-item {
+        width: 100%;
+        min-width: initial;
+    }
 
+    .columns div.flex-item .post h3 {
+        width: 180px;
+    }
+
+    .columns div.flex-item .post img {
+        height: 100px;
+    }
+
+    div.flex-item .post {
+        margin: 10px;
+    }
 }

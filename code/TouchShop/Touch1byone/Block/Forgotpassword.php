@@ -2,14 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: baozi
- * Date: 18-3-28
- * Time: 下午5:35
+ * Date: 18-5-5
+ * Time: 上午10:19
  */
 
 namespace TouchShop\Touch1byone\Block;
 
 
-class Register extends \Magento\Customer\Block\Form\Register
+class Forgotpassword extends \Magento\Customer\Block\Account\Forgotpassword
 {
     protected function _prepareLayout()
     {
@@ -18,6 +18,6 @@ class Register extends \Magento\Customer\Block\Form\Register
 
     public function getLoginUrl()
     {
-        return $this->_customerUrl->getLoginUrl();
+        return $this->customerUrl->getLoginUrl();
     }
 }
