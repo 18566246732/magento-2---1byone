@@ -164,11 +164,11 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     ]
                 ]
             ], [
-                "label" => 'Deals',
-                'url' => $this->getUrl('sales'),
-                'image_url' => $this->getMediaUrl('deals_top.png'),
-                'submenus' => [[]]
-            ], [
+//                "label" => 'Deals',
+//                'url' => $this->getUrl('sales'),
+//                'image_url' => $this->getMediaUrl('deals_top.png'),
+//                'submenus' => [[]]
+//            ], [
                 'label' => 'Community',
                 'url' => $this->getUrl('blog.html'),
                 'image_url' => $this->getMediaUrl('brand_top.png'),
