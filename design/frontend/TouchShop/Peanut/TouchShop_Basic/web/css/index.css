@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+#maincontent.page-main {
+    max-width: 1200px;
+}
+
 /*header*/
 
 /*div.section-items.nav-sections-items:nth-child(2) {*/
@@ -28,7 +32,7 @@ div.sections.nav-sections {
 
 div.section-items.nav-sections-items {
     margin-top: 20px;
-    max-width: 1280px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -62,6 +66,11 @@ div.panel.header {
 .greet.welcome span {
     color: white;
     font-size: 12px;
+}
+
+
+.page-footer .footer.content {
+    max-width: 1200px;
 }
 
 @media screen and (max-width: 767px) {

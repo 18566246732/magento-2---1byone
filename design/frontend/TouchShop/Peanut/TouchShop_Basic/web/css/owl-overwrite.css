@@ -109,13 +109,18 @@
 
 .owl-img-addon {
     position: absolute;
-    left: 13vw;
+    left: 18vw;
     top: 19vw;
     color: white;
 }
 
+.owl-img-addon h1 {
+    margin-bottom: 1.2vw;
+}
+
 .owl-img-addon p {
     font-size: .8vw;
+    margin-bottom: 1.2vw;
 }
 
 .owl-img-addon button {

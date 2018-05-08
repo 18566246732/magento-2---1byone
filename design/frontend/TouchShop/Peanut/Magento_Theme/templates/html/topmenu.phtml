@@ -40,7 +40,8 @@ $topmenus = $block->getTopMenus();
                         <?php endforeach; ?>
                     </div>
 
-                    <div class="menu-image" style="background-image: url('<?= $menu['image_url'] ?>')">
+                    <div class="menu-image">
+                        <img class="menu-tag-img" style="display: block;height: 180px;" src="<?= $menu['image_url'] ?>" alt="">
                     </div>
 
                     <?php if (isset($menu['additions'])): ?>
@@ -162,7 +163,7 @@ $topmenus = $block->getTopMenus();
                     });
 
                     submenu.hover(function () {
-                        menuImg.css("background-image", "url(" + $(this).attr("data-src") + ")");
+                        $('.menu-tag-img').attr('src', $(this).attr("data-src"))
                     });
 
 
