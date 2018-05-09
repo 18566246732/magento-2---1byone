@@ -124,6 +124,7 @@ ul.top-menu {
 
 .Brand-container .Brand-content {
     overflow: hidden;
+    min-width: 1000px;
 }
 
 .Brand-container .Brand-content a {

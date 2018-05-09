@@ -229,6 +229,7 @@ div.panel.header {
     .menu-info .Brand-container .Brand-content {
         display: flex;
         flex-wrap: wrap;
+        min-width: initial;
     }
 
     .menu-info .Brand-container .Brand-content a {

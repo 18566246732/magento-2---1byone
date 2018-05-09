@@ -163,7 +163,7 @@ div.form-action-btn button:hover {
     width: 1149px;
     margin: 10px auto;
     padding: 20px;
-    color: grey;
+    color: #444444;
     margin-top: 15vw;
     margin-bottom: -40px;
     padding-bottom: 60px;
@@ -252,4 +252,8 @@ div.form-action-btn button:hover {
     .refund-container .refund-form {
         width: 100%;
     }
+}
+
+.refund-des p {
+    color: ;
 }
