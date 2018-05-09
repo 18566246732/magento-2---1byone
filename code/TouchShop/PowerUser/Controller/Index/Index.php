@@ -71,6 +71,7 @@ class Index extends Action
                     }
                     $powerUser->setInterests(PowerUserHelper::resolveInterestsToString($post['interests']))
                         ->setEmail($post['email'])
+                        ->setCountry($post['country'])
                         ->setCustomerId($this->session->getCustomerId())
                         ->setStoreId($this->storeManger->getStore()->getId());
                     $this->powerUserResourceModel->save($powerUser);

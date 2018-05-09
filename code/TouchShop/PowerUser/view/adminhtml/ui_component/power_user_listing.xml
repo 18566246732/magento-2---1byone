@@ -109,6 +109,12 @@
                 <label>Email</label>
             </settings>
         </column>
+        <column name="country">
+            <settings>
+                <filter>text</filter>
+                <label>Country</label>
+            </settings>
+        </column>
     </columns>
 </listing>
 

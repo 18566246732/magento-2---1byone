@@ -53,6 +53,12 @@ class InstallSchema implements InstallSchemaInterface
                     ['nullable' => true],
                     'Interests'
                 )->addColumn(
+                    'country',
+                    Table::TYPE_TEXT,
+                    64,
+                    ['nullable' => true],
+                    'Country'
+                )->addColumn(
                     'customer_id',
                     Table::TYPE_INTEGER,
                     null,
