@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="poweruser" frontName="power-user">
+        <route id="poweruser" frontName="super-user">
             <module name="TouchShop_PowerUser"/>
         </route>
     </router>
