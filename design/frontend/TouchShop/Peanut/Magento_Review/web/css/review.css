@@ -175,4 +175,8 @@ p.reports-content {
     max-lines: 3;
 }
 
+.swatch-option {
+    height: initial !important;
+}
+
 
