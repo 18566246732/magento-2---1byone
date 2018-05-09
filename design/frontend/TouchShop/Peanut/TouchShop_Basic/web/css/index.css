@@ -643,7 +643,7 @@ div.page-cards-title h1 {
 
 .v-cards {
     width: 100%;
-    max-height: 367px;
+    /*max-height: 350px;*/
 }
 
 .v-cards:last-child {
@@ -658,12 +658,14 @@ div.page-cards-title h1 {
     */
     /*height: 100%;*/
     margin-bottom: 1%;
+    max-height: 350px;
+    overflow: hidden;
 }
 
 .page-v-cards .v-cards .v-card:first-child {
-    width: 33.833333%;
+    width: 33.333333%;
     overflow: hidden;
-    max-height: 367px;
+    max-height: 350px;
 }
 
 .page-v-cards .v-cards .v-card:first-child img {
@@ -673,9 +675,9 @@ div.page-cards-title h1 {
 }
 
 .page-v-cards .v-cards .v-card:last-child {
-    width: 64.416666%;
+    width: 64.666666%;
     overflow: hidden;
-    max-height: 367px;
+    max-height: 350px;
 }
 
 .page-v-cards .v-cards .v-card:last-child img {
