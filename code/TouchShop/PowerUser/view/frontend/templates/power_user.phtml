@@ -11,16 +11,26 @@
     <img src="<?php echo $block->getBaseImgUrl('banner_superuser.jpg') ?>" alt="">
 </div>
 <form action="<?php echo $block->getFormAction() ?>" method="post" class="power-user-form">
-    <div class="input-container-title">We'd love to learn more about you so that we can offer products that are most
-        relaevant to your interests.
+    <h2>Make 1byone better. Make life better</h2>
+    <div class="input-container-title"><p>At 1byone,we create and develop products to make people's lives better, easier
+            and more fulfilling.We approach every detail from a user's perspective to improve our technology, our
+            products and our service.</p>
+        <p>For that, we start the Super User programs to learn more about people's idea and needs about 1byone
+            product.</p>
+        <p>Join Super Users, you get free or exclusive discounts, loyalty rewards and other special benefits from
+            1byone.</p>
     </div>
+
+    <p class="power-user-input-container-title">The fields marked <span>*</span> are required.</p>
     <div class="input-container">
-        <label for="email">I am interested in:</label>
+        <label for="email">I am interested in </label>
         <div class="input-container input-container-full">
             <div class="input-checkbox-container">
                 <div><input type="checkbox" name="interests[]" value="TV Accessories"> TV Accessories</div>
                 <div><input type="checkbox" name="interests[]" value="Home Decoration"> Home Decoration</div>
-                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting & Effects</div>
+                <div><input type="checkbox" name="interests[]" value="Stage Lighting & Effects"> Stage Lighting &
+                    Effects
+                </div>
                 <div><input type="checkbox" name="interests[]" value="Home Security"> Home Security</div>
                 <div><input type="checkbox" name="interests[]" value="Accessories"> Accessories</div>
                 <div><input type="checkbox" name="interests[]" value="Power"> Power</div>
@@ -28,12 +38,44 @@
                 <div><input type="checkbox" name="interests[]" value="Audio & Sounds"> Audio & Sounds</div>
             </div>
         </div>
+
+        <label for="email">Country selected </label>
+        <div class="input-container input-container-full">
+            <div class="input-radio-container">
+                <div><input type="radio" name="country" value="United States" checked="checked"> United States</div>
+                <div><input type="radio" name="country" value="Canada"> Canada</div>
+                <div><input type="radio" name="country" value="United Kingdom"> United Kingdom</div>
+                <div><input type="radio" name="country" value="France"> France</div>
+                <div><input type="radio" name="country" value="Germany"> Germany</div>
+                <div><input type="radio" name="country" value="Spain"> Spain</div>
+                <div><input type="radio" name="country" value="Italy"> Italy</div>
+            </div>
+        </div>
     </div>
 
-    <div class="input-container-title input-container-title-noBold">The fields marked <span>*</span> are required.</div>
+    <div class="power-user-description">
+        <h2>Q:As a brand-new one, why do I join Super User?</h2>
+        <p>A:Super User will receive products from 1byone.
+            Super User will have excusive discount codes and rewards.
+            Except these,
+            Super User usually will be the first one to know more about the latest product.
+            Super User may change products of 1byone.</p>
+
+        <h2>Q:Who should apply as a Super User?</h2>
+        <p>A: Everyone interested in 1byone and active in social media can apply to be a Super User.Some basic
+            requirements for application:
+            Social media— Minimum 20K followers and active engagement
+            YouTube Channel—Minimum 1K subscribers and high-quality content
+            Website / Forum / Blog— Minimum 1K visits daily</p>
+
+        <h2>Q:I have a problem of Super User application?</h2>
+        <p>A:If you have any problems with Super User, please send an email to ushelp@1byone.com and we'll reply back to
+            you within 3 work days.</p>
+    </div>
+
     <div class="input-container-title">Power User Information</div>
 
-    <div class="input-container">
+    <div class="input-container input-control-group">
         <div class="form-action-control-container">
             <div class="control1">
                 <label for="text">Email address <span>*</span>
@@ -72,7 +114,7 @@
             let form = $(".power-user-form");
             let btn = $(".form-action-btn button[type='button']");
             hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
-            if(data.vip == 2) {
+            if (data.vip == 2) {
                 // interests
                 inputCheckBox.each(function (index, e) {
                     if (data.interests.indexOf($(e).val()) != -1) {

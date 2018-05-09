@@ -99,8 +99,8 @@ ul.top-menu {
 
 .menu-image {
     background-size: cover;
-    width: 300px;
-    height: 180px;
+    /*width: 300px;*/
+    height: 140px;
 }
 
 .Brand-container {

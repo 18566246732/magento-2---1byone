@@ -619,6 +619,7 @@ div.page-cards-title h1 {
     box-shadow: none;
     height: 50px;
     width: 60px;
+    border-radius: 0;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     right: 0;
@@ -642,7 +643,7 @@ div.page-cards-title h1 {
 
 .v-cards {
     width: 100%;
-    height: 48%;
+    max-height: 367px;
 }
 
 .v-cards:last-child {
@@ -667,18 +668,18 @@ div.page-cards-title h1 {
 .page-v-cards .v-cards .v-card:first-child img {
     width: 100%;
     height: auto;
-    transform: scale(1.1);
+    /*transform: scale(1.1);*/
 }
 
 .page-v-cards .v-cards .v-card:last-child {
-    width: 65%;
+    max-width: 773px;
     overflow: hidden;
 }
 
 .page-v-cards .v-cards .v-card:last-child img {
     width: 100%;
     height: auto;
-    transform: scale(1.1);
+    /*transform: scale(1.1);*/
 }
 
 .imgs-gallery {
