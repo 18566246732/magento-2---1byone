@@ -9,6 +9,7 @@
 <div class="blank"></div>
 <div class="power-user-banner">
     <img src="<?php echo $block->getBaseImgUrl('banner_superuser.jpg') ?>" alt="">
+    <h2>Super User</h2>
 </div>
 <form action="<?php echo $block->getFormAction() ?>" method="post" class="power-user-form">
     <h2>Make 1byone better. Make life better</h2>
@@ -72,7 +73,7 @@
             you within 3 work days.</p>
     </div>
 
-    <div class="input-container-title">Super User Information</div>
+    <div class="input-container-title form-title">Super User Information</div>
 
     <div class="input-container input-control-group">
         <div class="form-action-control-container">
@@ -109,6 +110,7 @@
         require(['jquery', 'ajax', 'bindQuickAutoLogin', 'TouchShop_Touch1byone/js/formValidate'], function ($, ajax, bindQuickAutoLogin, formValidater) {
             let data = <?= $block->getAjax()?>;
             let inputCheckBox = $(".input-checkbox-container input");
+            let radioBoxes = $(".input-radio-container input");
             let hint = $(".power-user-hint");
             let form = $(".power-user-form");
             let btn = $(".form-action-btn button[type='button']");
@@ -120,6 +122,16 @@
                         $(e).attr("checked", "checked");
                     }
                 });
+                console.log(data.country);
+                radioBoxes.each(function (index, e) {
+                    $(e).attr("checked", "");
+                    if (data.country == $(e).val()) {
+                        $(e).attr("checked", "checked");
+                        return false;
+                    }
+                })
+
+
             }
 
             btn.click(function () {
@@ -148,7 +160,7 @@
                 inputCheckedContainer.each(function (index, e) {
                     interestsArr.push(e.value);
                 });
-                let country = $("input[name='country']").val();
+                let country = $("input[name='country']:checked").val();
                 console.log(country);
                 let param = {
                     email: email,

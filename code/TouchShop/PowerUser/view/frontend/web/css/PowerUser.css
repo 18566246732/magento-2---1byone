@@ -17,7 +17,7 @@ form.power-user-form {
 }
 
 form.power-user-form > h2 {
-    margin-top: 40px;
+    padding-top: 50px;
     margin-bottom: 20px;
     color: black;
     font-weight: bold;
@@ -52,11 +52,23 @@ form.power-user-form .input-container.input-control-group {
     width: 100%;
 }
 
+.power-user-banner h2 {
+    font-size: 24px;
+    position: absolute;
+    top: 2vw;
+}
+
 .input-container-title {
     margin-top: 20px;
     color: black;
     font-size: 16px;
     font-weight: normal;
+}
+
+.input-container-title.form-title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0;
 }
 
 .input-container-title:last-child {
@@ -158,6 +170,7 @@ div.input-checkbox-container div {
 .power-user-description h2 {
     font-size: 16px;
     color: black;
+    font-weight: 400;
 }
 
 @media screen and (max-width: 525px) {
