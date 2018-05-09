@@ -963,6 +963,10 @@ ul.footer.links {
     display: none;
 }
 
+.swatch-option {
+  height: initial !important;
+}
+
 /*search result*/
 
 .search.results .actions-secondary {
