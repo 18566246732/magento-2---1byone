@@ -11,9 +11,9 @@
 form.power-user-form {
     color: grey;
     margin-top: 270px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
 }
 
 form.power-user-form > h2 {
@@ -24,11 +24,16 @@ form.power-user-form > h2 {
 }
 
 form.power-user-form .input-container {
-    text-align: center;
+    /*text-align: center;*/
+}
+
+form.power-user-form .input-container.input-container-full {
+    margin-bottom: 0;
 }
 
 form.power-user-form .input-container.input-control-group {
     width: 50%;
+    margin: 0 auto;
 }
 
 .power-user-description h2 {
@@ -54,8 +59,12 @@ form.power-user-form .input-container.input-control-group {
     font-weight: normal;
 }
 
+.input-container-title:last-child {
+    text-align: center;
+}
+
 .input-container-title p {
-    text-indent: 25px;
+    /*text-indent: 25px;*/
     margin: 20px 0;
 }
 
@@ -126,18 +135,19 @@ div.input-checkbox-container div {
 }
 
 .input-radio-container {
-    padding-top: 10px;
+    /*padding-top: 10px;*/
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .input-radio-container div {
     display: flex;
     align-items: center;
+    margin: 20px 0;
 }
 
 .input-radio-container div:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .hint {

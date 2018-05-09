@@ -44,16 +44,17 @@
                     // dotsEach: true,
                 });
 
-                var allSpan = $(".owl-carousel.owl-theme span"),
-                    spanArr = allSpan.slice(2, 5),
+                var allSpan = $(".owl-carousel.owl-theme .owl-stage span"),
+                    spanArr = allSpan.slice(2, allSpan.length - 2),
                     navText = $(".top-menu li a"),
-                    owlImgNum = allSpan.length - 7 ,
+                    owlImgNum = allSpan.length - 4 ,
                     owlAddOn = $(".owl-img-addon");
 
+                console.log(allSpan, allSpan.length);
                 console.log("spanArr:", spanArr);
                 owlAddOn.each(function (index, e) {
                     $(e).css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
-                })
+                });
 
                     // change color every switch
                 console.log("owlImgNum:", owlImgNum);

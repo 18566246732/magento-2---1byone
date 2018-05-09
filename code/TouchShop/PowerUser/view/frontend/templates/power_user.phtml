@@ -21,7 +21,6 @@
             1byone.</p>
     </div>
 
-    <p class="power-user-input-container-title">The fields marked <span>*</span> are required.</p>
     <div class="input-container">
         <label for="email">I am interested in </label>
         <div class="input-container input-container-full">
@@ -54,26 +53,26 @@
     </div>
 
     <div class="power-user-description">
-        <h2>Q:As a brand-new one, why do I join Super User?</h2>
-        <p>A:Super User will receive products from 1byone.
+        <h2>Q: As a brand-new one, why do I join Super User?</h2>
+        <p>A: Super User will receive products from 1byone.
             Super User will have excusive discount codes and rewards.
             Except these,
             Super User usually will be the first one to know more about the latest product.
             Super User may change products of 1byone.</p>
 
-        <h2>Q:Who should apply as a Super User?</h2>
+        <h2>Q: Who should apply as a Super User?</h2>
         <p>A: Everyone interested in 1byone and active in social media can apply to be a Super User.Some basic
             requirements for application:
             Social media— Minimum 20K followers and active engagement
             YouTube Channel—Minimum 1K subscribers and high-quality content
             Website / Forum / Blog— Minimum 1K visits daily</p>
 
-        <h2>Q:I have a problem of Super User application?</h2>
-        <p>A:If you have any problems with Super User, please send an email to ushelp@1byone.com and we'll reply back to
+        <h2>Q: I have a problem of Super User application?</h2>
+        <p>A: If you have any problems with Super User, please send an email to ushelp@1byone.com and we'll reply back to
             you within 3 work days.</p>
     </div>
 
-    <div class="input-container-title">Power User Information</div>
+    <div class="input-container-title">Super User Information</div>
 
     <div class="input-container input-control-group">
         <div class="form-action-control-container">
@@ -149,10 +148,13 @@
                 inputCheckedContainer.each(function (index, e) {
                     interestsArr.push(e.value);
                 });
+                let country = $("input[name='country']").val();
+                console.log(country);
                 let param = {
                     email: email,
                     customerId: customerId,
-                    interests: interestsArr
+                    interests: interestsArr,
+                    country: country
                 };
                 ajax.sendAjax(false, url, param, function (res) {
                     console.log("form submit", res);

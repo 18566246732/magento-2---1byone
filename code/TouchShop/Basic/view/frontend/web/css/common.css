@@ -20,7 +20,7 @@
 .input-checkbox-container {
     padding-top: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .input-checkbox-container div {
@@ -29,7 +29,7 @@
 }
 
 .input-checkbox-container div:not(:last-child) {
-    margin-right: 8px;
+    margin-right: 20px;
 }
 
 .input-checkbox-float.input-checkbox-container > div {

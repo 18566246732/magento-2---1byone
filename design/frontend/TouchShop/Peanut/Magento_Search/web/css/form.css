@@ -39,9 +39,9 @@
     line-height: 26px;
 }
 
-#search:focus {
-    box-shadow: 0 0 5px 1px white;
-}
+/*#search:focus {*/
+    /*box-shadow: 0 0 5px 1px white;*/
+/*}*/
 
 .block-search input {
     /*padding-right: 0px;*/

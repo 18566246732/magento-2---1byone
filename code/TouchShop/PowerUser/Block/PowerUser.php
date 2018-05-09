@@ -40,7 +40,7 @@ class PowerUser extends Template
      */
     public function getFormAction()
     {
-        return $this->getUrl('power-user');
+        return $this->getUrl('super-user');
     }
 
     public function getBaseImgUrl($imgName)

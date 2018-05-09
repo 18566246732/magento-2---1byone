@@ -45,6 +45,12 @@
     font-size: 2vw;
 }
 
+.news_detail p {
+    font-size: 16px;
+    color: black;
+}
+
+
 @media screen and (max-width: 525px){
     .warranty .news_detail > p:first-child {
         text-align: center;

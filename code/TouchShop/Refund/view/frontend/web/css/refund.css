@@ -26,6 +26,20 @@
     height: 80px;
 }
 
+
+.refund-des h4, .refund-form .input-container-title {
+    font-size: 16px;
+    color: black;
+}
+
+.refund-form > .input-container {
+        display: flex;
+}
+
+.refund-form > .input-container input:last-child {
+    margin-left: 20px;
+}
+
 .refund-back {
     width: 100%;
     position: absolute;
