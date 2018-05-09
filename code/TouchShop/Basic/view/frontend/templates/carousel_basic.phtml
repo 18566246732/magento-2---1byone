@@ -53,15 +53,16 @@
                 console.log(allSpan, allSpan.length);
                 console.log("spanArr:", spanArr);
                 owlAddOn.each(function (index, e) {
-                    $(e).css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
+                    $(e).css("color", spanArr[(index + spanArr.length -2) % owlImgNum].getAttribute("data-color"));
                 });
 
                     // change color every switch
                 console.log("owlImgNum:", owlImgNum);
                 owl.on("initialized.owl.carousel changed.owl.carousel", function (e) {
-                    var index = e.relatedTarget.current();
+                    var index = e.relatedTarget.current() + spanArr.length -2;
+                    console.log("changed:", index);
                     // use + 1 to replace -2 in order to avoid negative
-                    navText.css("color", spanArr[(index + 1) % owlImgNum].getAttribute("data-color"));
+                    navText.css("color", spanArr[(index) % owlImgNum].getAttribute("data-color"));
                     $(".owl-dot > span").css("background-image", "none");
                     $(".owl-dot.active > span").css("background-image", "url('<?php echo $block->getBaseUrl() . 'pub/media/wysiwyg/logo_dot.png'?>')");
                 });
@@ -71,7 +72,6 @@
                 //     beforeLoadCover.hide();
                 // })
 
-
                 <?php if ($block->isFullScreen()): ?>
                 function resizeCarouselContainer() {
                     var WINDOW_WIDTH = document.body.offsetWidth
@@ -80,7 +80,7 @@
                     $('.owl-carousel-container, .imgs-gallery').css('margin-left', -((WINDOW_WIDTH - TARGET_WIDTH) / 2) + 'px')
                 }
 
-                resizeCarouselContainer()
+                resizeCarouselContainer();
 
                 owl.on("refresh.owl.carousel", function () {
                     var timeout = setTimeout(function () {

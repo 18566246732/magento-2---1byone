@@ -23,8 +23,18 @@ form.power-user-form > h2 {
     font-weight: bold;
 }
 
-form.power-user-form .input-container {
+form.power-user-form > .input-container > label {
+    font-size: 16px;
+    color: black;
+    margin-top: 40px;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+form.power-user-form > .input-container {
     /*text-align: center;*/
+    /*width: 50%;*/
+    /*margin: 0 auto;*/
 }
 
 form.power-user-form .input-container.input-container-full {
@@ -33,7 +43,7 @@ form.power-user-form .input-container.input-container-full {
 
 form.power-user-form .input-container.input-control-group {
     width: 50%;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 }
 
 .power-user-description h2 {
@@ -53,9 +63,10 @@ form.power-user-form .input-container.input-control-group {
 }
 
 .power-user-banner h2 {
-    font-size: 24px;
+    font-size: 2vw;
     position: absolute;
-    top: 2vw;
+    top: 5vw;
+    right: 20vw;
 }
 
 .input-container-title {
@@ -66,7 +77,7 @@ form.power-user-form .input-container.input-control-group {
 }
 
 .input-container-title.form-title {
-    text-align: center;
+    /*text-align: center;*/
     margin-top: 50px;
     margin-bottom: 0;
 }
@@ -91,6 +102,7 @@ div.form-action-btn button {
     background-color: #e70012;
     color: white;
     width: 100%;
+    font-size: 12.8px;
 }
 
 div.form-action-btn button:hover {
@@ -140,22 +152,30 @@ div.input-checkbox-container div {
 
 .form-action-control-container input {
     border-radius: 16px;
+    font-size: 12.8px;
 }
 
 .power-user-form span {
     color: red;
 }
 
+.des-title {
+    font-size: 16px;
+    color: black;
+}
+
 .input-radio-container {
     /*padding-top: 10px;*/
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 5px;
 }
 
 .input-radio-container div {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 8px 0;
 }
 
 .input-radio-container div:not(:last-child) {
@@ -168,7 +188,7 @@ div.input-checkbox-container div {
 }
 
 .power-user-description h2 {
-    font-size: 16px;
+    font-size: 14px;
     color: black;
     font-weight: 400;
 }
@@ -212,3 +232,34 @@ div.input-checkbox-container div {
     }
 
 }
+
+.triangle-facing-down {
+    display: inline-block;
+    border-left: 2.4px solid #e70012;
+    border-bottom: 2.4px solid #e70012;
+    width: 8px;
+    height: 8px;
+    transform: rotate(-45deg);
+    margin-right: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.pu-title {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/*.triangle-facing-up {*/
+    /*display: inline-block;*/
+    /*border-left: 2.4px solid #e70012;*/
+    /*border-bottom: 2.4px solid #e70012;*/
+    /*width: 8px;*/
+    /*height: 8px;*/
+    /*margin-right: 8px;*/
+    /*margin-top: 4px;*/
+    /*cursor: pointer;*/
+    /*transform: rotate(135deg);*/
+/*}*/
+

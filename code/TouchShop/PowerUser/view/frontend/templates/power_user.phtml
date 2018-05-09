@@ -53,25 +53,7 @@
         </div>
     </div>
 
-    <div class="power-user-description">
-        <h2>Q: As a brand-new one, why do I join Super User?</h2>
-        <p>A: Super User will receive products from 1byone.
-            Super User will have excusive discount codes and rewards.
-            Except these,
-            Super User usually will be the first one to know more about the latest product.
-            Super User may change products of 1byone.</p>
 
-        <h2>Q: Who should apply as a Super User?</h2>
-        <p>A: Everyone interested in 1byone and active in social media can apply to be a Super User.Some basic
-            requirements for application:
-            Social media— Minimum 20K followers and active engagement
-            YouTube Channel—Minimum 1K subscribers and high-quality content
-            Website / Forum / Blog— Minimum 1K visits daily</p>
-
-        <h2>Q: I have a problem of Super User application?</h2>
-        <p>A: If you have any problems with Super User, please send an email to ushelp@1byone.com and we'll reply back to
-            you within 3 work days.</p>
-    </div>
 
     <div class="input-container-title form-title">Super User Information</div>
 
@@ -98,10 +80,17 @@
             </div>
 
             <div class="form-action-btn">
-                <button type="button">SUBMIT</button>
+                <button type="button">Submit</button>
             </div>
         </div>
     </div>
+
+
+
+    <div data-bind="scope: 'pu'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+
 </form>
 
 
@@ -181,3 +170,20 @@
         })
     })();
 </script>
+
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "pu": {
+                            "component": "TouchShop_PowerUser/js/index",
+                            "template" : "TouchShop_PowerUser/poweruser"
+                        }
+                    }
+                }
+            }
+        }
+</script>
+
+
