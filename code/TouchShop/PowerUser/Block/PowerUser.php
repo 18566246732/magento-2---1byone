@@ -66,6 +66,7 @@ class PowerUser extends Template
                 $interests = $entity->getInterests();
                 if ($interests) {
                     $result['interests'] = explode(',', $interests);
+                    $result['country'] = $entity->getCountry();
                 }
             } else {
                 $result['vip'] = 1;
