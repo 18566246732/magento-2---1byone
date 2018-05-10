@@ -11,3 +11,9 @@
     width: 90px;
     height: auto;
 }
+
+@media screen and (max-width: 525px){
+    .logo img {
+        display: none;
+    }
+}
