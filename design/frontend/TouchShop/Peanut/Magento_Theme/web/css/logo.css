@@ -2,6 +2,7 @@
     display: initial;
     /*prevent logo from shrink*/
     flex-shrink: 0;
+    margin: 0;
     margin-right: 10px;
 }
 

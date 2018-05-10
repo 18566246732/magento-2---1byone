@@ -187,6 +187,7 @@ div.form-action-btn button:hover {
 .faq-hint {
     width: 40%;
     margin: 0 auto;
+    margin-top: 20px;
 }
 
 .hint {

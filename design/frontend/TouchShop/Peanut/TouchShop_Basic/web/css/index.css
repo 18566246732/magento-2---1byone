@@ -30,16 +30,28 @@ div.sections.nav-sections {
     z-index: 3;
 }
 
-div.section-items.nav-sections-items {
-    margin-top: 20px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*div.section-items.nav-sections-items {*/
+    /*margin-top: 20px;*/
+    /*max-width: 1200px;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+/*}*/
 
 div.section-item-content.nav-sections-item-content {
     display: flex !important;
     align-items: initial;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sections {
+    transition: height .4s ease;
+}
+
+.section-items.nav-sections-items {
+    height: 80px;
+    display: flex;
+    align-items: center;
 }
 
 div.panel.header {

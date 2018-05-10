@@ -58,7 +58,7 @@ $topmenus = $block->getTopMenus();
             </div>
         <?php endforeach; ?>
     </ul>
-    <div class="menu-info-cover"></div>
+<!--    <div class="menu-info-cover"></div>-->
 </nav>
 
 
@@ -72,13 +72,14 @@ $topmenus = $block->getTopMenus();
                     var menuInfo = $('.menu-info');
                     var topMenuItem = $(".top-menu-wrapper > li");
                     var sections = $(".sections");
-                    var menuInfoCover = $(".menu-info-cover");
+                    // var menuInfoCover = $(".menu-info-cover");
                     var navigation = $("nav.navigation");
                     var isHoverd = false;
                     var submenu = $(".submenu ul li");
                     var menuImg = $(".menu-image");
                     var topmenu = $(".top-menu li a");
                     var menuImgContainer = $(".menu-tag-img");
+                    var navCore = $(".section-items");
                     li.on({
                         mouseover: function (e) {
                             if ($(this).children("ul").length != 0) {
@@ -91,7 +92,7 @@ $topmenus = $block->getTopMenus();
                     });
 
                     // console.log($(".navigation ul li"));
-                    menuInfoCover.hide();
+                    // menuInfoCover.hide();
                     topMenuItem.click(function (e) {
 
                         let topMenuItemSubMenu = $(e.target).parent().parent().find(".submenu > ul");
@@ -116,10 +117,13 @@ $topmenus = $block->getTopMenus();
                                     topmenu.addClass("nav-background-grey");
                                     sections.css({
                                         "background-color": "rgba(255, 255, 255, 0.95)",
-                                        "border-bottom": "1px solid grey"
+                                        "height": "350px"
+                                    });
+                                    navCore.css({
+                                        "border-bottom": "1px solid #D8D8D8"
                                     });
                                     menuInfo.removeClass("active");
-                                    menuInfoCover.css("display", "block");
+                                    // menuInfoCover.css("display", "block");
                                     // menuInfoCover.animate({height: "270px"}, 500);
                                     $(this).next().addClass("active");
                                 } else {
@@ -130,7 +134,7 @@ $topmenus = $block->getTopMenus();
                                         sections.css("background-color", "rgba(255,255,255, 0)");
                                     }
 
-                                    menuInfoCover.css("display", "none");
+                                    // menuInfoCover.css("display", "none");
                                     // menuInfoCover.animate({height: "0"}, 500);
                                     menuInfo.removeClass("active");
                                 }
@@ -139,18 +143,24 @@ $topmenus = $block->getTopMenus();
                     })
                     ;
                     // B-->A
-                    menuInfoCover.on({
+                    sections.on({
                         mouseleave: function (e) {
                             setTimeout(function () {
                                 if (!isHoverd) {
 
                                     topMenuIsHoverd = false;
-                                    sections.css("border-bottom", "none");
+                                    // sections.css("border-bottom", "none");
                                     if ($(document).scrollTop() <= 30) {
                                         topmenu.removeClass("nav-background-grey");
-                                        sections.css("background-color", "rgba(255,255,255, 0)");
+                                        sections.css("height", "0");
+                                    } else {
+                                        sections.css("height", "80px");
                                     }
-                                    menuInfoCover.css("display", "none");
+
+                                    navCore.css({
+                                        "border-bottom": "none"
+                                    });
+                                    // menuInfoCover.css("display", "none");
                                     // menuInfoCover.animate({height: "0"}, 500);
                                     menuInfo.removeClass("active");
                                 }
@@ -163,12 +173,14 @@ $topmenus = $block->getTopMenus();
                         isHoverd = false;
                     });
 
+
                     $(".top-menu li").mouseover(function () {
                         console.log(this);
                         // if(menuImgContainer.attr("src") != $(this).attr("data-src"))
                         menuImgContainer.attr('src', $(this).attr("data-src"));
                     });
 
+                    //image preload
                     var imgSrcArr = [];
                     $(".top-menu li").each(function (index, e) {
                         imgSrcArr.push($(e).attr("data-src"));

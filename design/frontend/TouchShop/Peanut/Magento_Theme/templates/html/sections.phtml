@@ -66,6 +66,7 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
             var menubar = $(".sections.nav-sections");
             var topmenu = $(".top-menu li a");
             var backTop = $(".back-top");
+            var sections = $(".sections");
 
 
 
@@ -73,11 +74,12 @@ $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"
                 var docTop = $(document).scrollTop();
                 var productInfo = $(".product.info.detailed");
                 if (docTop >= 30) {
-                    $(".sections").css("background-color", "rgba(255,255,255,0.95)");
+                    sections.css({"background-color": "rgba(255,255,255,0.95)", "height": "80px"});
                     topmenu.addClass("nav-background-grey");
                 } else {
                     if(!topMenuIsHoverd) {
-                        $(".sections").css("background-color", "rgba(255,255,255,0)");
+                        console.log("top is arrived");
+                        sections.css({"background-color": "rgba(255,255,255,0)", "height": "0px"});
                         topmenu.removeClass("nav-background-grey");
                     }
                 }

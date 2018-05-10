@@ -54,6 +54,7 @@ ul.top-menu {
 
 .menu-info.active {
     display: flex;
+    color: #b4b4b4;
 }
 
 .menu-info {
@@ -62,6 +63,7 @@ ul.top-menu {
     left: 0;
     display: none;
     z-index: 2;
+    margin-top: 10px;
     /*justify-content: space-between;*/
 }
 
