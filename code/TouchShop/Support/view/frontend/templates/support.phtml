@@ -48,7 +48,7 @@
 <script>
     (function () {
 
-        require(["jquery", "simplePagination", "dotdotdot"], function ($) {
+        require(["jquery", "simplePagination", "dotdotdot", "ellipsis"], function ($) {
             var currentPage = 1,
                 imgArr = $(".flex-item img"),
                 fileContainer = $(".flex-item ul"),
@@ -202,7 +202,12 @@
                             $(fileContainer[index]).html(resHtml);
                             $(prodName[index]).text(dataPName);
                             console.log("dot excuted");
-                            $(prodName[index]).dotdotdot();
+                            // $(prodName[index]).dotdotdot();
+                            $(prodName[index]).ellipsis({
+                                lines: 2,
+                                ellipClass: 'ellip',
+                                resposive: true
+                            });
                             // console.log("faq[index]:", faq[index]);
                             $(faq[index]).attr("href", dataUrl + "#faq");
                             $(manual[index]).attr("href", dataUrl + "#download_files");

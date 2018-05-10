@@ -5,6 +5,7 @@ var config = {
         'bootstrap' : "TouchShop_Basic/js/bootstrap.min",
         'simplePagination' : "TouchShop_Basic/js/jquery.simplePagination",
         'dotdotdot': 'TouchShop_Basic/js/jquery.dotdotdot',
+        'ellipsis': 'TouchShop_Basic/js/jquery.ellipsis.min',
         'ajax' : 'TouchShop_Basic/js/ajax',
         'bindQuickAutoLogin' : 'TouchShop_Basic/js/bindQuickAutoLogin'
 
@@ -23,6 +24,9 @@ var config = {
             deps: ['jquery']
         },
         'dotdotdot' : {
+            deps: ['jquery']
+        },
+        'ellipsis' : {
             deps: ['jquery']
         },
         'ajax' : {

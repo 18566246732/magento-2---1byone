@@ -1,4 +1,4 @@
-require(['jquery', 'dotdotdot'], function ($) {
+require(['jquery', 'dotdotdot', 'ellipsis'], function ($) {
     $(function () {
         var proItem = $(".product-items .product-item");
         var reviewsSummary = $(".product-reviews-summary.short");
@@ -12,7 +12,12 @@ require(['jquery', 'dotdotdot'], function ($) {
         proItemLink.each(function (index, e) {
             // console.log("e.txt.length:", $(e).text().trim().length);
             // $clamp(e,{clamp: 2});
-            $(e).dotdotdot();
+            // $(e).dotdotdot();
+            $(e).ellipsis({
+                lines: 2,
+                ellipClass: 'ellip',
+                resposive: true
+            });
             // if($(e).text().length >= (60 + 78)) {
             //     $(e).parent().addClass("p-i-n");
             // }

@@ -18,6 +18,10 @@
     margin-top: 270px;
 }
 
+.post-item-list .post-info-wraper {
+    display: block;
+}
+
 @media screen and (max-width: 525px) {
     .blog-gallery {
         position: initial;

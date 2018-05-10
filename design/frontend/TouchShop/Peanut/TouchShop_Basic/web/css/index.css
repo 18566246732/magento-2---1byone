@@ -85,6 +85,27 @@ div.panel.header {
     max-width: 1200px;
 }
 
+/*plugin ellipse */
+
+.ellip {
+    display: block;
+    height: 100%;
+}
+
+.ellip-line {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    max-width: 100%;
+}
+
+.ellip,
+.ellip-line {
+    position: relative;
+    overflow: hidden;
+}
+
 @media screen and (max-width: 767px) {
     .block.block-search {
         margin-top: 0;
@@ -332,6 +353,7 @@ div.panel.header {
 
     .top-menu-wrapper li, .top-menu-wrapper .menu-info {
         width: 100%;
+        margin-top: 0;
     }
 
     .navigation ul.top-menu {
@@ -475,6 +497,11 @@ div.panel.header {
     /*product list */
     .page-main .column.main .products-grid .items li.product-item {
         margin-left: 0;
+    }
+
+    .page-main .column.main .products-grid .items li.product-item:hover {
+        position: relative;
+        z-index: 2;
     }
 
     .column.main .product-item {

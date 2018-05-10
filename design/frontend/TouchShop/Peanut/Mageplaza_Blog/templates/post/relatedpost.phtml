@@ -49,10 +49,16 @@ $posts = $block->getRelatedPostList();
 <?php endif; ?>
 
 <script>
-    (require(['jquery' ,'dotdotdot'], function ($) {
+    (require(['jquery' ,'dotdotdot', 'ellipsis'], function ($) {
         var shortDescription = $(".related-post-text > span");
-        shortDescription.each(function (index, e) {
-            $(e).dotdotdot();
+        $(function () {
+            shortDescription.each(function (index, e) {
+                $(e).ellipsis({
+                    lines: 2,
+                    ellipClass: 'ellip',
+                    resposive: true
+                });
+            })
         })
     }))
 </script>

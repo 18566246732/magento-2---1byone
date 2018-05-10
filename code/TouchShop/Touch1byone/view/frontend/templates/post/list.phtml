@@ -82,12 +82,20 @@
 
 <script>
     (function () {
-        require(['jquery', 'dotdotdot'], function ($) {
+        require(['jquery', 'dotdotdot', 'ellipsis'], function ($) {
             $('.mp-post-title').each(function (index, e) {
-                $(e).dotdotdot();
+                $(e).ellipsis({
+                    lines: 2,
+                    ellipClass: 'ellip',
+                    resposive: true
+                });
             });
             $(".post-short-description p").each(function (index, e) {
-                $(e).dotdotdot();
+                $(e).ellipsis({
+                    lines: 2,
+                    ellipClass: 'ellip',
+                    resposive: true
+                });
             })
         })
     })()
