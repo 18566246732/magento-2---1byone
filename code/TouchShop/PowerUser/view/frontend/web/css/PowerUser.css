@@ -169,7 +169,7 @@ div.input-checkbox-container div {
     /*padding-top: 10px;*/
     display: flex;
     justify-content: flex-start;
-    flex-direction: column;
+    /*flex-direction: column;*/
     padding-left: 5px;
 }
 
