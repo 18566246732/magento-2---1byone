@@ -53,7 +53,7 @@ define(['uiComponent', 'ko'], function (Component, ko) {
                     },
                     {
                         title: 'Q: I have a problem of Super User application?',
-                        description: 'A: If you have any problems with Super User, please send an email to ushelp@1byone.com and we\'ll reply back to\n' +
+                        description: 'A: If you have any problems with Super User, please send an email to <a>ushelp@1byone.com</a> and we\'ll reply back to\n' +
                         '    you within 3 work days.',
                         isVisible: ko.observable(false),
                         degree: ko.observable('rotate(-45deg)')

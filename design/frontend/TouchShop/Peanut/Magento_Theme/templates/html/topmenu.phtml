@@ -27,7 +27,7 @@ $topmenus = $block->getTopMenus();
     <ul class="top-menu">
         <?php foreach ($topmenus as $menu): ?>
             <div class="top-menu-wrapper">
-                <li><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>
+                <li data-src="<?= $menu['image_url'] ?>"><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>
                 <div class="menu-info">
                     <div class="submenu">
                         <?php foreach ($menu['submenus'] as $submenuGroup): ?>
@@ -66,7 +66,7 @@ $topmenus = $block->getTopMenus();
     var topMenuIsHoverd = false;
 
     (function () {
-        require(['jquery', 'jquery/ui'], function ($) {
+        require(['jquery', 'Magento_Theme/js/preload', 'jquery/ui' ], function ($, preload) {
             $(document).ready(function () {
                     var li = $("nav>ul li");
                     var menuInfo = $('.menu-info');
@@ -78,6 +78,7 @@ $topmenus = $block->getTopMenus();
                     var submenu = $(".submenu ul li");
                     var menuImg = $(".menu-image");
                     var topmenu = $(".top-menu li a");
+                    var menuImgContainer = $(".menu-tag-img");
                     li.on({
                         mouseover: function (e) {
                             if ($(this).children("ul").length != 0) {
@@ -155,18 +156,26 @@ $topmenus = $block->getTopMenus();
                                 }
                             }, 1);
                         }
-                    })
+                    });
                     menuInfo.hover(function () {
                         isHoverd = true;
                     }, function () {
                         isHoverd = false;
                     });
 
-                    submenu.hover(function () {
-                        $('.menu-tag-img').attr('src', $(this).attr("data-src"))
+                    $(".top-menu li").mouseover(function () {
+                        console.log(this);
+                        // if(menuImgContainer.attr("src") != $(this).attr("data-src"))
+                        menuImgContainer.attr('src', $(this).attr("data-src"));
                     });
 
+                    var imgSrcArr = [];
+                    $(".top-menu li").each(function (index, e) {
+                        imgSrcArr.push($(e).attr("data-src"));
+                    });
+                    console.log(imgSrcArr);
 
+                    preload(imgSrcArr);
                 }
             )
         })
