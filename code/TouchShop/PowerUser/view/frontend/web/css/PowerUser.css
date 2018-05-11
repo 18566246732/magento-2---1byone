@@ -40,6 +40,8 @@ form.power-user-form > .input-container {
 
 form.power-user-form .input-container.input-container-full {
     margin-bottom: 0;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 
 form.power-user-form .input-container.input-control-group {
@@ -223,7 +225,8 @@ div.input-checkbox-container div {
 
     .main .form-action-control-container {
         width: 100%;
-        padding-left: 0;
+        padding: 0 5px;
+        box-sizing: border-box;
     }
 
     .input-checkbox-container {
@@ -236,6 +239,9 @@ div.input-checkbox-container div {
 
     form.power-user-form .input-container.input-control-group {
         width: 100%;
+    }
+    .power-user-banner h2 {
+        display: none;
     }
 
 }

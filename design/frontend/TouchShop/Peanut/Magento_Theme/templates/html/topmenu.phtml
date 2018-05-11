@@ -25,6 +25,7 @@ $topmenus = $block->getTopMenus();
 
 <nav class="navigation" data-action="navigation">
     <ul class="top-menu">
+        <div class="top-menu-wrapper home"><li><a href="<?= $block->getBaseUrl()?>">Home</a></li></div>
         <?php foreach ($topmenus as $menu): ?>
             <div class="top-menu-wrapper">
                 <li data-src="<?= $menu['image_url'] ?>"><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>

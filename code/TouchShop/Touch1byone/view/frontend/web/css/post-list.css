@@ -39,9 +39,9 @@
     }
 
     .blog-gallery img {
-        height: 150px;
-        max-width: initial;
-        transform: translateX(-30%);
+        /*height: 150px;*/
+        /*max-width: initial;*/
+        /*transform: translateX(-30%);*/
     }
 
     .mpblog-post-index.page-layout-2columns-right .sidebar-main {

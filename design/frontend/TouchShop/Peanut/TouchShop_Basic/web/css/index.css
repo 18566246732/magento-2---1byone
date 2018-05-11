@@ -531,6 +531,14 @@ div.panel.header {
         top: 30px;
     }
 
+    .mpblog-post-view.page-layout-2columns-right .columns .sidebar-main {
+        width: 100%;
+    }
+
+    .mpblog-post-view.page-layout-2columns-right main#maincontent {
+        padding: 0 20px;
+    }
+
 }
 
 .account.customer-account-index.page-layout-2columns-left .block-title .action.edit {
