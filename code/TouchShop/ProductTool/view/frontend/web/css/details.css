@@ -191,9 +191,6 @@
         flex-shrink: 0;
     }
 
-    .page-product-configurable.catalog-product-view.page-layout-1column .product-item-info {
-        padding: 0;
-    }
     .catalog-product-view .products.list.items.product-items li {
        width: 46%;
         margin-bottom: 20px;
@@ -201,6 +198,11 @@
 
 }
 
+@media screen and (max-width: 768px){
+    .catalog-product-view.page-layout-1column .product-item-info {
+        padding: 0 !important;
+    }
+}
 
 .page-product-configurable.catalog-product-view .product-item-info {
     margin: 0 auto;

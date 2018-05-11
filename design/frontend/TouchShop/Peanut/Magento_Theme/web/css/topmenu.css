@@ -1,5 +1,7 @@
 nav.navigation {
     background-color: rgba(0, 0, 0, 0);
+    display: flex !important;
+    align-items: center;
 }
 
 /*nav.navigation ul li {*/
@@ -25,7 +27,7 @@ nav.navigation {
 ul.top-menu {
     list-style: none;
     display: flex;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     margin-left: 45px;
 }
 

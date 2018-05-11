@@ -45,7 +45,7 @@ div.section-item-content.nav-sections-item-content {
 }
 
 .sections {
-    transition: height .4s ease;
+    /*transition: height .4s ease;*/
 }
 
 .section-items.nav-sections-items {
@@ -359,6 +359,7 @@ div.panel.header {
     .navigation ul.top-menu {
         max-height: 300px;
         overflow: scroll;
+        width: 100%;
     }
 
     .columns .main .owl-carousel-container {
