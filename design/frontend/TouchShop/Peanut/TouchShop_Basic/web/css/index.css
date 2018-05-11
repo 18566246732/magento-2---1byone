@@ -40,8 +40,6 @@ div.sections.nav-sections {
 div.section-item-content.nav-sections-item-content {
     display: flex !important;
     align-items: initial;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .sections {
@@ -52,6 +50,8 @@ div.section-item-content.nav-sections-item-content {
     height: 80px;
     display: flex;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 div.panel.header {
