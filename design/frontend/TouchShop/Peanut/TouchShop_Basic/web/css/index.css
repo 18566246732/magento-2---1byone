@@ -619,6 +619,7 @@ main.page-main {
     /*width: 400px;*/
     /*box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.1);*/
     cursor: pointer;
+    transition: all .4s;
 }
 
 .page-h-cards > div:hover {
