@@ -115,10 +115,6 @@ $topmenus = $block->getTopMenus();
                                 if ($(this).parent().find(".submenu ul").children().length) {
                                     topMenuIsHoverd = true;
                                     topmenu.addClass("nav-background-grey");
-                                    sections.css({
-                                        "background-color": "rgba(255, 255, 255, 0.95)",
-                                        "height": "350px"
-                                    });
                                     navCore.css({
                                         "border-bottom": "1px solid #D8D8D8"
                                     });
@@ -126,6 +122,14 @@ $topmenus = $block->getTopMenus();
                                     // menuInfoCover.css("display", "block");
                                     // menuInfoCover.animate({height: "270px"}, 500);
                                     $(this).next().addClass("active");
+
+                                    let submenuLastItem = $(this).parents(".top-menu-wrapper").find(".menu-info > div:last-child");
+                                    let submenuLastItemHeight = submenuLastItem.offset().top + submenuLastItem.height();
+                                    console.log("submenuLastItem: ",submenuLastItem, submenuLastItemHeight);
+                                    sections.css({
+                                        "background-color": "rgba(255, 255, 255, 0.95)",
+                                        "height": submenuLastItemHeight
+                                    });
                                 } else {
                                     topMenuIsHoverd = false;
                                     sections.css("border-bottom", "none");
