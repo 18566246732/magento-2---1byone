@@ -117,7 +117,8 @@ $data = $block->getInfo()
         let hint = $(".faq-hint");
         let form = $(".product-details-faq");
 
-        hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
+        // hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
+        hint.text(sessionStorage.getItem("success") || '');
         binder.bind(
             data,
             "<?= $block->getBaseUrl()?>",

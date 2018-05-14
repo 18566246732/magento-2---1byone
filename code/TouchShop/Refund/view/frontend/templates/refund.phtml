@@ -18,7 +18,7 @@
                 whatever problems you are experiencing. We're very sorry for whatever inconvenience your purchase may
                 have
                 caused you.</p>
-            <p>Please kindly be advised that all of our Anker products come with a hassle-free warranty. You can find
+            <p>Please kindly be advised that all of our 1byone products come with a hassle-free warranty. You can find
                 your
                 precise warranty period on the literature inside the box or verify with our customer service team. If
                 your
@@ -209,7 +209,8 @@
             let hint = $(".refund-hint");
             var formAddress = $(".form-address");
 
-            hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
+            // hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
+            hint.text(sessionStorage.getItem("success") || '');
             binder.bind(
                 data,
                 "<?= $block->getBaseUrl()?>",
