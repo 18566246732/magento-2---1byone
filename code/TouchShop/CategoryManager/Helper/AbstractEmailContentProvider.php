@@ -10,7 +10,9 @@ namespace TouchShop\CategoryManager\Helper;
 
 
 use Magento\Backend\Model\UrlInterface;
+use Magento\Catalog\Model\CategoryRepository;
 use Magento\Framework\App\Area;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
 use TouchShop\CategoryManager\Model\ResourceModel\Manager\CategoryManagerCollectionFactory;
@@ -21,18 +23,21 @@ abstract class AbstractEmailContentProvider
     private $storeManager;
     private $urlBuilder;
     private $collection;
+    private $categoryRepository;
 
     public function __construct(
         TransportBuilder $transportBuilder,
         UrlInterface $urlBuilder,
         CategoryManagerCollectionFactory $collection,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        CategoryRepository $categoryRepository
     )
     {
         $this->transportBuilder = $transportBuilder;
         $this->storeManager = $storeManager;
         $this->urlBuilder = $urlBuilder;
         $this->collection = $collection;
+        $this->categoryRepository = $categoryRepository;
     }
 
 
@@ -82,17 +87,33 @@ abstract class AbstractEmailContentProvider
             ->setTemplateOptions(['area' => Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId()])
             ->setTemplateVars([
                 'content' => $this->getContent($object),
-                'admin' => $this->urlBuilder->getUrl($this->getUrlPath())
+                'admin' => $this->urlBuilder->getUrl($this->getUrlPath()),
+                'title' => $this->getTitle($object)
             ])
-            ->setFrom(['name' => '1byone', 'email' => 'ushelp@1byone.com'])
+            ->setFrom([
+                'name' => '1byone',
+                'email' => 'ushelp@1byone.com',
+            ])
             ->addTo($emails)
             ->getTransport();
         $transport->sendMessage();
     }
 
+    protected function get_category_name($category_id)
+    {
+        try {
+            return $this->categoryRepository->get($category_id)->getName();
+        } catch (NoSuchEntityException $e) {
+            return 'Unknown';
+        }
+
+    }
+
     abstract public function getContent($object);
 
     abstract public function getUrlPath();
+
+    abstract public function getTitle($object);
 
 
 }

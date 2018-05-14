@@ -459,8 +459,6 @@ div.panel.header {
         margin-top: 160px;
     }
 
-
-
     /*homepage*/
     .page-cards-container div.page-cards-title h1 {
         margin-bottom: 20px;
@@ -545,7 +543,7 @@ div.panel.header {
     display: none;
 }
 
-.account.newsletter-manage-index.page-layout-2columns-left .form.form-newsletter-manage .actions-toolbar{
+.account.newsletter-manage-index.page-layout-2columns-left .form.form-newsletter-manage .actions-toolbar {
     width: 40%;
 }
 
@@ -560,8 +558,7 @@ div.panel.header {
     width: 100%;
 }
 
-
-.account.customer-address-form.page-layout-2columns-left #form-validate input, .account.customer-address-form.page-layout-2columns-left #form-validate select{
+.account.customer-address-form.page-layout-2columns-left #form-validate input, .account.customer-address-form.page-layout-2columns-left #form-validate select {
     border-radius: 16px;
 }
 
@@ -570,7 +567,7 @@ div.panel.header {
     height: 32px;
 }
 
-.account.customer-address-form.page-layout-2columns-left #form-validate .actions-toolbar .primary{
+.account.customer-address-form.page-layout-2columns-left #form-validate .actions-toolbar .primary {
     width: 100%;
     height: 32px;
     border-radius: 16px;
