@@ -43,7 +43,7 @@ div.section-item-content.nav-sections-item-content {
 }
 
 .sections {
-    /*transition: height .4s ease;*/
+    transition: all .4s ease;
 }
 
 .section-items.nav-sections-items {
@@ -60,6 +60,8 @@ div.panel.header {
     height: 34px;
     color: white;
     justify-content: flex-end;
+    max-width: 1200px !important;
+    padding: 0 !important;
 }
 
 .page-header {

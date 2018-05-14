@@ -14,9 +14,14 @@
 }
 
 .user-icon {
-    width: 30px;
     cursor: pointer;
     margin-top: 5px;
+}
+
+@media screen and (max-width: 768px){
+    .user-icon {
+        width: 30px;
+    }
 }
 
 .user-icon img {

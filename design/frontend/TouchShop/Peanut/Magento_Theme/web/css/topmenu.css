@@ -61,13 +61,15 @@ ul.top-menu {
 .menu-info.active {
     display: flex;
     color: #b4b4b4;
+    visibility: visible;
 }
 
 .menu-info {
     position: absolute;
     top: 60px;
     left: 0;
-    display: none;
+    /*display: none;*/
+    visibility: hidden;
     z-index: 2;
     margin-top: 10px;
     /*justify-content: space-between;*/
