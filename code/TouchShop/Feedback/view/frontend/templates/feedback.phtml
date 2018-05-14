@@ -81,8 +81,8 @@
         let category = $("#feedbackCategory");
         let form = $(".feedback-form");
         let btn = $(".form-action-btn button[type='button']");
-        // hint.text(sessionStorage.getItem("success") || '').css("color", "blue");
-        hint.text(sessionStorage.getItem("success") || '');
+        hint.text(sessionStorage.getItem("success") || '').css("color", "#e70d11");
+        // hint.text(sessionStorage.getItem("success") || '');
         binder.bind(
             data,
             "<?= $block->getBaseUrl()?>",
