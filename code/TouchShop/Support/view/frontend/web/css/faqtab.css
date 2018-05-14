@@ -190,6 +190,16 @@ div.form-action-btn button:hover {
     margin-top: 20px;
 }
 
+@media screen and (max-width: 768px){
+    .faq-hint {
+        width: 100%;
+    }
+
+    .faq-pwd1, .faq-pwd2 {
+        width: 100%;
+    }
+}
+
 .hint {
     color: red;
 }

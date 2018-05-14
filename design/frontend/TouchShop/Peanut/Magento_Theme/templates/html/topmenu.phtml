@@ -30,6 +30,8 @@ $topmenus = $block->getTopMenus();
             <div class="top-menu-wrapper">
                 <li data-src="<?= $menu['image_url'] ?>"><a href="<?= $menu['url'] ?>"><?= $menu['label'] ?></a></li>
                 <div class="menu-info">
+                    <div class="menu-image-con">
+
                     <div class="submenu">
                         <?php foreach ($menu['submenus'] as $submenuGroup): ?>
                             <ul>
@@ -44,7 +46,7 @@ $topmenus = $block->getTopMenus();
                     <div class="menu-image">
                         <img class="menu-tag-img" style="display: block;height: 140px;" src="<?= $menu['image_url'] ?>" alt="">
                     </div>
-
+                    </div>
                     <?php if (isset($menu['additions'])): ?>
                         <div class="Brand-container">
                             <div class="Brand-title">Brand</div>
@@ -81,6 +83,7 @@ $topmenus = $block->getTopMenus();
                     var topmenu = $(".top-menu li a");
                     var menuImgContainer = $(".menu-tag-img");
                     var navCore = $(".section-items");
+                    const NAVHEIGHT = 34;
                     li.on({
                         mouseover: function (e) {
                             if ($(this).children("ul").length != 0) {
@@ -125,12 +128,19 @@ $topmenus = $block->getTopMenus();
                                     $(this).next().addClass("active");
 
                                     let submenuLastItem = $(this).parents(".top-menu-wrapper").find(".menu-info > div:last-child");
-                                    console.log("submenuLastItem: ",submenuLastItem[0], submenuLastItem.offset().top, submenuLastItem[0].clientHeight);
-                                    let submenuLastItemHeight = submenuLastItem.offset().top - $(document).scrollTop() + submenuLastItem[0].clientHeight;
+                                    //height will be 0 if the box model is inline
+                                    submenuLastItem.addClass("block-box");
+                                    const SMENU_LAST_HEIGHT = submenuLastItem[0].offsetHeight;
+                                    submenuLastItem.removeClass("block-box");
+
+                                    console.log("submenuLastItem: ",submenuLastItem[0], submenuLastItem.offset().top, SMENU_LAST_HEIGHT);
+                                    const submenuLastItemHeight = submenuLastItem.offset().top - $(document).scrollTop() - NAVHEIGHT + SMENU_LAST_HEIGHT;
+
                                     sections.css({
                                         "background-color": "rgba(255, 255, 255, 0.95)",
-                                        "height": "350px"
+                                        "height": submenuLastItemHeight
                                     });
+
                                 } else {
                                     topMenuIsHoverd = false;
                                     sections.css("border-bottom", "none");
