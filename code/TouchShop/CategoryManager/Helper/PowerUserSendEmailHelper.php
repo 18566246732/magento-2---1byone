@@ -14,11 +14,18 @@ class PowerUserSendEmailHelper extends AbstractEmailContentProvider
 
     public function getContent($object)
     {
-        return '网站用户刚刚新增了超级用户。兴趣列表为：' . $object->getInterests() . "\n用户邮箱：" . $object->getEmail();
+        return '网站用户刚刚新增了超级用户。兴趣列表为：' . $object->getInterests() .
+            "\n用户邮箱：" . $object->getEmail().
+            "\n ";
     }
 
     public function getUrlPath()
     {
         return 'refund/refund';
+    }
+
+    public function getTitle($object)
+    {
+        // TODO: Implement getTitle() method.
     }
 }
